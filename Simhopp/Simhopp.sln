@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simhopp", "Simhopp\Simhopp.csproj", "{BB06C865-A7DA-4CA5-BE0A-2DF168AC52CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test-Simhopp", "Test-Simhopp\Test-Simhopp.csproj", "{C30DE9B9-08FE-41E1-A61C-4761B53BA085}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -19,6 +21,10 @@ Global
 		{BB06C865-A7DA-4CA5-BE0A-2DF168AC52CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB06C865-A7DA-4CA5-BE0A-2DF168AC52CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB06C865-A7DA-4CA5-BE0A-2DF168AC52CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C30DE9B9-08FE-41E1-A61C-4761B53BA085}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C30DE9B9-08FE-41E1-A61C-4761B53BA085}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C30DE9B9-08FE-41E1-A61C-4761B53BA085}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C30DE9B9-08FE-41E1-A61C-4761B53BA085}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
