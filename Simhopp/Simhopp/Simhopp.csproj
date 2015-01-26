@@ -50,6 +50,12 @@
   <ItemGroup>
     <Compile Include="Competition.cs" />
     <Compile Include="Dive.cs" />
+    <Compile Include="FormJudgeList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormJudgeList.Designer.cs">
+      <DependentUpon>FormJudgeList.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormNewEvent.cs">
       <SubType>Form</SubType>
     </Compile>
