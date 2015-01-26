@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 
 namespace Simhopp
 {
-    class Database
+    public class Database
     {
         /// <summary>
         /// ansluter till databasen och returnerar anslutningen
@@ -20,13 +20,13 @@ namespace Simhopp
             string myConnectionString = "server=tuffast.com;uid=teamb;pwd=teambteamb;database=db_teamb;";
             try
             {
-                conn = new MySql.Data.MySqlClient.MySqlConnection();
+                conn = new MySqlConnection();
                 conn.ConnectionString = myConnectionString;
                 conn.Open();
                 return conn;
             }
 
-            catch (MySql.Data.MySqlClient.MySqlException ex)
+            catch (MySqlException ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -36,7 +36,7 @@ namespace Simhopp
 
         public MySqlDataReader GetJudges()
         {
-            MySqlConnection
+            MySqlConnection conn = ConnectToDatabase();
         }
     }
 }
