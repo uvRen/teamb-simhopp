@@ -11,6 +11,7 @@ namespace Simhopp
         private int ID;
         private string name;
 
+        #region Konstruktor
         //konstruktor
         public Diver()
         {
@@ -23,6 +24,7 @@ namespace Simhopp
             this.ID = ID;
             this.name = name;
         }
+        #endregion
 
         //medlemsfunktioner
 

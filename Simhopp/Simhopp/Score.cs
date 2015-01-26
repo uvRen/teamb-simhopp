@@ -13,6 +13,7 @@ namespace Simhopp
         private Judge j;
         private double poang;
 
+        #region Konstruktor
         //konstruktor
         public Score()
         {
@@ -29,6 +30,7 @@ namespace Simhopp
             this.j = j;
             this.poang = poang;
         }
+        #endregion
 
         //medlemsfunktioner
 
