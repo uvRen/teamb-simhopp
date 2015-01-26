@@ -10,9 +10,9 @@ using Simhopp;
         public void TestJudge()
         {
             Judge j1 = new Judge(1, "Michael");
-            Assert.AreEqual("Michael", j1.getJudgeName());
-            j1.setJudgeName("Thomas");
-            Assert.AreEqual("Thomas", j1.getJudgeName());
+            Assert.AreEqual("Michael", j1.GetJudgeName());
+            j1.SetJudgeName("Thomas");
+            Assert.AreEqual("Thomas", j1.GetJudgeName());
         }
     }
 
