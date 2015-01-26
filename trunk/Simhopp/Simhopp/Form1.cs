@@ -30,6 +30,7 @@ namespace Simhopp
                 conn = new MySql.Data.MySqlClient.MySqlConnection();
                 conn.ConnectionString = myConnectionString;
                 conn.Open();
+                MessageBox.Show("Connection successfull!");
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
@@ -39,7 +40,7 @@ namespace Simhopp
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            dbtest();
         }
     }
 }
