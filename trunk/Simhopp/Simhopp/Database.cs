@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,11 +33,23 @@ namespace Simhopp
             return null;
         }
 
-        public static MySqlDataReader GetJudges()
+
+        public static List<Judge> GetJudges()
         {
+            var judgeList = new List<Judge>();
+
             var conn = ConnectToDatabase();
             var cmd = new MySqlCommand("SELECT * FROM judge", conn);
-            return cmd.ExecuteReader();
+            var dr = cmd.ExecuteReader();
+            var dt = new DataTable();
+            dt.Load(dr);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                var tmp = new Judge((int)row["id"], row["name"].ToString());
+                judgeList.Add(tmp);
+            }
+            return judgeList;
         }
 
         /// <summary>
