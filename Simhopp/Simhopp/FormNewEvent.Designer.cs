@@ -245,6 +245,7 @@
             this.btnNewDiver.TabIndex = 0;
             this.btnNewDiver.Text = "+";
             this.btnNewDiver.UseVisualStyleBackColor = true;
+            this.btnNewDiver.Click += new System.EventHandler(this.btnNewDiver_Click);
             // 
             // btnSubmit
             // 

@@ -15,23 +15,33 @@ namespace Simhopp
         List<Judge> listJudges;
         public FormNewEvent()
         {
+            listJudges = new List<Judge>();
             InitializeComponent();
         }
 
         private void btnNewJudge_Click(object sender, EventArgs e)
         {
+            int labelHeight = 23;
+            Judge tmpJudge = new Judge(0, inputNewJudge.Text);
+            listJudges.Add(tmpJudge);
+
             Label tmpLabel = new Label();
             tmpLabel.Text = inputNewJudge.Text;
             tmpLabel.Left = 5;
-            tmpLabel.Top = 30 + listJudges.Count * 16;
+            tmpLabel.Top = 27 + listJudges.Count * labelHeight;
+
+            grpJudges.Height += labelHeight;
             grpJudges.Controls.Add(tmpLabel);
 
-            Judge tmpJudge = new Judge(0, inputNewJudge.Text);
-
             inputNewJudge.Text = "Domare " + (listJudges.Count + 1);
-            grpDivers.Top += 16;
-            btnSubmit.Top += 16;
-            this.Height += 16;
+            grpDivers.Top += labelHeight;
+            btnSubmit.Top += labelHeight;
+            this.Height += labelHeight;
+        }
+
+        private void btnNewDiver_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
