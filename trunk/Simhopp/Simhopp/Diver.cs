@@ -9,7 +9,7 @@ namespace Simhopp
     public class Diver
     {
         private int ID;
-        private string name;
+        private string name { get; set; }
 
         #region Konstruktor
         public Diver()
