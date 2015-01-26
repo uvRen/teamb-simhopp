@@ -16,7 +16,9 @@ namespace Simhopp
         private string gender;
         private int singelSync;
         private int diveCount;
+        List<Judge> domare;
 
+        #region Konstruktor
         //konstruktor
         public Competition() 
         {
@@ -28,6 +30,7 @@ namespace Simhopp
             this.gender = "";
             this.singelSync = 0;
             this.diveCount = -1;
+            this.domare = new List<Judge>();
         }
 
         public Competition(int ID, string name, string location, string date, int diciplin, string gender, int singelSync, int diveCount)
@@ -40,8 +43,9 @@ namespace Simhopp
             this.gender = gender;
             this.singelSync = singelSync;
             this.diveCount = diveCount;
+            this.domare = new List<Judge>();
         }
-
+        #endregion
         //medlemsfunktioner
     }
 }

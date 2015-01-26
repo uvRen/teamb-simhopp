@@ -14,6 +14,7 @@ namespace Simhopp
         private Competition comp;
         private Score poang;
 
+        #region Konstruktor
         //konstruktor
         public Dive()
         {
@@ -32,6 +33,7 @@ namespace Simhopp
             this.comp = comp;
             this.poang = poang;
         }
+        #endregion
 
         //medlemsfunktioner
     }
