@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Simhopp
 {
-    public class Hoppare
+    public class Competition
     {
 
     }
