@@ -22,19 +22,19 @@ namespace Simhopp
 
         public void dbtest()
         {
-            MySql.Data.MySqlClient.MySqlConnection conn;
+            MySqlConnection conn;
             string myConnectionString;
 
             myConnectionString = "server=tuffast.com;uid=teamb;pwd=teambteamb;database=db_teamb;";
 
             try
             {
-                conn = new MySql.Data.MySqlClient.MySqlConnection();
+                conn = new MySqlConnection();
                 conn.ConnectionString = myConnectionString;
                 conn.Open();
                 MessageBox.Show("Connection successfull!");
             }
-            catch (MySql.Data.MySqlClient.MySqlException ex)
+            catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message);
             }
