@@ -50,6 +50,7 @@
             this.Controls.Add(this.listBoxJudges);
             this.Name = "FormJudgeList";
             this.Text = "FormJudgeList";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormJudgeList_FormClosing);
             this.Load += new System.EventHandler(this.FormJudgeList_Load);
             this.ResumeLayout(false);
 

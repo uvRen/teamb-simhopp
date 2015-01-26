@@ -14,24 +14,29 @@ namespace Simhopp
 {
     public partial class FormJudgeList : Form
     {
+        public List<Judge> judgeList;
         public FormJudgeList()
         {
             InitializeComponent();
         }
 
-        public FormJudgeList(MySqlDataReader dr)
-        {
-            DataTable dt = new DataTable();
-            dt.Load(dr);
-            foreach (DataRow row in dt.Rows)
-            {
-                listBoxJudges.Items.Add(row["name"]);
-            }
-    }
 
         private void FormJudgeList_Load(object sender, EventArgs e)
         {
+            foreach (Judge judge in Database.GetJudges())
+            {
+                listBoxJudges.Items.Add(judge);
+            }
+        }
 
+        private void FormJudgeList_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            judgeList = new List<Judge>();
+            foreach (Judge judge in listBoxJudges.Items)
+            {
+                judgeList.Add(judge);
+                MessageBox.Show(judge.GetJudgeName());
+            }
         }
     }
 }
