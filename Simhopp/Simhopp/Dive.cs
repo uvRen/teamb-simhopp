@@ -9,7 +9,7 @@ namespace Simhopp
     public class Dive
     {
         private int ID;
-        private Jumper person;
+        private Diver person;
         private double difficulty;
         private Competition comp;
 
@@ -22,7 +22,7 @@ namespace Simhopp
             this.comp = null;
         }
 
-        public Dive(int ID, Jumper person, double difficulty, Competition comp)
+        public Dive(int ID, Diver person, double difficulty, Competition comp)
         {
             this.ID = ID;
             this.person = person;
