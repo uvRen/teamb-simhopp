@@ -29,17 +29,17 @@ namespace Simhopp
         #region Funktioner
        
 
-        public void setJudgeName(string name)
+        public void SetJudgeName(string name)
         {
             this.name = name;
         }
 
-        public string getJudgeName()
+        public string GetJudgeName()
         {
             return this.name;
         }
 
-        public int getJudgeID()
+        public int GetJudgeID()
         {
             return this.ID;
         }
