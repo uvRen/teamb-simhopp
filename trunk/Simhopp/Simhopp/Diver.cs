@@ -12,7 +12,6 @@ namespace Simhopp
         private string name;
 
         #region Konstruktor
-        //konstruktor
         public Diver()
         {
             this.ID = -1;

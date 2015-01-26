@@ -15,7 +15,6 @@ namespace Simhopp
         private Score poang;
 
         #region Konstruktor
-        //konstruktor
         public Dive()
         {
             this.ID = -1;

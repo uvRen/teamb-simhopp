@@ -14,7 +14,6 @@ namespace Simhopp
         private double poang;
 
         #region Konstruktor
-        //konstruktor
         public Score()
         {
             this.ID = -1;

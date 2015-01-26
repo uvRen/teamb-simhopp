@@ -17,7 +17,7 @@ namespace Simhopp
         {
             InitializeComponent();
             Judge j1 = new Judge(3, "Thomas");
-            j1.addJudgeToDatabase();
+            Database.addJudgeToDatabase(j1);
         }
 
         public void dbtest()
