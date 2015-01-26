@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Competition.cs" />
+    <Compile Include="Database.cs" />
     <Compile Include="Dive.cs" />
     <Compile Include="FormJudgeList.cs">
       <SubType>Form</SubType>
@@ -75,6 +76,9 @@
     <Compile Include="Score.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormJudgeList.resx">
+      <DependentUpon>FormJudgeList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormNewEvent.resx">
       <DependentUpon>FormNewEvent.cs</DependentUpon>
