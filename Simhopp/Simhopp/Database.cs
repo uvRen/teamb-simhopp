@@ -14,13 +14,12 @@ namespace Simhopp
         /// </summary>
         /// <returns>En coonection</returns>
 
-        public MySqlConnection ConnectToDatabase()
+        public static MySqlConnection ConnectToDatabase()
         {
-            MySqlConnection conn;
-            string myConnectionString = "server=tuffast.com;uid=teamb;pwd=teambteamb;database=db_teamb;";
+            const string myConnectionString = "server=tuffast.com;uid=teamb;pwd=teambteamb;database=db_teamb;";
             try
             {
-                conn = new MySqlConnection();
+                MySqlConnection conn = new MySqlConnection();
                 conn.ConnectionString = myConnectionString;
                 conn.Open();
                 return conn;
@@ -34,9 +33,11 @@ namespace Simhopp
             return null;
         }
 
-        public MySqlDataReader GetJudges()
+        public static MySqlDataReader GetJudges()
         {
-            MySqlConnection conn = ConnectToDatabase();
+            var conn = ConnectToDatabase();
+            var cmd = new MySqlCommand("SELECT * FROM judge", conn);
+            return cmd.ExecuteReader();
         }
     }
 }
