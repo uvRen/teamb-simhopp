@@ -12,7 +12,6 @@ namespace Simhopp
         private int ID;
         private string name;
         #region Kontruktor
-        //konstruktorer
         public Judge() 
         {
             this.ID = -1;
