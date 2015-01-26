@@ -19,7 +19,6 @@ namespace Simhopp
         List<Judge> domare;
 
         #region Konstruktor
-        //konstruktor
         public Competition() 
         {
             this.ID = -1;

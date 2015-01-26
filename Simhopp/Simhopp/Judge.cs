@@ -24,53 +24,10 @@ namespace Simhopp
             this.ID = ID;
             this.name = name;
         }
-    #endregion
+        #endregion
 
         #region Funktioner
-        //ansluter till databasen och returnerar anslutningen
-        public MySqlConnection connectToDatabase()
-        {
-            MySqlConnection conn;
-            string myConnectionString = "server=tuffast.com;uid=teamb;pwd=teambteamb;database=db_teamb;";
-            try
-            {
-                conn = new MySqlConnection();
-                conn.ConnectionString = myConnectionString;
-                conn.Open();
-                return conn;
-            }
-
-            catch (MySqlException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-            return null;
-        }
-
-        //medlemsfunktioner
-
-        //lägger till domare i databasen, returnerar TRUE om det lyckas
-        public bool addJudgeToDatabase()
-        {
-            //ansluter till databasen
-            MySqlConnection conn = connectToDatabase();
-            if (conn != null)
-            {
-                //lägger till domaren i databasen
-                MySqlCommand comm = conn.CreateCommand();
-                comm.CommandText = "INSERT INTO judge(id,name) VALUES(@id, @name)";
-                comm.Parameters.AddWithValue("@id", this.ID);
-                comm.Parameters.AddWithValue("@name", this.name);
-                comm.ExecuteNonQuery();
-                conn.Close();
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+       
 
         public void setJudgeName(string name)
         {
@@ -80,6 +37,11 @@ namespace Simhopp
         public string getJudgeName()
         {
             return this.name;
+        }
+
+        public int getJudgeID()
+        {
+            return this.ID;
         }
         #endregion
     }
