@@ -43,6 +43,11 @@ namespace Simhopp
         {
             return this.ID;
         }
+
+        public override string ToString()
+        {
+            return this.name;
+        }
         #endregion
     }
 }
