@@ -11,7 +11,7 @@ namespace Simhopp
     {
         private int ID;
         private string name;
-
+        #region Kontruktor
         //konstruktorer
         public Judge() 
         {
@@ -24,21 +24,23 @@ namespace Simhopp
             this.ID = ID;
             this.name = name;
         }
+    #endregion
 
+        #region Funktioner
         //ansluter till databasen och returnerar anslutningen
-        public MySql.Data.MySqlClient.MySqlConnection connectToDatabase()
+        public MySqlConnection connectToDatabase()
         {
-            MySql.Data.MySqlClient.MySqlConnection conn;
+            MySqlConnection conn;
             string myConnectionString = "server=tuffast.com;uid=teamb;pwd=teambteamb;database=db_teamb;";
             try
             {
-                conn = new MySql.Data.MySqlClient.MySqlConnection();
+                conn = new MySqlConnection();
                 conn.ConnectionString = myConnectionString;
                 conn.Open();
                 return conn;
             }
 
-            catch (MySql.Data.MySqlClient.MySqlException ex)
+            catch (MySqlException ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -52,9 +54,7 @@ namespace Simhopp
         public bool addJudgeToDatabase()
         {
             //ansluter till databasen
-            MySql.Data.MySqlClient.MySqlConnection conn = connectToDatabase();
-
-            //om anslutningen lyckades
+            MySqlConnection conn = connectToDatabase();
             if (conn != null)
             {
                 //lägger till domaren i databasen
@@ -81,5 +81,6 @@ namespace Simhopp
         {
             return this.name;
         }
+        #endregion
     }
 }

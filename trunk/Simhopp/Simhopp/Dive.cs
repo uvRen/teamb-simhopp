@@ -12,6 +12,7 @@ namespace Simhopp
         private Diver person;
         private double difficulty;
         private Competition comp;
+        private Score poang;
 
         //konstruktor
         public Dive()
@@ -20,14 +21,16 @@ namespace Simhopp
             this.person = null;
             this.difficulty = 0.0;
             this.comp = null;
+            this.poang = null;
         }
 
-        public Dive(int ID, Diver person, double difficulty, Competition comp)
+        public Dive(int ID, Diver person, double difficulty, Competition comp, Score poang)
         {
             this.ID = ID;
             this.person = person;
             this.difficulty = difficulty;
             this.comp = comp;
+            this.poang = poang;
         }
 
         //medlemsfunktioner
