@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace Simhopp
 {
-    public class Jumper
+    public class Diver
     {
         private int ID;
         private string name;
 
         //konstruktor
-        public Jumper()
+        public Diver()
         {
             this.ID = -1;
             this.name = "";
         }
 
-        public Jumper(int ID, string name)
+        public Diver(int ID, string name)
         {
             this.ID = ID;
             this.name = name;
