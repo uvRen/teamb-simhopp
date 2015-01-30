@@ -39,14 +39,14 @@
             this.listBoxJudges.FormattingEnabled = true;
             this.listBoxJudges.Location = new System.Drawing.Point(12, 18);
             this.listBoxJudges.Name = "listBoxJudges";
-            this.listBoxJudges.Size = new System.Drawing.Size(561, 259);
+            this.listBoxJudges.Size = new System.Drawing.Size(173, 274);
             this.listBoxJudges.TabIndex = 0;
             // 
             // FormJudgeList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(585, 297);
+            this.ClientSize = new System.Drawing.Size(197, 313);
             this.Controls.Add(this.listBoxJudges);
             this.Name = "FormJudgeList";
             this.Text = "FormJudgeList";

@@ -23,6 +23,7 @@ namespace Simhopp
 
         private void FormJudgeList_Load(object sender, EventArgs e)
         {
+            judgeList = new List<Judge>();
             foreach (Judge judge in Database.GetJudges())
             {
                 listBoxJudges.Items.Add(judge);
@@ -31,11 +32,9 @@ namespace Simhopp
 
         private void FormJudgeList_FormClosing(object sender, FormClosingEventArgs e)
         {
-            judgeList = new List<Judge>();
-            foreach (Judge judge in listBoxJudges.Items)
+            foreach (Judge judge in listBoxJudges.CheckedItems)
             {
                 judgeList.Add(judge);
-                MessageBox.Show(judge.GetJudgeName());
             }
         }
     }
