@@ -16,7 +16,8 @@ namespace Simhopp
         private string gender;
         private int singelSync;
         private int diveCount;
-        List<Judge> domare;
+        List<Judge> judges;
+        List<Diver> divers;
 
         #region Konstruktor
         public Competition() 
@@ -29,7 +30,7 @@ namespace Simhopp
             this.gender = "";
             this.singelSync = 0;
             this.diveCount = -1;
-            this.domare = new List<Judge>();
+            this.judges = new List<Judge>();
         }
 
         public Competition(int ID, string name, string location, string date, int diciplin, string gender, int singelSync, int diveCount)
@@ -42,9 +43,33 @@ namespace Simhopp
             this.gender = gender;
             this.singelSync = singelSync;
             this.diveCount = diveCount;
-            this.domare = new List<Judge>();
+            this.judges = new List<Judge>();
         }
         #endregion
         //medlemsfunktioner
+
+        /// <summary>
+        /// Lägg till en domare på eventet
+        /// </summary>
+        /// <param name="judge"></param>
+        public void AddJudge(Judge judge)
+        {
+            judges.Add(judge);
+        }
+
+        /// <summary>
+        /// Lägg till en lista med domare
+        /// </summary>
+        /// <param name="judges"></param>
+        public void AddJudges(List<Judge> judges)
+        {
+            this.judges.Clear();
+            this.judges = judges;
+        }
+
+        public List<Judge> GetJudges()
+        {
+            return judges;
+        }
     }
 }
