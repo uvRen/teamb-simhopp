@@ -9,6 +9,7 @@ namespace Simhopp
     public class Diver
     {
         private int ID;
+        public List<Dive> dives;
         private string name { get; set; }
 
         #region Konstruktor
