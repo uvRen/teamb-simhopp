@@ -48,6 +48,8 @@
             this.inputNewDiver = new System.Windows.Forms.TextBox();
             this.btnNewDiver = new System.Windows.Forms.Button();
             this.btnSubmit = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.grpJudges.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -92,7 +94,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 61);
+            this.label4.Location = new System.Drawing.Point(12, 85);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 13);
             this.label4.TabIndex = 5;
@@ -122,7 +124,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(98, 59);
+            this.numericUpDown1.Location = new System.Drawing.Point(98, 83);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(54, 20);
             this.numericUpDown1.TabIndex = 9;
@@ -164,7 +166,7 @@
             // 
             this.grpJudges.Controls.Add(this.inputNewJudge);
             this.grpJudges.Controls.Add(this.btnNewJudge);
-            this.grpJudges.Location = new System.Drawing.Point(15, 192);
+            this.grpJudges.Location = new System.Drawing.Point(15, 219);
             this.grpJudges.Name = "grpJudges";
             this.grpJudges.Size = new System.Drawing.Size(264, 51);
             this.grpJudges.TabIndex = 14;
@@ -197,7 +199,7 @@
             this.groupBox3.Controls.Add(this.radioButton3);
             this.groupBox3.Controls.Add(this.radioButton4);
             this.groupBox3.Controls.Add(this.radioButton5);
-            this.groupBox3.Location = new System.Drawing.Point(15, 85);
+            this.groupBox3.Location = new System.Drawing.Point(15, 112);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(264, 46);
             this.groupBox3.TabIndex = 15;
@@ -208,7 +210,7 @@
             // 
             this.groupBox4.Controls.Add(this.radioButton1);
             this.groupBox4.Controls.Add(this.radioButton2);
-            this.groupBox4.Location = new System.Drawing.Point(15, 139);
+            this.groupBox4.Location = new System.Drawing.Point(15, 166);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(264, 47);
             this.groupBox4.TabIndex = 16;
@@ -219,7 +221,7 @@
             // 
             this.grpDivers.Controls.Add(this.inputNewDiver);
             this.grpDivers.Controls.Add(this.btnNewDiver);
-            this.grpDivers.Location = new System.Drawing.Point(13, 249);
+            this.grpDivers.Location = new System.Drawing.Point(13, 276);
             this.grpDivers.Name = "grpDivers";
             this.grpDivers.Size = new System.Drawing.Size(264, 51);
             this.grpDivers.TabIndex = 17;
@@ -250,18 +252,36 @@
             // btnSubmit
             // 
             this.btnSubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSubmit.Location = new System.Drawing.Point(188, 326);
+            this.btnSubmit.Location = new System.Drawing.Point(188, 353);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(89, 23);
             this.btnSubmit.TabIndex = 18;
             this.btnSubmit.Text = "Klar";
             this.btnSubmit.UseVisualStyleBackColor = true;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(98, 58);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(181, 20);
+            this.dateTimePicker1.TabIndex = 19;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 62);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "Datum";
+            // 
             // FormNewEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(291, 361);
+            this.ClientSize = new System.Drawing.Size(291, 388);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.grpDivers);
             this.Controls.Add(this.groupBox4);
@@ -311,5 +331,7 @@
         private System.Windows.Forms.TextBox inputNewDiver;
         private System.Windows.Forms.Button btnNewDiver;
         private System.Windows.Forms.Button btnSubmit;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label3;
     }
 }
