@@ -81,7 +81,7 @@ namespace Simhopp
         /// lägger till tävling i databasen
         /// </summary>
         /// <returns>returnerar TRUE om det lyckas annars FALSE</returns>
-        public static bool AddCompetitionToDatabase(Competition c)
+        public static bool AddEventToDatabase(Competition c)
         {
             //ansluter till databasen
             MySqlConnection conn = Database.ConnectToDatabase();
