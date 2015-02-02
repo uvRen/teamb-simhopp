@@ -51,6 +51,12 @@
     <Compile Include="Event.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Dive.cs" />
+    <Compile Include="FormDiverList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDiverList.Designer.cs">
+      <DependentUpon>FormDiverList.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormJudgeList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,9 @@
     <Compile Include="Score.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDiverList.resx">
+      <DependentUpon>FormDiverList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormJudgeList.resx">
       <DependentUpon>FormJudgeList.cs</DependentUpon>
