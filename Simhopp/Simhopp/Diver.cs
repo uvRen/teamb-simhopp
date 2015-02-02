@@ -27,6 +27,15 @@ namespace Simhopp
         #endregion
 
         //medlemsfunktioner
+        public void AddDive(Dive dive)
+        {
+            dives.Add(dive);
+        }
+
+        public void ScoreDive(int diveNum, Score score)
+        {
+            dives[diveNum].AddScore(score);
+        }
 
     }
 }
