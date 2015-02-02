@@ -121,7 +121,7 @@ namespace Simhopp
 
             foreach (DataRow row in dt.Rows)
             {
-                var tmp = new Diver((int)row["id"], row["name"].ToString());
+                var tmp = new Diver((int)row["id"], row["name"].ToString(), (int)row["age"], (int)row["sex"], row["country"].ToString());
                 diverList.Add(tmp);
             }
             return diverList;
@@ -139,9 +139,12 @@ namespace Simhopp
             {
                 //lägger till hopparen i databasen
                 MySqlCommand comm = conn.CreateCommand();
-                comm.CommandText = "INSERT INTO diver(name) VALUES(@name)";
+                comm.CommandText = "INSERT INTO diver(name, age, sex, country) VALUES(@name, @age, @sex, @country)";
 
                 comm.Parameters.AddWithValue("@name", d1.name);
+                comm.Parameters.AddWithValue("@age", d1.age);
+                comm.Parameters.AddWithValue("@sex", d1.sex);
+                comm.Parameters.AddWithValue("@country", d1.country);
                 comm.ExecuteNonQuery();
                 comm.CommandText = "SELECT LAST_INSERT_ID() AS id";
                 var dr = comm.ExecuteReader();
@@ -149,8 +152,7 @@ namespace Simhopp
                 dt.Load(dr);
                 DataRow row = dt.Rows[0];
                 string id = row["id"].ToString();
-
-                
+                                
                 conn.Close();
                 return Int32.Parse(id);
             }
