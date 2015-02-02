@@ -76,6 +76,7 @@ namespace Simhopp
             else if (radioButtonSync.Checked)
                 this.sync = 1;
 
+            // LÄGG TILL DOMARE OCH HOPPAR -> CREATE EVENT
             MessageBox.Show("Namn: " + eventName + "\nPlats: " + location + "\nDatum: " + date + "\nAntal hopp: " + diveCount + "\nDisciplin: " + discipline + "\nSingle: " + sync);
         }
     }
