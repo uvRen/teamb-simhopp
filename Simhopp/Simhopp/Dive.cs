@@ -62,11 +62,11 @@ namespace Simhopp
             foreach (Score score in scores)
             {
                 scoreCount++;
-                totalScore += score.poang;
-                if (score.poang <= low)
-                    low = score.poang;
-                if (score.poang > high)
-                    high = score.poang;
+                totalScore += score.points;
+                if (score.points <= low)
+                    low = score.points;
+                if (score.points > high)
+                    high = score.points;
             }
             totalScore -= low;
             totalScore -= high;
