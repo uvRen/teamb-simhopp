@@ -12,7 +12,8 @@ namespace Simhopp
         private Diver person;
         private double difficulty;
         private Competition comp;
-        private Score poang;
+
+        private Score score {get; set;}
 
         #region Konstruktor
         public Dive()
@@ -21,16 +22,16 @@ namespace Simhopp
             this.person = null;
             this.difficulty = 0.0;
             this.comp = null;
-            this.poang = null;
+            this.score = null;
         }
 
-        public Dive(int ID, Diver person, double difficulty, Competition comp, Score poang)
+        public Dive(int ID, Diver person, double difficulty, Competition comp, Score score)
         {
             this.ID = ID;
             this.person = person;
             this.difficulty = difficulty;
             this.comp = comp;
-            this.poang = poang;
+            this.score = score;
         }
         #endregion
 
