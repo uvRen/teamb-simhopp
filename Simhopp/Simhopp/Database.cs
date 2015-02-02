@@ -109,7 +109,6 @@ namespace Simhopp
             
         }
 
-        ////*-thomas////////*-thomas////////*-thomas////////*-thomas////////*-thomas////////*-thomas////
         public static List<Diver> GetDivers()
         {
             var diverList = new List<Diver>();
@@ -131,7 +130,7 @@ namespace Simhopp
         /// <summary>
         /// lägger till hoppare i databasen
         /// </summary>
-        /// <returns>returnerar TRUE om det lyckas annars FALSe</returns>
+        /// <returns>Returnerar hopparens auto increment ID</returns>
         public static int AddDiverToDatabase(Diver d1)
         {
             //ansluter till databasen
@@ -160,6 +159,5 @@ namespace Simhopp
                 return -1;
             }
         }
-        ////*-thomas////////*-thomas////////*-thomas////////*-thomas////////*-thomas////////*-thomas////
     }
 }
