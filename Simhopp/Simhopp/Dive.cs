@@ -11,7 +11,7 @@ namespace Simhopp
         private int ID;
         private Diver person;
         private double difficulty;
-        private Competition comp;
+        private Event comp;
         private List<Score> scores;
 
         public double score
@@ -32,7 +32,7 @@ namespace Simhopp
             scores = new List<Score>();
         }
 
-        public Dive(int ID, Diver person, double difficulty, Competition comp)
+        public Dive(int ID, Diver person, double difficulty, Event comp)
         {
             this.ID = ID;
             this.person = person;
