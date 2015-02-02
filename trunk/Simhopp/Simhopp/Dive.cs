@@ -66,6 +66,7 @@ namespace Simhopp
             totalScore -= low;
             totalScore -= high;
             totalScore /= (scoreCount - 2);
+            totalScore *= difficulty;
 
             return totalScore;
         }
