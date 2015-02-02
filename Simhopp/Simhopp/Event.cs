@@ -69,6 +69,33 @@ namespace Simhopp
             this.judges = judges;
         }
 
+        ////*-thomas////////*-thomas////////*-thomas////////*-thomas////////*-thomas////////*-thomas////
+        /// <summary>
+        /// Lägg till en hoppare på eventet
+        /// </summary>
+        /// <param name="diver"></param>
+        public void AddDiver(Diver diver)
+        {
+            divers.Add(diver);
+        }
+
+        /// <summary>
+        /// Lägg till en lista med hoppare
+        /// </summary>
+        /// <param name="divers"></param>
+        public void AddDivers(List<Diver> divers)
+        {
+            this.divers.Clear();
+            this.divers = divers;
+        }
+
+        public List<Diver> GetDivers()
+        {
+            return divers;
+        }
+        ////*-thomas////////*-thomas////////*-thomas////////*-thomas////////*-thomas////////*-thomas////
+
+
         public List<Judge> GetJudges()
         {
             return judges;
