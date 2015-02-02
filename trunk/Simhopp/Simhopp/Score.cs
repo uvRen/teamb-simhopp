@@ -11,7 +11,7 @@ namespace Simhopp
         private int ID;
         private Dive d;
         private Judge j;
-        private double poang;
+        public double poang {get; set;}
 
         #region Konstruktor
         public Score()
