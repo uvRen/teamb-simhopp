@@ -30,8 +30,8 @@ namespace Simhopp
             this.sex = -1;
             this.sync = 0;
             this.diveCount = -1;
-            //this.judges = new List<Judge>();
-            //this.divers = new List<Diver>();
+            this.judges = new List<Judge>();
+            this.divers = new List<Diver>();
         }
 
         public Event(int ID, string name, string date, string location, int discipline, int sync, int diveCount, int sex)
@@ -44,8 +44,8 @@ namespace Simhopp
             this.sex = sex;
             this.sync = sync;
             this.diveCount = diveCount;
-            //this.judges = new List<Judge>();
-            //this.divers = new List<Diver>();
+            this.judges = new List<Judge>();
+            this.divers = new List<Diver>();
         }
         #endregion
         //medlemsfunktioner
