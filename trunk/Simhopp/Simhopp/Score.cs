@@ -10,7 +10,7 @@ namespace Simhopp
     {
         private int ID;
         private Dive d;
-        private Judge j;
+        public Judge j {get; set;}
         public double poang {get; set;}
 
         #region Konstruktor

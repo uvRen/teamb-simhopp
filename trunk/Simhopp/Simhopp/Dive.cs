@@ -48,6 +48,11 @@ namespace Simhopp
             scores.Add(score);
         }
 
+        public List<Score> GetScores()
+        {
+            return scores;
+        }
+
         public double GetScore()
         {
             double totalScore, low, high;
