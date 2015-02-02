@@ -68,5 +68,10 @@ namespace Simhopp
             dives[diveNum].AddScore(score);
         }
 
+        public List<Dive> GetDives()
+        {
+            return dives;   
+        }
+
     }
 }
