@@ -64,8 +64,7 @@ namespace Simhopp
             {
                 //lägger till domaren i databasen
                 MySqlCommand comm = conn.CreateCommand();
-                comm.CommandText = "INSERT INTO judge(id,name) VALUES(@id, @name)";
-                comm.Parameters.AddWithValue("@id", j1.GetJudgeID());
+                comm.CommandText = "INSERT INTO judge(name) VALUES(@name)";
                 comm.Parameters.AddWithValue("@name", j1.GetJudgeName());
                 comm.ExecuteNonQuery();
                 conn.Close();
