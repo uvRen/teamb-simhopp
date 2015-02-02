@@ -69,7 +69,6 @@ namespace Simhopp
             this.judges = judges;
         }
 
-        ////*-thomas////////*-thomas////////*-thomas////////*-thomas////////*-thomas////////*-thomas////
         /// <summary>
         /// Lägg till en hoppare på eventet
         /// </summary>
@@ -93,7 +92,6 @@ namespace Simhopp
         {
             return divers;
         }
-        ////*-thomas////////*-thomas////////*-thomas////////*-thomas////////*-thomas////////*-thomas////
 
 
         public List<Judge> GetJudges()
