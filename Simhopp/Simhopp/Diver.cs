@@ -8,10 +8,21 @@ namespace Simhopp
 {
     public class Diver
     {
-        private int ID;
-        public List<Dive> dives;
-        private string name { get; set; }
-
+        private List<Dive> dives;
+        public int ID { get; set; }
+        public string name { get; set; }
+        public double TotalScore
+        {
+            get
+            {
+                double _score = 0;
+                foreach (Dive dive in dives)
+                {
+                    _score += dive.score;   
+                }
+                return _score;
+            }
+        }
         #region Konstruktor
         public Diver()
         {
