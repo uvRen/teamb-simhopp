@@ -53,7 +53,7 @@ namespace Simhopp
             return scores;
         }
 
-        public double GetScore()
+        private double GetScore()
         {
             double totalScore, low, high;
             totalScore = high = 0;
