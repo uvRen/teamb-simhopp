@@ -9,25 +9,25 @@ namespace Simhopp
     public class Score
     {
         private int ID;
-        private Dive d;
-        public Judge j {get; set;}
-        public double poang {get; set;}
+        private Dive dive;
+        public Judge judge {get; set;}
+        public double points {get; set;}
 
         #region Konstruktor
         public Score()
         {
             this.ID = -1;
-            this.d = null;
-            this.j = null;
-            this.poang = 0.0;
+            this.dive = null;
+            this.judge = null;
+            this.points = 0.0;
         }
 
-        public Score(int ID, Dive d, Judge j, double poang)
+        public Score(int ID, Dive d, Judge j, double points)
         {
             this.ID = ID;
-            this.d = d;
-            this.j = j;
-            this.poang = poang;
+            this.dive = d;
+            this.judge = j;
+            this.points = points;
         }
         #endregion
 
