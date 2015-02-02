@@ -50,18 +50,12 @@ namespace Nunit.Simhopp
                     }
                 }
             }
-
         }
 
         [Test]
         public void EttTest()
         {
-            /*
-            Assert.Pass("Score: " + d1.TotalScore);
-            Assert.Fail("Score: " + d1.TotalScore);
-            Console.WriteLine("Score: " + d1.TotalScore);
-            Assert.GreaterOrEqual(d1.TotalScore, 1);
-             * */
+            System.Diagnostics.Debug.WriteLine("Score: " + d1.TotalScore);
             Assert.AreEqual(d1.GetDives()[0].GetScores()[0].judge.GetJudgeName(), "Mr. Test");
 
         }
