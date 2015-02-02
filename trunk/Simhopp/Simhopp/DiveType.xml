@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DiveType>
+  <First digit="1">
+    <titel>Forward dive</titel>
+  </First>
+  <First digit="2">
+    <titel>Back dive</titel>
+  </First> 
+  <First digit="3">
+    <titel>Reverse dive</titel>
+  </First>
+  <First digit="4">
+    <titel>Inward dive</titel>
+  </First>
+  <First digit="5">
+    <titel>Twisting dive</titel>
+  </First>
+  <First digit="6">
+    <titel>Handstand dive</titel>
+  </First>
+  <Second digit="1">
+    <titel>xxx</titel>
+  </Second>
+</DiveType>
