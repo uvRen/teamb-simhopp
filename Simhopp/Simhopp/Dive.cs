@@ -13,7 +13,7 @@ namespace Simhopp
         private double difficulty;
         private Competition comp;
 
-        private Score score {get; set;}
+        public Score score {get; set;}
 
         #region Konstruktor
         public Dive()
