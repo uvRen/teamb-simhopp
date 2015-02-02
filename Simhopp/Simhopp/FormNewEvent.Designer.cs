@@ -33,28 +33,22 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButtonSync = new System.Windows.Forms.RadioButton();
+            this.radioButtonSingle = new System.Windows.Forms.RadioButton();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.grpJudges = new System.Windows.Forms.GroupBox();
-            this.inputNewJudge = new System.Windows.Forms.TextBox();
-            this.btnNewJudge = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.grpDivers = new System.Windows.Forms.GroupBox();
-            this.inputNewDiver = new System.Windows.Forms.TextBox();
-            this.btnNewDiver = new System.Windows.Forms.Button();
+            this.radioButton1meter = new System.Windows.Forms.RadioButton();
+            this.radioButton3meter = new System.Windows.Forms.RadioButton();
+            this.radioButtonTower = new System.Windows.Forms.RadioButton();
+            this.groupBoxDisciplin = new System.Windows.Forms.GroupBox();
+            this.groupBoxSingle = new System.Windows.Forms.GroupBox();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnNewDiver = new System.Windows.Forms.Button();
+            this.btnNewJudge = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            this.grpJudges.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.grpDivers.SuspendLayout();
+            this.groupBoxDisciplin.SuspendLayout();
+            this.groupBoxSingle.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -80,7 +74,7 @@
             this.textBox2.Location = new System.Drawing.Point(98, 35);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(181, 20);
-            this.textBox2.TabIndex = 3;
+            this.textBox2.TabIndex = 2;
             // 
             // label2
             // 
@@ -100,171 +94,110 @@
             this.label4.TabIndex = 5;
             this.label4.Text = "Antal hopp";
             // 
-            // radioButton1
+            // radioButtonSync
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(95, 19);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(49, 17);
-            this.radioButton1.TabIndex = 7;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Sync";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButtonSync.AutoSize = true;
+            this.radioButtonSync.Location = new System.Drawing.Point(95, 19);
+            this.radioButtonSync.Name = "radioButtonSync";
+            this.radioButtonSync.Size = new System.Drawing.Size(49, 17);
+            this.radioButtonSync.TabIndex = 11;
+            this.radioButtonSync.Text = "Sync";
+            this.radioButtonSync.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // radioButtonSingle
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(6, 19);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(54, 17);
-            this.radioButton2.TabIndex = 8;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Single";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButtonSingle.AutoSize = true;
+            this.radioButtonSingle.Checked = true;
+            this.radioButtonSingle.Location = new System.Drawing.Point(6, 19);
+            this.radioButtonSingle.Name = "radioButtonSingle";
+            this.radioButtonSingle.Size = new System.Drawing.Size(54, 17);
+            this.radioButtonSingle.TabIndex = 10;
+            this.radioButtonSingle.TabStop = true;
+            this.radioButtonSingle.Text = "Single";
+            this.radioButtonSingle.UseVisualStyleBackColor = true;
             // 
             // numericUpDown1
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(98, 83);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(54, 20);
-            this.numericUpDown1.TabIndex = 9;
+            this.numericUpDown1.TabIndex = 4;
             // 
-            // radioButton3
+            // radioButton1meter
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(6, 19);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(42, 17);
-            this.radioButton3.TabIndex = 11;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "1 m";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton1meter.AutoSize = true;
+            this.radioButton1meter.Checked = true;
+            this.radioButton1meter.Location = new System.Drawing.Point(6, 19);
+            this.radioButton1meter.Name = "radioButton1meter";
+            this.radioButton1meter.Size = new System.Drawing.Size(42, 17);
+            this.radioButton1meter.TabIndex = 6;
+            this.radioButton1meter.TabStop = true;
+            this.radioButton1meter.Text = "1 m";
+            this.radioButton1meter.UseVisualStyleBackColor = true;
             // 
-            // radioButton4
+            // radioButton3meter
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(95, 19);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(42, 17);
-            this.radioButton4.TabIndex = 10;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "3 m";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton3meter.AutoSize = true;
+            this.radioButton3meter.Location = new System.Drawing.Point(95, 19);
+            this.radioButton3meter.Name = "radioButton3meter";
+            this.radioButton3meter.Size = new System.Drawing.Size(42, 17);
+            this.radioButton3meter.TabIndex = 7;
+            this.radioButton3meter.Text = "3 m";
+            this.radioButton3meter.UseVisualStyleBackColor = true;
             // 
-            // radioButton5
+            // radioButtonTower
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(203, 19);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(55, 17);
-            this.radioButton5.TabIndex = 12;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "Tower";
-            this.radioButton5.UseVisualStyleBackColor = true;
+            this.radioButtonTower.AutoSize = true;
+            this.radioButtonTower.Location = new System.Drawing.Point(203, 19);
+            this.radioButtonTower.Name = "radioButtonTower";
+            this.radioButtonTower.Size = new System.Drawing.Size(55, 17);
+            this.radioButtonTower.TabIndex = 8;
+            this.radioButtonTower.Text = "Tower";
+            this.radioButtonTower.UseVisualStyleBackColor = true;
             // 
-            // grpJudges
+            // groupBoxDisciplin
             // 
-            this.grpJudges.Controls.Add(this.inputNewJudge);
-            this.grpJudges.Controls.Add(this.btnNewJudge);
-            this.grpJudges.Location = new System.Drawing.Point(15, 219);
-            this.grpJudges.Name = "grpJudges";
-            this.grpJudges.Size = new System.Drawing.Size(264, 51);
-            this.grpJudges.TabIndex = 14;
-            this.grpJudges.TabStop = false;
-            this.grpJudges.Text = "Domare";
+            this.groupBoxDisciplin.Controls.Add(this.radioButton1meter);
+            this.groupBoxDisciplin.Controls.Add(this.radioButton3meter);
+            this.groupBoxDisciplin.Controls.Add(this.radioButtonTower);
+            this.groupBoxDisciplin.Location = new System.Drawing.Point(15, 112);
+            this.groupBoxDisciplin.Name = "groupBoxDisciplin";
+            this.groupBoxDisciplin.Size = new System.Drawing.Size(264, 46);
+            this.groupBoxDisciplin.TabIndex = 5;
+            this.groupBoxDisciplin.TabStop = false;
+            this.groupBoxDisciplin.Text = "Disciplin";
             // 
-            // inputNewJudge
+            // groupBoxSingle
             // 
-            this.inputNewJudge.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.inputNewJudge.Location = new System.Drawing.Point(6, 21);
-            this.inputNewJudge.Name = "inputNewJudge";
-            this.inputNewJudge.Size = new System.Drawing.Size(222, 20);
-            this.inputNewJudge.TabIndex = 17;
-            this.inputNewJudge.Text = "Domare 1";
-            // 
-            // btnNewJudge
-            // 
-            this.btnNewJudge.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNewJudge.Location = new System.Drawing.Point(234, 19);
-            this.btnNewJudge.Name = "btnNewJudge";
-            this.btnNewJudge.Size = new System.Drawing.Size(24, 23);
-            this.btnNewJudge.TabIndex = 0;
-            this.btnNewJudge.Text = "+";
-            this.btnNewJudge.UseVisualStyleBackColor = true;
-            this.btnNewJudge.Click += new System.EventHandler(this.btnNewJudge_Click);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.radioButton3);
-            this.groupBox3.Controls.Add(this.radioButton4);
-            this.groupBox3.Controls.Add(this.radioButton5);
-            this.groupBox3.Location = new System.Drawing.Point(15, 112);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(264, 46);
-            this.groupBox3.TabIndex = 15;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Disciplin";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.radioButton1);
-            this.groupBox4.Controls.Add(this.radioButton2);
-            this.groupBox4.Location = new System.Drawing.Point(15, 166);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(264, 47);
-            this.groupBox4.TabIndex = 16;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Single/sync";
-            // 
-            // grpDivers
-            // 
-            this.grpDivers.Controls.Add(this.inputNewDiver);
-            this.grpDivers.Controls.Add(this.btnNewDiver);
-            this.grpDivers.Location = new System.Drawing.Point(13, 276);
-            this.grpDivers.Name = "grpDivers";
-            this.grpDivers.Size = new System.Drawing.Size(264, 51);
-            this.grpDivers.TabIndex = 17;
-            this.grpDivers.TabStop = false;
-            this.grpDivers.Text = "Hoppare";
-            // 
-            // inputNewDiver
-            // 
-            this.inputNewDiver.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.inputNewDiver.Location = new System.Drawing.Point(6, 21);
-            this.inputNewDiver.Name = "inputNewDiver";
-            this.inputNewDiver.Size = new System.Drawing.Size(222, 20);
-            this.inputNewDiver.TabIndex = 17;
-            this.inputNewDiver.Text = "Hoppare 1";
-            // 
-            // btnNewDiver
-            // 
-            this.btnNewDiver.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNewDiver.Location = new System.Drawing.Point(234, 19);
-            this.btnNewDiver.Name = "btnNewDiver";
-            this.btnNewDiver.Size = new System.Drawing.Size(24, 23);
-            this.btnNewDiver.TabIndex = 0;
-            this.btnNewDiver.Text = "+";
-            this.btnNewDiver.UseVisualStyleBackColor = true;
-            this.btnNewDiver.Click += new System.EventHandler(this.btnNewDiver_Click);
+            this.groupBoxSingle.Controls.Add(this.radioButtonSync);
+            this.groupBoxSingle.Controls.Add(this.radioButtonSingle);
+            this.groupBoxSingle.Location = new System.Drawing.Point(15, 166);
+            this.groupBoxSingle.Name = "groupBoxSingle";
+            this.groupBoxSingle.Size = new System.Drawing.Size(264, 47);
+            this.groupBoxSingle.TabIndex = 9;
+            this.groupBoxSingle.TabStop = false;
+            this.groupBoxSingle.Text = "Single/sync";
             // 
             // btnSubmit
             // 
             this.btnSubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSubmit.Location = new System.Drawing.Point(188, 353);
+            this.btnSubmit.Location = new System.Drawing.Point(15, 272);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(89, 23);
             this.btnSubmit.TabIndex = 18;
-            this.btnSubmit.Text = "Klar";
+            this.btnSubmit.Text = "Skapa event";
             this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(98, 58);
+            this.dateTimePicker1.MaxDate = new System.DateTime(2100, 1, 1, 0, 0, 0, 0);
+            this.dateTimePicker1.MinDate = new System.DateTime(2015, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(181, 20);
-            this.dateTimePicker1.TabIndex = 19;
+            this.dateTimePicker1.TabIndex = 3;
+            this.dateTimePicker1.Value = new System.DateTime(2015, 2, 2, 0, 0, 0, 0);
             // 
             // label3
             // 
@@ -275,19 +208,41 @@
             this.label3.TabIndex = 20;
             this.label3.Text = "Datum";
             // 
+            // btnNewDiver
+            // 
+            this.btnNewDiver.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNewDiver.Location = new System.Drawing.Point(104, 231);
+            this.btnNewDiver.Name = "btnNewDiver";
+            this.btnNewDiver.Size = new System.Drawing.Size(80, 23);
+            this.btnNewDiver.TabIndex = 23;
+            this.btnNewDiver.Text = "Välj hoppare";
+            this.btnNewDiver.UseVisualStyleBackColor = true;
+            this.btnNewDiver.Click += new System.EventHandler(this.btnNewDiver_Click);
+            // 
+            // btnNewJudge
+            // 
+            this.btnNewJudge.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNewJudge.Location = new System.Drawing.Point(15, 231);
+            this.btnNewJudge.Name = "btnNewJudge";
+            this.btnNewJudge.Size = new System.Drawing.Size(76, 23);
+            this.btnNewJudge.TabIndex = 22;
+            this.btnNewJudge.Text = "Välj domare";
+            this.btnNewJudge.UseVisualStyleBackColor = true;
+            this.btnNewJudge.Click += new System.EventHandler(this.btnNewJudge_Click);
+            // 
             // FormNewEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(291, 388);
+            this.ClientSize = new System.Drawing.Size(291, 323);
+            this.Controls.Add(this.btnNewDiver);
+            this.Controls.Add(this.btnNewJudge);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.btnSubmit);
-            this.Controls.Add(this.grpDivers);
-            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.groupBoxSingle);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.grpJudges);
+            this.Controls.Add(this.groupBoxDisciplin);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox2);
@@ -296,14 +251,10 @@
             this.Name = "FormNewEvent";
             this.Text = "FormNewEvent";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            this.grpJudges.ResumeLayout(false);
-            this.grpJudges.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.grpDivers.ResumeLayout(false);
-            this.grpDivers.PerformLayout();
+            this.groupBoxDisciplin.ResumeLayout(false);
+            this.groupBoxDisciplin.PerformLayout();
+            this.groupBoxSingle.ResumeLayout(false);
+            this.groupBoxSingle.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -316,22 +267,18 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButtonSync;
+        private System.Windows.Forms.RadioButton radioButtonSingle;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.GroupBox grpJudges;
-        private System.Windows.Forms.TextBox inputNewJudge;
-        private System.Windows.Forms.Button btnNewJudge;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.GroupBox grpDivers;
-        private System.Windows.Forms.TextBox inputNewDiver;
-        private System.Windows.Forms.Button btnNewDiver;
+        private System.Windows.Forms.RadioButton radioButton1meter;
+        private System.Windows.Forms.RadioButton radioButton3meter;
+        private System.Windows.Forms.RadioButton radioButtonTower;
+        private System.Windows.Forms.GroupBox groupBoxDisciplin;
+        private System.Windows.Forms.GroupBox groupBoxSingle;
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnNewDiver;
+        private System.Windows.Forms.Button btnNewJudge;
     }
 }
