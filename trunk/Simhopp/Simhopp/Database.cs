@@ -108,5 +108,58 @@ namespace Simhopp
             }
             
         }
+
+        ////*-thomas////////*-thomas////////*-thomas////////*-thomas////////*-thomas////////*-thomas////
+        public static List<Diver> GetDivers()
+        {
+            var diverList = new List<Diver>();
+
+            var conn = ConnectToDatabase();
+            var cmd = new MySqlCommand("SELECT * FROM diver", conn);
+            var dr = cmd.ExecuteReader();
+            var dt = new DataTable();
+            dt.Load(dr);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                var tmp = new Diver((int)row["id"], row["name"].ToString());
+                diverList.Add(tmp);
+            }
+            return diverList;
+        }
+
+        /// <summary>
+        /// lägger till hoppare i databasen
+        /// </summary>
+        /// <returns>returnerar TRUE om det lyckas annars FALSe</returns>
+        public static int AddDiverToDatabase(Diver d1)
+        {
+            //ansluter till databasen
+            MySqlConnection conn = Database.ConnectToDatabase();
+            if (conn != null)
+            {
+                //lägger till hopparen i databasen
+                MySqlCommand comm = conn.CreateCommand();
+                comm.CommandText = "INSERT INTO diver(name) VALUES(@name)";
+
+                comm.Parameters.AddWithValue("@name", d1.name);
+                comm.ExecuteNonQuery();
+                comm.CommandText = "SELECT LAST_INSERT_ID() AS id";
+                var dr = comm.ExecuteReader();
+                var dt = new DataTable();
+                dt.Load(dr);
+                DataRow row = dt.Rows[0];
+                string id = row["id"].ToString();
+
+                
+                conn.Close();
+                return Int32.Parse(id);
+            }
+            else
+            {
+                return -1;
+            }
+        }
+        ////*-thomas////////*-thomas////////*-thomas////////*-thomas////////*-thomas////////*-thomas////
     }
 }
