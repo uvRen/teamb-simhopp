@@ -48,7 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Competition.cs" />
+    <Compile Include="Event.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Dive.cs" />
     <Compile Include="FormJudgeList.cs">

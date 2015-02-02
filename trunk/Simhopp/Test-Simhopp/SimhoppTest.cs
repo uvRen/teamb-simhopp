@@ -10,13 +10,13 @@ namespace Nunit.Simhopp
     [TestFixture]
     public class JudgeTest
     {
-        private Competition comp;
+        private Event comp;
         private Judge j1, j2, j3, j4;
         private Diver d1, d2, d3;
         [SetUp]
         public void SetUp()
         {
-            comp = new Competition(0, "Test", "Test", "Test", 1, "Man", 1, 5);
+            comp = new Event(0, "Test", "Test", "Test", 1, "Man", 1, 5);
             
             j1 = new Judge(0, "Mr. Test");
             j2 = new Judge(1, "Mrs. Fest");

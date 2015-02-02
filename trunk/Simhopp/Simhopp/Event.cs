@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Simhopp
 {
-    public class Competition
+    public class Event
     {
         public int ID { get; set; }
         public string name { get; set; }
@@ -20,7 +20,7 @@ namespace Simhopp
         List<Diver> divers;
 
         #region Konstruktor
-        public Competition() 
+        public Event() 
         {
             this.ID = -1;
             this.name = "";
@@ -34,7 +34,7 @@ namespace Simhopp
             //this.divers = new List<Diver>();
         }
 
-        public Competition(int ID, string name, string date, string location, int discipline, int sync, int diveCount, int sex)
+        public Event(int ID, string name, string date, string location, int discipline, int sync, int diveCount, int sex)
         {
             this.ID = ID;
             this.name = name;
