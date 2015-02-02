@@ -55,7 +55,7 @@ namespace Simhopp
         /// <summary>
         /// lägger till domare i databasen
         /// </summary>
-        /// <returns>returnerar TRUE om det lyckas annars FALSe</returns>
+        /// <returns>returnerar TRUE om det lyckas annars FALSE</returns>
         public static bool AddJudgeToDatabase(Judge j1)
         {
             //ansluter till databasen
@@ -75,6 +75,38 @@ namespace Simhopp
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// lägger till tävling i databasen
+        /// </summary>
+        /// <returns>returnerar TRUE om det lyckas annars FALSE</returns>
+        public static bool AddCompetitionToDatabase(Competition c)
+        {
+            //ansluter till databasen
+            MySqlConnection conn = Database.ConnectToDatabase();
+            if (conn != null)
+            {
+                //lägger till tävling i databasen
+                MySqlCommand comm = conn.CreateCommand();
+                comm.CommandText = "INSERT INTO event(id, name, date, location, discipline, sync, diveCount, sex) VALUES(@id, @name, @date, @location, @discipline, @sync, @diveCount, @sex)";
+                comm.Parameters.AddWithValue("@id", c.ID);
+                comm.Parameters.AddWithValue("@name", c.name);
+                comm.Parameters.AddWithValue("@date", c.date);
+                comm.Parameters.AddWithValue("@location", c.location);
+                comm.Parameters.AddWithValue("@discipline", c.discipline);
+                comm.Parameters.AddWithValue("@sync", c.sync);
+                comm.Parameters.AddWithValue("@diveCount", c.diveCount);
+                comm.Parameters.AddWithValue("@sex", c.sex);
+                comm.ExecuteNonQuery();
+                conn.Close();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
         }
     }
 }
