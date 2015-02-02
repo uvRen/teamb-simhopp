@@ -11,6 +11,10 @@ namespace Simhopp
         private List<Dive> dives;
         public int ID { get; set; }
         public string name { get; set; }
+
+        public int age { get; set; }
+        public int sex { get; set; }
+        public string country { get; set; }
         public double TotalScore
         {
             get
@@ -28,14 +32,30 @@ namespace Simhopp
         {
             this.ID = -1;
             this.name = "";
+            this.age = -1;
+            this.sex = -1;
+            this.country = "";
+            dives = new List<Dive>();
         }
 
         public Diver(int ID, string name)
         {
             this.ID = ID;
             this.name = name;
+            dives = new List<Dive>();
+        }
+        public Diver(int ID, string name, int age, int sex, string country)
+        {
+            this.ID = ID;
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+            this.country = country;
+            dives = new List<Dive>();
         }
         #endregion
+
+
 
         //medlemsfunktioner
         public void AddDive(Dive dive)
