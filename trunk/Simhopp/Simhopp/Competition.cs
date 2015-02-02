@@ -8,14 +8,14 @@ namespace Simhopp
 {
     public class Competition
     {
-        private int ID;
-        private string name;
-        private string location;
-        private string date;
-        private int diciplin;
-        private string gender;
-        private int singelSync;
-        private int diveCount;
+        public int ID { get; set; }
+        public string name { get; set; }
+        public string date { get; set; }
+        public string location { get; set; }
+        public int discipline { get; set; }
+        public int sync { get; set; }
+        public int diveCount { get; set; }
+        public int sex { get; set; }
         List<Judge> judges;
         List<Diver> divers;
 
@@ -26,24 +26,26 @@ namespace Simhopp
             this.name = "";
             this.location = "";
             this.date = "";
-            this.diciplin = -1;
-            this.gender = "";
-            this.singelSync = 0;
+            this.discipline = -1;
+            this.sex = -1;
+            this.sync = 0;
             this.diveCount = -1;
-            this.judges = new List<Judge>();
+            //this.judges = new List<Judge>();
+            //this.divers = new List<Diver>();
         }
 
-        public Competition(int ID, string name, string location, string date, int diciplin, string gender, int singelSync, int diveCount)
+        public Competition(int ID, string name, string date, string location, int discipline, int sync, int diveCount, int sex)
         {
             this.ID = ID;
             this.name = name;
             this.location = location;
             this.date = date;
-            this.diciplin = diciplin;
-            this.gender = gender;
-            this.singelSync = singelSync;
+            this.discipline = discipline;
+            this.sex = sex;
+            this.sync = sync;
             this.diveCount = diveCount;
-            this.judges = new List<Judge>();
+            //this.judges = new List<Judge>();
+            //this.divers = new List<Diver>();
         }
         #endregion
         //medlemsfunktioner
