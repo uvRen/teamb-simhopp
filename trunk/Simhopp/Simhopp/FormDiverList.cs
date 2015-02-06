@@ -41,6 +41,12 @@ namespace Simhopp
                 Diver d = new Diver(Int32.Parse(item.Text), item.SubItems[1].Text, Int32.Parse(item.SubItems[3].Text), Int32.Parse(item.SubItems[4].Text), item.SubItems[2].Text);
                 diverList.Add(d);
             }
+            this.Close();
+        }
+
+        private void ExitForm_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

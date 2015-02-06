@@ -13,6 +13,7 @@ namespace Simhopp
     public partial class FormNewEvent : Form
     {
         private List<Judge> judgeList;
+        private List<Diver> diverList;
         private string eventName;
         private string location;
         private string date;
@@ -24,6 +25,7 @@ namespace Simhopp
         public FormNewEvent()
         {
             judgeList = new List<Judge>();
+            diverList = new List<Diver>();
             eventName = "";
             location = "";
             date = "";
@@ -45,11 +47,14 @@ namespace Simhopp
             judgeForm.ShowDialog();
 
             judgeList = judgeForm.judgeList;
-            
         }
 
         private void btnNewDiver_Click(object sender, EventArgs e)
         {
+            FormDiverList diverForm = new FormDiverList();
+            diverForm.ShowDialog();
+
+            diverList = diverForm.diverList;
         }
 
         /// <summary>
@@ -87,15 +92,27 @@ namespace Simhopp
             //MessageBox.Show("Namn: " + eventName + "\nPlats: " + location + "\nDatum: " + date + "\nAntal hopp: " + diveCount + "\nDisciplin: " + discipline + "\nSingle: " + sync);
             //lägger till eventet i databasen
             Event ev = new Event(eventName, date, location, discipline, sync, diveCount, sex);
+
             //om inmatningen lyckades
-            if(Database.AddEventToDatabase(ev))
+            int code = Database.AddEventToDatabase(ev, judgeList, diverList);
+            if(code == 1)
             {
                 successfully.Visible = true;
             }
+            else if(code == -1) 
+            {
+                successfully.Visible = false;
+                errorlabel.Text = "Identical event already exist";
+                errorlabel.Visible = true; ;
+            }
             else
             {
-                errorlabel.Visible = true;
+                successfully.Visible = false;
+                errorlabel.Text = "An error occoured, try again";
+                errorlabel.Visible = true; ;
             }
+
+
         }
     }
 }

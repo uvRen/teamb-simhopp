@@ -34,13 +34,19 @@ namespace Simhopp
             }
         }
 
-        private void FormJudgeList_FormClosing(object sender, FormClosingEventArgs e)
+        private void AddJudgeToEvent_Click(object sender, EventArgs e)
         {
-            foreach (Judge judge in listViewJudge.CheckedItems)
+            foreach (ListViewItem item in listViewJudge.CheckedItems)
             {
-                Judge j = new Judge();
-                judgeList.Add(judge);
+                Judge j = new Judge(Int32.Parse(item.Text), item.SubItems[1].Text);
+                judgeList.Add(j);
             }
+            this.Close();
+        }
+
+        private void ExitForm_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

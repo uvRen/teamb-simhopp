@@ -35,7 +35,7 @@
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.addDiverToEvent = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.ExitForm = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listViewDivers
@@ -87,21 +87,22 @@
             this.addDiverToEvent.UseVisualStyleBackColor = true;
             this.addDiverToEvent.Click += new System.EventHandler(this.addDiverToEvent_Click);
             // 
-            // button2
+            // ExitForm
             // 
-            this.button2.Location = new System.Drawing.Point(93, 419);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Exit";
-            this.button2.UseVisualStyleBackColor = true;
+            this.ExitForm.Location = new System.Drawing.Point(93, 419);
+            this.ExitForm.Name = "ExitForm";
+            this.ExitForm.Size = new System.Drawing.Size(75, 23);
+            this.ExitForm.TabIndex = 2;
+            this.ExitForm.Text = "Exit";
+            this.ExitForm.UseVisualStyleBackColor = true;
+            this.ExitForm.Click += new System.EventHandler(this.ExitForm_Click);
             // 
             // FormDiverList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(454, 449);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.ExitForm);
             this.Controls.Add(this.addDiverToEvent);
             this.Controls.Add(this.listViewDivers);
             this.Name = "FormDiverList";
@@ -115,7 +116,7 @@
 
         private System.Windows.Forms.ListView listViewDivers;
         private System.Windows.Forms.Button addDiverToEvent;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button ExitForm;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
