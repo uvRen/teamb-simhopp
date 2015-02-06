@@ -26,13 +26,17 @@ namespace Simhopp
             judgeList = new List<Judge>();
             foreach (Judge judge in Database.GetJudges())
             {
-                listBoxJudges.Items.Add(judge);
+                ListViewItem item1 = new ListViewItem();
+                item1.Text = judge.ID.ToString();
+                listViewJudge.Items.Add(item1);
+
+                item1.SubItems.Add(judge.name);
             }
         }
 
         private void FormJudgeList_FormClosing(object sender, FormClosingEventArgs e)
         {
-            foreach (Judge judge in listBoxJudges.CheckedItems)
+            foreach (Judge judge in listViewJudge.CheckedItems)
             {
                 judgeList.Add(judge);
             }

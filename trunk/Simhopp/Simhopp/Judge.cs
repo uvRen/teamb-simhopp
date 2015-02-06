@@ -9,8 +9,8 @@ namespace Simhopp
 {
     public class Judge
     {
-        private int ID;
-        private string name;
+        public int ID;
+        public string name;
         #region Kontruktor
         public Judge() 
         {
