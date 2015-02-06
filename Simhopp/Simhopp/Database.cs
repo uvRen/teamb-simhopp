@@ -147,7 +147,7 @@ namespace Simhopp
                 comm.Parameters.AddWithValue("@sex", c.sex);
                 int rowsAffected = comm.ExecuteNonQuery();
 
-                //om inamtningen lyckades
+                //om inamtningen misslyckades
                 if (rowsAffected <= 0)
                     return 0;
 
