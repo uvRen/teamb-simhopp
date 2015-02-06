@@ -10,7 +10,7 @@ namespace Simhopp
     {
         private int ID;
         private Diver person;
-        private double difficulty;
+        public double difficulty {get; set; }
         private Event comp;
         private List<Score> scores;
 
