@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.listViewDivers = new System.Windows.Forms.ListView();
-            this.addDiverToEvent = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.addDiverToEvent = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listViewDivers
@@ -53,6 +53,29 @@
             this.listViewDivers.TabIndex = 0;
             this.listViewDivers.UseCompatibleStateImageBehavior = false;
             this.listViewDivers.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "ID";
+            this.columnHeader6.Width = 40;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Name";
+            this.columnHeader7.Width = 160;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Country";
+            this.columnHeader8.Width = 120;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Age";
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Gender";
             // 
             // addDiverToEvent
             // 
@@ -72,29 +95,6 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "Exit";
             this.button2.UseVisualStyleBackColor = true;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "ID";
-            this.columnHeader6.Width = 40;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Name";
-            this.columnHeader7.Width = 160;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "Country";
-            this.columnHeader8.Width = 120;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "Gender";
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "Age";
             // 
             // FormDiverList
             // 
