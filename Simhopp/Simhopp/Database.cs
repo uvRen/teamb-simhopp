@@ -92,8 +92,7 @@ namespace Simhopp
             {
                 //lägger till tävling i databasen
                 MySqlCommand comm = conn.CreateCommand();
-                comm.CommandText = "INSERT INTO event(id, name, date, location, discipline, sync, diveCount, sex) VALUES(@id, @name, @date, @location, @discipline, @sync, @diveCount, @sex)";
-                comm.Parameters.AddWithValue("@id", c.ID);
+                comm.CommandText = "INSERT INTO event(name, date, location, discipline, sync, diveCount, sex) VALUES(@name, @date, @location, @discipline, @sync, @diveCount, @sex)";
                 comm.Parameters.AddWithValue("@name", c.name);
                 comm.Parameters.AddWithValue("@date", c.date);
                 comm.Parameters.AddWithValue("@location", c.location);
@@ -101,15 +100,18 @@ namespace Simhopp
                 comm.Parameters.AddWithValue("@sync", c.sync);
                 comm.Parameters.AddWithValue("@diveCount", c.diveCount);
                 comm.Parameters.AddWithValue("@sex", c.sex);
-                comm.ExecuteNonQuery();
+                int rowsAffected = comm.ExecuteNonQuery();
                 conn.Close();
-                return true;
+                //om inamtningen lyckades
+                if (rowsAffected >= 0)
+                    return true;
+                else
+                    return false;
             }
             else
             {
                 return false;
             }
-            
         }
         #endregion
 
