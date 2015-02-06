@@ -128,7 +128,7 @@ namespace Simhopp
 
             foreach (DataRow row in dt.Rows)
             {
-                var tmp = new Diver((int)row["id"], row["name"].ToString(), (int)row["age"], (int)row["sex"], row["country"].ToString());
+                var tmp = new Diver(Int32.Parse(row["id"].ToString()), row["name"].ToString(), Int32.Parse(row["age"].ToString()), Int32.Parse(row["sex"].ToString()), row["country"].ToString());
                 diverList.Add(tmp);
             }
             return diverList;
