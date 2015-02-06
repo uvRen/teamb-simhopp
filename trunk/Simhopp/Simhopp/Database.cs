@@ -10,6 +10,7 @@ namespace Simhopp
 {
     public class Database
     {
+        #region Connection
         /// <summary>
         /// ansluter till databasen och returnerar anslutningen
         /// </summary>
@@ -32,8 +33,9 @@ namespace Simhopp
 
             return null;
         }
+        #endregion
 
-
+        #region Jugde
         public static List<Judge> GetJudges()
         {
             var judgeList = new List<Judge>();
@@ -75,7 +77,9 @@ namespace Simhopp
                 return false;
             }
         }
+        #endregion
 
+        #region Event
         /// <summary>
         /// lägger till tävling i databasen
         /// </summary>
@@ -107,7 +111,9 @@ namespace Simhopp
             }
             
         }
+        #endregion
 
+        #region Diver
         public static List<Diver> GetDivers()
         {
             var diverList = new List<Diver>();
@@ -160,5 +166,6 @@ namespace Simhopp
                 return -1;
             }
         }
+        #endregion
     }
 }

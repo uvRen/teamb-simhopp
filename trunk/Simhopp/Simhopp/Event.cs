@@ -48,7 +48,8 @@ namespace Simhopp
             this.divers = new List<Diver>();
         }
         #endregion
-        //medlemsfunktioner
+
+        #region Funktioner
 
         /// <summary>
         /// Lägg till en domare på eventet
@@ -98,5 +99,6 @@ namespace Simhopp
         {
             return judges;
         }
+        #endregion
     }
 }

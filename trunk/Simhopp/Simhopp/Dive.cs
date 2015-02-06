@@ -42,7 +42,7 @@ namespace Simhopp
         }
         #endregion
 
-        //medlemsfunktioner
+        #region Funktioner
         public void AddScore(Score score)
         {
             scores.Add(score);
@@ -75,5 +75,6 @@ namespace Simhopp
 
             return totalScore;
         }
+        #endregion
     }
 }
