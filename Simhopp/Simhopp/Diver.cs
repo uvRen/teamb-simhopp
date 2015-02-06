@@ -57,7 +57,7 @@ namespace Simhopp
 
 
 
-        //medlemsfunktioner
+        #region Funktioner
         public void AddDive(Dive dive)
         {
             dives.Add(dive);
@@ -70,8 +70,8 @@ namespace Simhopp
 
         public List<Dive> GetDives()
         {
-            return dives;   
+            return dives;
         }
-
+        #endregion
     }
 }
