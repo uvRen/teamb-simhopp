@@ -48,7 +48,7 @@ namespace Simhopp
 
             foreach (DataRow row in dt.Rows)
             {
-                var tmp = new Judge((int)row["id"], row["name"].ToString());
+                var tmp = new Judge(Int32.Parse(row["id"].ToString()), row["name"].ToString());
                 judgeList.Add(tmp);
             }
             return judgeList;
@@ -75,6 +75,37 @@ namespace Simhopp
             else
             {
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// Söker i databasen efter en specifik domare och returnerar den
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Judge or NULL</returns>
+        public static Judge GetSpecificJudgeFromDatabase(int id) 
+        {
+            Judge j = new Judge();
+            var conn = ConnectToDatabase();
+            string sql = "SELECT * FROM judge WHERE id=" + id.ToString();
+            var cmd = new MySqlCommand(sql, conn);
+            var dr = cmd.ExecuteReader();
+            var dt = new DataTable();
+            dt.Load(dr);
+
+            //om en domare hittas returneras den, annars NULL
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    j.ID = Int32.Parse(row["id"].ToString());
+                    j.name = row["name"].ToString();
+                }
+                return j;
+            }
+            else
+            {
+                return null;
             }
         }
         #endregion
@@ -166,6 +197,37 @@ namespace Simhopp
             else
             {
                 return -1;
+            }
+        }
+
+        /// <summary>
+        /// Söker i databasen efter en specifik domare och returnerar den
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Judge or NULL</returns>
+        public static Diver GetSpecificDiverFromDatabase(int id)
+        {
+            Diver d = new Diver();
+            var conn = ConnectToDatabase();
+            string sql = "SELECT * FROM diver WHERE id=" + id.ToString();
+            var cmd = new MySqlCommand(sql, conn);
+            var dr = cmd.ExecuteReader();
+            var dt = new DataTable();
+            dt.Load(dr);
+
+            //om en hoppare hittas returneras den, annars NULL
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    d.ID = Int32.Parse(row["id"].ToString());
+                    d.name = row["name"].ToString();
+                }
+                return d;
+            }
+            else
+            {
+                return null;
             }
         }
         #endregion

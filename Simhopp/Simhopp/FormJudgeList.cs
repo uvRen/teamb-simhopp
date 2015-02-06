@@ -38,6 +38,7 @@ namespace Simhopp
         {
             foreach (Judge judge in listViewJudge.CheckedItems)
             {
+                Judge j = new Judge();
                 judgeList.Add(judge);
             }
         }

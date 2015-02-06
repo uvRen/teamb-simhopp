@@ -29,16 +29,8 @@ namespace Simhopp
 
                 item1.SubItems.Add(diver.name);
                 item1.SubItems.Add(diver.country);
-                item1.SubItems.Add(diver.sex.ToString());
                 item1.SubItems.Add(diver.age.ToString());
-            }
-        }
-
-        private void FormDiverList_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            foreach (Diver diver in listViewDivers.CheckedItems)
-            {
-                diverList.Add(diver);
+                item1.SubItems.Add(diver.sex.ToString());
             }
         }
 
@@ -46,7 +38,8 @@ namespace Simhopp
         {
             foreach(ListViewItem item in listViewDivers.CheckedItems)
             {
-                MessageBox.Show("Item: " + item);
+                Diver d = new Diver(Int32.Parse(item.Text), item.SubItems[1].Text, Int32.Parse(item.SubItems[3].Text), Int32.Parse(item.SubItems[4].Text), item.SubItems[2].Text);
+                diverList.Add(d);
             }
         }
     }
