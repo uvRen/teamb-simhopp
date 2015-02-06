@@ -16,7 +16,7 @@ namespace Simhopp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormDiverList());
+            Application.Run(new FormNewEvent());
         }
     }
 }

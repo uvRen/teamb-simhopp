@@ -114,15 +114,29 @@ namespace Simhopp
         /// <summary>
         /// lägger till tävling i databasen
         /// </summary>
-        /// <returns>returnerar TRUE om det lyckas annars FALSE</returns>
-        public static bool AddEventToDatabase(Event c)
+        /// <returns>1 = lyckat, 0 = fel, -1 = identisk tävling finns redan</returns>
+        public static int AddEventToDatabase(Event c, List<Judge> judgeList, List<Diver> diverList)
         {
             //ansluter till databasen
             MySqlConnection conn = Database.ConnectToDatabase();
             if (conn != null)
             {
-                //lägger till tävling i databasen
+                //kollar om en tävling redan finns i databasen
                 MySqlCommand comm = conn.CreateCommand();
+                string sql = "SELECT * FROM event WHERE name=\"" + c.name + "\" AND date=\"" + c.date + "\"";
+                comm.CommandText = sql;
+
+                var dr = comm.ExecuteReader();
+                var dt = new DataTable();
+                dt.Load(dr);
+
+                if (dt.Rows.Count > 0)
+                {
+                    return -1;
+                }
+
+                //lägger till tävling i databasen
+                comm = conn.CreateCommand();
                 comm.CommandText = "INSERT INTO event(name, date, location, discipline, sync, diveCount, sex) VALUES(@name, @date, @location, @discipline, @sync, @diveCount, @sex)";
                 comm.Parameters.AddWithValue("@name", c.name);
                 comm.Parameters.AddWithValue("@date", c.date);
@@ -132,16 +146,49 @@ namespace Simhopp
                 comm.Parameters.AddWithValue("@diveCount", c.diveCount);
                 comm.Parameters.AddWithValue("@sex", c.sex);
                 int rowsAffected = comm.ExecuteNonQuery();
-                conn.Close();
+
                 //om inamtningen lyckades
-                if (rowsAffected >= 0)
-                    return true;
-                else
-                    return false;
+                if (rowsAffected <= 0)
+                    return 0;
+
+                //hämtar ID som eventet fick
+                comm.CommandText = "SELECT LAST_INSERT_ID() AS id";
+                dr = comm.ExecuteReader();
+                dt = new DataTable();
+                dt.Load(dr);
+                DataRow row = dt.Rows[0];
+                string id = row["id"].ToString();
+
+                int eventID = Int32.Parse(id);
+
+                foreach(Diver diver in diverList)
+                {
+                    comm = conn.CreateCommand();
+                    comm.CommandText = "INSERT INTO event_diver(eventId, diverId) VALUES(@eventid, @diverid)";
+                    comm.Parameters.AddWithValue("@eventid", eventID);
+                    comm.Parameters.AddWithValue("@diverid", diver.ID);
+                    rowsAffected = comm.ExecuteNonQuery();
+                    if (rowsAffected <= 0)
+                        return 0;
+                }
+
+                foreach (Judge judge in judgeList)
+                {
+                    comm = conn.CreateCommand();
+                    comm.CommandText = "INSERT INTO event_judge(eventId, judgeId) VALUES(@eventid, @judgeid)";
+                    comm.Parameters.AddWithValue("@eventid", eventID);
+                    comm.Parameters.AddWithValue("@judgeid", judge.ID);
+                    rowsAffected = comm.ExecuteNonQuery();
+                    if (rowsAffected <= 0)
+                        return 0;
+                }
+
+                conn.Close();
+                return 1;
             }
             else
             {
-                return false;
+                return 0;
             }
         }
         #endregion
