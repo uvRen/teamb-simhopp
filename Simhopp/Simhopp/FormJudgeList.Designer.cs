@@ -28,26 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBoxJudges = new System.Windows.Forms.CheckedListBox();
+            this.listViewJudge = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
-            // listBoxJudges
+            // listViewJudge
             // 
-            this.listBoxJudges.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxJudges.FormattingEnabled = true;
-            this.listBoxJudges.Location = new System.Drawing.Point(12, 18);
-            this.listBoxJudges.Name = "listBoxJudges";
-            this.listBoxJudges.Size = new System.Drawing.Size(173, 274);
-            this.listBoxJudges.TabIndex = 0;
+            this.listViewJudge.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.listViewJudge.Location = new System.Drawing.Point(0, 0);
+            this.listViewJudge.Name = "listViewJudge";
+            this.listViewJudge.Size = new System.Drawing.Size(208, 314);
+            this.listViewJudge.TabIndex = 0;
+            this.listViewJudge.UseCompatibleStateImageBehavior = false;
+            this.listViewJudge.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "ID";
+            this.columnHeader1.Width = 40;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Name";
+            this.columnHeader2.Width = 160;
             // 
             // FormJudgeList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(197, 313);
-            this.Controls.Add(this.listBoxJudges);
+            this.ClientSize = new System.Drawing.Size(210, 347);
+            this.Controls.Add(this.listViewJudge);
             this.Name = "FormJudgeList";
             this.Text = "FormJudgeList";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormJudgeList_FormClosing);
@@ -58,6 +71,9 @@
 
         #endregion
 
-        private System.Windows.Forms.CheckedListBox listBoxJudges;
+        private System.Windows.Forms.ListView listViewJudge;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+
     }
 }
