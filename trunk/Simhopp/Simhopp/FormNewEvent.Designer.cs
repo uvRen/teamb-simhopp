@@ -46,9 +46,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnNewDiver = new System.Windows.Forms.Button();
             this.btnNewJudge = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButtonMale = new System.Windows.Forms.RadioButton();
+            this.radioButtonFemale = new System.Windows.Forms.RadioButton();
+            this.successfully = new System.Windows.Forms.Label();
+            this.errorlabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBoxDisciplin.SuspendLayout();
             this.groupBoxSingle.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -181,7 +187,7 @@
             // btnSubmit
             // 
             this.btnSubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSubmit.Location = new System.Drawing.Point(15, 272);
+            this.btnSubmit.Location = new System.Drawing.Point(15, 300);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(89, 23);
             this.btnSubmit.TabIndex = 18;
@@ -211,7 +217,7 @@
             // btnNewDiver
             // 
             this.btnNewDiver.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNewDiver.Location = new System.Drawing.Point(104, 231);
+            this.btnNewDiver.Location = new System.Drawing.Point(104, 271);
             this.btnNewDiver.Name = "btnNewDiver";
             this.btnNewDiver.Size = new System.Drawing.Size(80, 23);
             this.btnNewDiver.TabIndex = 23;
@@ -222,7 +228,7 @@
             // btnNewJudge
             // 
             this.btnNewJudge.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNewJudge.Location = new System.Drawing.Point(15, 231);
+            this.btnNewJudge.Location = new System.Drawing.Point(15, 271);
             this.btnNewJudge.Name = "btnNewJudge";
             this.btnNewJudge.Size = new System.Drawing.Size(76, 23);
             this.btnNewJudge.TabIndex = 22;
@@ -230,11 +236,69 @@
             this.btnNewJudge.UseVisualStyleBackColor = true;
             this.btnNewJudge.Click += new System.EventHandler(this.btnNewJudge_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radioButtonMale);
+            this.groupBox1.Controls.Add(this.radioButtonFemale);
+            this.groupBox1.Location = new System.Drawing.Point(15, 219);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(264, 46);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Gender";
+            // 
+            // radioButtonMale
+            // 
+            this.radioButtonMale.AutoSize = true;
+            this.radioButtonMale.Checked = true;
+            this.radioButtonMale.Location = new System.Drawing.Point(6, 19);
+            this.radioButtonMale.Name = "radioButtonMale";
+            this.radioButtonMale.Size = new System.Drawing.Size(48, 17);
+            this.radioButtonMale.TabIndex = 6;
+            this.radioButtonMale.TabStop = true;
+            this.radioButtonMale.Text = "Male";
+            this.radioButtonMale.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonFemale
+            // 
+            this.radioButtonFemale.AutoSize = true;
+            this.radioButtonFemale.Location = new System.Drawing.Point(95, 19);
+            this.radioButtonFemale.Name = "radioButtonFemale";
+            this.radioButtonFemale.Size = new System.Drawing.Size(59, 17);
+            this.radioButtonFemale.TabIndex = 7;
+            this.radioButtonFemale.Text = "Female";
+            this.radioButtonFemale.UseVisualStyleBackColor = true;
+            // 
+            // successfully
+            // 
+            this.successfully.AutoSize = true;
+            this.successfully.ForeColor = System.Drawing.Color.Green;
+            this.successfully.Location = new System.Drawing.Point(12, 339);
+            this.successfully.Name = "successfully";
+            this.successfully.Size = new System.Drawing.Size(134, 13);
+            this.successfully.TabIndex = 24;
+            this.successfully.Text = "Event created successfully";
+            this.successfully.Visible = false;
+            // 
+            // errorlabel
+            // 
+            this.errorlabel.AutoSize = true;
+            this.errorlabel.ForeColor = System.Drawing.Color.Firebrick;
+            this.errorlabel.Location = new System.Drawing.Point(12, 339);
+            this.errorlabel.Name = "errorlabel";
+            this.errorlabel.Size = new System.Drawing.Size(138, 13);
+            this.errorlabel.TabIndex = 25;
+            this.errorlabel.Text = "An error occoured, try again";
+            this.errorlabel.Visible = false;
+            // 
             // FormNewEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(291, 323);
+            this.ClientSize = new System.Drawing.Size(291, 361);
+            this.Controls.Add(this.errorlabel);
+            this.Controls.Add(this.successfully);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnNewDiver);
             this.Controls.Add(this.btnNewJudge);
             this.Controls.Add(this.label3);
@@ -255,6 +319,8 @@
             this.groupBoxDisciplin.PerformLayout();
             this.groupBoxSingle.ResumeLayout(false);
             this.groupBoxSingle.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -280,5 +346,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnNewDiver;
         private System.Windows.Forms.Button btnNewJudge;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radioButtonMale;
+        private System.Windows.Forms.RadioButton radioButtonFemale;
+        private System.Windows.Forms.Label successfully;
+        private System.Windows.Forms.Label errorlabel;
     }
 }

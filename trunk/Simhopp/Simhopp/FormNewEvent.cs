@@ -19,6 +19,7 @@ namespace Simhopp
         private int diveCount;
         private int discipline;
         private int sync;
+        private int sex;
 
         public FormNewEvent()
         {
@@ -29,6 +30,7 @@ namespace Simhopp
             diveCount = -1;
             discipline = -1;
             sync = -1;
+            sex = -1;
 
             InitializeComponent();
 
@@ -76,8 +78,24 @@ namespace Simhopp
             else if (radioButtonSync.Checked)
                 this.sync = 1;
 
-            // LÄGG TILL DOMARE OCH HOPPAR -> CREATE EVENT
-            MessageBox.Show("Namn: " + eventName + "\nPlats: " + location + "\nDatum: " + date + "\nAntal hopp: " + diveCount + "\nDisciplin: " + discipline + "\nSingle: " + sync);
+            //sex: male = 0, female = 1
+            if (radioButtonMale.Checked)
+                this.sex = 0;
+            else if (radioButtonFemale.Checked)
+                this.sex = 1;
+
+            //MessageBox.Show("Namn: " + eventName + "\nPlats: " + location + "\nDatum: " + date + "\nAntal hopp: " + diveCount + "\nDisciplin: " + discipline + "\nSingle: " + sync);
+            //lägger till eventet i databasen
+            Event ev = new Event(eventName, date, location, discipline, sync, diveCount, sex);
+            //om inmatningen lyckades
+            if(Database.AddEventToDatabase(ev))
+            {
+                successfully.Visible = true;
+            }
+            else
+            {
+                errorlabel.Visible = true;
+            }
         }
     }
 }

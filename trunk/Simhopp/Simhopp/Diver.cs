@@ -55,8 +55,6 @@ namespace Simhopp
         }
         #endregion
 
-
-
         #region Funktioner
         public void AddDive(Dive dive)
         {
