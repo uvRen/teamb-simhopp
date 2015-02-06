@@ -89,7 +89,6 @@ namespace Simhopp
             else if (radioButtonFemale.Checked)
                 this.sex = 1;
 
-            //MessageBox.Show("Namn: " + eventName + "\nPlats: " + location + "\nDatum: " + date + "\nAntal hopp: " + diveCount + "\nDisciplin: " + discipline + "\nSingle: " + sync);
             //lägger till eventet i databasen
             Event ev = new Event(eventName, date, location, discipline, sync, diveCount, sex);
 
@@ -109,10 +108,8 @@ namespace Simhopp
             {
                 successfully.Visible = false;
                 errorlabel.Text = "An error occoured, try again";
-                errorlabel.Visible = true; ;
+                errorlabel.Visible = true;
             }
-
-
         }
     }
 }
