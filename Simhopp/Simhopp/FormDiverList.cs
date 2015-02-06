@@ -23,9 +23,14 @@ namespace Simhopp
             diverList = new List<Diver>();
             foreach (Diver diver in Database.GetDivers())
             {
-                ListViewItem item = new ListViewItem();
-                item.Text = diver.name;
-                listViewDivers.Items.Add(item);
+                ListViewItem item1 = new ListViewItem();
+                item1.Text = diver.ID.ToString();
+                listViewDivers.Items.Add(item1);
+
+                item1.SubItems.Add(diver.name);
+                item1.SubItems.Add(diver.country);
+                item1.SubItems.Add(diver.sex.ToString());
+                item1.SubItems.Add(diver.age.ToString());
             }
         }
 
@@ -34,6 +39,14 @@ namespace Simhopp
             foreach (Diver diver in listViewDivers.CheckedItems)
             {
                 diverList.Add(diver);
+            }
+        }
+
+        private void addDiverToEvent_Click(object sender, EventArgs e)
+        {
+            foreach(ListViewItem item in listViewDivers.CheckedItems)
+            {
+                MessageBox.Show("Item: " + item);
             }
         }
     }

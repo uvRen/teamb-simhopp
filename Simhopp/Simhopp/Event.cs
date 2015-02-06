@@ -34,6 +34,20 @@ namespace Simhopp
             this.divers = new List<Diver>();
         }
 
+        public Event(int ID, string name, string date, string location, int discipline, int sync, int diveCount, int sex)
+        {
+            this.ID = ID;
+            this.name = name;
+            this.location = location;
+            this.date = date;
+            this.discipline = discipline;
+            this.sex = sex;
+            this.sync = sync;
+            this.diveCount = diveCount;
+            this.judges = new List<Judge>();
+            this.divers = new List<Diver>();
+        }
+
         public Event(string name, string date, string location, int discipline, int sync, int diveCount, int sex)
         {
             this.name = name;
