@@ -36,7 +36,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.listViewEvent = new System.Windows.Forms.ListView();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -111,23 +111,23 @@
             this.button3.Text = "Skriv Ut Resultat";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // listView2
+            // listViewEvent
             // 
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader3,
+            this.listViewEvent.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
             this.columnHeader4,
-            this.columnHeader5});
-            this.listView2.Location = new System.Drawing.Point(26, 51);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(431, 299);
-            this.listView2.TabIndex = 9;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
+            this.columnHeader3});
+            this.listViewEvent.Location = new System.Drawing.Point(26, 51);
+            this.listViewEvent.Name = "listViewEvent";
+            this.listViewEvent.Size = new System.Drawing.Size(431, 299);
+            this.listViewEvent.TabIndex = 9;
+            this.listViewEvent.UseCompatibleStateImageBehavior = false;
+            this.listViewEvent.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Datum";
-            this.columnHeader3.Width = 76;
+            this.columnHeader3.Width = 110;
             // 
             // columnHeader4
             // 
@@ -136,7 +136,7 @@
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "namn";
+            this.columnHeader5.Text = "Namn";
             this.columnHeader5.Width = 195;
             // 
             // FormMain
@@ -144,7 +144,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 494);
-            this.Controls.Add(this.listView2);
+            this.Controls.Add(this.listViewEvent);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -168,7 +168,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ListView listViewEvent;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
