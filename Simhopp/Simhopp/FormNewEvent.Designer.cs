@@ -201,7 +201,7 @@
             // btnSubmit
             // 
             this.btnSubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSubmit.Location = new System.Drawing.Point(12, 313);
+            this.btnSubmit.Location = new System.Drawing.Point(21, 434);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(89, 23);
             this.btnSubmit.TabIndex = 18;
@@ -265,7 +265,7 @@
             // 
             this.successfully.AutoSize = true;
             this.successfully.ForeColor = System.Drawing.Color.Green;
-            this.successfully.Location = new System.Drawing.Point(12, 339);
+            this.successfully.Location = new System.Drawing.Point(15, 460);
             this.successfully.Name = "successfully";
             this.successfully.Size = new System.Drawing.Size(134, 13);
             this.successfully.TabIndex = 24;
@@ -276,7 +276,7 @@
             // 
             this.errorlabel.AutoSize = true;
             this.errorlabel.ForeColor = System.Drawing.Color.Firebrick;
-            this.errorlabel.Location = new System.Drawing.Point(12, 339);
+            this.errorlabel.Location = new System.Drawing.Point(15, 460);
             this.errorlabel.Name = "errorlabel";
             this.errorlabel.Size = new System.Drawing.Size(138, 13);
             this.errorlabel.TabIndex = 25;
@@ -291,7 +291,7 @@
             this.columnHeader2});
             this.listViewJudge.Location = new System.Drawing.Point(808, 6);
             this.listViewJudge.Name = "listViewJudge";
-            this.listViewJudge.Size = new System.Drawing.Size(163, 337);
+            this.listViewJudge.Size = new System.Drawing.Size(196, 410);
             this.listViewJudge.TabIndex = 26;
             this.listViewJudge.UseCompatibleStateImageBehavior = false;
             this.listViewJudge.View = System.Windows.Forms.View.Details;
@@ -317,7 +317,7 @@
             this.columnHeader10});
             this.listViewDivers.Location = new System.Drawing.Point(411, 6);
             this.listViewDivers.Name = "listViewDivers";
-            this.listViewDivers.Size = new System.Drawing.Size(371, 337);
+            this.listViewDivers.Size = new System.Drawing.Size(371, 410);
             this.listViewDivers.TabIndex = 27;
             this.listViewDivers.UseCompatibleStateImageBehavior = false;
             this.listViewDivers.View = System.Windows.Forms.View.Details;
@@ -349,7 +349,7 @@
             // 
             // newDiverName
             // 
-            this.newDiverName.Location = new System.Drawing.Point(411, 368);
+            this.newDiverName.Location = new System.Drawing.Point(411, 425);
             this.newDiverName.Name = "newDiverName";
             this.newDiverName.Size = new System.Drawing.Size(122, 20);
             this.newDiverName.TabIndex = 28;
@@ -358,7 +358,7 @@
             // 
             // newDiverAge
             // 
-            this.newDiverAge.Location = new System.Drawing.Point(654, 368);
+            this.newDiverAge.Location = new System.Drawing.Point(654, 425);
             this.newDiverAge.Name = "newDiverAge";
             this.newDiverAge.Size = new System.Drawing.Size(34, 20);
             this.newDiverAge.TabIndex = 30;
@@ -367,7 +367,7 @@
             // 
             // newDiverCountry
             // 
-            this.newDiverCountry.Location = new System.Drawing.Point(539, 368);
+            this.newDiverCountry.Location = new System.Drawing.Point(539, 425);
             this.newDiverCountry.Name = "newDiverCountry";
             this.newDiverCountry.Size = new System.Drawing.Size(109, 20);
             this.newDiverCountry.TabIndex = 31;
@@ -376,7 +376,7 @@
             // 
             // newDiverGender
             // 
-            this.newDiverGender.Location = new System.Drawing.Point(694, 368);
+            this.newDiverGender.Location = new System.Drawing.Point(694, 425);
             this.newDiverGender.Name = "newDiverGender";
             this.newDiverGender.Size = new System.Drawing.Size(44, 20);
             this.newDiverGender.TabIndex = 32;
@@ -385,7 +385,7 @@
             // 
             // AddNewDiverSubmit
             // 
-            this.AddNewDiverSubmit.Location = new System.Drawing.Point(756, 365);
+            this.AddNewDiverSubmit.Location = new System.Drawing.Point(756, 422);
             this.AddNewDiverSubmit.Name = "AddNewDiverSubmit";
             this.AddNewDiverSubmit.Size = new System.Drawing.Size(26, 23);
             this.AddNewDiverSubmit.TabIndex = 33;
@@ -395,18 +395,18 @@
             // 
             // newJudgeName
             // 
-            this.newJudgeName.Location = new System.Drawing.Point(808, 366);
+            this.newJudgeName.Location = new System.Drawing.Point(808, 423);
             this.newJudgeName.Name = "newJudgeName";
-            this.newJudgeName.Size = new System.Drawing.Size(131, 20);
+            this.newJudgeName.Size = new System.Drawing.Size(164, 20);
             this.newJudgeName.TabIndex = 34;
             this.newJudgeName.Text = "Name";
             this.newJudgeName.Enter += new System.EventHandler(this.newJudgeName_Enter);
             // 
             // newJudgeSubmit
             // 
-            this.newJudgeSubmit.Location = new System.Drawing.Point(945, 366);
+            this.newJudgeSubmit.Location = new System.Drawing.Point(978, 420);
             this.newJudgeSubmit.Name = "newJudgeSubmit";
-            this.newJudgeSubmit.Size = new System.Drawing.Size(26, 20);
+            this.newJudgeSubmit.Size = new System.Drawing.Size(26, 23);
             this.newJudgeSubmit.TabIndex = 35;
             this.newJudgeSubmit.Text = "+";
             this.newJudgeSubmit.UseVisualStyleBackColor = true;
@@ -416,7 +416,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(983, 494);
+            this.ClientSize = new System.Drawing.Size(1016, 494);
             this.Controls.Add(this.newJudgeSubmit);
             this.Controls.Add(this.newJudgeName);
             this.Controls.Add(this.AddNewDiverSubmit);
