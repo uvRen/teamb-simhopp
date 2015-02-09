@@ -58,6 +58,11 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.AddNewDiver = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBoxDisciplin.SuspendLayout();
             this.groupBoxSingle.SuspendLayout();
@@ -340,11 +345,62 @@
             // 
             this.columnHeader10.Text = "Gender";
             // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(411, 368);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(122, 20);
+            this.textBox3.TabIndex = 28;
+            this.textBox3.Text = "name";
+            this.textBox3.Enter += new System.EventHandler(this.textBox3_Enter);
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(654, 368);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(34, 20);
+            this.textBox5.TabIndex = 30;
+            this.textBox5.Text = "Age";
+            this.textBox5.Enter += new System.EventHandler(this.textBox5_Enter);
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(539, 368);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(109, 20);
+            this.textBox6.TabIndex = 31;
+            this.textBox6.Text = "Country";
+            this.textBox6.Enter += new System.EventHandler(this.textBox6_Enter);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(694, 368);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(44, 20);
+            this.textBox4.TabIndex = 32;
+            this.textBox4.Text = "Gender";
+            this.textBox4.Enter += new System.EventHandler(this.textBox4_Enter);
+            // 
+            // AddNewDiver
+            // 
+            this.AddNewDiver.Location = new System.Drawing.Point(744, 366);
+            this.AddNewDiver.Name = "AddNewDiver";
+            this.AddNewDiver.Size = new System.Drawing.Size(26, 23);
+            this.AddNewDiver.TabIndex = 33;
+            this.AddNewDiver.Text = "+";
+            this.AddNewDiver.UseVisualStyleBackColor = true;
+            this.AddNewDiver.Click += new System.EventHandler(this.AddNewDiver_Click);
+            // 
             // FormNewEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(983, 494);
+            this.Controls.Add(this.AddNewDiver);
+            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.listViewDivers);
             this.Controls.Add(this.listViewJudge);
             this.Controls.Add(this.errorlabel);
@@ -407,5 +463,10 @@
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button AddNewDiver;
     }
 }
