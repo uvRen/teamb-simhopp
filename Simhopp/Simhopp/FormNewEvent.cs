@@ -157,7 +157,6 @@ namespace Simhopp
 
         private void AddNewDiver_Click(object sender, EventArgs e)
         {
-            //lägger till den nya hopparen i databasen
             int gender = -1;
             if(newDiverSelectGender.Text.CompareTo("Male") == 0)
             {
@@ -167,6 +166,8 @@ namespace Simhopp
             {
                 gender = 1;
             }
+
+            //lägger till den nya hopparen i databasen
             Diver diver = new Diver(newDiverName.Text, Int32.Parse(newDiverAge.Text), gender, newDiverCountry.Text);
             int ID = Database.AddDiverToDatabase(diver);
 
