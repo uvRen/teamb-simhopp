@@ -23,6 +23,11 @@ namespace Simhopp
             this.ID = ID;
             this.name = name;
         }
+
+        public Judge(string name)
+        {
+            this.name = name;
+        }
         #endregion
 
         #region Funktioner

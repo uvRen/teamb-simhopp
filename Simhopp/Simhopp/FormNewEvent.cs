@@ -143,28 +143,28 @@ namespace Simhopp
 
         private void textBox3_Enter(object sender, EventArgs e)
         {
-            textBox3.Text = "";
+            newDiverName.Text = "";
         }
 
         private void textBox6_Enter(object sender, EventArgs e)
         {
-            textBox6.Text = "";
+            newDiverCountry.Text = "";
         }
 
         private void textBox5_Enter(object sender, EventArgs e)
         {
-            textBox5.Text = "";
+            newDiverAge.Text = "";
         }
 
         private void textBox4_Enter(object sender, EventArgs e)
         {
-            textBox4.Text = "";
+            newDiverGender.Text = "";
         }
 
         private void AddNewDiver_Click(object sender, EventArgs e)
         {
             //lägger till den nya hopparen i databasen
-            Diver diver = new Diver(textBox3.Text, Int32.Parse(textBox5.Text), Int32.Parse(textBox4.Text), textBox6.Text);
+            Diver diver = new Diver(newDiverName.Text, Int32.Parse(newDiverAge.Text), Int32.Parse(newDiverGender.Text), newDiverCountry.Text);
             int ID = Database.AddDiverToDatabase(diver);
 
             //lägger till den nya hopparen i listan
@@ -177,11 +177,33 @@ namespace Simhopp
             item1.SubItems.Add(diver.age.ToString());
             item1.SubItems.Add(diver.sex.ToString());
 
-            //clear textbox
-            textBox3.Text = "";
-            textBox4.Text = "";
-            textBox5.Text = "";
-            textBox6.Text = "";
+            //restore textbox
+            newDiverName.Text = "Name";
+            newDiverGender.Text = "Country";
+            newDiverAge.Text = "Age";
+            newDiverCountry.Text = "Gender";
         }
+
+        private void newJudgeName_Enter(object sender, EventArgs e)
+        {
+            newJudgeName.Text = "";
+        }
+
+        private void newJudgeSubmit_Click(object sender, EventArgs e)
+        {
+            //lägger till den nya domaren i databasen
+            Judge judge = new Judge(newJudgeName.Text);
+            int ID = Database.AddJudgeToDatabase(judge);
+
+            ListViewItem item1 = new ListViewItem();
+            item1.Text = ID.ToString();
+            listViewJudge.Items.Add(item1);
+
+            item1.SubItems.Add(judge.name);
+
+            //restore textbox
+            newJudgeName.Text = "Name";
+        }
+
     }
 }
