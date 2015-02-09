@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simhopp", "Simhopp\Simhopp.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test-Simhopp", "Test-Simhopp\Test-Simhopp.csproj", "{C30DE9B9-08FE-41E1-A61C-4761B53BA085}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{083DC1C8-7D5D-4653-80B6-B806B69F05FC}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -25,6 +27,10 @@ Global
 		{C30DE9B9-08FE-41E1-A61C-4761B53BA085}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C30DE9B9-08FE-41E1-A61C-4761B53BA085}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C30DE9B9-08FE-41E1-A61C-4761B53BA085}.Release|Any CPU.Build.0 = Release|Any CPU
+		{083DC1C8-7D5D-4653-80B6-B806B69F05FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{083DC1C8-7D5D-4653-80B6-B806B69F05FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{083DC1C8-7D5D-4653-80B6-B806B69F05FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{083DC1C8-7D5D-4653-80B6-B806B69F05FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

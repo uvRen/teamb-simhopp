@@ -12,6 +12,7 @@ namespace Simhopp
 {
     public partial class FormNewEvent : Form
     {
+        private List<int> enableCreateEvent;
         private List<Judge> judgeList;
         private List<Diver> diverList;
         private string eventName;
@@ -39,7 +40,6 @@ namespace Simhopp
             //ställer in formatet på datumet till 2015-02-02
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "yyyy-MM-dd";
-            
         
             diverList = new List<Diver>();
             foreach (Diver diver in Database.GetDivers())
@@ -136,11 +136,6 @@ namespace Simhopp
             }
         }
 
-        private void listViewDivers_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void textBox3_Enter(object sender, EventArgs e)
         {
             newDiverName.Text = "";
@@ -156,15 +151,19 @@ namespace Simhopp
             newDiverAge.Text = "";
         }
 
-        private void textBox4_Enter(object sender, EventArgs e)
-        {
-            newDiverGender.Text = "";
-        }
-
         private void AddNewDiver_Click(object sender, EventArgs e)
         {
             //lägger till den nya hopparen i databasen
-            Diver diver = new Diver(newDiverName.Text, Int32.Parse(newDiverAge.Text), Int32.Parse(newDiverGender.Text), newDiverCountry.Text);
+            int gender = -1;
+            if(newDiverSelectGender.ToString().CompareTo("Male") == 0)
+            {
+                gender = 0;
+            }
+            else
+            {
+                gender = 1;
+            }
+            Diver diver = new Diver(newDiverName.Text, Int32.Parse(newDiverAge.Text), gender, newDiverCountry.Text);
             int ID = Database.AddDiverToDatabase(diver);
 
             //lägger till den nya hopparen i listan
@@ -175,11 +174,10 @@ namespace Simhopp
             item1.SubItems.Add(diver.name);
             item1.SubItems.Add(diver.country);
             item1.SubItems.Add(diver.age.ToString());
-            item1.SubItems.Add(diver.sex.ToString());
+            item1.SubItems.Add(newDiverSelectGender.ToString());
 
             //restore textbox
             newDiverName.Text = "Name";
-            newDiverGender.Text = "Country";
             newDiverAge.Text = "Age";
             newDiverCountry.Text = "Gender";
         }
