@@ -198,6 +198,12 @@ namespace Simhopp
                 return 0;
             }
         }
+
+        public static List<Event> getEvents()
+        {
+            List<Event> events = new List<Event>();
+            return events;
+        }
         #endregion
 
         #region Diver

@@ -41,7 +41,6 @@ namespace Simhopp
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "yyyy-MM-dd";
         
-            diverList = new List<Diver>();
             foreach (Diver diver in Database.GetDivers())
             {
                 ListViewItem item1 = new ListViewItem();
