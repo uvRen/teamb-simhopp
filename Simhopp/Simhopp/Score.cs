@@ -9,7 +9,7 @@ namespace Simhopp
     public class Score
     {
         private int ID;
-        private Dive dive;
+        public Dive dive { get; set; }
         public Judge judge {get; set;}
         public double points {get; set;}
 
