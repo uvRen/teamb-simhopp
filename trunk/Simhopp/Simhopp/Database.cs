@@ -58,7 +58,7 @@ namespace Simhopp
         /// lägger till domare i databasen
         /// </summary>
         /// <returns>returnerar TRUE om det lyckas annars FALSE</returns>
-        public static bool AddJudgeToDatabase(Judge j1)
+        public static int AddJudgeToDatabase(Judge j1)
         {
             //ansluter till databasen
             MySqlConnection conn = Database.ConnectToDatabase();
@@ -69,12 +69,19 @@ namespace Simhopp
                 comm.CommandText = "INSERT INTO judge(name) VALUES(@name)";
                 comm.Parameters.AddWithValue("@name", j1.GetJudgeName());
                 comm.ExecuteNonQuery();
+                comm.CommandText = "SELECT LAST_INSERT_ID() AS id";
+                var dr = comm.ExecuteReader();
+                var dt = new DataTable();
+                dt.Load(dr);
+                DataRow row = dt.Rows[0];
+                string id = row["id"].ToString();
+
                 conn.Close();
-                return true;
+                return Int32.Parse(id);
             }
             else
             {
-                return false;
+                return -1;
             }
         }
 
