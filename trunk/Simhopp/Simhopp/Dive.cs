@@ -11,6 +11,7 @@ namespace Simhopp
         private int ID;
         private Diver person;
         public double difficulty {get; set; }
+
         private Event comp;
         private List<Score> scores;
 
@@ -55,24 +56,43 @@ namespace Simhopp
 
         private double GetScore()
         {
-            double totalScore, low, high;
-            totalScore = high = 0;
-            low = 10;
+            double totalScore = 0;
             int scoreCount = 0;
+            List <double> points = new List<double>();
+            int start = 0;
             foreach (Score score in scores)
             {
+                points.Add(score.points);
                 scoreCount++;
-                totalScore += score.points;
-                if (score.points <= low)
-                    low = score.points;
-                if (score.points > high)
-                    high = score.points;
             }
-            totalScore -= low;
-            totalScore -= high;
-            totalScore /= (scoreCount - 2);
-            totalScore *= difficulty;
 
+            switch(scoreCount)
+            {
+                case 3:
+                    start = 0;
+                        break;
+                case 5:
+                    start = 1;
+                        break;
+                case 7:
+                    start = 2;
+                        break;
+                case 9:
+                    start = 3;
+                        break;
+                case 11:
+                    start = 4;
+                        break;
+            }
+
+            points.Sort();
+
+            for (int i = start; i < (scoreCount-start); i++)
+            {
+                  totalScore += points[i];     
+            }
+
+            totalScore *= difficulty;
             return totalScore;
         }
         #endregion
