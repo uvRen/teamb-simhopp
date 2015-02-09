@@ -44,13 +44,20 @@
             this.btnSubmit = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnNewDiver = new System.Windows.Forms.Button();
-            this.btnNewJudge = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioButtonMale = new System.Windows.Forms.RadioButton();
             this.radioButtonFemale = new System.Windows.Forms.RadioButton();
             this.successfully = new System.Windows.Forms.Label();
             this.errorlabel = new System.Windows.Forms.Label();
+            this.listViewJudge = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listViewDivers = new System.Windows.Forms.ListView();
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBoxDisciplin.SuspendLayout();
             this.groupBoxSingle.SuspendLayout();
@@ -69,7 +76,7 @@
             // textBox1
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(98, 12);
+            this.textBox1.Location = new System.Drawing.Point(98, 6);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(181, 20);
             this.textBox1.TabIndex = 1;
@@ -77,7 +84,7 @@
             // textBox2
             // 
             this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(98, 35);
+            this.textBox2.Location = new System.Drawing.Point(98, 32);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(181, 20);
             this.textBox2.TabIndex = 2;
@@ -187,7 +194,7 @@
             // btnSubmit
             // 
             this.btnSubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSubmit.Location = new System.Drawing.Point(15, 300);
+            this.btnSubmit.Location = new System.Drawing.Point(12, 313);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(89, 23);
             this.btnSubmit.TabIndex = 18;
@@ -213,28 +220,6 @@
             this.label3.Size = new System.Drawing.Size(38, 13);
             this.label3.TabIndex = 20;
             this.label3.Text = "Datum";
-            // 
-            // btnNewDiver
-            // 
-            this.btnNewDiver.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNewDiver.Location = new System.Drawing.Point(104, 271);
-            this.btnNewDiver.Name = "btnNewDiver";
-            this.btnNewDiver.Size = new System.Drawing.Size(80, 23);
-            this.btnNewDiver.TabIndex = 23;
-            this.btnNewDiver.Text = "Välj hoppare";
-            this.btnNewDiver.UseVisualStyleBackColor = true;
-            this.btnNewDiver.Click += new System.EventHandler(this.btnNewDiver_Click);
-            // 
-            // btnNewJudge
-            // 
-            this.btnNewJudge.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNewJudge.Location = new System.Drawing.Point(15, 271);
-            this.btnNewJudge.Name = "btnNewJudge";
-            this.btnNewJudge.Size = new System.Drawing.Size(76, 23);
-            this.btnNewJudge.TabIndex = 22;
-            this.btnNewJudge.Text = "Välj domare";
-            this.btnNewJudge.UseVisualStyleBackColor = true;
-            this.btnNewJudge.Click += new System.EventHandler(this.btnNewJudge_Click);
             // 
             // groupBox1
             // 
@@ -291,16 +276,80 @@
             this.errorlabel.Text = "An error occoured, try again";
             this.errorlabel.Visible = false;
             // 
+            // listViewJudge
+            // 
+            this.listViewJudge.CheckBoxes = true;
+            this.listViewJudge.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.listViewJudge.Location = new System.Drawing.Point(808, 6);
+            this.listViewJudge.Name = "listViewJudge";
+            this.listViewJudge.Size = new System.Drawing.Size(163, 337);
+            this.listViewJudge.TabIndex = 26;
+            this.listViewJudge.UseCompatibleStateImageBehavior = false;
+            this.listViewJudge.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "ID";
+            this.columnHeader1.Width = 40;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Name";
+            this.columnHeader2.Width = 160;
+            // 
+            // listViewDivers
+            // 
+            this.listViewDivers.CheckBoxes = true;
+            this.listViewDivers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader10});
+            this.listViewDivers.Location = new System.Drawing.Point(411, 6);
+            this.listViewDivers.Name = "listViewDivers";
+            this.listViewDivers.Size = new System.Drawing.Size(371, 337);
+            this.listViewDivers.TabIndex = 27;
+            this.listViewDivers.UseCompatibleStateImageBehavior = false;
+            this.listViewDivers.View = System.Windows.Forms.View.Details;
+            this.listViewDivers.SelectedIndexChanged += new System.EventHandler(this.listViewDivers_SelectedIndexChanged);
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "ID";
+            this.columnHeader6.Width = 40;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Name";
+            this.columnHeader7.Width = 140;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Country";
+            this.columnHeader8.Width = 86;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Age";
+            this.columnHeader9.Width = 49;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Gender";
+            // 
             // FormNewEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(291, 361);
+            this.ClientSize = new System.Drawing.Size(983, 494);
+            this.Controls.Add(this.listViewDivers);
+            this.Controls.Add(this.listViewJudge);
             this.Controls.Add(this.errorlabel);
             this.Controls.Add(this.successfully);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnNewDiver);
-            this.Controls.Add(this.btnNewJudge);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.btnSubmit);
@@ -344,12 +393,19 @@
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnNewDiver;
-        private System.Windows.Forms.Button btnNewJudge;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radioButtonMale;
         private System.Windows.Forms.RadioButton radioButtonFemale;
         private System.Windows.Forms.Label successfully;
         private System.Windows.Forms.Label errorlabel;
+        private System.Windows.Forms.ListView listViewJudge;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ListView listViewDivers;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
     }
 }
