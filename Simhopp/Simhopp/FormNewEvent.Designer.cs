@@ -290,14 +290,13 @@
             this.listViewJudge.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
-            this.listViewJudge.Location = new System.Drawing.Point(808, 6);
+            this.listViewJudge.Location = new System.Drawing.Point(808, 12);
             this.listViewJudge.Name = "listViewJudge";
             this.listViewJudge.Size = new System.Drawing.Size(196, 410);
             this.listViewJudge.TabIndex = 26;
             this.listViewJudge.UseCompatibleStateImageBehavior = false;
             this.listViewJudge.View = System.Windows.Forms.View.Details;
             this.listViewJudge.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listViewJudge_ItemChecked);
-            this.listViewJudge.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewJudge_ItemSelectionChanged);
             // 
             // columnHeader1
             // 

@@ -205,16 +205,6 @@ namespace Simhopp
             newJudgeName.Text = "Name";
         }
 
-        private void listViewJudge_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listViewJudge_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
-        {
-           
-        }
-
         private void listViewJudge_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             int count = listViewJudge.CheckedItems.Count;
