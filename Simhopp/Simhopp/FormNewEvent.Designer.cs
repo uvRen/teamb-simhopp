@@ -201,7 +201,8 @@
             // btnSubmit
             // 
             this.btnSubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSubmit.Location = new System.Drawing.Point(21, 434);
+            this.btnSubmit.Enabled = false;
+            this.btnSubmit.Location = new System.Drawing.Point(15, 459);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(89, 23);
             this.btnSubmit.TabIndex = 18;
@@ -265,7 +266,7 @@
             // 
             this.successfully.AutoSize = true;
             this.successfully.ForeColor = System.Drawing.Color.Green;
-            this.successfully.Location = new System.Drawing.Point(15, 460);
+            this.successfully.Location = new System.Drawing.Point(110, 464);
             this.successfully.Name = "successfully";
             this.successfully.Size = new System.Drawing.Size(134, 13);
             this.successfully.TabIndex = 24;
@@ -276,7 +277,7 @@
             // 
             this.errorlabel.AutoSize = true;
             this.errorlabel.ForeColor = System.Drawing.Color.Firebrick;
-            this.errorlabel.Location = new System.Drawing.Point(15, 460);
+            this.errorlabel.Location = new System.Drawing.Point(110, 464);
             this.errorlabel.Name = "errorlabel";
             this.errorlabel.Size = new System.Drawing.Size(138, 13);
             this.errorlabel.TabIndex = 25;
@@ -295,6 +296,8 @@
             this.listViewJudge.TabIndex = 26;
             this.listViewJudge.UseCompatibleStateImageBehavior = false;
             this.listViewJudge.View = System.Windows.Forms.View.Details;
+            this.listViewJudge.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listViewJudge_ItemChecked);
+            this.listViewJudge.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewJudge_ItemSelectionChanged);
             // 
             // columnHeader1
             // 
