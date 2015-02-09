@@ -61,10 +61,10 @@
             this.newDiverName = new System.Windows.Forms.TextBox();
             this.newDiverAge = new System.Windows.Forms.TextBox();
             this.newDiverCountry = new System.Windows.Forms.TextBox();
-            this.newDiverGender = new System.Windows.Forms.TextBox();
             this.AddNewDiverSubmit = new System.Windows.Forms.Button();
             this.newJudgeName = new System.Windows.Forms.TextBox();
             this.newJudgeSubmit = new System.Windows.Forms.Button();
+            this.newDiverSelectGender = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBoxDisciplin.SuspendLayout();
             this.groupBoxSingle.SuspendLayout();
@@ -83,7 +83,7 @@
             // textBox1
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(98, 6);
+            this.textBox1.Location = new System.Drawing.Point(80, 6);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(181, 20);
             this.textBox1.TabIndex = 1;
@@ -91,7 +91,7 @@
             // textBox2
             // 
             this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(98, 32);
+            this.textBox2.Location = new System.Drawing.Point(80, 32);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(181, 20);
             this.textBox2.TabIndex = 2;
@@ -138,7 +138,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(98, 83);
+            this.numericUpDown1.Location = new System.Drawing.Point(80, 82);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(54, 20);
             this.numericUpDown1.TabIndex = 4;
@@ -212,13 +212,13 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(98, 58);
+            this.dateTimePicker1.Location = new System.Drawing.Point(80, 56);
             this.dateTimePicker1.MaxDate = new System.DateTime(2100, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker1.MinDate = new System.DateTime(2015, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(181, 20);
             this.dateTimePicker1.TabIndex = 3;
-            this.dateTimePicker1.Value = new System.DateTime(2015, 2, 2, 0, 0, 0, 0);
+            this.dateTimePicker1.Value = new System.DateTime(2015, 2, 9, 0, 0, 0, 0);
             // 
             // label3
             // 
@@ -290,9 +290,9 @@
             this.listViewJudge.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
-            this.listViewJudge.Location = new System.Drawing.Point(808, 12);
+            this.listViewJudge.Location = new System.Drawing.Point(808, 7);
             this.listViewJudge.Name = "listViewJudge";
-            this.listViewJudge.Size = new System.Drawing.Size(196, 410);
+            this.listViewJudge.Size = new System.Drawing.Size(210, 409);
             this.listViewJudge.TabIndex = 26;
             this.listViewJudge.UseCompatibleStateImageBehavior = false;
             this.listViewJudge.View = System.Windows.Forms.View.Details;
@@ -323,7 +323,6 @@
             this.listViewDivers.TabIndex = 27;
             this.listViewDivers.UseCompatibleStateImageBehavior = false;
             this.listViewDivers.View = System.Windows.Forms.View.Details;
-            this.listViewDivers.SelectedIndexChanged += new System.EventHandler(this.listViewDivers_SelectedIndexChanged);
             // 
             // columnHeader6
             // 
@@ -351,16 +350,16 @@
             // 
             // newDiverName
             // 
-            this.newDiverName.Location = new System.Drawing.Point(411, 425);
+            this.newDiverName.Location = new System.Drawing.Point(411, 420);
             this.newDiverName.Name = "newDiverName";
-            this.newDiverName.Size = new System.Drawing.Size(122, 20);
+            this.newDiverName.Size = new System.Drawing.Size(121, 20);
             this.newDiverName.TabIndex = 28;
             this.newDiverName.Text = "Name";
             this.newDiverName.Enter += new System.EventHandler(this.textBox3_Enter);
             // 
             // newDiverAge
             // 
-            this.newDiverAge.Location = new System.Drawing.Point(654, 425);
+            this.newDiverAge.Location = new System.Drawing.Point(648, 420);
             this.newDiverAge.Name = "newDiverAge";
             this.newDiverAge.Size = new System.Drawing.Size(34, 20);
             this.newDiverAge.TabIndex = 30;
@@ -369,25 +368,16 @@
             // 
             // newDiverCountry
             // 
-            this.newDiverCountry.Location = new System.Drawing.Point(539, 425);
+            this.newDiverCountry.Location = new System.Drawing.Point(538, 420);
             this.newDiverCountry.Name = "newDiverCountry";
-            this.newDiverCountry.Size = new System.Drawing.Size(109, 20);
+            this.newDiverCountry.Size = new System.Drawing.Size(104, 20);
             this.newDiverCountry.TabIndex = 31;
             this.newDiverCountry.Text = "Country";
             this.newDiverCountry.Enter += new System.EventHandler(this.textBox6_Enter);
             // 
-            // newDiverGender
-            // 
-            this.newDiverGender.Location = new System.Drawing.Point(694, 425);
-            this.newDiverGender.Name = "newDiverGender";
-            this.newDiverGender.Size = new System.Drawing.Size(44, 20);
-            this.newDiverGender.TabIndex = 32;
-            this.newDiverGender.Text = "Gender";
-            this.newDiverGender.Enter += new System.EventHandler(this.textBox4_Enter);
-            // 
             // AddNewDiverSubmit
             // 
-            this.AddNewDiverSubmit.Location = new System.Drawing.Point(756, 422);
+            this.AddNewDiverSubmit.Location = new System.Drawing.Point(756, 419);
             this.AddNewDiverSubmit.Name = "AddNewDiverSubmit";
             this.AddNewDiverSubmit.Size = new System.Drawing.Size(26, 23);
             this.AddNewDiverSubmit.TabIndex = 33;
@@ -397,16 +387,16 @@
             // 
             // newJudgeName
             // 
-            this.newJudgeName.Location = new System.Drawing.Point(808, 423);
+            this.newJudgeName.Location = new System.Drawing.Point(808, 422);
             this.newJudgeName.Name = "newJudgeName";
-            this.newJudgeName.Size = new System.Drawing.Size(164, 20);
+            this.newJudgeName.Size = new System.Drawing.Size(178, 20);
             this.newJudgeName.TabIndex = 34;
             this.newJudgeName.Text = "Name";
             this.newJudgeName.Enter += new System.EventHandler(this.newJudgeName_Enter);
             // 
             // newJudgeSubmit
             // 
-            this.newJudgeSubmit.Location = new System.Drawing.Point(978, 420);
+            this.newJudgeSubmit.Location = new System.Drawing.Point(992, 421);
             this.newJudgeSubmit.Name = "newJudgeSubmit";
             this.newJudgeSubmit.Size = new System.Drawing.Size(26, 23);
             this.newJudgeSubmit.TabIndex = 35;
@@ -414,15 +404,27 @@
             this.newJudgeSubmit.UseVisualStyleBackColor = true;
             this.newJudgeSubmit.Click += new System.EventHandler(this.newJudgeSubmit_Click);
             // 
+            // newDiverSelectGender
+            // 
+            this.newDiverSelectGender.FormattingEnabled = true;
+            this.newDiverSelectGender.Items.AddRange(new object[] {
+            "Male",
+            "Female"});
+            this.newDiverSelectGender.Location = new System.Drawing.Point(690, 420);
+            this.newDiverSelectGender.Name = "newDiverSelectGender";
+            this.newDiverSelectGender.Size = new System.Drawing.Size(60, 21);
+            this.newDiverSelectGender.TabIndex = 36;
+            this.newDiverSelectGender.Text = "Male";
+            // 
             // FormNewEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1016, 494);
+            this.ClientSize = new System.Drawing.Size(1030, 494);
+            this.Controls.Add(this.newDiverSelectGender);
             this.Controls.Add(this.newJudgeSubmit);
             this.Controls.Add(this.newJudgeName);
             this.Controls.Add(this.AddNewDiverSubmit);
-            this.Controls.Add(this.newDiverGender);
             this.Controls.Add(this.newDiverCountry);
             this.Controls.Add(this.newDiverAge);
             this.Controls.Add(this.newDiverName);
@@ -491,9 +493,9 @@
         private System.Windows.Forms.TextBox newDiverName;
         private System.Windows.Forms.TextBox newDiverAge;
         private System.Windows.Forms.TextBox newDiverCountry;
-        private System.Windows.Forms.TextBox newDiverGender;
         private System.Windows.Forms.Button AddNewDiverSubmit;
         private System.Windows.Forms.TextBox newJudgeName;
         private System.Windows.Forms.Button newJudgeSubmit;
+        private System.Windows.Forms.ComboBox newDiverSelectGender;
     }
 }
