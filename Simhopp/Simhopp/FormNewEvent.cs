@@ -155,7 +155,7 @@ namespace Simhopp
         {
             //lägger till den nya hopparen i databasen
             int gender = -1;
-            if(newDiverSelectGender.ToString().CompareTo("Male") == 0)
+            if(newDiverSelectGender.Text.CompareTo("Male") == 0)
             {
                 gender = 0;
             }
@@ -174,7 +174,7 @@ namespace Simhopp
             item1.SubItems.Add(diver.name);
             item1.SubItems.Add(diver.country);
             item1.SubItems.Add(diver.age.ToString());
-            item1.SubItems.Add(newDiverSelectGender.ToString());
+            item1.SubItems.Add(newDiverSelectGender.Text);
 
             //restore textbox
             newDiverName.Text = "Name";
