@@ -39,6 +39,30 @@ namespace Simhopp
             //ställer in formatet på datumet till 2015-02-02
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "yyyy-MM-dd";
+            
+        
+            diverList = new List<Diver>();
+            foreach (Diver diver in Database.GetDivers())
+            {
+                ListViewItem item1 = new ListViewItem();
+                item1.Text = diver.ID.ToString();
+                listViewDivers.Items.Add(item1);
+
+                item1.SubItems.Add(diver.name);
+                item1.SubItems.Add(diver.country);
+                item1.SubItems.Add(diver.age.ToString());
+                item1.SubItems.Add(diver.sex.ToString());
+            }
+
+            judgeList = new List<Judge>();
+            foreach (Judge judge in Database.GetJudges())
+            {
+                ListViewItem item1 = new ListViewItem();
+                item1.Text = judge.ID.ToString();
+                listViewJudge.Items.Add(item1);
+
+                item1.SubItems.Add(judge.name);
+            }
         }
 
         private void btnNewJudge_Click(object sender, EventArgs e)
@@ -110,6 +134,11 @@ namespace Simhopp
                 errorlabel.Text = "An error occoured, try again";
                 errorlabel.Visible = true;
             }
+        }
+
+        private void listViewDivers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
