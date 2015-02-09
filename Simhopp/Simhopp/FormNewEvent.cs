@@ -218,15 +218,14 @@ namespace Simhopp
         private void listViewJudge_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             int count = listViewJudge.CheckedItems.Count;
-            MessageBox.Show("" + count);
 
-            if ((count % 2 != 0 && count >= 3) || count < 3)
+            if (count % 2 != 0 && count >= 3)
             {
-                btnSubmit.Enabled = false;
+                btnSubmit.Enabled = true;
             }
             else
             {
-                btnSubmit.Enabled = true;
+                btnSubmit.Enabled = false;
             }
         }
 
