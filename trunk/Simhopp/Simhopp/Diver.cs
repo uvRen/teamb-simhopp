@@ -53,6 +53,15 @@ namespace Simhopp
             this.country = country;
             dives = new List<Dive>();
         }
+
+        public Diver(string name, int age, int sex, string country)
+        {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+            this.country = country;
+            dives = new List<Dive>();
+        }
         #endregion
 
         #region Funktioner

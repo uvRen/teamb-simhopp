@@ -278,5 +278,14 @@ namespace Simhopp
             }
         }
         #endregion
+
+        #region Score
+        public static List<double> getScoreFromDatabase()
+        {
+            List<double> points = new List<double>();
+            return points;
+        }
+        #endregion
+
     }
 }

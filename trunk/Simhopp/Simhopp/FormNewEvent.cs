@@ -140,5 +140,48 @@ namespace Simhopp
         {
 
         }
+
+        private void textBox3_Enter(object sender, EventArgs e)
+        {
+            textBox3.Text = "";
+        }
+
+        private void textBox6_Enter(object sender, EventArgs e)
+        {
+            textBox6.Text = "";
+        }
+
+        private void textBox5_Enter(object sender, EventArgs e)
+        {
+            textBox5.Text = "";
+        }
+
+        private void textBox4_Enter(object sender, EventArgs e)
+        {
+            textBox4.Text = "";
+        }
+
+        private void AddNewDiver_Click(object sender, EventArgs e)
+        {
+            //lägger till den nya hopparen i databasen
+            Diver diver = new Diver(textBox3.Text, Int32.Parse(textBox5.Text), Int32.Parse(textBox4.Text), textBox6.Text);
+            int ID = Database.AddDiverToDatabase(diver);
+
+            //lägger till den nya hopparen i listan
+            ListViewItem item1 = new ListViewItem();
+            item1.Text = ID.ToString();
+            listViewDivers.Items.Add(item1);
+
+            item1.SubItems.Add(diver.name);
+            item1.SubItems.Add(diver.country);
+            item1.SubItems.Add(diver.age.ToString());
+            item1.SubItems.Add(diver.sex.ToString());
+
+            //clear textbox
+            textBox3.Text = "";
+            textBox4.Text = "";
+            textBox5.Text = "";
+            textBox6.Text = "";
+        }
     }
 }
