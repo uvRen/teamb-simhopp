@@ -51,7 +51,11 @@ namespace Simhopp
                 item1.SubItems.Add(diver.name);
                 item1.SubItems.Add(diver.country);
                 item1.SubItems.Add(diver.age.ToString());
-                item1.SubItems.Add(diver.sex.ToString());
+                if (diver.sex == 0)
+                    item1.SubItems.Add("M");
+                else
+                    item1.SubItems.Add("F");
+                //item1.SubItems.Add(diver.sex.ToString());
             }
 
             judgeList = new List<Judge>();
