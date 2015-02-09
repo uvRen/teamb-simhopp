@@ -80,9 +80,6 @@ namespace Simhopp
                 case 9:
                     start = 3;
                         break;
-                case 11:
-                    start = 4;
-                        break;
             }
 
             points.Sort();
