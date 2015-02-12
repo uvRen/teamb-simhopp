@@ -22,6 +22,7 @@ namespace Simhopp
         private int discipline;
         private int sync;
         private int sex;
+        private bool privateDrag;
 
         public FormNewEvent()
         {
@@ -44,10 +45,9 @@ namespace Simhopp
             foreach (Diver diver in Database.GetDivers())
             {
                 ListViewItem item1 = new ListViewItem();
-                item1.Text = diver.ID.ToString();
+                item1.Text = diver.name;
                 listViewDivers.Items.Add(item1);
 
-                item1.SubItems.Add(diver.name);
                 item1.SubItems.Add(diver.country);
                 item1.SubItems.Add(diver.age.ToString());
                 if (diver.sex == 0)
@@ -65,6 +65,37 @@ namespace Simhopp
 
                 item1.SubItems.Add(judge.name);
             }
+            
+            listViewDivers.ItemDrag += listViewDivers_ItemDrag;
+            listViewDivers.DragEnter += listViewDivers_DragEnter;
+            listViewDivers.DragDrop += listViewDivers_DragDrop;
+            listViewDivers.AllowDrop = true;
+        }
+
+        void listViewDivers_DragDrop(object sender, DragEventArgs e)
+        {
+            var pos = listViewDivers.PointToClient(new Point(e.X, e.Y));
+            var hit = listViewDivers.HitTest(pos);
+            if (hit.Item != null)
+            {
+                var dragItem = (ListViewItem)e.Data.GetData(typeof(ListViewItem));
+                Diver d1 = new Diver(0, dragItem.Text + " & " +
+                                        hit.Item.Text);
+                AddDiverToList(d1, true);
+            }
+        }
+
+        void listViewDivers_DragEnter(object sender, DragEventArgs e)
+        {
+            if (privateDrag)
+                e.Effect = e.AllowedEffect;
+        }
+
+        void listViewDivers_ItemDrag(object sender, ItemDragEventArgs e)
+        {
+            privateDrag = true;
+            DoDragDrop(e.Item, DragDropEffects.Link);
+            privateDrag = false;
         }
 
         private void btnNewJudge_Click(object sender, EventArgs e)
@@ -153,6 +184,22 @@ namespace Simhopp
             newDiverAge.Text = "";
         }
 
+        private void AddDiverToList(Diver diver, bool isSync)
+        {
+            ListViewItem item1 = new ListViewItem();
+            if (isSync)
+            {
+                item1.Text = "| | " + diver.name;
+                item1.Checked = true;
+            }
+            else
+                item1.Text = diver.name;
+            listViewDivers.Items.Add(item1);
+
+            item1.SubItems.Add(diver.country);
+            item1.SubItems.Add(diver.age.ToString());
+            item1.SubItems.Add(newDiverSelectGender.Text);
+        }
         private void AddNewDiver_Click(object sender, EventArgs e)
         {
             int gender = -1;
@@ -171,10 +218,10 @@ namespace Simhopp
 
             //lägger till den nya hopparen i listan
             ListViewItem item1 = new ListViewItem();
-            item1.Text = ID.ToString();
+            item1.Text = diver.name;
             listViewDivers.Items.Add(item1);
 
-            item1.SubItems.Add(diver.name);
+            //item1.SubItems.Add(diver.name);
             item1.SubItems.Add(diver.country);
             item1.SubItems.Add(diver.age.ToString());
             item1.SubItems.Add(newDiverSelectGender.Text);
