@@ -317,5 +317,30 @@ namespace Simhopp
         }
         #endregion
 
+        #region Event_diver
+        public static List<Diver> GetDiversInEvent(int eventID)
+        {
+            List<Diver> divers = new List<Diver>();
+
+            MySqlConnection conn = ConnectToDatabase();
+            if (conn != null)
+            {
+                Diver d;
+                string sql = "SELECT * FROM diver WHERE id IN (SELECT diverId FROM event_diver WHERE event_diver.eventId=" + eventID + ");";
+                var cmd = new MySqlCommand(sql, conn);
+                var dr = cmd.ExecuteReader();
+                var dt = new DataTable();
+                dt.Load(dr);
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    d = new Diver(Int32.Parse(row["id"].ToString()), row["name"].ToString());
+                    divers.Add(d);
+                }
+            }
+            return divers;
+        }
+        #endregion
+
     }
 }

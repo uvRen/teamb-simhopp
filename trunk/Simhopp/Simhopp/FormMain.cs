@@ -37,5 +37,26 @@ namespace Simhopp
                     item1.SubItems.Add("F");
             }
         }
+
+        private void listViewEvent_ItemActivate(object sender, EventArgs e)
+        {
+            //SQL för att hämta alla deltagare som ingår i en tävling
+            /*
+            SELECT * FROM diver WHERE id IN (SELECT diverId FROM event_diver WHERE event_diver.diverId=11) 
+            */
+            
+            int eventId = Int32.Parse(listViewEvent.SelectedItems[0].Text);
+            listView1.Items.Clear();
+
+            foreach (Diver d in Database.GetDiversInEvent(eventId))
+            {
+                ListViewItem item1 = new ListViewItem();
+                item1.Text = d.ID.ToString();
+
+                listView1.Items.Add(item1);
+
+                item1.SubItems.Add(d.name);
+            }
+        }
     }
 }
