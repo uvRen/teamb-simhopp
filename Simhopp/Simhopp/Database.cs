@@ -201,7 +201,24 @@ namespace Simhopp
 
         public static List<Event> getEvents()
         {
+            Event e;
             List<Event> events = new List<Event>();
+
+            MySqlConnection conn = ConnectToDatabase();
+
+            if(conn != null)
+            {
+                var cmd = new MySqlCommand("SELECT * FROM event", conn);
+                var dr = cmd.ExecuteReader();
+                var dt = new DataTable();
+                dt.Load(dr);
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    e = new Event(Int32.Parse(row["id"].ToString()), row["name"].ToString(), row["date"].ToString(), row["location"].ToString(), Int32.Parse(row["discipline"].ToString()), Int32.Parse(row["sync"].ToString()), Int32.Parse(row["diveCount"].ToString()), Int32.Parse(row["sex"].ToString()));
+                    events.Add(e);
+                }
+            }
             return events;
         }
         #endregion
