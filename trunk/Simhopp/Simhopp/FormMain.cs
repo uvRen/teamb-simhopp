@@ -17,15 +17,24 @@ namespace Simhopp
         {
             InitializeComponent();
 
-            foreach(Event e in eventList) 
+            foreach(Event e in Database.getEvents()) 
             {
                 ListViewItem item1 = new ListViewItem();
-                item1.Text = e.name;
+                item1.Text = e.ID.ToString();
 
                 listViewEvent.Items.Add(item1);
 
+                item1.SubItems.Add(e.name);
                 item1.SubItems.Add(e.location);
+
+                //formaterar bort klockslaget i datumet
+                e.date = e.date.Substring(0, 10);
                 item1.SubItems.Add(e.date);
+
+                if(e.sex == 0)
+                    item1.SubItems.Add("M");
+                else
+                    item1.SubItems.Add("F");
             }
         }
     }

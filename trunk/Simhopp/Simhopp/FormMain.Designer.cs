@@ -37,9 +37,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.listViewEvent = new System.Windows.Forms.ListView();
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // button1
@@ -56,9 +58,9 @@
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader2,
             this.columnHeader1});
-            this.listView1.Location = new System.Drawing.Point(486, 51);
+            this.listView1.Location = new System.Drawing.Point(522, 51);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(402, 387);
+            this.listView1.Size = new System.Drawing.Size(366, 387);
             this.listView1.TabIndex = 3;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -96,7 +98,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(483, 26);
+            this.label2.Location = new System.Drawing.Point(519, 26);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 13);
             this.label2.TabIndex = 6;
@@ -104,7 +106,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(486, 461);
+            this.button3.Location = new System.Drawing.Point(522, 459);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(100, 23);
             this.button3.TabIndex = 8;
@@ -114,30 +116,42 @@
             // listViewEvent
             // 
             this.listViewEvent.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader7,
             this.columnHeader5,
             this.columnHeader4,
-            this.columnHeader3});
+            this.columnHeader3,
+            this.columnHeader6});
             this.listViewEvent.Location = new System.Drawing.Point(26, 51);
             this.listViewEvent.Name = "listViewEvent";
-            this.listViewEvent.Size = new System.Drawing.Size(431, 299);
+            this.listViewEvent.Size = new System.Drawing.Size(472, 299);
             this.listViewEvent.TabIndex = 9;
             this.listViewEvent.UseCompatibleStateImageBehavior = false;
             this.listViewEvent.View = System.Windows.Forms.View.Details;
             // 
-            // columnHeader3
+            // columnHeader5
             // 
-            this.columnHeader3.Text = "Datum";
-            this.columnHeader3.Width = 110;
+            this.columnHeader5.Text = "Namn";
+            this.columnHeader5.Width = 180;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Plats";
             this.columnHeader4.Width = 109;
             // 
-            // columnHeader5
+            // columnHeader3
             // 
-            this.columnHeader5.Text = "Namn";
-            this.columnHeader5.Width = 195;
+            this.columnHeader3.Text = "Datum";
+            this.columnHeader3.Width = 80;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Gender";
+            this.columnHeader6.Width = 50;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "ID";
+            this.columnHeader7.Width = 30;
             // 
             // FormMain
             // 
@@ -172,6 +186,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
 
     }
 }

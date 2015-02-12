@@ -54,7 +54,6 @@ namespace Simhopp
                     item1.SubItems.Add("M");
                 else
                     item1.SubItems.Add("F");
-                //item1.SubItems.Add(diver.sex.ToString());
             }
 
             judgeList = new List<Judge>();
