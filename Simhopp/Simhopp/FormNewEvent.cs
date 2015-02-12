@@ -149,8 +149,21 @@ namespace Simhopp
             //lägger till eventet i databasen
             Event ev = new Event(eventName, date, location, discipline, sync, diveCount, sex);
 
+            // SKA GÖRAS NÄSTA GÅNG!!! //
+
+            //hämtar dommare och hoppare från tabellerna
+            List<Judge> addJudgesToEvent = new List<Judge>();
+            List<Diver> addDiversToEvent = new List<Diver>();
+            Diver d;
+            Judge j;
+
+            foreach(ListViewItem item in listViewJudge.CheckedItems)
+            {
+                j = new Judge();
+            }
+
             //om inmatningen lyckades
-            int code = Database.AddEventToDatabase(ev, judgeList, diverList);
+            int code = Database.AddEventToDatabase(ev, addJudgesToEvent, addDiversToEvent);
             if(code == 1)
             {
                 successfully.Visible = true;
