@@ -12,7 +12,9 @@ namespace Simhopp
 {
     public partial class FormEvent : Form
     {
-        private List<List<Panel>> panels;
+        private List<List<Panel>> divePanels;
+        private List<Panel> pagePanels;
+
         private int currentDiverIndex;
         private int currentRoundIndex;
         private int currentJudgeIndex;
@@ -53,8 +55,10 @@ namespace Simhopp
             ev.AddDiver(new Diver(0, "Greger"));
             ev.AddDiver(new Diver(0, "Hopptjej"));
             ev.AddDiver(new Diver(0, "Annika"));
+            ev.AddDiver(new Diver(0, "Annika2"));
+            ev.AddDiver(new Diver(0, "Annika3"));
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < ev.GetDivers().Count; i++)
             {
                 for (int j = 0; j < 5; j++)
                 {
@@ -70,29 +74,46 @@ namespace Simhopp
             }
             #endregion
 
-            panels = new List<List<Panel>>();
+            divePanels = new List<List<Panel>>();
+            pagePanels = new List<Panel>();
 
             currentDiverIndex = currentRoundIndex = currentJudgeIndex = 0;
 
-            tabControl1.TabPages.Clear();
-            tabControl1.Height = 30 + ev.GetDivers().Count * 80;
+            tabsRounds.TabPages.Clear();
+            tabsRounds.SelectedIndexChanged += tabsRounds_TabIndexChanged;
+            listViewLeaderboard.BackColor = colors[1];
+            pagePanelContainer.BackColor = colors[1];
+
+            listViewLeaderboard.ForeColor = Color.White;
+            panelControls.BackColor = colors[1];
 
             for (int i = 0; i < ev.diveCount; i++)
             {
-                panels.Add(new List<Panel>());
-                tabControl1.TabPages.Add("Runda " + (i + 1));
-                tabControl1.SelectedTab.BorderStyle = BorderStyle.None;
-                tabControl1.SelectedTab.BackColor = colors[0];
-                tabControl1.SelectedTab.ForeColor = colors[0];
+                divePanels.Add(new List<Panel>());
+                tabsRounds.TabPages.Add("Runda " + (i + 1));
+                Panel page = new Panel();
+                page.Width = pagePanelContainer.Width - 5;
+                page.Height = pagePanelContainer.Height;
+                page.Top = page.Left = 3;
+                page.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left | AnchorStyles.Bottom;
+                page.AutoScroll = true;
+                pagePanelContainer.Controls.Add(page);
+                pagePanels.Add(page);
+
                 for (int j = 0; j < ev.GetDivers().Count(); j++)
                 {
                     Panel p = DivePanel(ev.GetDivers()[j], i);
-                    panels[i].Add(p);
+                    divePanels[i].Add(p);
                     p.Top = (p.Height + 2) * j;
-                    tabControl1.TabPages[i].Controls.Add(p);
+                    pagePanels[i].Controls.Add(p);
                 }
             }
 
+        }
+
+        void tabsRounds_TabIndexChanged(object sender, EventArgs e)
+        {
+            pagePanels[tabsRounds.SelectedIndex].BringToFront();
         }
 
         public FormEvent(Event e)
@@ -107,6 +128,20 @@ namespace Simhopp
             this.BackColor = colors[0];
         }
 
+        private void UpdateLeaderboard()
+        {
+            listViewLeaderboard.Items.Clear();
+            var sortedDivers = divers.OrderBy(x => x.TotalScore).Reverse();
+            foreach (Diver diver in sortedDivers)
+            { 
+                ListViewItem tItem = new ListViewItem();
+                tItem.Text = diver.name;
+                tItem.SubItems.Add(diver.TotalScore.ToString());
+
+                listViewLeaderboard.Items.Add(tItem);
+            }
+        }
+
         Panel DivePanel(Diver diver, int round)
         {
 
@@ -116,13 +151,13 @@ namespace Simhopp
 
             Font fontName = new Font(
                fontFamily,
-               18,
+               15,
                FontStyle.Bold,
                GraphicsUnit.Pixel);
 
             Font fontScore = new Font(
                fontFamily,
-               16,
+               18,
                FontStyle.Bold,
                GraphicsUnit.Pixel);
 
@@ -130,8 +165,8 @@ namespace Simhopp
             Panel p = new Panel();
             p.BorderStyle = BorderStyle.FixedSingle;
             p.Width = pWidth;
-            p.Height = 80;
-            p.BackColor = colors[0];
+            p.Height = 70;
+            p.BackColor = colors[1];
 
             Label name = new Label();
             name.Text = diver.name;
@@ -145,11 +180,11 @@ namespace Simhopp
 
             Label difficulty = new Label();
             difficulty.Text = "Svårighetsgrad: " + dive.difficulty.ToString();
-            difficulty.Top = 26;
+            difficulty.Top = 22;
             difficulty.Left = 20;
             difficulty.Width = p.Width / 2;
             difficulty.ForeColor = Color.White;
-            difficulty.Font = new Font(FontFamily.GenericSerif, 10, FontStyle.Bold);
+            difficulty.Font = new Font(fontName, FontStyle.Regular);
 
             p.Controls.Add(difficulty);
             
@@ -169,7 +204,7 @@ namespace Simhopp
             scorePanel.Width = pWidth;
             scorePanel.Height = 30;
             scorePanel.Left = 0;
-            scorePanel.Top = 50;
+            scorePanel.Top = 42;
             scorePanel.BackColor = Color.Transparent;
             scorePanel.Tag = points;
 
@@ -181,10 +216,10 @@ namespace Simhopp
                 tb.Width = 25;
                 tb.TextAlign = HorizontalAlignment.Center;
                 tb.BorderStyle = BorderStyle.None;
-                //tb.BackColor = Color.Transparent;
+                tb.BackColor = colors[0];
+                tb.ForeColor = Color.White;
                 tb.Height = 25;
                 tb.Font = fontScore;
-                tb.ForeColor = Color.Black;
                 tb.Name = "Score";
                 tb.TextChanged += UpdateScore;
 
@@ -220,12 +255,12 @@ namespace Simhopp
         {
             btnDoDive.Enabled = true;
             btnNextRound.Enabled = false;
-            tabControl1.SelectedIndex++;
+            tabsRounds.SelectedIndex++;
         }
 
         private void ScoreDive()
         {
-            panels[currentRoundIndex][currentDiverIndex].BackColor = colors[2];
+            divePanels[currentRoundIndex][currentDiverIndex].BackColor = colors[2];
             Panel p = PanelScoring();
             this.Controls.Add(p);
             p.BringToFront();
@@ -243,7 +278,6 @@ namespace Simhopp
         private Panel PanelScoring()
         {
             Panel p = new Panel();
-            p.BorderStyle = BorderStyle.FixedSingle;
             p.Width = 730;
             p.Height = 200;
             p.BackColor = colors[1];
@@ -252,10 +286,12 @@ namespace Simhopp
             judgeName.Text = ScoreTitle();
             judgeName.Width = p.Width;
             judgeName.TextAlign = ContentAlignment.MiddleCenter;
-            judgeName.Font = new Font(new Font(new FontFamily("Cambria"), 16), FontStyle.Bold);
+            judgeName.Font = new Font(new Font(new FontFamily("Cambria"), 14), FontStyle.Bold);
             judgeName.ForeColor = colors[3];
             judgeName.Top = 10;
             judgeName.Name = "Judge";
+            judgeName.ForeColor = Color.White;
+
             p.Controls.Add(judgeName);
 
             for (int i = 0; i < 21; i++)
@@ -277,7 +313,11 @@ namespace Simhopp
             }
 
             p.Left = (this.Width / 2) - (p.Width / 2);
-            p.Top = (this.Height / 2) - (p.Height / 2);
+            //p.Top = (this.Height / 2) - (p.Height / 2);
+
+            p.Width = panelControls.Width;
+            p.Height = panelControls.Height;
+            p.Top = panelControls.Top;
 
             return p;
         }
@@ -290,8 +330,8 @@ namespace Simhopp
             Score score = new Score(-1, divers[currentDiverIndex].dives[currentRoundIndex], judges[currentJudgeIndex], Double.Parse(((Button)sender).Text));
             divers[currentDiverIndex].dives[currentRoundIndex].AddScore(score);
             
-            panels[currentRoundIndex][currentDiverIndex].Controls.Find("Score", true)[currentJudgeIndex].Text = ((Button)sender).Text;
-            panels[currentRoundIndex][currentDiverIndex].Controls.Find("Score", true)[currentJudgeIndex].Tag = score;
+            divePanels[currentRoundIndex][currentDiverIndex].Controls.Find("Score", true)[currentJudgeIndex].Text = ((Button)sender).Text;
+            divePanels[currentRoundIndex][currentDiverIndex].Controls.Find("Score", true)[currentJudgeIndex].Tag = score;
             currentJudgeIndex++;
 
 
@@ -300,13 +340,15 @@ namespace Simhopp
                 p.Dispose();
                 currentJudgeIndex = 0;
 
-                panels[currentRoundIndex][currentDiverIndex].BackColor = colors[1];
+                divePanels[currentRoundIndex][currentDiverIndex].BackColor = colors[1];
 
                 //Visa hoppets totala poäng
-                panels[currentRoundIndex][currentDiverIndex].Controls.Find("Points", true)[0].Text = divers[currentDiverIndex].dives[currentRoundIndex].score.ToString();
+                divePanels[currentRoundIndex][currentDiverIndex].Controls.Find("Points", true)[0].Text = divers[currentDiverIndex].dives[currentRoundIndex].score.ToString();
 
                 //Nästa hoppare
                 currentDiverIndex++;
+                UpdateLeaderboard();
+
                 if (currentDiverIndex >= divers.Count)
                 {
                     currentDiverIndex = 0;
