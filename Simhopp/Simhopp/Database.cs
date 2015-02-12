@@ -41,7 +41,7 @@ namespace Simhopp
             var judgeList = new List<Judge>();
 
             var conn = ConnectToDatabase();
-            var cmd = new MySqlCommand("SELECT * FROM judge", conn);
+            var cmd = new MySqlCommand("SELECT * FROM judge ORDER BY id", conn);
             var dr = cmd.ExecuteReader();
             var dt = new DataTable();
             dt.Load(dr);
@@ -229,7 +229,7 @@ namespace Simhopp
             var diverList = new List<Diver>();
 
             var conn = ConnectToDatabase();
-            var cmd = new MySqlCommand("SELECT * FROM diver", conn);
+            var cmd = new MySqlCommand("SELECT * FROM diver ORDER BY name", conn);
             var dr = cmd.ExecuteReader();
             var dt = new DataTable();
             dt.Load(dr);
