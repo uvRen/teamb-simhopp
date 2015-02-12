@@ -9,6 +9,7 @@ namespace Simhopp
     public class Diver
     {
         public List<Dive> dives {get; set;}
+        Diver sync;
         public int ID { get; set; }
         public string name { get; set; }
 
