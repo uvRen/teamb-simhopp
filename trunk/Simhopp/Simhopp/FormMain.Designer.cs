@@ -75,7 +75,7 @@
             // 
             this.columnHeader1.DisplayIndex = 0;
             this.columnHeader1.Text = "Namn";
-            this.columnHeader1.Width = 307;
+            this.columnHeader1.Width = 290;
             // 
             // button2
             // 
