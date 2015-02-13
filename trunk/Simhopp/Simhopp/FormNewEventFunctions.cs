@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Simhopp
 {
-    public class FormNewEventFunctions : Form
+    public class FormNewEventFunctions
     {
         public static void fillListViewWithDivers(RadioButton radioButtonMale, RadioButton radioButtonFemale, ListView listViewDivers) 
         {
