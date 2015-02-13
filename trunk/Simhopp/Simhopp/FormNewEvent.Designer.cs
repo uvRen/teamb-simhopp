@@ -461,41 +461,51 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label successfully;
+        private System.Windows.Forms.Label errorlabel;
+
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox newDiverName;
+        private System.Windows.Forms.TextBox newDiverAge;
+        private System.Windows.Forms.TextBox newDiverCountry;
+        private System.Windows.Forms.TextBox newJudgeName;
+
+        private System.Windows.Forms.GroupBox groupBoxDisciplin;
+        private System.Windows.Forms.GroupBox groupBoxSingle;
+
         private System.Windows.Forms.RadioButton radioButtonSync;
         private System.Windows.Forms.RadioButton radioButtonSingle;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.RadioButton radioButton1meter;
         private System.Windows.Forms.RadioButton radioButton3meter;
         private System.Windows.Forms.RadioButton radioButtonTower;
-        private System.Windows.Forms.GroupBox groupBoxDisciplin;
-        private System.Windows.Forms.GroupBox groupBoxSingle;
-        private System.Windows.Forms.Button btnSubmit;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radioButtonMale;
         private System.Windows.Forms.RadioButton radioButtonFemale;
-        private System.Windows.Forms.Label successfully;
-        private System.Windows.Forms.Label errorlabel;
-        private System.Windows.Forms.ListView listViewJudge;
+
+        private System.Windows.Forms.Button btnSubmit;
+        private System.Windows.Forms.Button newJudgeSubmit;
+        private System.Windows.Forms.Button AddNewDiverSubmit;
+
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+
+        private System.Windows.Forms.ComboBox newDiverSelectGender;
+        
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        
+        private System.Windows.Forms.GroupBox groupBox1;
+
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ListView listViewDivers;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader10;
-        private System.Windows.Forms.TextBox newDiverName;
-        private System.Windows.Forms.TextBox newDiverAge;
-        private System.Windows.Forms.TextBox newDiverCountry;
-        private System.Windows.Forms.Button AddNewDiverSubmit;
-        private System.Windows.Forms.TextBox newJudgeName;
-        private System.Windows.Forms.Button newJudgeSubmit;
-        private System.Windows.Forms.ComboBox newDiverSelectGender;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
+        
+        private System.Windows.Forms.ListView listViewJudge;
+        private System.Windows.Forms.ListView listViewDivers;
     }
 }

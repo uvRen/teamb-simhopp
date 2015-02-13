@@ -12,7 +12,8 @@ namespace Simhopp
 {
     public class FormNewEventFunctions
     {
-        public static void fillListViewWithDivers(RadioButton radioButtonMale, RadioButton radioButtonFemale, ListView listViewDivers) 
+        //skriver ut alla hoppare som ska vara med i listan
+        public static void FillListViewWithDivers(RadioButton radioButtonMale, RadioButton radioButtonFemale, ListView listViewDivers) 
         {
             listViewDivers.Items.Clear();
             foreach (Diver diver in Database.GetDivers())
@@ -39,6 +40,137 @@ namespace Simhopp
                     item1.SubItems.Add("F");
                     item1.SubItems.Add(diver.ID.ToString());
                 }
+            }
+        }
+        //lägger till en ny hoppare i listan och i databasen
+        public static void AddNewDiver(ComboBox newDiverSelectGender, TextBox newDiverName, TextBox newDiverAge, TextBox newDiverCountry, ListView listViewDivers)
+        {
+            int gender = -1;
+            if (newDiverSelectGender.Text.CompareTo("Male") == 0)
+            {
+                gender = 0;
+            }
+            else
+            {
+                gender = 1;
+            }
+
+            //lägger till den nya hopparen i databasen
+            Diver diver = new Diver(newDiverName.Text, Int32.Parse(newDiverAge.Text), gender, newDiverCountry.Text);
+            int ID = Database.AddDiverToDatabase(diver);
+
+            //lägger till den nya hopparen i listan
+            ListViewItem item1 = new ListViewItem();
+            item1.Text = diver.name;
+            listViewDivers.Items.Add(item1);
+
+            //item1.SubItems.Add(diver.name);
+            item1.SubItems.Add(diver.country);
+            item1.SubItems.Add(diver.age.ToString());
+            item1.SubItems.Add(newDiverSelectGender.Text);
+
+            //restore textbox
+            newDiverName.Text = "Name";
+            newDiverAge.Text = "Age";
+            newDiverCountry.Text = "Country";
+        }
+
+        public static void AddNewJudge(TextBox newJudgeName, ListView listViewJudge)
+        {
+            //lägger till den nya domaren i databasen
+            Judge judge = new Judge(newJudgeName.Text);
+            int ID = Database.AddJudgeToDatabase(judge);
+
+            ListViewItem item1 = new ListViewItem();
+            item1.Text = ID.ToString();
+            listViewJudge.Items.Add(item1);
+
+            item1.SubItems.Add(judge.name);
+
+            //restore textbox
+            newJudgeName.Text = "Name";
+        }
+
+        public static void AddNewEventToDatabase(TextBox textBox1, TextBox textBox2, DateTimePicker dateTimePicker1, NumericUpDown numericUpDown1, RadioButton radioButton1meter, RadioButton radioButton3meter, RadioButton radioButtonTower, RadioButton radioButtonSingle, RadioButton radioButtonSync, RadioButton radioButtonMale, RadioButton radioButtonFemale, ListView listViewDivers, ListView listViewJudge, Label successfully, Label errorlabel)
+        {
+            string eventName;
+            string location;
+            string date;
+            int diveCount;
+            int discipline = -1;
+            int sync = -1;
+            int sex = -1;
+
+            eventName = textBox1.Text;
+            location = textBox2.Text;
+            date = dateTimePicker1.Text;
+            diveCount = (int)numericUpDown1.Value;
+
+            //discipline: 1m = 0, 3m = 1, Tower = 2
+            if (radioButton1meter.Checked)
+                discipline = 0;
+            else if (radioButton3meter.Checked)
+                discipline = 1;
+            else if (radioButtonTower.Checked)
+                discipline = 2;
+
+            //sync: single = 0, sync = 1
+            if (radioButtonSingle.Checked)
+                sync = 0;
+            else if (radioButtonSync.Checked)
+                sync = 1;
+
+            //sex: male = 0, female = 1
+            if (radioButtonMale.Checked)
+                sex = 0;
+            else if (radioButtonFemale.Checked)
+                sex = 1;
+
+            //lägger till eventet i databasen
+            Event ev = new Event(eventName, date, location, discipline, sync, diveCount, sex);
+
+            //hämtar dommare och hoppare från tabellerna
+            List<Judge> addJudgesToEvent = new List<Judge>();
+            List<Diver> addDiversToEvent = new List<Diver>();
+            Diver d;
+            Judge j;
+            string gender;
+            int g;
+
+            foreach (ListViewItem item in listViewDivers.CheckedItems)
+            {
+                gender = item.SubItems[3].Text;
+                if (gender.CompareTo("M") == 0)
+                    g = 0;
+                else
+                    g = 1;
+                d = new Diver(Int32.Parse(item.SubItems[4].Text), item.SubItems[0].Text, Int32.Parse(item.SubItems[2].Text), g, item.SubItems[1].Text);
+                addDiversToEvent.Add(d);
+            }
+
+            foreach (ListViewItem item in listViewJudge.CheckedItems)
+            {
+                j = new Judge(Int32.Parse(item.SubItems[0].Text), item.SubItems[1].Text);
+                addJudgesToEvent.Add(j);
+            }
+
+            //om inmatningen lyckades
+            int code = Database.AddEventToDatabase(ev, addJudgesToEvent, addDiversToEvent);
+            if (code == 1)
+            {
+                successfully.Visible = true;
+            }
+            else if (code == -1)
+            {
+                successfully.Visible = false;
+                errorlabel.Text = "Identical event already exist";
+                errorlabel.Visible = true; ;
+            }
+            else
+            {
+                successfully.Visible = false;
+                errorlabel.Text = "An error occoured, try again";
+                errorlabel.Visible = true;
             }
         }
     }
