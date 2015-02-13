@@ -41,20 +41,8 @@ namespace Simhopp
             //ställer in formatet på datumet till 2015-02-02
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "yyyy-MM-dd";
-        
-            foreach (Diver diver in Database.GetDivers())
-            {
-                ListViewItem item1 = new ListViewItem();
-                item1.Text = diver.name;
-                listViewDivers.Items.Add(item1);
 
-                item1.SubItems.Add(diver.country);
-                item1.SubItems.Add(diver.age.ToString());
-                if (diver.sex == 0)
-                    item1.SubItems.Add("M");
-                else
-                    item1.SubItems.Add("F");
-            }
+            FormNewEventFunctions.fillListViewWithDivers(radioButtonMale, radioButtonFemale, listViewDivers);
 
             judgeList = new List<Judge>();
             foreach (Judge judge in Database.GetJudges())
@@ -156,10 +144,24 @@ namespace Simhopp
             List<Diver> addDiversToEvent = new List<Diver>();
             Diver d;
             Judge j;
+            string gender;
+            int g;
 
-            foreach(ListViewItem item in listViewJudge.CheckedItems)
+            foreach(ListViewItem item in listViewDivers.CheckedItems)
             {
-                j = new Judge();
+                gender = item.SubItems[3].Text;
+                if (gender.CompareTo("M") == 0)
+                    g = 0;
+                else
+                    g = 1;
+                d = new Diver(Int32.Parse(item.SubItems[4].Text), item.SubItems[0].Text, Int32.Parse(item.SubItems[2].Text), g, item.SubItems[1].Text);
+                addDiversToEvent.Add(d);
+            }
+
+            foreach (ListViewItem item in listViewJudge.CheckedItems)
+            {
+                j = new Judge(Int32.Parse(item.SubItems[0].Text), item.SubItems[1].Text);
+                addJudgesToEvent.Add(j);
             }
 
             //om inmatningen lyckades
@@ -278,6 +280,12 @@ namespace Simhopp
             {
                 btnSubmit.Enabled = false;
             }
+        }
+
+        //uppdaterar listViewDivers när användaren väljer mellan Male och Female
+        private void radioButtonMale_CheckedChanged(object sender, EventArgs e)
+        {
+            FormNewEventFunctions.fillListViewWithDivers(radioButtonMale, radioButtonFemale, listViewDivers);
         }
 
     }
