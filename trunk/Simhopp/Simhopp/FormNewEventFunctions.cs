@@ -71,7 +71,17 @@ namespace Simhopp
             }
 
             //lägger till den nya hopparen i databasen
-            Diver diver = new Diver(newDiverName.Text, Int32.Parse(newDiverAge.Text), gender, newDiverCountry.Text);
+            Diver diver = new Diver();
+            try
+            {
+                diver = new Diver(newDiverName.Text, Int32.Parse(newDiverAge.Text), gender, newDiverCountry.Text);
+            }
+            catch (FormatException e)
+            {
+                MessageBox.Show("Du har angivit fel format, försök igen", "Fel format", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             int ID = Database.AddDiverToDatabase(diver);
 
             //lägger till den nya hopparen i listan
