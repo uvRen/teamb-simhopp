@@ -121,6 +121,7 @@
             this.radioButtonSync.Name = "radioButtonSync";
             this.radioButtonSync.Size = new System.Drawing.Size(49, 17);
             this.radioButtonSync.TabIndex = 11;
+            this.radioButtonSync.TabStop = true;
             this.radioButtonSync.Text = "Sync";
             this.radioButtonSync.UseVisualStyleBackColor = true;
             // 
@@ -162,6 +163,7 @@
             this.radioButton3meter.Name = "radioButton3meter";
             this.radioButton3meter.Size = new System.Drawing.Size(42, 17);
             this.radioButton3meter.TabIndex = 7;
+            this.radioButton3meter.TabStop = true;
             this.radioButton3meter.Text = "3 m";
             this.radioButton3meter.UseVisualStyleBackColor = true;
             // 
@@ -172,6 +174,7 @@
             this.radioButtonTower.Name = "radioButtonTower";
             this.radioButtonTower.Size = new System.Drawing.Size(55, 17);
             this.radioButtonTower.TabIndex = 8;
+            this.radioButtonTower.TabStop = true;
             this.radioButtonTower.Text = "Tower";
             this.radioButtonTower.UseVisualStyleBackColor = true;
             // 
@@ -238,7 +241,7 @@
             this.groupBox1.Location = new System.Drawing.Point(15, 219);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(264, 46);
-            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gender";
             // 
@@ -249,7 +252,7 @@
             this.radioButtonMale.Location = new System.Drawing.Point(6, 19);
             this.radioButtonMale.Name = "radioButtonMale";
             this.radioButtonMale.Size = new System.Drawing.Size(48, 17);
-            this.radioButtonMale.TabIndex = 6;
+            this.radioButtonMale.TabIndex = 13;
             this.radioButtonMale.TabStop = true;
             this.radioButtonMale.Text = "Male";
             this.radioButtonMale.UseVisualStyleBackColor = true;
@@ -261,7 +264,8 @@
             this.radioButtonFemale.Location = new System.Drawing.Point(95, 19);
             this.radioButtonFemale.Name = "radioButtonFemale";
             this.radioButtonFemale.Size = new System.Drawing.Size(59, 17);
-            this.radioButtonFemale.TabIndex = 7;
+            this.radioButtonFemale.TabIndex = 14;
+            this.radioButtonFemale.TabStop = true;
             this.radioButtonFemale.Text = "Female";
             this.radioButtonFemale.UseVisualStyleBackColor = true;
             // 
@@ -296,7 +300,7 @@
             this.listViewJudge.Location = new System.Drawing.Point(710, 7);
             this.listViewJudge.Name = "listViewJudge";
             this.listViewJudge.Size = new System.Drawing.Size(262, 504);
-            this.listViewJudge.TabIndex = 26;
+            this.listViewJudge.TabIndex = 21;
             this.listViewJudge.UseCompatibleStateImageBehavior = false;
             this.listViewJudge.View = System.Windows.Forms.View.Details;
             this.listViewJudge.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listViewJudge_ItemChecked);
@@ -323,7 +327,7 @@
             this.listViewDivers.Location = new System.Drawing.Point(313, 6);
             this.listViewDivers.Name = "listViewDivers";
             this.listViewDivers.Size = new System.Drawing.Size(371, 505);
-            this.listViewDivers.TabIndex = 27;
+            this.listViewDivers.TabIndex = 15;
             this.listViewDivers.UseCompatibleStateImageBehavior = false;
             this.listViewDivers.View = System.Windows.Forms.View.Details;
             // 
@@ -356,7 +360,7 @@
             this.newDiverName.Location = new System.Drawing.Point(313, 518);
             this.newDiverName.Name = "newDiverName";
             this.newDiverName.Size = new System.Drawing.Size(121, 20);
-            this.newDiverName.TabIndex = 28;
+            this.newDiverName.TabIndex = 16;
             this.newDiverName.Text = "Name";
             this.newDiverName.Enter += new System.EventHandler(this.textBox3_Enter);
             // 
@@ -365,7 +369,7 @@
             this.newDiverAge.Location = new System.Drawing.Point(550, 518);
             this.newDiverAge.Name = "newDiverAge";
             this.newDiverAge.Size = new System.Drawing.Size(34, 20);
-            this.newDiverAge.TabIndex = 30;
+            this.newDiverAge.TabIndex = 18;
             this.newDiverAge.Text = "Age";
             this.newDiverAge.Enter += new System.EventHandler(this.textBox5_Enter);
             // 
@@ -374,7 +378,7 @@
             this.newDiverCountry.Location = new System.Drawing.Point(440, 518);
             this.newDiverCountry.Name = "newDiverCountry";
             this.newDiverCountry.Size = new System.Drawing.Size(104, 20);
-            this.newDiverCountry.TabIndex = 31;
+            this.newDiverCountry.TabIndex = 17;
             this.newDiverCountry.Text = "Country";
             this.newDiverCountry.Enter += new System.EventHandler(this.textBox6_Enter);
             // 
@@ -383,7 +387,7 @@
             this.AddNewDiverSubmit.Location = new System.Drawing.Point(658, 517);
             this.AddNewDiverSubmit.Name = "AddNewDiverSubmit";
             this.AddNewDiverSubmit.Size = new System.Drawing.Size(26, 23);
-            this.AddNewDiverSubmit.TabIndex = 33;
+            this.AddNewDiverSubmit.TabIndex = 20;
             this.AddNewDiverSubmit.Text = "+";
             this.AddNewDiverSubmit.UseVisualStyleBackColor = true;
             this.AddNewDiverSubmit.Click += new System.EventHandler(this.AddNewDiver_Click);
@@ -393,7 +397,7 @@
             this.newJudgeName.Location = new System.Drawing.Point(710, 520);
             this.newJudgeName.Name = "newJudgeName";
             this.newJudgeName.Size = new System.Drawing.Size(230, 20);
-            this.newJudgeName.TabIndex = 34;
+            this.newJudgeName.TabIndex = 22;
             this.newJudgeName.Text = "Name";
             this.newJudgeName.Enter += new System.EventHandler(this.newJudgeName_Enter);
             // 
@@ -402,7 +406,7 @@
             this.newJudgeSubmit.Location = new System.Drawing.Point(946, 518);
             this.newJudgeSubmit.Name = "newJudgeSubmit";
             this.newJudgeSubmit.Size = new System.Drawing.Size(26, 23);
-            this.newJudgeSubmit.TabIndex = 35;
+            this.newJudgeSubmit.TabIndex = 23;
             this.newJudgeSubmit.Text = "+";
             this.newJudgeSubmit.UseVisualStyleBackColor = true;
             this.newJudgeSubmit.Click += new System.EventHandler(this.newJudgeSubmit_Click);
@@ -416,7 +420,7 @@
             this.newDiverSelectGender.Location = new System.Drawing.Point(592, 518);
             this.newDiverSelectGender.Name = "newDiverSelectGender";
             this.newDiverSelectGender.Size = new System.Drawing.Size(60, 21);
-            this.newDiverSelectGender.TabIndex = 36;
+            this.newDiverSelectGender.TabIndex = 19;
             // 
             // FormNewEvent
             // 
