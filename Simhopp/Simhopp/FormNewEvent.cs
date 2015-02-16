@@ -12,32 +12,20 @@ namespace Simhopp
 {
     public partial class FormNewEvent : Form
     {
-        private List<Judge> judgeList;
-        private List<Diver> diverList;
         private bool privateDrag;
 
         public FormNewEvent()
         {
-            judgeList = new List<Judge>();
-            diverList = new List<Diver>();
-
             InitializeComponent();
 
             //ställer in formatet på datumet till 2015-02-02
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "yyyy-MM-dd";
 
+            //fyller listorna med dommare och hoppare
             FormNewEventFunctions.FillListViewWithDivers(radioButtonMale, radioButtonFemale, listViewDivers);
-
-            judgeList = new List<Judge>();
-            foreach (Judge judge in Database.GetJudges())
-            {
-                ListViewItem item1 = new ListViewItem();
-                item1.Text = judge.ID.ToString();
-                listViewJudge.Items.Add(item1);
-
-                item1.SubItems.Add(judge.name);
-            }
+            FormNewEventFunctions.FillListViewWithJudges(listViewJudge);
+            
             
             listViewDivers.ItemDrag += listViewDivers_ItemDrag;
             listViewDivers.DragEnter += listViewDivers_DragEnter;
@@ -45,6 +33,7 @@ namespace Simhopp
             listViewDivers.AllowDrop = true;
         }
 
+        #region Event Funktioner
         void listViewDivers_DragDrop(object sender, DragEventArgs e)
         {
             var pos = listViewDivers.PointToClient(new Point(e.X, e.Y));
@@ -71,27 +60,7 @@ namespace Simhopp
             privateDrag = false;
         }
 
-        private void btnNewJudge_Click(object sender, EventArgs e)
-        {
-            FormJudgeList judgeForm = new FormJudgeList();
-            judgeForm.ShowDialog();
-
-            judgeList = judgeForm.judgeList;
-        }
-
-        private void btnNewDiver_Click(object sender, EventArgs e)
-        {
-            FormDiverList diverForm = new FormDiverList();
-            diverForm.ShowDialog();
-
-            diverList = diverForm.diverList;
-        }
-
-        /// <summary>
-        /// Skapar ett nytt event när användaren klickar på "Klar" i fönstret "FormNewEvent"
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        //Skapar ett nytt event när användaren klickar på "Klar" i fönstret "FormNewEvent"
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             FormNewEventFunctions.AddNewEventToDatabase(textBox1, textBox2, dateTimePicker1, numericUpDown1, radioButton1meter, radioButton3meter, radioButtonTower, radioButtonSingle, radioButtonSync, radioButtonMale, radioButtonFemale, listViewDivers, listViewJudge, successfully, errorlabel);
@@ -99,17 +68,17 @@ namespace Simhopp
 
         private void textBox3_Enter(object sender, EventArgs e)
         {
-            newDiverName.Text = "";
+            FormNewEventFunctions.ResetTextBox(newDiverName);
         }
 
         private void textBox6_Enter(object sender, EventArgs e)
         {
-            newDiverCountry.Text = "";
+            FormNewEventFunctions.ResetTextBox(newDiverCountry);
         }
 
         private void textBox5_Enter(object sender, EventArgs e)
         {
-            newDiverAge.Text = "";
+            FormNewEventFunctions.ResetTextBox(newDiverAge);
         }
 
         private void AddDiverToList(Diver diver, bool isSync)
@@ -128,6 +97,7 @@ namespace Simhopp
             item1.SubItems.Add(diver.age.ToString());
             item1.SubItems.Add(newDiverSelectGender.Text);
         }
+
         private void AddNewDiver_Click(object sender, EventArgs e)
         {
             FormNewEventFunctions.AddNewDiver(newDiverSelectGender, newDiverName, newDiverAge, newDiverCountry, listViewDivers);
@@ -135,7 +105,7 @@ namespace Simhopp
 
         private void newJudgeName_Enter(object sender, EventArgs e)
         {
-            newJudgeName.Text = "";
+            FormNewEventFunctions.ResetTextBox(newJudgeName);
         }
 
         private void newJudgeSubmit_Click(object sender, EventArgs e)
@@ -162,6 +132,6 @@ namespace Simhopp
         {
             FormNewEventFunctions.FillListViewWithDivers(radioButtonMale, radioButtonFemale, listViewDivers);
         }
-
+        #endregion
     }
 }
