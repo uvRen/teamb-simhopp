@@ -130,7 +130,7 @@ namespace Simhopp
 
             eventName = textBox1.Text;
             location = textBox2.Text;
-            date = dateTimePicker1.Text;
+            date = dateTimePicker1.Value.ToString("yyyy-MM-dd");
             diveCount = (int)numericUpDown1.Value;
 
             //discipline: 1m = 0, 3m = 1, Tower = 2
