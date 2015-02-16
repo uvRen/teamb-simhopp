@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -43,6 +44,11 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.startaTävlingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stoppaTävlingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.taBortEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -53,12 +59,14 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Starta Event";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader2,
             this.columnHeader1});
+            this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(522, 51);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(379, 387);
@@ -124,6 +132,9 @@
             this.columnHeader3,
             this.columnHeader6,
             this.columnHeader8});
+            this.listViewEvent.FullRowSelect = true;
+            this.listViewEvent.GridLines = true;
+            this.listViewEvent.HideSelection = false;
             this.listViewEvent.Location = new System.Drawing.Point(26, 51);
             this.listViewEvent.Name = "listViewEvent";
             this.listViewEvent.Size = new System.Drawing.Size(472, 387);
@@ -131,6 +142,7 @@
             this.listViewEvent.UseCompatibleStateImageBehavior = false;
             this.listViewEvent.View = System.Windows.Forms.View.Details;
             this.listViewEvent.ItemActivate += new System.EventHandler(this.listViewEvent_ItemActivate);
+            this.listViewEvent.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listViewEvent_MouseDown);
             // 
             // columnHeader7
             // 
@@ -162,6 +174,36 @@
             this.columnHeader8.Text = "";
             this.columnHeader8.Width = 0;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.startaTävlingToolStripMenuItem,
+            this.stoppaTävlingToolStripMenuItem,
+            this.taBortEventToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 92);
+            // 
+            // startaTävlingToolStripMenuItem
+            // 
+            this.startaTävlingToolStripMenuItem.Name = "startaTävlingToolStripMenuItem";
+            this.startaTävlingToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.startaTävlingToolStripMenuItem.Text = "Starta tävling";
+            this.startaTävlingToolStripMenuItem.Click += new System.EventHandler(this.startaTävlingToolStripMenuItem_Click);
+            // 
+            // stoppaTävlingToolStripMenuItem
+            // 
+            this.stoppaTävlingToolStripMenuItem.Name = "stoppaTävlingToolStripMenuItem";
+            this.stoppaTävlingToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.stoppaTävlingToolStripMenuItem.Text = "Stoppa tävling";
+            this.stoppaTävlingToolStripMenuItem.Click += new System.EventHandler(this.stoppaTävlingToolStripMenuItem_Click);
+            // 
+            // taBortEventToolStripMenuItem
+            // 
+            this.taBortEventToolStripMenuItem.Name = "taBortEventToolStripMenuItem";
+            this.taBortEventToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.taBortEventToolStripMenuItem.Text = "Ta bort event";
+            this.taBortEventToolStripMenuItem.Click += new System.EventHandler(this.taBortEventToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -176,6 +218,7 @@
             this.Controls.Add(this.button1);
             this.Name = "FormMain";
             this.Text = "FormMain";
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,6 +241,10 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem startaTävlingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stoppaTävlingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem taBortEventToolStripMenuItem;
 
     }
 }

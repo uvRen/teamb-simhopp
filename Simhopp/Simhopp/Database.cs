@@ -199,7 +199,7 @@ namespace Simhopp
 
             if(conn != null)
             {
-                var cmd = new MySqlCommand("SELECT * FROM event", conn);
+                var cmd = new MySqlCommand("SELECT * FROM event ORDER BY started DESC", conn);
                 var dr = cmd.ExecuteReader();
                 var dt = new DataTable();
                 dt.Load(dr);
@@ -211,6 +211,44 @@ namespace Simhopp
                 }
             }
             return events;
+        }
+
+        public static void StartEvent(int eventID)
+        {
+            MySqlConnection conn = ConnectToDatabase();
+            string sql = "";
+
+            if(conn != null)
+            {
+                sql = "UPDATE event SET started=1 WHERE id=" + eventID + ";";
+                var cmd = new MySqlCommand(sql, conn);
+                var dr = cmd.ExecuteNonQuery();
+            }
+
+            else
+            {
+                MessageBox.Show("Anslutningen till databasen misslyckades", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        public static void StopEvent(int eventID)
+        {
+            MySqlConnection conn = ConnectToDatabase();
+            string sql = "";
+
+            if (conn != null)
+            {
+                sql = "UPDATE event SET started=0 WHERE id=" + eventID + ";";
+                var cmd = new MySqlCommand(sql, conn);
+                var dr = cmd.ExecuteNonQuery();
+            }
+
+            else
+            {
+                MessageBox.Show("Anslutningen till databasen misslyckades", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
         #endregion
 

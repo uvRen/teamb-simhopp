@@ -76,6 +76,7 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormMainFunctions.cs" />
     <Compile Include="FormNewEvent.cs">
       <SubType>Form</SubType>
     </Compile>
