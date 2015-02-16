@@ -80,5 +80,13 @@ namespace Simhopp
         {
 
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormEvent FE = new FormEvent();
+            FE.ShowDialog();
+            Show();
+        }
     }
 }
