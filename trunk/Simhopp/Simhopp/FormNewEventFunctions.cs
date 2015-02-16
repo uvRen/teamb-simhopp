@@ -42,6 +42,21 @@ namespace Simhopp
                 }
             }
         }
+
+        //skriver ut alla dommare som ska vara med i listan
+        public static void FillListViewWithJudges(ListView listViewJudge)
+        {
+            List<Judge> judgeList = new List<Judge>();
+            foreach (Judge judge in Database.GetJudges())
+            {
+                ListViewItem item1 = new ListViewItem();
+                item1.Text = judge.ID.ToString();
+                listViewJudge.Items.Add(item1);
+
+                item1.SubItems.Add(judge.name);
+            }
+        }
+
         //lägger till en ny hoppare i listan och i databasen
         public static void AddNewDiver(ComboBox newDiverSelectGender, TextBox newDiverName, TextBox newDiverAge, TextBox newDiverCountry, ListView listViewDivers)
         {
@@ -75,6 +90,7 @@ namespace Simhopp
             newDiverCountry.Text = "Country";
         }
 
+        //lägger till en ny domare i databasen och i listan
         public static void AddNewJudge(TextBox newJudgeName, ListView listViewJudge)
         {
             //lägger till den nya domaren i databasen
@@ -91,6 +107,7 @@ namespace Simhopp
             newJudgeName.Text = "Name";
         }
 
+        //lägger till ett event till databasen med tillhörande domare och hoppare
         public static void AddNewEventToDatabase(TextBox textBox1, TextBox textBox2, DateTimePicker dateTimePicker1, NumericUpDown numericUpDown1, RadioButton radioButton1meter, RadioButton radioButton3meter, RadioButton radioButtonTower, RadioButton radioButtonSingle, RadioButton radioButtonSync, RadioButton radioButtonMale, RadioButton radioButtonFemale, ListView listViewDivers, ListView listViewJudge, Label successfully, Label errorlabel)
         {
             string eventName;
@@ -172,6 +189,11 @@ namespace Simhopp
                 errorlabel.Text = "An error occoured, try again";
                 errorlabel.Visible = true;
             }
+        }
+
+        public static void ResetTextBox(TextBox box)
+        {
+            box.Text = "";
         }
     }
 }
