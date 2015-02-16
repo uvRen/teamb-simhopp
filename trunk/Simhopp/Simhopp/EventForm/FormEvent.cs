@@ -14,7 +14,9 @@ namespace Simhopp
     {
 
         private EventPresenter _presenter;
-        public EventPresenter Presenter {
+
+        public EventPresenter Presenter
+        {
             get
             {
                 return _presenter;
@@ -22,9 +24,11 @@ namespace Simhopp
             set
             {
                 _presenter = value;
-                _presenter.view = this;
+                if (value.view == null)
+                    value.view = this;
             }
         }
+
 
         private List<List<Panel>> divePanels;
         private List<Panel> pagePanels;
@@ -98,6 +102,7 @@ namespace Simhopp
 
         public FormEvent()
         {
+            Presenter = new EventPresenter(this);
             InitializeComponent();
             colors = new List<Color>();
 
@@ -216,7 +221,7 @@ namespace Simhopp
             pagePanels[tabsRounds.SelectedIndex].BringToFront();
         }
 
-        private void UpdateLeaderboard()
+        public void UpdateLeaderboard()
         {
             listViewLeaderboard.Items.Clear();
             var sortedDivers = divers.OrderBy(x => x.TotalScore).Reverse();

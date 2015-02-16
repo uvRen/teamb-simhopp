@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Simhopp
 {
-    class EventPresenter
+    public class EventPresenter
     {
         
         public IFormEvent view;
