@@ -16,6 +16,7 @@ namespace Simhopp
         public int sync { get; set; }
         public int diveCount { get; set; }
         public int sex { get; set; }
+        public int started;
         List<Judge> judges;
         List<Diver> divers;
 
@@ -44,6 +45,21 @@ namespace Simhopp
             this.sex = sex;
             this.sync = sync;
             this.diveCount = diveCount;
+            this.judges = new List<Judge>();
+            this.divers = new List<Diver>();
+        }
+
+        public Event(int ID, string name, string date, string location, int discipline, int sync, int diveCount, int sex, int started)
+        {
+            this.ID = ID;
+            this.name = name;
+            this.location = location;
+            this.date = date;
+            this.discipline = discipline;
+            this.sex = sex;
+            this.sync = sync;
+            this.diveCount = diveCount;
+            this.started = started;
             this.judges = new List<Judge>();
             this.divers = new List<Diver>();
         }

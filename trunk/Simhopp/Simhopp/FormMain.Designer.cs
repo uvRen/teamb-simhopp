@@ -42,11 +42,12 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(26, 356);
+            this.button1.Location = new System.Drawing.Point(26, 444);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -60,7 +61,7 @@
             this.columnHeader1});
             this.listView1.Location = new System.Drawing.Point(522, 51);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(366, 387);
+            this.listView1.Size = new System.Drawing.Size(379, 387);
             this.listView1.TabIndex = 3;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -79,12 +80,13 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(26, 461);
+            this.button2.Location = new System.Drawing.Point(26, 517);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(122, 23);
             this.button2.TabIndex = 4;
             this.button2.Text = "Skapa Nytt Event";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label1
             // 
@@ -106,7 +108,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(522, 459);
+            this.button3.Location = new System.Drawing.Point(522, 444);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(100, 23);
             this.button3.TabIndex = 8;
@@ -120,10 +122,11 @@
             this.columnHeader5,
             this.columnHeader4,
             this.columnHeader3,
-            this.columnHeader6});
+            this.columnHeader6,
+            this.columnHeader8});
             this.listViewEvent.Location = new System.Drawing.Point(26, 51);
             this.listViewEvent.Name = "listViewEvent";
-            this.listViewEvent.Size = new System.Drawing.Size(472, 299);
+            this.listViewEvent.Size = new System.Drawing.Size(472, 387);
             this.listViewEvent.TabIndex = 9;
             this.listViewEvent.UseCompatibleStateImageBehavior = false;
             this.listViewEvent.View = System.Windows.Forms.View.Details;
@@ -131,8 +134,8 @@
             // 
             // columnHeader7
             // 
-            this.columnHeader7.Text = "ID";
-            this.columnHeader7.Width = 30;
+            this.columnHeader7.Text = "";
+            this.columnHeader7.Width = 20;
             // 
             // columnHeader5
             // 
@@ -153,6 +156,11 @@
             // 
             this.columnHeader6.Text = "Gender";
             this.columnHeader6.Width = 50;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "";
+            this.columnHeader8.Width = 0;
             // 
             // FormMain
             // 
@@ -189,6 +197,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
 
     }
 }
