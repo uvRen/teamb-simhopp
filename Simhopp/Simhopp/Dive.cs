@@ -9,9 +9,9 @@ namespace Simhopp
     public class Dive
     {
         private int ID;
-        private Diver person;
+        private Diver diver;
         public double difficulty {get; set; }
-
+        public string name { get; set; }
         private Event comp;
         private List<Score> scores;
 
@@ -27,7 +27,7 @@ namespace Simhopp
         public Dive()
         {
             this.ID = -1;
-            this.person = null;
+            this.diver = null;
             this.difficulty = 0.0;
             this.comp = null;
             scores = new List<Score>();
@@ -36,8 +36,18 @@ namespace Simhopp
         public Dive(int ID, Diver person, double difficulty, Event comp)
         {
             this.ID = ID;
-            this.person = person;
+            this.diver = person;
             this.difficulty = difficulty;
+            this.comp = comp;
+            scores = new List<Score>();
+        }
+
+        public Dive(int ID, Diver person, double difficulty, string name, Event comp)
+        {
+            this.ID = ID;
+            this.diver = person;
+            this.difficulty = difficulty;
+            this.name = name;
             this.comp = comp;
             scores = new List<Score>();
         }
