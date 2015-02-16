@@ -12,42 +12,16 @@ namespace Simhopp
 {
     public partial class FormMain : Form
     {
-        private List<Event> eventList = new List<Event>();
+        ListViewItem selectedItem = null;
         public FormMain()
         {
             InitializeComponent();
 
-            foreach(Event e in Database.getEvents()) 
-            {
-                ListViewItem item1 = new ListViewItem();
-                item1.Text = "";
-                if (e.started == 1)
-                {
-                    item1.SubItems[0].BackColor = Color.Green;
-                }
-                else
-                {
-                    item1.SubItems[0].BackColor = Color.Red;
-                }
-                item1.UseItemStyleForSubItems = false;
 
-                item1.SubItems.Add(e.name);
-                item1.SubItems.Add(e.location);
-
-                //formaterar bort klockslaget i datumet
-                e.date = e.date.Substring(0, 10);
-                item1.SubItems.Add(e.date);
-
-                if(e.sex == 0)
-                    item1.SubItems.Add("M");
-                else
-                    item1.SubItems.Add("F");
-
-                item1.SubItems.Add(e.ID.ToString());
-                listViewEvent.Items.Add(item1);
-            }
+            FormMainFunctions.FillListViewWithEvent(listViewEvent);
         }
 
+        #region Event Funktioner
         private void listViewEvent_ItemActivate(object sender, EventArgs e)
         {
             int eventId = Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text);
@@ -68,6 +42,43 @@ namespace Simhopp
         {
             FormNewEvent newEvent = new FormNewEvent();
             newEvent.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Database.StartEvent(Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text));
+            FormMainFunctions.FillListViewWithEvent(listViewEvent);
+        }
+        #endregion
+
+        private void listViewEvent_MouseDown(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Right)
+            {
+                ListViewHitTestInfo test = listViewEvent.HitTest(e.X, e.Y);
+                contextMenuStrip1.Show(listViewEvent, e.Location);
+                selectedItem = test.Item;
+            }
+        }
+
+        //startar tävling
+        private void startaTävlingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Database.StartEvent(Int32.Parse(selectedItem.SubItems[5].Text));
+            FormMainFunctions.FillListViewWithEvent(listViewEvent);
+        }
+
+        //stoppar tävling
+        private void stoppaTävlingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Database.StopEvent(Int32.Parse(selectedItem.SubItems[5].Text));
+            FormMainFunctions.FillListViewWithEvent(listViewEvent);
+        }
+
+        //tar bort event och allt tillhörande ur databasen
+        private void taBortEventToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
