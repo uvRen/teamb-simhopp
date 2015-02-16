@@ -10,21 +10,92 @@ using System.Windows.Forms;
 
 namespace Simhopp
 {
-    public partial class FormEvent : Form
+    public partial class FormEvent : Form, IFormEvent
     {
+
+        private EventPresenter _presenter;
+        public EventPresenter Presenter {
+            get
+            {
+                return _presenter;
+            }
+            set
+            {
+                _presenter = value;
+                _presenter.view = this;
+            }
+        }
+
         private List<List<Panel>> divePanels;
         private List<Panel> pagePanels;
         private Panel panelScoring;
 
-        private int currentDiverIndex;
-        private int currentRoundIndex;
-        private int currentJudgeIndex;
+
+        private int CurrentDiverIndex
+        {
+            get
+            {
+                return _presenter.CurrentDiverIndex;
+            }
+            set
+            {
+                _presenter.CurrentDiverIndex = value;
+            }
+        }
+        private int CurrentRoundIndex
+        {
+            get
+            {
+                return _presenter.CurrentRoundIndex;
+            }
+            set
+            {
+                _presenter.CurrentRoundIndex = value;
+            }
+        }
+        private int CurrentJudgeIndex
+        {
+            get
+            {
+                return _presenter.CurrentJudgeIndex;
+            }
+            set
+            {
+                _presenter.CurrentJudgeIndex = value;
+            }
+        }
+
+        private Diver currentDiver { get { return _presenter.CurrentDiver; } }
+        private Judge CurrentJudge { get { return _presenter.CurrentJudge; } }
+        private Dive CurrentDive { get { return _presenter.CurrentDive; } }
+
+        private Panel CurrentDivePanel
+        {
+            get
+            {
+                return divePanels[CurrentRoundIndex][CurrentDiverIndex];
+            }
+        }
+
+        public double CurrentDiveScore
+        {
+            set
+            {
+                CurrentDivePanel.Controls.Find("Points", true)[0].Text = value.ToString();
+            }
+            get
+            {
+                return Double.Parse(CurrentDivePanel.Controls.Find("Points", true)[0].Text);
+            }
+        }
 
         private List<Color> colors;
 
         private Event ev;
-        private List<Diver> divers;
+        //private List<Diver> divers;
         private List<Judge> judges;
+        private List<Diver> divers;
+
         public FormEvent()
         {
             InitializeComponent();
@@ -78,12 +149,12 @@ namespace Simhopp
             //Initiera objekt
             divePanels = new List<List<Panel>>();
             pagePanels = new List<Panel>();
-            currentDiverIndex = currentRoundIndex = currentJudgeIndex = 0;
+            CurrentDiverIndex = CurrentRoundIndex = CurrentJudgeIndex = 0;
             tabsRounds.SelectedIndexChanged += tabsRounds_TabIndexChanged;
 
             //Ladda data från event
             judges = ev.GetJudges();
-            divers = ev.GetDivers();
+            //divers = ev.GetDivers();
 
             //Applicera färgtema
             this.BackColor = colors[0];
@@ -133,22 +204,6 @@ namespace Simhopp
         {
             btnDoDive.Focus();
             btnDoDive.Select();
-
-            GetAllControls(this);
-            foreach (Control obj in ControlList)
-            {
-                obj.KeyPress += FormEvent_KeyPress;
-            }
-        }
-
-        List<Control> ControlList = new List<Control>();
-        private void GetAllControls(Control container)
-        {
-            foreach (Control c in container.Controls)
-            {
-                GetAllControls(c);
-                ControlList.Add(c);
-            }
         }
 
         void FormEvent_KeyPress(object sender, KeyPressEventArgs e)
@@ -185,7 +240,7 @@ namespace Simhopp
                 tItem.Text = judge.name;
                 listViewJudges.Items.Add(tItem);
 
-                if (judge == judges[currentJudgeIndex] && panelScoring.Enabled)
+                if (judge == CurrentJudge && panelScoring.Enabled)
                 {
                     tItem.BackColor = colors[2];
                     tItem.EnsureVisible();
@@ -230,7 +285,7 @@ namespace Simhopp
 
         private void ScoreDive()
         {
-            divePanels[currentRoundIndex][currentDiverIndex].BackColor = colors[2];
+            CurrentDivePanel.BackColor = colors[2];
             panelScoring.Enabled = true;
             btnDoDive.Enabled = false;
             UpdateJudgeList();
@@ -244,46 +299,38 @@ namespace Simhopp
         private void btnScoreClick(object sender, EventArgs e)
         {
 
-            Score score = new Score(-1, divers[currentDiverIndex].dives[currentRoundIndex], judges[currentJudgeIndex], Double.Parse(((Button)sender).Text));
-            divers[currentDiverIndex].dives[currentRoundIndex].AddScore(score); //Add score to dive
+            Score score = _presenter.ScoreDive(Double.Parse(((Button)sender).Text));
 
-            Control scoreInput = divePanels[currentRoundIndex][currentDiverIndex].Controls.Find("Score", true)[currentJudgeIndex];
+            Control scoreInput = CurrentDivePanel.Controls.Find("Score", true)[CurrentJudgeIndex];
             scoreInput.Text = ((Button)sender).Text;
             scoreInput.Tag = score;
+
             
-            currentJudgeIndex++;
-
-            if (currentJudgeIndex >= judges.Count)
-            {
-                panelScoring.Enabled = false;
-                currentJudgeIndex = 0;
-
-                divePanels[currentRoundIndex][currentDiverIndex].BackColor = colors[1];
-
-                //Visa hoppets totala poäng
-                divePanels[currentRoundIndex][currentDiverIndex].Controls.Find("Points", true)[0].Text = divers[currentDiverIndex].dives[currentRoundIndex].score.ToString();
-
-                //Nästa hoppare
-                currentDiverIndex++;
-                UpdateLeaderboard();
-
-                //Nästa runda (hopp)
-                if (currentDiverIndex >= divers.Count)
-                {
-                    currentDiverIndex = 0;
-                    btnDoDive.Enabled = false;
-                    btnNextRound.Enabled = true;
-                    btnNextRound.Focus();
-                    currentRoundIndex++;
-                }
-                else
-                {
-                    btnDoDive.Enabled = true;
-                    btnDoDive.Focus();
-                }
-            }
-
             UpdateJudgeList();
+        }
+
+        public void CompleteDive()
+        {
+            
+            panelScoring.Enabled = false;
+
+            CurrentDivePanel.BackColor = colors[1];
+
+            //Nästa hoppare
+            
+
+            //Nästa runda (hopp)
+            if (CurrentDiverIndex == 0)
+            {
+                btnDoDive.Enabled = false;
+                btnNextRound.Enabled = true;
+                btnNextRound.Focus();
+            }
+            else
+            {
+                btnDoDive.Enabled = true;
+                btnDoDive.Focus();
+            }
         }
 
         /// <summary>
