@@ -13,5 +13,7 @@ namespace Simhopp
 
         void CompleteDive();
         void UpdateLeaderboard();
+        void PrintEventStatus();
+        void PopulateScoreInput(Score score, int judgeIndex);
     }
 }

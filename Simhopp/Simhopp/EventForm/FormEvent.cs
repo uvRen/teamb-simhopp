@@ -69,7 +69,7 @@ namespace Simhopp
             }
         }
 
-        private Diver currentDiver { get { return _presenter.CurrentDiver; } }
+        private Diver CurrentDiver { get { return _presenter.CurrentDiver; } }
         private Judge CurrentJudge { get { return _presenter.CurrentJudge; } }
         private Dive CurrentDive { get { return _presenter.CurrentDive; } }
 
@@ -94,15 +94,27 @@ namespace Simhopp
         }
 
         private List<Color> colors;
-
-        private Event ev;
+        
         //private List<Diver> divers;
-        private List<Judge> judges;
-        private List<Diver> divers;
+        private List<Judge> Judges
+        {
+            get
+            {
+                return _presenter.Judges;
+            }
+        }
+        private List<Diver> Divers
+        {
+            get
+            {
+                return _presenter.Divers;
+            }
+        }
 
         public FormEvent()
         {
             Presenter = new EventPresenter(this);
+            Presenter.CreateTestEvent();
             InitializeComponent();
             colors = new List<Color>();
 
@@ -112,59 +124,22 @@ namespace Simhopp
             colors.Add(Color.FromArgb(15, 52, 104));
             colors.Add(Color.FromArgb(3, 42, 93));
 
-            #region testtävling
-            
-            ev = new Event(0, "Test", "Test", "Test", 1, 1, 5, 5);
-
-            ev.AddJudge(new Judge(0, "Mr. Test"));
-            ev.AddJudge(new Judge(1, "Mrs. Fest"));
-            ev.AddJudge(new Judge(2, "Mr. Mega"));
-            ev.AddJudge(new Judge(3, "Mr. Domherre"));
-            ev.AddJudge(new Judge(4, "Mr. McFlash"));
-            /*
-            ev.AddJudge(new Judge(5, "Mr. Dunder"));
-            ev.AddJudge(new Judge(6, "Mr. Mega"));
-            ev.AddJudge(new Judge(7, "Mr. Bleh bleh"));
-            ev.AddJudge(new Judge(8, "Mr. Tjalala"));
-             * */
-
-            ev.AddDiver(new Diver(0, "Kalle"));
-            ev.AddDiver(new Diver(0, "Greger"));
-            ev.AddDiver(new Diver(0, "Hopptjej"));
-            ev.AddDiver(new Diver(0, "Annika"));
-            ev.AddDiver(new Diver(0, "Annika2"));
-            ev.AddDiver(new Diver(0, "Annika3"));
-
-            for (int i = 0; i < ev.GetDivers().Count; i++)
-            {
-                for (int j = 0; j < 5; j++)
-                {
-                    Dive dive = new Dive(0, null, j + 1, ev);
-                    ev.GetDivers()[i].AddDive(dive);
-
-                    for (int k = 0; k < 5; k++)
-                    {
-                        //Score s = new Score(0, null, ev.GetJudges()[k], (k + j) % 11);
-                        //dive.AddScore(s);
-                    }
-                }
-            }
-            #endregion
-
             //Initiera objekt
             divePanels = new List<List<Panel>>();
             pagePanels = new List<Panel>();
             CurrentDiverIndex = CurrentRoundIndex = CurrentJudgeIndex = 0;
             tabsRounds.SelectedIndexChanged += tabsRounds_TabIndexChanged;
 
-            //Ladda data från event
-            judges = ev.GetJudges();
-            //divers = ev.GetDivers();
+            DrawPanels();
+        }
 
+        private void DrawPanels()
+        {
             //Applicera färgtema
             this.BackColor = colors[0];
             pagePanelContainer.BackColor = colors[1];
             panelControls.BackColor = colors[1];
+            panelEventInfo.BackColor = colors[1];
             listViewLeaderboard.BackColor = colors[1];
             listViewJudges.BackColor = colors[1];
             listViewLeaderboard.ForeColor = Color.White;
@@ -175,7 +150,7 @@ namespace Simhopp
 
 
             //Måla upp alla hopp och skapa tabs
-            for (int i = 0; i < ev.diveCount; i++) //Rundor
+            for (int i = 0; i < CurrentDiver.dives.Count; i++) //Rundor
             {
                 tabsRounds.TabPages.Add("Runda " + (i + 1));
 
@@ -190,9 +165,9 @@ namespace Simhopp
                 pagePanelContainer.Controls.Add(page);
                 pagePanels.Add(page);
 
-                for (int j = 0; j < ev.GetDivers().Count(); j++) //Hoppare
+                for (int j = 0; j < Divers.Count(); j++) //Hoppare
                 {
-                    Panel p = DivePanel(ev.GetDivers()[j], i);
+                    Panel p = DivePanel(Divers[j], i);
                     divePanels[i].Add(p);
                     p.Top = (p.Height + 2) * j;
                     pagePanels[i].Controls.Add(p);
@@ -202,6 +177,15 @@ namespace Simhopp
             //Populera tävlande och domare
             UpdateLeaderboard();
             UpdateJudgeList();
+            PrintEventStatus();
+        }
+
+        public void PrintEventStatus()
+        {
+            labelTitle.Text = Presenter.CurrentEvent.name;
+            labelSummary.Text = Presenter.CurrentEvent.location + "\n" + Presenter.CurrentEvent.sync + "\n" + Presenter.CurrentEvent.sex;
+            labelRound.Text = "Runda\n" + (CurrentRoundIndex + 1) + " av " + Presenter.CurrentEvent.diveCount;
+            labelDiver.Text = "Hoppare\n" + (CurrentDiverIndex + 1) + " av " + Divers.Count;
         }
 
         //Keyboardshortcuts
@@ -224,7 +208,7 @@ namespace Simhopp
         public void UpdateLeaderboard()
         {
             listViewLeaderboard.Items.Clear();
-            var sortedDivers = divers.OrderBy(x => x.TotalScore).Reverse();
+            var sortedDivers = Divers.OrderBy(x => x.TotalScore).Reverse();
             foreach (Diver diver in sortedDivers)
             { 
                 ListViewItem tItem = new ListViewItem();
@@ -239,7 +223,7 @@ namespace Simhopp
         {
             listViewJudges.Items.Clear();
             listViewJudges.Columns[0].Width = listViewJudges.Width - 30;
-            foreach (Judge judge in judges)
+            foreach (Judge judge in Judges)
             {
                 ListViewItem tItem = new ListViewItem();
                 tItem.Text = judge.name;
@@ -304,14 +288,15 @@ namespace Simhopp
         private void btnScoreClick(object sender, EventArgs e)
         {
 
-            Score score = _presenter.ScoreDive(Double.Parse(((Button)sender).Text));
-
-            Control scoreInput = CurrentDivePanel.Controls.Find("Score", true)[CurrentJudgeIndex];
-            scoreInput.Text = ((Button)sender).Text;
-            scoreInput.Tag = score;
-
-            
+            Score score = Presenter.ScoreDive(Double.Parse(((Button)sender).Text));
             UpdateJudgeList();
+        }
+
+        public void PopulateScoreInput(Score score, int judgeIndex)
+        {
+            Control scoreInput = CurrentDivePanel.Controls.Find("Score", true)[judgeIndex];
+            scoreInput.Text = score.points.ToString();
+            scoreInput.Tag = score;
         }
 
         public void CompleteDive()
@@ -413,7 +398,7 @@ namespace Simhopp
             scorePanel.BackColor = Color.Transparent;
             scorePanel.Tag = points;
 
-            for (int i = 0; i < ev.GetJudges().Count; i++)
+            for (int i = 0; i < Judges.Count; i++)
             {
                 TextBox tb = new TextBox();
                 tb.Text = " ";//diver.dives[round].GetScores()[i].points.ToString();
