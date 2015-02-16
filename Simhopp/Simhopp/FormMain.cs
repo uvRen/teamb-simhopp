@@ -38,17 +38,26 @@ namespace Simhopp
         }
 
         //öppnar fönstret "FormNewEvent" för att skapa ett nytt event
-        private void button2_Click(object sender, EventArgs e)
+        private void CreateEventClick(object sender, EventArgs e)
         {
             FormNewEvent newEvent = new FormNewEvent();
             newEvent.ShowDialog();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void StartEventClick(object sender, EventArgs e)
         {
             Database.StartEvent(Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text));
             FormMainFunctions.FillListViewWithEvent(listViewEvent);
         }
+
+        private void RegisterResultClick(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormEvent FE = new FormEvent();
+            FE.ShowDialog();
+            Show();
+        }
+
         #endregion
 
         private void listViewEvent_MouseDown(object sender, MouseEventArgs e)
@@ -81,12 +90,6 @@ namespace Simhopp
 
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            FormEvent FE = new FormEvent();
-            FE.ShowDialog();
-            Show();
-        }
+        
     }
 }

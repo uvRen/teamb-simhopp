@@ -48,7 +48,7 @@
             this.startaTävlingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stoppaTävlingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.taBortEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button4 = new System.Windows.Forms.Button();
+            this.RegisterResult = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +60,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Starta Event";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.StartEventClick);
             // 
             // listView1
             // 
@@ -95,7 +95,7 @@
             this.button2.TabIndex = 4;
             this.button2.Text = "Skapa Nytt Event";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.CreateEventClick);
             // 
             // label1
             // 
@@ -205,22 +205,22 @@
             this.taBortEventToolStripMenuItem.Text = "Ta bort event";
             this.taBortEventToolStripMenuItem.Click += new System.EventHandler(this.taBortEventToolStripMenuItem_Click);
             // 
-            // button4
+            // RegisterResult
             // 
-            this.button4.Location = new System.Drawing.Point(107, 444);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(82, 23);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "REG Resultat";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.RegisterResult.Location = new System.Drawing.Point(107, 444);
+            this.RegisterResult.Name = "RegisterResult";
+            this.RegisterResult.Size = new System.Drawing.Size(106, 23);
+            this.RegisterResult.TabIndex = 10;
+            this.RegisterResult.Text = "Registrera Resultat";
+            this.RegisterResult.UseVisualStyleBackColor = true;
+            this.RegisterResult.Click += new System.EventHandler(this.RegisterResultClick);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 552);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.RegisterResult);
             this.Controls.Add(this.listViewEvent);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label2);
@@ -257,7 +257,7 @@
         private System.Windows.Forms.ToolStripMenuItem startaTävlingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stoppaTävlingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem taBortEventToolStripMenuItem;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button RegisterResult;
 
     }
 }
