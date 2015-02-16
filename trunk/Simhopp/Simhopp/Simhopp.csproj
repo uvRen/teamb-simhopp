@@ -51,16 +51,17 @@
     <Compile Include="Event.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Dive.cs" />
+    <Compile Include="EventForm\EventPresenter.cs" />
     <Compile Include="FormDiverList.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormDiverList.Designer.cs">
       <DependentUpon>FormDiverList.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormEvent.cs">
+    <Compile Include="EventForm\FormEvent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormEvent.Designer.cs">
+    <Compile Include="EventForm\FormEvent.Designer.cs">
       <DependentUpon>FormEvent.cs</DependentUpon>
     </Compile>
     <Compile Include="FormJudgeList.cs">
@@ -82,6 +83,7 @@
       <DependentUpon>FormNewEvent.cs</DependentUpon>
     </Compile>
     <Compile Include="FormNewEventFunctions.cs" />
+    <Compile Include="EventForm\IFormEvent.cs" />
     <Compile Include="Judge.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -99,7 +101,7 @@
     <EmbeddedResource Include="FormDiverList.resx">
       <DependentUpon>FormDiverList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormEvent.resx">
+    <EmbeddedResource Include="EventForm\FormEvent.resx">
       <DependentUpon>FormEvent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormJudgeList.resx">
@@ -137,6 +139,7 @@
   <ItemGroup>
     <Content Include="external\MySql.Data.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
