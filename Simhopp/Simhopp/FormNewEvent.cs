@@ -18,14 +18,9 @@ namespace Simhopp
         {
             InitializeComponent();
 
-            //ställer in formatet på datumet till 2015-02-02
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.CustomFormat = "yyyy-MM-dd";
-
             //fyller listorna med dommare och hoppare
             FormNewEventFunctions.FillListViewWithDivers(radioButtonMale, radioButtonFemale, listViewDivers);
             FormNewEventFunctions.FillListViewWithJudges(listViewJudge);
-            
             
             listViewDivers.ItemDrag += listViewDivers_ItemDrag;
             listViewDivers.DragEnter += listViewDivers_DragEnter;

@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
 namespace Simhopp
 {
     public class Database
     {
+        public static MySqlConnection conn = null;
         #region Connection
         /// <summary>
         /// ansluter till databasen och returnerar anslutningen
@@ -20,18 +24,24 @@ namespace Simhopp
             const string myConnectionString = "server=tuffast.com;uid=teamb;pwd=teambteamb;database=db_teamb;";
             try
             {
-                MySqlConnection conn = new MySqlConnection();
+                conn = new MySqlConnection();
                 conn.ConnectionString = myConnectionString;
                 conn.Open();
-                return conn;
             }
 
             catch (MySqlException ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show("Kunde inte ansluta till databasen, försök igen", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                conn = null;
             }
 
-            return null;
+            catch(Exception e)
+            {
+                MessageBox.Show("Kunde inte ansluta till databasen, försök igen", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                conn = null;
+            }
+
+            return conn;
         }
         #endregion
 
@@ -41,16 +51,26 @@ namespace Simhopp
             var judgeList = new List<Judge>();
 
             var conn = ConnectToDatabase();
-            var cmd = new MySqlCommand("SELECT * FROM judge ORDER BY id", conn);
-            var dr = cmd.ExecuteReader();
-            var dt = new DataTable();
-            dt.Load(dr);
-
-            foreach (DataRow row in dt.Rows)
+            if (conn != null)
             {
-                var tmp = new Judge(Int32.Parse(row["id"].ToString()), row["name"].ToString());
-                judgeList.Add(tmp);
+                var cmd = new MySqlCommand("SELECT * FROM judge ORDER BY id", conn);
+                var dr = cmd.ExecuteReader();
+                var dt = new DataTable();
+                dt.Load(dr);
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    var tmp = new Judge(Int32.Parse(row["id"].ToString()), row["name"].ToString());
+                    judgeList.Add(tmp);
+                }
+                return judgeList;
             }
+
+            else
+            {
+                MessageBox.Show("Anslutningen till databasen misslyckades", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             return judgeList;
         }
 
@@ -64,6 +84,7 @@ namespace Simhopp
             MySqlConnection conn = Database.ConnectToDatabase();
             if (conn != null)
             {
+                string id = "";
                 //lägger till domaren i databasen
                 MySqlCommand comm = conn.CreateCommand();
                 comm.CommandText = "INSERT INTO judge(name) VALUES(@name)";
@@ -74,45 +95,15 @@ namespace Simhopp
                 var dt = new DataTable();
                 dt.Load(dr);
                 DataRow row = dt.Rows[0];
-                string id = row["id"].ToString();
+                id = row["id"].ToString();
 
                 conn.Close();
                 return Int32.Parse(id);
             }
             else
             {
+                MessageBox.Show("Anslutningen till databasen misslyckades", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return -1;
-            }
-        }
-
-        /// <summary>
-        /// Söker i databasen efter en specifik domare och returnerar den
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>Judge or NULL</returns>
-        public static Judge GetSpecificJudgeFromDatabase(int id) 
-        {
-            Judge j = new Judge();
-            var conn = ConnectToDatabase();
-            string sql = "SELECT * FROM judge WHERE id=" + id.ToString();
-            var cmd = new MySqlCommand(sql, conn);
-            var dr = cmd.ExecuteReader();
-            var dt = new DataTable();
-            dt.Load(dr);
-
-            //om en domare hittas returneras den, annars NULL
-            if (dt.Rows.Count > 0)
-            {
-                foreach (DataRow row in dt.Rows)
-                {
-                    j.ID = Int32.Parse(row["id"].ToString());
-                    j.name = row["name"].ToString();
-                }
-                return j;
-            }
-            else
-            {
-                return null;
             }
         }
         #endregion
