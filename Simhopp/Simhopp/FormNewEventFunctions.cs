@@ -203,7 +203,8 @@ namespace Simhopp
 
         public static void ResetTextBox(TextBox box)
         {
-            box.Text = "";
+            if (box.Text == "Name" || box.Text == "Country" || box.Text == "Age")
+                box.Text = "";
         }
     }
 }
