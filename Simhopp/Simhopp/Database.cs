@@ -45,7 +45,7 @@ namespace Simhopp
         }
         #endregion
 
-        #region Jugde
+        #region Judge
         public static List<Judge> GetJudges()
         {
             var judgeList = new List<Judge>();
@@ -371,5 +371,36 @@ namespace Simhopp
         }
         #endregion
 
+        #region DD
+        /*
+        public static List<DD> GetDD()
+        {
+            var xxxList = new List<DD>();
+
+            var conn = ConnectToDatabase();
+            if (conn != null)
+            {
+                var cmd = new MySqlCommand("SELECT * FROM DD", conn);
+                var dr = cmd.ExecuteReader();
+                var dt = new DataTable();
+                dt.Load(dr);
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    var tmp = new DD(Int32.Parse(row["DiveNo"].ToString()), row["DiveName"].ToString());    //
+                    xxxList.Add(tmp);
+                }
+                return xxxList;
+            }
+
+            else
+            {
+                MessageBox.Show("Anslutningen till databasen misslyckades", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return judgeList;
+        }
+        */
+        #endregion
     }
 }
