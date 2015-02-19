@@ -336,12 +336,12 @@
             // columnHeader7
             // 
             this.columnHeader7.Text = "Name";
-            this.columnHeader7.Width = 140;
+            this.columnHeader7.Width = 163;
             // 
             // columnHeader8
             // 
             this.columnHeader8.Text = "Country";
-            this.columnHeader8.Width = 86;
+            this.columnHeader8.Width = 95;
             // 
             // columnHeader9
             // 
