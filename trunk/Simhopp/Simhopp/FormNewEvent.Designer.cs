@@ -297,6 +297,7 @@
             this.listViewJudge.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
+            this.listViewJudge.GridLines = true;
             this.listViewJudge.Location = new System.Drawing.Point(710, 7);
             this.listViewJudge.Name = "listViewJudge";
             this.listViewJudge.Size = new System.Drawing.Size(262, 504);
@@ -324,6 +325,7 @@
             this.columnHeader9,
             this.columnHeader10,
             this.columnHeader3});
+            this.listViewDivers.GridLines = true;
             this.listViewDivers.Location = new System.Drawing.Point(313, 6);
             this.listViewDivers.Name = "listViewDivers";
             this.listViewDivers.Size = new System.Drawing.Size(371, 505);
