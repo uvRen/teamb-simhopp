@@ -65,10 +65,15 @@
             this.newJudgeName = new System.Windows.Forms.TextBox();
             this.newJudgeSubmit = new System.Windows.Forms.Button();
             this.newDiverSelectGender = new System.Windows.Forms.ComboBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBoxDisciplin.SuspendLayout();
             this.groupBoxSingle.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -417,18 +422,59 @@
             // 
             this.newDiverSelectGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.newDiverSelectGender.Items.AddRange(new object[] {
-            "Male",
-            "Female"});
+            "Female",
+            "Male"});
             this.newDiverSelectGender.Location = new System.Drawing.Point(592, 518);
+            this.newDiverSelectGender.MaxLength = 100;
             this.newDiverSelectGender.Name = "newDiverSelectGender";
             this.newDiverSelectGender.Size = new System.Drawing.Size(60, 21);
+            this.newDiverSelectGender.Sorted = true;
             this.newDiverSelectGender.TabIndex = 19;
+            // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Location = new System.Drawing.Point(23, 307);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(258, 182);
+            this.panel1.TabIndex = 26;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(48, 4);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(32, 13);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Code";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(113, 4);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(44, 13);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Position";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(177, 4);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(38, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Height";
             // 
             // FormNewEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 552);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.newDiverSelectGender);
             this.Controls.Add(this.newJudgeSubmit);
             this.Controls.Add(this.newJudgeName);
@@ -461,6 +507,8 @@
             this.groupBoxSingle.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -515,5 +563,9 @@
         
         private System.Windows.Forms.ListView listViewJudge;
         private System.Windows.Forms.ListView listViewDivers;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
     }
 }
