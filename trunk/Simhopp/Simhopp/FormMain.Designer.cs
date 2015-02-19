@@ -153,17 +153,17 @@
             // columnHeader5
             // 
             this.columnHeader5.Text = "Namn";
-            this.columnHeader5.Width = 180;
+            this.columnHeader5.Width = 193;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Plats";
-            this.columnHeader4.Width = 109;
+            this.columnHeader4.Width = 124;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Datum";
-            this.columnHeader3.Width = 80;
+            this.columnHeader3.Width = 81;
             // 
             // columnHeader6
             // 
