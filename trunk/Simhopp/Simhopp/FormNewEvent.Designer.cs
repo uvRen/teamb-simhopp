@@ -74,7 +74,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(20, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 0;
@@ -83,7 +83,7 @@
             // textBox1
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(80, 7);
+            this.textBox1.Location = new System.Drawing.Point(88, 32);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(181, 20);
             this.textBox1.TabIndex = 1;
@@ -91,7 +91,7 @@
             // textBox2
             // 
             this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(80, 32);
+            this.textBox2.Location = new System.Drawing.Point(88, 57);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(181, 20);
             this.textBox2.TabIndex = 2;
@@ -99,7 +99,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 35);
+            this.label2.Location = new System.Drawing.Point(20, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(30, 13);
             this.label2.TabIndex = 2;
@@ -108,7 +108,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 85);
+            this.label4.Location = new System.Drawing.Point(20, 110);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 13);
             this.label4.TabIndex = 5;
@@ -139,7 +139,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(80, 82);
+            this.numericUpDown1.Location = new System.Drawing.Point(88, 107);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(54, 20);
             this.numericUpDown1.TabIndex = 4;
@@ -183,7 +183,7 @@
             this.groupBoxDisciplin.Controls.Add(this.radioButton1meter);
             this.groupBoxDisciplin.Controls.Add(this.radioButton3meter);
             this.groupBoxDisciplin.Controls.Add(this.radioButtonTower);
-            this.groupBoxDisciplin.Location = new System.Drawing.Point(15, 112);
+            this.groupBoxDisciplin.Location = new System.Drawing.Point(23, 137);
             this.groupBoxDisciplin.Name = "groupBoxDisciplin";
             this.groupBoxDisciplin.Size = new System.Drawing.Size(264, 46);
             this.groupBoxDisciplin.TabIndex = 5;
@@ -194,7 +194,7 @@
             // 
             this.groupBoxSingle.Controls.Add(this.radioButtonSync);
             this.groupBoxSingle.Controls.Add(this.radioButtonSingle);
-            this.groupBoxSingle.Location = new System.Drawing.Point(15, 166);
+            this.groupBoxSingle.Location = new System.Drawing.Point(23, 191);
             this.groupBoxSingle.Name = "groupBoxSingle";
             this.groupBoxSingle.Size = new System.Drawing.Size(264, 47);
             this.groupBoxSingle.TabIndex = 9;
@@ -217,7 +217,7 @@
             // 
             this.dateTimePicker1.CustomFormat = "yyyy-MM-dd";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(80, 56);
+            this.dateTimePicker1.Location = new System.Drawing.Point(88, 81);
             this.dateTimePicker1.MaxDate = new System.DateTime(2100, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker1.MinDate = new System.DateTime(2015, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
@@ -228,7 +228,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 62);
+            this.label3.Location = new System.Drawing.Point(20, 87);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 13);
             this.label3.TabIndex = 20;
@@ -238,7 +238,7 @@
             // 
             this.groupBox1.Controls.Add(this.radioButtonMale);
             this.groupBox1.Controls.Add(this.radioButtonFemale);
-            this.groupBox1.Location = new System.Drawing.Point(15, 219);
+            this.groupBox1.Location = new System.Drawing.Point(23, 244);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(264, 46);
             this.groupBox1.TabIndex = 12;
