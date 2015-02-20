@@ -27,6 +27,11 @@ namespace Simhopp
             listViewDivers.DragDrop += listViewDivers_DragDrop;
             listViewDivers.AllowDrop = true;
 
+            AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
+            //collection.AddRange()
+
+
+
             
             for(int i=1; i <= 5; i++)
             {
@@ -67,8 +72,6 @@ namespace Simhopp
                 panel1.Controls.Add(c1);
                 panel1.Controls.Add(c2);
                 panel1.Controls.Add(c3);
-
-                //panel1.Controls.Add(b);
             }
         }
 

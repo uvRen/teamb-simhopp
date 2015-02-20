@@ -373,35 +373,33 @@ namespace Simhopp
         #endregion
 
         #region DD
-        /*
-        public static List<DD> GetDD()
+        public static void GetDiveNoFromDDinDatabase(string[] DiveNo, string[] DiveName)
         {
-            var xxxList = new List<DD>();
+            int count = 0;
 
             var conn = ConnectToDatabase();
             if (conn != null)
             {
-                var cmd = new MySqlCommand("SELECT * FROM DD", conn);
+                var cmd = new MySqlCommand("SELECT DiveNo, DiveName FROM DD", conn);
                 var dr = cmd.ExecuteReader();
                 var dt = new DataTable();
                 dt.Load(dr);
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    var tmp = new DD(Int32.Parse(row["DiveNo"].ToString()), row["DiveName"].ToString());    //
-                    xxxList.Add(tmp);
+                    DiveNo[count] = row["DiveNo"].ToString();
+                    DiveName[count] = row["DiveName"].ToString();
+                    count++;
                 }
-                return xxxList;
             }
 
             else
             {
                 MessageBox.Show("Anslutningen till databasen misslyckades", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            return judgeList;
+            conn.Close();
         }
-        */
+
         #endregion
     }
 }
