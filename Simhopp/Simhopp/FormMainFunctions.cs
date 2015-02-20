@@ -16,7 +16,7 @@ namespace Simhopp
         {
             listViewEvent.Items.Clear();
             
-            foreach (Event e in Database.getEvents())
+            foreach (Contest e in Database.getEvents())
             {
                 ListViewItem item1 = new ListViewItem();
                 item1.Text = "";
