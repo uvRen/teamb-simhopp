@@ -66,9 +66,9 @@
             this.newJudgeSubmit = new System.Windows.Forms.Button();
             this.newDiverSelectGender = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBoxDisciplin.SuspendLayout();
             this.groupBoxSingle.SuspendLayout();
@@ -442,14 +442,14 @@
             this.panel1.Size = new System.Drawing.Size(258, 182);
             this.panel1.TabIndex = 26;
             // 
-            // label6
+            // label8
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(48, 4);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(32, 13);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Code";
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(177, 4);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(38, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Height";
             // 
             // label7
             // 
@@ -460,14 +460,14 @@
             this.label7.TabIndex = 2;
             this.label7.Text = "Position";
             // 
-            // label8
+            // label6
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(177, 4);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(38, 13);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Height";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(48, 4);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(32, 13);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Code";
             // 
             // FormNewEvent
             // 

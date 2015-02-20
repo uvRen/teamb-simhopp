@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Simhopp.Database" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IgAIAAgABAAAAAAAAAAAQAAEAAwAAAAEAAAAASAAQAA=</HashCode>
+      <FileName>Database.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Simhopp.Dive" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAgAAAAAAIAAAAAAAEAQABAAAAgAAAAAQ=</HashCode>
+      <FileName>Dive.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Simhopp.Diver" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABIIAAAAIAAwAAAAAQAAAAAAAAmAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Diver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Simhopp.Event" Collapsed="true">
+    <Position X="7.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAQgAAAIAAgAAAAAQAAgACAAAEBAAAAIAAAYAAQAQ=</HashCode>
+      <FileName>Event.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Simhopp.EventPresenter" Collapsed="true">
+    <Position X="7.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAABAAABAAAAAEBAAAAAAQAAAgAQAABACAAAg=</HashCode>
+      <FileName>EventForm\EventPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Simhopp.FormEvent" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EEBgAACAADAAAhEAIACFFICqg2ASAQCAqAIgBADAQEQ=</HashCode>
+      <FileName>EventForm\FormEvent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Simhopp.Form1" Collapsed="true">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAABACAAABAAAACAAAACAAAYAAAAEEAAAQAAAAI=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Simhopp.FormMain" Collapsed="true">
+    <Position X="5.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAQCAAACAAIBMAAACBAAD+AwA4AgAIAAAAFIAQAAA=</HashCode>
+      <FileName>FormMain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Simhopp.FormMainFunctions" Collapsed="true">
+    <Position X="5.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>FormMainFunctions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Simhopp.FormNewEvent" Collapsed="true">
+    <Position X="5.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAMAIGACFIADAKgAHAgaKOA0gKFCEAECAhAUABAAA=</HashCode>
+      <FileName>FormNewEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Simhopp.FormNewEventFunctions" Collapsed="true">
+    <Position X="5.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAQAAAAAAAAgEAAAAABAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>FormNewEventFunctions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Simhopp.Judge" Collapsed="true">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAgAAEAAAAAAAAAAgEAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Judge.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Simhopp.Program" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Simhopp.Score" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAACAAAAAgAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Score.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Simhopp.IFormEvent" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABEAIAAAAAAAAAAAAAAAIAIAAABAAAA=</HashCode>
+      <FileName>EventForm\IFormEvent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
