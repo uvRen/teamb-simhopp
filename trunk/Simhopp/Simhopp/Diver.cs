@@ -39,6 +39,13 @@ namespace Simhopp
             dives = new List<Dive>();
         }
 
+        public Diver(string name)
+        {
+            this.ID = -1;
+            this.name = name;
+            dives = new List<Dive>();
+        }
+
         public Diver(int ID, string name)
         {
             this.ID = ID;
@@ -57,6 +64,7 @@ namespace Simhopp
 
         public Diver(string name, int age, int sex, string country)
         {
+            this.ID = -1;
             this.name = name;
             this.age = age;
             this.sex = sex;

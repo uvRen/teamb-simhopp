@@ -6,11 +6,26 @@ using System.Threading.Tasks;
 
 namespace Simhopp
 {
-    class DD
+    public class DD
     {
-        static int Difficulty(Dive dive)
+        public string[] DiveNo;
+        public string[] DiveName;
+
+        public DD()
+        {
+            DiveNo = new string[122];
+            DiveName = new string[122];
+        }
+
+        public static int Difficulty(Dive dive)
         {
             return 1;
         }
+
+        public void FillArrays()
+        {
+            Database.GetDiveNoFromDDinDatabase(DiveNo, DiveName);
+        }
+
     }
 }
