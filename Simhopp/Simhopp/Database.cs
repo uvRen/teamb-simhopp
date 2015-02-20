@@ -298,6 +298,7 @@ namespace Simhopp
                 string id = row["id"].ToString();
                                 
                 conn.Close();
+                d1.ID = Int32.Parse(id);
                 return Int32.Parse(id);
             }
             else
