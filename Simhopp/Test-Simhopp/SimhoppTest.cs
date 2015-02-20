@@ -1,6 +1,8 @@
 ﻿
 
 using Simhopp;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace Nunit.Simhopp
 {
@@ -53,17 +55,30 @@ namespace Nunit.Simhopp
         }
 
         [Test]
-        public void EttTest()
+        public void DatabaseTests()
         {
-            System.Diagnostics.Debug.WriteLine("Score: " + d1.TotalScore);
-            Assert.AreEqual(d1.GetDives()[0].GetScores()[0].judge.GetJudgeName(), "Mr. Test");
+
+            Assert.AreNotEqual(Database.ConnectToDatabase(), null);
+            Assert.GreaterOrEqual(Database.AddDiverToDatabase(d1), 0);
+            Assert.GreaterOrEqual(Database.AddJudgeToDatabase(judges[0]), 0);
+            Assert.GreaterOrEqual(Database.AddEventToDatabase(comp));
+            Assert.GreaterOrEqual(Database.GetDivers().Count, 1);
+            Assert.GreaterOrEqual(Database.GetJudges().Count, 1);
+
+            int lastId = d1.ID;
+            int newId = Database.AddDiverToDatabase(d1);
+            Assert.AreNotEqual(lastId, newId);
+            Assert.AreEqual(newId, d1.ID);
+
+
 
         }
 
         [Test]
-        public void CheckReturnedID()
+        public void RunContest()
         {
-            //Assert.AreEqual(Database.AddDiverToDatabase(d1), 24);
+            Assert.AreEqual(d1.GetDives()[0].GetScores()[0].judge.GetJudgeName(), "Mr. Test");
+            System.Diagnostics.Debug.WriteLine("Score: " + d1.TotalScore);
         }
 
     }
