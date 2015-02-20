@@ -17,8 +17,8 @@ namespace Simhopp
         public int diveCount { get; set; }
         public int sex { get; set; }
         public int started;
-        List<Judge> Judges { get; set; }
-        List<Diver> Divers { get; set; }
+        public List<Judge> Judges { get; set; }
+        public List<Diver> Divers { get; set; }
 
         #region Konstruktor
         public Contest() 
