@@ -113,7 +113,7 @@ namespace Simhopp
         /// lägger till tävling i databasen
         /// </summary>
         /// <returns>1 = lyckat, 0 = fel, -1 = identisk tävling finns redan</returns>
-        public static int AddEventToDatabase(Contest c, List<Judge> judgeList, List<Diver> diverList)
+        public static int AddEventToDatabase(Contest c)
         {
             //ansluter till databasen
             MySqlConnection conn = Database.ConnectToDatabase();
@@ -159,7 +159,7 @@ namespace Simhopp
 
                 int eventID = Int32.Parse(id);
 
-                foreach(Diver diver in diverList)
+                foreach(Diver diver in c.divers)
                 {
                     comm = conn.CreateCommand();
                     comm.CommandText = "INSERT INTO event_diver(eventId, diverId) VALUES(@eventid, @diverid)";
@@ -170,7 +170,7 @@ namespace Simhopp
                         return 0;
                 }
 
-                foreach (Judge judge in judgeList)
+                foreach (Judge judge in c.judges)
                 {
                     comm = conn.CreateCommand();
                     comm.CommandText = "INSERT INTO event_judge(eventId, judgeId) VALUES(@eventid, @judgeid)";
