@@ -17,8 +17,8 @@ namespace Simhopp
         public int diveCount { get; set; }
         public int sex { get; set; }
         public int started;
-        List<Judge> judges;
-        List<Diver> divers;
+        List<Judge> Judges { get; set; }
+        List<Diver> Divers { get; set; }
 
         #region Konstruktor
         public Contest() 
@@ -31,8 +31,8 @@ namespace Simhopp
             this.sex = -1;
             this.sync = 0;
             this.diveCount = -1;
-            this.judges = new List<Judge>();
-            this.divers = new List<Diver>();
+            this.Judges = new List<Judge>();
+            this.Divers = new List<Diver>();
         }
 
         public Contest(int ID, string name, string date, string location, int discipline, int sync, int diveCount, int sex)
@@ -45,8 +45,8 @@ namespace Simhopp
             this.sex = sex;
             this.sync = sync;
             this.diveCount = diveCount;
-            this.judges = new List<Judge>();
-            this.divers = new List<Diver>();
+            this.Judges = new List<Judge>();
+            this.Divers = new List<Diver>();
         }
 
         public Contest(int ID, string name, string date, string location, int discipline, int sync, int diveCount, int sex, int started)
@@ -60,8 +60,8 @@ namespace Simhopp
             this.sync = sync;
             this.diveCount = diveCount;
             this.started = started;
-            this.judges = new List<Judge>();
-            this.divers = new List<Diver>();
+            this.Judges = new List<Judge>();
+            this.Divers = new List<Diver>();
         }
 
         public Contest(string name, string date, string location, int discipline, int sync, int diveCount, int sex)
@@ -73,8 +73,8 @@ namespace Simhopp
             this.sex = sex;
             this.sync = sync;
             this.diveCount = diveCount;
-            this.judges = new List<Judge>();
-            this.divers = new List<Diver>();
+            this.Judges = new List<Judge>();
+            this.Divers = new List<Diver>();
         }
         #endregion
 
@@ -86,7 +86,7 @@ namespace Simhopp
         /// <param name="judge"></param>
         public void AddJudge(Judge judge)
         {
-            judges.Add(judge);
+            Judges.Add(judge);
         }
 
         /// <summary>
@@ -95,8 +95,8 @@ namespace Simhopp
         /// <param name="judges"></param>
         public void AddJudges(List<Judge> judges)
         {
-            this.judges.Clear();
-            this.judges = judges;
+            this.Judges.Clear();
+            this.Judges = judges;
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Simhopp
         /// <param name="diver"></param>
         public void AddDiver(Diver diver)
         {
-            divers.Add(diver);
+            Divers.Add(diver);
         }
 
         /// <summary>
@@ -114,19 +114,19 @@ namespace Simhopp
         /// <param name="divers"></param>
         public void AddDivers(List<Diver> divers)
         {
-            this.divers.Clear();
-            this.divers = divers;
+            this.Divers.Clear();
+            this.Divers = divers;
         }
 
         public List<Diver> GetDivers()
         {
-            return divers;
+            return Divers;
         }
 
 
         public List<Judge> GetJudges()
         {
-            return judges;
+            return Judges;
         }
         #endregion
     }
