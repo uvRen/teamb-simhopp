@@ -26,6 +26,5 @@ namespace Simhopp
         {
             Database.GetDiveNoFromDDinDatabase(DiveNo, DiveName);
         }
-
     }
 }
