@@ -154,7 +154,7 @@ namespace Simhopp
                 sex = 1;
 
             //lägger till eventet i databasen
-            Event ev = new Event(eventName, date, location, discipline, sync, diveCount, sex);
+            Contest ev = new Contest(eventName, date, location, discipline, sync, diveCount, sex);
 
             //hämtar dommare och hoppare från tabellerna
             List<Judge> addJudgesToEvent = new List<Judge>();

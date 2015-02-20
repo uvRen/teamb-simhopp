@@ -10,7 +10,7 @@ namespace Simhopp
     {
         
         public IFormEvent view;
-        public Event CurrentEvent { get; set; }
+        public Contest CurrentEvent { get; set; }
 
         public List<Diver> Divers { get; set; }
         public List<Judge> Judges { get; set; }
@@ -49,7 +49,7 @@ namespace Simhopp
         {
             #region testtävling
 
-            CurrentEvent = new Event(0, "Hopp OS", "Test", "Test", 1, 1, 5, 5);
+            CurrentEvent = new Contest(0, "Hopp OS", "Test", "Test", 1, 1, 5, 5);
 
             CurrentEvent.AddJudge(new Judge(0, "Mr. Test"));
             CurrentEvent.AddJudge(new Judge(1, "Mrs. Fest"));

@@ -11,14 +11,14 @@ namespace Nunit.Simhopp
     [TestFixture]
     public class JudgeTest
     {
-        private Event comp;
+        private Contest comp;
         private List<Judge> judges;
         private Diver d1, d2, d3;
         [SetUp]
         public void SetUp()
         {
             judges = new List<Judge>();
-            comp = new Event(0, "Test", "Test", "Test", 1, 1, 1, 5);
+            comp = new Contest(0, "Test", "Test", "Test", 1, 1, 1, 5);
 
             judges.Add(new Judge(0, "Mr. Test"));
             judges.Add(new Judge(1, "Mrs. Fest"));

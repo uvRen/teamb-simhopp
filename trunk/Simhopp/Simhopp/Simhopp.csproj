@@ -48,7 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Event.cs" />
+    <Compile Include="Contest.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Dive.cs" />
     <Compile Include="EventForm\EventPresenter.cs" />

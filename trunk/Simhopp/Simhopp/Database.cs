@@ -108,12 +108,12 @@ namespace Simhopp
         }
         #endregion
 
-        #region Event
+        #region Contest
         /// <summary>
         /// lägger till tävling i databasen
         /// </summary>
         /// <returns>1 = lyckat, 0 = fel, -1 = identisk tävling finns redan</returns>
-        public static int AddEventToDatabase(Event c, List<Judge> judgeList, List<Diver> diverList)
+        public static int AddEventToDatabase(Contest c, List<Judge> judgeList, List<Diver> diverList)
         {
             //ansluter till databasen
             MySqlConnection conn = Database.ConnectToDatabase();
@@ -190,10 +190,10 @@ namespace Simhopp
             }
         }
 
-        public static List<Event> getEvents()
+        public static List<Contest> getEvents()
         {
-            Event e;
-            List<Event> events = new List<Event>();
+            Contest e;
+            List<Contest> events = new List<Contest>();
 
             MySqlConnection conn = ConnectToDatabase();
 
@@ -206,7 +206,7 @@ namespace Simhopp
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    e = new Event(Int32.Parse(row["id"].ToString()), row["name"].ToString(), row["date"].ToString(), row["location"].ToString(), Int32.Parse(row["discipline"].ToString()), Int32.Parse(row["sync"].ToString()), Int32.Parse(row["diveCount"].ToString()), Int32.Parse(row["sex"].ToString()), Int32.Parse(row["started"].ToString()));
+                    e = new Contest(Int32.Parse(row["id"].ToString()), row["name"].ToString(), row["date"].ToString(), row["location"].ToString(), Int32.Parse(row["discipline"].ToString()), Int32.Parse(row["sync"].ToString()), Int32.Parse(row["diveCount"].ToString()), Int32.Parse(row["sex"].ToString()), Int32.Parse(row["started"].ToString()));
                     events.Add(e);
                 }
             }
