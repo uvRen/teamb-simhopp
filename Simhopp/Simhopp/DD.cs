@@ -8,9 +8,7 @@ namespace Simhopp
 {
     public class DD
     {
-        public string[] DiveNo;
-        public string[] DiveName;
-
+        private List<String>   
         public DD()
         {
             DiveNo = new string[122];
