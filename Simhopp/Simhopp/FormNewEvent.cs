@@ -178,7 +178,16 @@ namespace Simhopp
 
         private void EditDiverToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (selectedItem != null) 
+            {
+                dataGridView1.Visible = true;
+            }
+            string[] row = new string[] { "", "", "", ""};
+            for (int i = 0; i < Int32.Parse(numericUpDown1.Value.ToString()); i++)
+            {
+                dataGridView1.Rows.Add(row);
+                dataGridView1.Rows[i].HeaderCell.Value = String.Format("{0}", i+1);
+            }
         }
 
 
@@ -197,7 +206,6 @@ namespace Simhopp
         {
 
         }
-
-
     }
 }
+

@@ -446,15 +446,18 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Code,
             this.Type,
             this.Height,
             this.Position});
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.Location = new System.Drawing.Point(23, 315);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(264, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(264, 142);
             this.dataGridView1.TabIndex = 26;
             this.dataGridView1.Visible = false;
             this.dataGridView1.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView1_EditingControlShowing);
@@ -504,10 +507,10 @@
             // listViewDivers_contextMenuStrip
             // 
             this.listViewDivers_contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.RemoveDiverToolStripMenuItem,
-            this.EditDiverToolStripMenuItem});
+            this.EditDiverToolStripMenuItem,
+            this.RemoveDiverToolStripMenuItem});
             this.listViewDivers_contextMenuStrip.Name = "listViewDivers_contextMenuStrip";
-            this.listViewDivers_contextMenuStrip.Size = new System.Drawing.Size(121, 48);
+            this.listViewDivers_contextMenuStrip.Size = new System.Drawing.Size(152, 48);
             // 
             // RemoveDiverToolStripMenuItem
             // 
@@ -520,7 +523,7 @@
             // 
             this.EditDiverToolStripMenuItem.Name = "EditDiverToolStripMenuItem";
             this.EditDiverToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
-            this.EditDiverToolStripMenuItem.Text = "Redigera";
+            this.EditDiverToolStripMenuItem.Text = "Redigera hopp";
             this.EditDiverToolStripMenuItem.Click += new System.EventHandler(this.EditDiverToolStripMenuItem_Click);
             // 
             // listViewJudges_contextMenuStrip

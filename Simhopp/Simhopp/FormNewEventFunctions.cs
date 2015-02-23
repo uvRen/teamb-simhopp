@@ -57,6 +57,7 @@ namespace Simhopp
             foreach (Judge judge in Database.GetJudges())
             {
                 ListViewItem item1 = new ListViewItem();
+                item1.Tag = judge;
                 item1.Text = judge.ID.ToString();
                 listViewJudge.Items.Add(item1);
 
