@@ -43,12 +43,16 @@ namespace Simhopp
         public DivePosition Position { get; set; }
         public DiveHeight Height { get; set; }
         
-        public double Difficulty {
+        public double Difficulty
+        {
             get
             {
                 return _difficulty.Equals(0) ? DD.Difficulty(this) : _difficulty;
             }
-            set { _difficulty = value; }
+            set
+            {
+                _difficulty = value;
+            }
         }
 
         public static String GetDescription(Enum en)
@@ -73,8 +77,10 @@ namespace Simhopp
         public DiveType(int no, DivePosition position, DiveHeight height)
         {
             No = no;
+            Name = "";
             Position = position;
             Height = height;
+            Difficulty = 0;
         }
         public DiveType(int no, string name, DivePosition position, DiveHeight height, double difficulty)
         {
@@ -83,12 +89,6 @@ namespace Simhopp
             Position = position;
             Height = height;
             Difficulty = difficulty;
-        }
-
-        public double GetDifficulty()
-        {
-            //if (Difficulty.Equals(0))
-            return 0;
         }
     }
 }
