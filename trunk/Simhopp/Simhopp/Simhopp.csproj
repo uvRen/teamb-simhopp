@@ -50,7 +50,6 @@
   <ItemGroup>
     <Compile Include="Contest.cs" />
     <Compile Include="Database.cs" />
-    <Compile Include="DD.cs" />
     <Compile Include="Dive.cs" />
     <Compile Include="DiveType.cs" />
     <Compile Include="EventForm\EventPresenter.cs" />
