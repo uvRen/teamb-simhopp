@@ -10,13 +10,14 @@ using System.Windows.Forms;
 
 namespace Simhopp
 {
+ 
     public partial class FormNewEvent : Form
     {
         private bool privateDrag;
         AutoCompleteStringCollection diveNo = new AutoCompleteStringCollection();
         AutoCompleteStringCollection diveName = new AutoCompleteStringCollection();
-        
 
+        ListViewItem selectedItem = null;
         public FormNewEvent()
         {
             InitializeComponent();
@@ -157,6 +158,28 @@ namespace Simhopp
                 currentTextbox.AutoCompleteSource = AutoCompleteSource.CustomSource;
             }
         }
+
+        private void listViewDivers_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                ListViewHitTestInfo test = listViewDivers.HitTest(e.X, e.Y);
+                listViewDivers_contextMenuStrip.Show(listViewDivers, e.Location);
+                selectedItem = test.Item;
+            }
+        }
+
+        private void RemoveDiverToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EditDiverToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
 
     }
 }

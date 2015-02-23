@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -70,11 +71,15 @@
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Height = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Position = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.listViewDivers_contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.RemoveDiverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditDiverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBoxDisciplin.SuspendLayout();
             this.groupBoxSingle.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.listViewDivers_contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -303,6 +308,7 @@
             this.listViewJudge.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
+            this.listViewJudge.FullRowSelect = true;
             this.listViewJudge.GridLines = true;
             this.listViewJudge.Location = new System.Drawing.Point(710, 7);
             this.listViewJudge.Name = "listViewJudge";
@@ -339,6 +345,7 @@
             this.listViewDivers.TabIndex = 15;
             this.listViewDivers.UseCompatibleStateImageBehavior = false;
             this.listViewDivers.View = System.Windows.Forms.View.Details;
+            this.listViewDivers.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listViewDivers_MouseDown);
             // 
             // columnHeader7
             // 
@@ -490,6 +497,28 @@
             this.Position.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Position.Width = 55;
             // 
+            // listViewDivers_contextMenuStrip
+            // 
+            this.listViewDivers_contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.RemoveDiverToolStripMenuItem,
+            this.EditDiverToolStripMenuItem});
+            this.listViewDivers_contextMenuStrip.Name = "listViewDivers_contextMenuStrip";
+            this.listViewDivers_contextMenuStrip.Size = new System.Drawing.Size(121, 48);
+            // 
+            // RemoveDiverToolStripMenuItem
+            // 
+            this.RemoveDiverToolStripMenuItem.Name = "RemoveDiverToolStripMenuItem";
+            this.RemoveDiverToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.RemoveDiverToolStripMenuItem.Text = "Ta bort";
+            this.RemoveDiverToolStripMenuItem.Click += new System.EventHandler(this.RemoveDiverToolStripMenuItem_Click);
+            // 
+            // EditDiverToolStripMenuItem
+            // 
+            this.EditDiverToolStripMenuItem.Name = "EditDiverToolStripMenuItem";
+            this.EditDiverToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.EditDiverToolStripMenuItem.Text = "Redigera";
+            this.EditDiverToolStripMenuItem.Click += new System.EventHandler(this.EditDiverToolStripMenuItem_Click);
+            // 
             // FormNewEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -529,6 +558,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.listViewDivers_contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -588,5 +618,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
         private System.Windows.Forms.DataGridViewComboBoxColumn Height;
         private System.Windows.Forms.DataGridViewComboBoxColumn Position;
+        private System.Windows.Forms.ContextMenuStrip listViewDivers_contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem RemoveDiverToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem EditDiverToolStripMenuItem;
     }
 }
