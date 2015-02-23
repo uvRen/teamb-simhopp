@@ -53,6 +53,7 @@
     <Compile Include="Dive.cs" />
     <Compile Include="DiveType.cs" />
     <Compile Include="EventForm\EventPresenter.cs" />
+    <Compile Include="EventForm\JudgeServer.cs" />
     <Compile Include="FormDiverList.cs">
       <SubType>Form</SubType>
     </Compile>

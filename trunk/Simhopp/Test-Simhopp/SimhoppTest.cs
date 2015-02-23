@@ -237,5 +237,12 @@ namespace Nunit.Simhopp
             System.Diagnostics.Debug.WriteLine("Name: " + diveType.Name);
         }
 
+        [Test]
+        public void StartServer()
+        {
+            JudgeServer server = new JudgeServer();
+            server.StartListener();
+        }
+
     }
 }
