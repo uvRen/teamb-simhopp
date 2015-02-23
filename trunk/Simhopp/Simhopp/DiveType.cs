@@ -48,7 +48,12 @@ namespace Simhopp
         }
         public double Difficulty
         {
-            get { return _dd[this.No][this.Height][this.Position]; }
+            get
+            {
+                //Returnerar 0 om difficulty inte finns i _dd
+                //Annars returnerar difficulty från _dd
+                return !_dd[this.No][this.Height].ContainsKey(this.Position) ? 0 : _dd[this.No][this.Height][this.Position];
+            }
             set { _difficulty = value; }
         }
 
