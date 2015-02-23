@@ -24,7 +24,19 @@ namespace Simhopp
         #region Event Funktioner
         private void listViewEvent_ItemActivate(object sender, EventArgs e)
         {
+            int count = listViewEvent.SelectedItems.Count;
             int eventId = Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text);
+            if (count != 0)
+            {
+                button1.Enabled = true;
+            }
+            else
+            {
+                button1.Enabled = false;
+            }
+            
+
+
             listView1.Items.Clear();
 
             foreach (Diver d in Database.GetDiversInEvent(eventId))
@@ -46,8 +58,16 @@ namespace Simhopp
 
         private void StartEventClick(object sender, EventArgs e)
         {
-            Database.StartEvent(Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text));
-            FormMainFunctions.FillListViewWithEvent(listViewEvent);
+            if (listViewEvent.SelectedItems.Count != 0)
+            {
+                Database.StartEvent(Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text));
+                FormMainFunctions.FillListViewWithEvent(listViewEvent);
+            }
+            else
+            {
+                MessageBox.Show("Markera ett event, försök igen", "Fel format", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
 
         private void RegisterResultClick(object sender, EventArgs e)
