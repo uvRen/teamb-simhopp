@@ -34,8 +34,8 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.CreateNewEvent_btn = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.Event_label = new System.Windows.Forms.Label();
+            this.Resultat_label = new System.Windows.Forms.Label();
             this.PrintResult_btn = new System.Windows.Forms.Button();
             this.listViewEvent = new System.Windows.Forms.ListView();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -99,23 +99,23 @@
             this.CreateNewEvent_btn.UseVisualStyleBackColor = true;
             this.CreateNewEvent_btn.Click += new System.EventHandler(this.CreateEventClick);
             // 
-            // label1
+            // Event_label
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Event";
+            this.Event_label.AutoSize = true;
+            this.Event_label.Location = new System.Drawing.Point(23, 26);
+            this.Event_label.Name = "Event_label";
+            this.Event_label.Size = new System.Drawing.Size(35, 13);
+            this.Event_label.TabIndex = 5;
+            this.Event_label.Text = "Event";
             // 
-            // label2
+            // Resultat_label
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(519, 26);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Resultat";
+            this.Resultat_label.AutoSize = true;
+            this.Resultat_label.Location = new System.Drawing.Point(519, 26);
+            this.Resultat_label.Name = "Resultat_label";
+            this.Resultat_label.Size = new System.Drawing.Size(46, 13);
+            this.Resultat_label.TabIndex = 6;
+            this.Resultat_label.Text = "Resultat";
             // 
             // PrintResult_btn
             // 
@@ -236,8 +236,8 @@
             this.Controls.Add(this.RegisterResult_btn);
             this.Controls.Add(this.listViewEvent);
             this.Controls.Add(this.PrintResult_btn);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Resultat_label);
+            this.Controls.Add(this.Event_label);
             this.Controls.Add(this.CreateNewEvent_btn);
             this.Controls.Add(this.listViewResult);
             this.Controls.Add(this.StartEvent_btn);
@@ -256,8 +256,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.Button CreateNewEvent_btn;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label Event_label;
+        private System.Windows.Forms.Label Resultat_label;
         private System.Windows.Forms.Button PrintResult_btn;
         private System.Windows.Forms.ListView listViewEvent;
         private System.Windows.Forms.ColumnHeader columnHeader3;
