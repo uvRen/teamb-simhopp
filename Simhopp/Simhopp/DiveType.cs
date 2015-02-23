@@ -82,23 +82,29 @@ namespace Simhopp
                 throw new Exception("Kunde ej ladda DD DataTable");
             }
 
+            //Loopa rader
             foreach (DataRow row in dt.Rows)
             {
                 int diveNo = Int32.Parse(row["DiveNo"].ToString());
+                _names[diveNo] = row["DiveName"].ToString();
                 _dd[diveNo] = new Dictionary<DiveHeight, Dictionary<DivePosition, double>>();
 
+                //Loopa möjliga hopp-höjder
                 foreach (DiveType.DiveHeight diveHeight in Enum.GetValues(typeof(DiveType.DiveHeight)))
                 {
                     _dd[diveNo][diveHeight] = new Dictionary<DivePosition, double>();
+
+                    //Loopa möjliga hopp-positioner
                     foreach (DiveType.DivePosition divePosition in Enum.GetValues(typeof(DiveType.DivePosition)))
                     {
+                        //Hämtar kolumnnamn för höjd och position
                         String colName = "A" + ColumnNameFromEnum(diveHeight) + ColumnNameFromEnum(divePosition);
 
                         double difficutly = Double.Parse(row[colName].ToString());
 
                         if (difficutly.Equals(0))
                             continue;
-                        _names[diveNo] = row["DiveName"].ToString();
+                        
                         _dd[diveNo][diveHeight][divePosition] = difficutly;
                     }
                 }
