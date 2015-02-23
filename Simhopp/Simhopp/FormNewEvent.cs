@@ -66,7 +66,7 @@ namespace Simhopp
         //Skapar ett nytt event när användaren klickar på "Klar" i fönstret "FormNewEvent"
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            FormNewEventFunctions.AddNewEventToDatabase(textBox1, textBox2, dateTimePicker1, numericUpDown1, radioButton1meter, radioButton3meter, radioButtonTower, radioButtonSingle, radioButtonSync, radioButtonMale, radioButtonFemale, listViewDivers, listViewJudge, successfully, errorlabel);
+            FormNewEventFunctions.AddNewEventToDatabase(EventName_textBox, EventLocation_textBox, dateTimePicker1, DiveCount_numericUpDown, radioButton1meter, radioButton3meter, radioButtonTower, radioButtonSingle, radioButtonSync, radioButtonMale, radioButtonFemale, listViewDivers, listViewJudge, successfully, errorlabel);
         }
 
         private void textBox3_Enter(object sender, EventArgs e)
@@ -140,8 +140,8 @@ namespace Simhopp
         //autocomplete
         private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            int column = dataGridView1.CurrentCell.ColumnIndex;
-            string headerText = dataGridView1.Columns[column].HeaderText;
+            int column = DiveTypeInput_dataGridView.CurrentCell.ColumnIndex;
+            string headerText = DiveTypeInput_dataGridView.Columns[column].HeaderText;
 
             TextBox currentTextbox = e.Control as TextBox;
 
@@ -180,16 +180,16 @@ namespace Simhopp
         {
             if (selectedItem != null) 
             {
-                dataGridView1.Visible = true;
+                DiveTypeInput_dataGridView.Visible = true;
             }
 
-            dataGridView1.Rows.Clear();
+            DiveTypeInput_dataGridView.Rows.Clear();
 
             string[] row = new string[] { "", "", "", ""};
-            for (int i = 0; i < Int32.Parse(numericUpDown1.Value.ToString()); i++)
+            for (int i = 0; i < Int32.Parse(DiveCount_numericUpDown.Value.ToString()); i++)
             {
-                dataGridView1.Rows.Add(row);
-                dataGridView1.Rows[i].HeaderCell.Value = String.Format("{0}", i + 1);
+                DiveTypeInput_dataGridView.Rows.Add(row);
+                DiveTypeInput_dataGridView.Rows[i].HeaderCell.Value = String.Format("{0}", i + 1);
             }
         }
 

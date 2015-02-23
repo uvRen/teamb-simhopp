@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.EventName_label = new System.Windows.Forms.Label();
+            this.EventName_textBox = new System.Windows.Forms.TextBox();
+            this.EventLocation_textBox = new System.Windows.Forms.TextBox();
+            this.EventLocation_label = new System.Windows.Forms.Label();
+            this.DiveCount_label = new System.Windows.Forms.Label();
             this.radioButtonSync = new System.Windows.Forms.RadioButton();
             this.radioButtonSingle = new System.Windows.Forms.RadioButton();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.DiveCount_numericUpDown = new System.Windows.Forms.NumericUpDown();
             this.radioButton1meter = new System.Windows.Forms.RadioButton();
             this.radioButton3meter = new System.Windows.Forms.RadioButton();
             this.radioButtonTower = new System.Windows.Forms.RadioButton();
@@ -44,7 +44,7 @@
             this.groupBoxSingle = new System.Windows.Forms.GroupBox();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
+            this.EventDate_label = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioButtonMale = new System.Windows.Forms.RadioButton();
             this.radioButtonFemale = new System.Windows.Forms.RadioButton();
@@ -66,7 +66,7 @@
             this.newJudgeName = new System.Windows.Forms.TextBox();
             this.newJudgeSubmit = new System.Windows.Forms.Button();
             this.newDiverSelectGender = new System.Windows.Forms.ComboBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DiveTypeInput_dataGridView = new System.Windows.Forms.DataGridView();
             this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Height = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -76,57 +76,57 @@
             this.RemoveDiverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listViewJudges_contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.RemoveJudge_toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DiveCount_numericUpDown)).BeginInit();
             this.groupBoxDisciplin.SuspendLayout();
             this.groupBoxSingle.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DiveTypeInput_dataGridView)).BeginInit();
             this.listViewDivers_contextMenuStrip.SuspendLayout();
             this.listViewJudges_contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // EventName_label
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Namn";
+            this.EventName_label.AutoSize = true;
+            this.EventName_label.Location = new System.Drawing.Point(20, 34);
+            this.EventName_label.Name = "EventName_label";
+            this.EventName_label.Size = new System.Drawing.Size(35, 13);
+            this.EventName_label.TabIndex = 0;
+            this.EventName_label.Text = "Namn";
             // 
-            // textBox1
+            // EventName_textBox
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(88, 32);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(181, 20);
-            this.textBox1.TabIndex = 1;
+            this.EventName_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.EventName_textBox.Location = new System.Drawing.Point(88, 32);
+            this.EventName_textBox.Name = "EventName_textBox";
+            this.EventName_textBox.Size = new System.Drawing.Size(181, 20);
+            this.EventName_textBox.TabIndex = 1;
             // 
-            // textBox2
+            // EventLocation_textBox
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(88, 57);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(181, 20);
-            this.textBox2.TabIndex = 2;
+            this.EventLocation_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.EventLocation_textBox.Location = new System.Drawing.Point(88, 57);
+            this.EventLocation_textBox.Name = "EventLocation_textBox";
+            this.EventLocation_textBox.Size = new System.Drawing.Size(181, 20);
+            this.EventLocation_textBox.TabIndex = 2;
             // 
-            // label2
+            // EventLocation_label
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 60);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(30, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Plats";
+            this.EventLocation_label.AutoSize = true;
+            this.EventLocation_label.Location = new System.Drawing.Point(20, 60);
+            this.EventLocation_label.Name = "EventLocation_label";
+            this.EventLocation_label.Size = new System.Drawing.Size(30, 13);
+            this.EventLocation_label.TabIndex = 2;
+            this.EventLocation_label.Text = "Plats";
             // 
-            // label4
+            // DiveCount_label
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 110);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 13);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Antal hopp";
+            this.DiveCount_label.AutoSize = true;
+            this.DiveCount_label.Location = new System.Drawing.Point(20, 110);
+            this.DiveCount_label.Name = "DiveCount_label";
+            this.DiveCount_label.Size = new System.Drawing.Size(58, 13);
+            this.DiveCount_label.TabIndex = 5;
+            this.DiveCount_label.Text = "Antal hopp";
             // 
             // radioButtonSync
             // 
@@ -151,12 +151,12 @@
             this.radioButtonSingle.Text = "Single";
             this.radioButtonSingle.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown1
+            // DiveCount_numericUpDown
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(88, 107);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(54, 20);
-            this.numericUpDown1.TabIndex = 4;
+            this.DiveCount_numericUpDown.Location = new System.Drawing.Point(88, 107);
+            this.DiveCount_numericUpDown.Name = "DiveCount_numericUpDown";
+            this.DiveCount_numericUpDown.Size = new System.Drawing.Size(54, 20);
+            this.DiveCount_numericUpDown.TabIndex = 4;
             // 
             // radioButton1meter
             // 
@@ -239,14 +239,14 @@
             this.dateTimePicker1.TabIndex = 3;
             this.dateTimePicker1.Value = new System.DateTime(2015, 2, 9, 0, 0, 0, 0);
             // 
-            // label3
+            // EventDate_label
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 87);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 13);
-            this.label3.TabIndex = 20;
-            this.label3.Text = "Datum";
+            this.EventDate_label.AutoSize = true;
+            this.EventDate_label.Location = new System.Drawing.Point(20, 87);
+            this.EventDate_label.Name = "EventDate_label";
+            this.EventDate_label.Size = new System.Drawing.Size(38, 13);
+            this.EventDate_label.TabIndex = 20;
+            this.EventDate_label.Text = "Datum";
             // 
             // groupBox1
             // 
@@ -444,24 +444,24 @@
             this.newDiverSelectGender.Sorted = true;
             this.newDiverSelectGender.TabIndex = 19;
             // 
-            // dataGridView1
+            // DiveTypeInput_dataGridView
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DiveTypeInput_dataGridView.AllowUserToAddRows = false;
+            this.DiveTypeInput_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DiveTypeInput_dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Code,
             this.Type,
             this.Height,
             this.Position});
-            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.Location = new System.Drawing.Point(23, 315);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(264, 142);
-            this.dataGridView1.TabIndex = 26;
-            this.dataGridView1.Visible = false;
-            this.dataGridView1.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView1_EditingControlShowing);
-            this.dataGridView1.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowLeave);
+            this.DiveTypeInput_dataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.DiveTypeInput_dataGridView.EnableHeadersVisualStyles = false;
+            this.DiveTypeInput_dataGridView.Location = new System.Drawing.Point(23, 315);
+            this.DiveTypeInput_dataGridView.Name = "DiveTypeInput_dataGridView";
+            this.DiveTypeInput_dataGridView.Size = new System.Drawing.Size(264, 142);
+            this.DiveTypeInput_dataGridView.TabIndex = 26;
+            this.DiveTypeInput_dataGridView.Visible = false;
+            this.DiveTypeInput_dataGridView.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView1_EditingControlShowing);
+            this.DiveTypeInput_dataGridView.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowLeave);
             // 
             // Code
             // 
@@ -545,7 +545,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 552);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.DiveTypeInput_dataGridView);
             this.Controls.Add(this.newDiverSelectGender);
             this.Controls.Add(this.newJudgeSubmit);
             this.Controls.Add(this.newJudgeName);
@@ -558,27 +558,27 @@
             this.Controls.Add(this.errorlabel);
             this.Controls.Add(this.successfully);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.EventDate_label);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.groupBoxSingle);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.EventName_textBox);
             this.Controls.Add(this.groupBoxDisciplin);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.DiveCount_numericUpDown);
+            this.Controls.Add(this.DiveCount_label);
+            this.Controls.Add(this.EventLocation_textBox);
+            this.Controls.Add(this.EventLocation_label);
+            this.Controls.Add(this.EventName_label);
             this.Name = "FormNewEvent";
             this.Text = "FormNewEvent";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DiveCount_numericUpDown)).EndInit();
             this.groupBoxDisciplin.ResumeLayout(false);
             this.groupBoxDisciplin.PerformLayout();
             this.groupBoxSingle.ResumeLayout(false);
             this.groupBoxSingle.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DiveTypeInput_dataGridView)).EndInit();
             this.listViewDivers_contextMenuStrip.ResumeLayout(false);
             this.listViewJudges_contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -588,15 +588,15 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label EventName_label;
+        private System.Windows.Forms.Label EventLocation_label;
+        private System.Windows.Forms.Label EventDate_label;
+        private System.Windows.Forms.Label DiveCount_label;
         private System.Windows.Forms.Label successfully;
         private System.Windows.Forms.Label errorlabel;
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox EventName_textBox;
+        private System.Windows.Forms.TextBox EventLocation_textBox;
         private System.Windows.Forms.TextBox newDiverName;
         private System.Windows.Forms.TextBox newDiverAge;
         private System.Windows.Forms.TextBox newDiverCountry;
@@ -617,7 +617,7 @@
         private System.Windows.Forms.Button newJudgeSubmit;
         private System.Windows.Forms.Button AddNewDiverSubmit;
 
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown DiveCount_numericUpDown;
 
         private System.Windows.Forms.ComboBox newDiverSelectGender;
         
@@ -635,7 +635,7 @@
         
         private System.Windows.Forms.ListView listViewJudge;
         private System.Windows.Forms.ListView listViewDivers;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView DiveTypeInput_dataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn Code;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
         private System.Windows.Forms.DataGridViewComboBoxColumn Height;
