@@ -159,6 +159,7 @@ namespace Simhopp
             }
         }
 
+        //Simhoppare högerklick
         private void listViewDivers_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -171,7 +172,8 @@ namespace Simhopp
 
         private void RemoveDiverToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Database.RemoveDiver(Int32.Parse(selectedItem.SubItems[4].Text));
+            FormNewEventFunctions.FillListViewWithDivers(radioButtonMale, radioButtonFemale, listViewDivers);
         }
 
         private void EditDiverToolStripMenuItem_Click(object sender, EventArgs e)
@@ -179,6 +181,22 @@ namespace Simhopp
 
         }
 
+
+        //Domare högerklick
+        private void listViewJudges_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                ListViewHitTestInfo test = listViewJudge.HitTest(e.X, e.Y);
+                listViewJudges_contextMenuStrip.Show(listViewJudge, e.Location);
+                selectedItem = test.Item;
+            }
+        }
+
+        private void RemoveJudge_toolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
 
 
     }

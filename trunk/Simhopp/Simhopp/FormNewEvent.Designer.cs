@@ -74,12 +74,15 @@
             this.listViewDivers_contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.RemoveDiverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EditDiverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listViewJudges_contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.RemoveJudge_toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBoxDisciplin.SuspendLayout();
             this.groupBoxSingle.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.listViewDivers_contextMenuStrip.SuspendLayout();
+            this.listViewJudges_contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -317,6 +320,7 @@
             this.listViewJudge.UseCompatibleStateImageBehavior = false;
             this.listViewJudge.View = System.Windows.Forms.View.Details;
             this.listViewJudge.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listViewJudge_ItemChecked);
+            this.listViewJudge.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listViewJudges_MouseDown);
             // 
             // columnHeader1
             // 
@@ -508,16 +512,30 @@
             // RemoveDiverToolStripMenuItem
             // 
             this.RemoveDiverToolStripMenuItem.Name = "RemoveDiverToolStripMenuItem";
-            this.RemoveDiverToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.RemoveDiverToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.RemoveDiverToolStripMenuItem.Text = "Ta bort";
             this.RemoveDiverToolStripMenuItem.Click += new System.EventHandler(this.RemoveDiverToolStripMenuItem_Click);
             // 
             // EditDiverToolStripMenuItem
             // 
             this.EditDiverToolStripMenuItem.Name = "EditDiverToolStripMenuItem";
-            this.EditDiverToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.EditDiverToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.EditDiverToolStripMenuItem.Text = "Redigera";
             this.EditDiverToolStripMenuItem.Click += new System.EventHandler(this.EditDiverToolStripMenuItem_Click);
+            // 
+            // listViewJudges_contextMenuStrip
+            // 
+            this.listViewJudges_contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.RemoveJudge_toolStripMenuItem});
+            this.listViewJudges_contextMenuStrip.Name = "listViewJudges_contextMenuStrip";
+            this.listViewJudges_contextMenuStrip.Size = new System.Drawing.Size(113, 26);
+            // 
+            // RemoveJudge_toolStripMenuItem
+            // 
+            this.RemoveJudge_toolStripMenuItem.Name = "RemoveJudge_toolStripMenuItem";
+            this.RemoveJudge_toolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.RemoveJudge_toolStripMenuItem.Text = "Ta bort";
+            this.RemoveJudge_toolStripMenuItem.Click += new System.EventHandler(this.RemoveJudge_toolStripMenuItem_Click);
             // 
             // FormNewEvent
             // 
@@ -559,6 +577,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.listViewDivers_contextMenuStrip.ResumeLayout(false);
+            this.listViewJudges_contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -621,5 +640,7 @@
         private System.Windows.Forms.ContextMenuStrip listViewDivers_contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem RemoveDiverToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem EditDiverToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip listViewJudges_contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem RemoveJudge_toolStripMenuItem;
     }
 }
