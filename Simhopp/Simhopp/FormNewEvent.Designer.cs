@@ -72,8 +72,8 @@
             this.Height = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Position = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.listViewDivers_contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.RemoveDiverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EditDiverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RemoveDiverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listViewJudges_contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.RemoveJudge_toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -461,6 +461,7 @@
             this.dataGridView1.TabIndex = 26;
             this.dataGridView1.Visible = false;
             this.dataGridView1.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView1_EditingControlShowing);
+            this.dataGridView1.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowLeave);
             // 
             // Code
             // 
@@ -512,19 +513,19 @@
             this.listViewDivers_contextMenuStrip.Name = "listViewDivers_contextMenuStrip";
             this.listViewDivers_contextMenuStrip.Size = new System.Drawing.Size(152, 48);
             // 
-            // RemoveDiverToolStripMenuItem
-            // 
-            this.RemoveDiverToolStripMenuItem.Name = "RemoveDiverToolStripMenuItem";
-            this.RemoveDiverToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
-            this.RemoveDiverToolStripMenuItem.Text = "Ta bort";
-            this.RemoveDiverToolStripMenuItem.Click += new System.EventHandler(this.RemoveDiverToolStripMenuItem_Click);
-            // 
             // EditDiverToolStripMenuItem
             // 
             this.EditDiverToolStripMenuItem.Name = "EditDiverToolStripMenuItem";
-            this.EditDiverToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.EditDiverToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.EditDiverToolStripMenuItem.Text = "Redigera hopp";
             this.EditDiverToolStripMenuItem.Click += new System.EventHandler(this.EditDiverToolStripMenuItem_Click);
+            // 
+            // RemoveDiverToolStripMenuItem
+            // 
+            this.RemoveDiverToolStripMenuItem.Name = "RemoveDiverToolStripMenuItem";
+            this.RemoveDiverToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.RemoveDiverToolStripMenuItem.Text = "Ta bort";
+            this.RemoveDiverToolStripMenuItem.Click += new System.EventHandler(this.RemoveDiverToolStripMenuItem_Click);
             // 
             // listViewJudges_contextMenuStrip
             // 
@@ -536,7 +537,7 @@
             // RemoveJudge_toolStripMenuItem
             // 
             this.RemoveJudge_toolStripMenuItem.Name = "RemoveJudge_toolStripMenuItem";
-            this.RemoveJudge_toolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.RemoveJudge_toolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.RemoveJudge_toolStripMenuItem.Text = "Ta bort";
             this.RemoveJudge_toolStripMenuItem.Click += new System.EventHandler(this.RemoveJudge_toolStripMenuItem_Click);
             // 

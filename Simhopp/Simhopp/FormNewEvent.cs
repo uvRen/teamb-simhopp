@@ -182,11 +182,14 @@ namespace Simhopp
             {
                 dataGridView1.Visible = true;
             }
+
+            dataGridView1.Rows.Clear();
+
             string[] row = new string[] { "", "", "", ""};
             for (int i = 0; i < Int32.Parse(numericUpDown1.Value.ToString()); i++)
             {
                 dataGridView1.Rows.Add(row);
-                dataGridView1.Rows[i].HeaderCell.Value = String.Format("{0}", i+1);
+                dataGridView1.Rows[i].HeaderCell.Value = String.Format("{0}", i + 1);
             }
         }
 
@@ -202,9 +205,9 @@ namespace Simhopp
             }
         }
 
-        private void RemoveJudge_toolStripMenuItem_Click(object sender, EventArgs e)
+        private void dataGridView1_RowLeave(object sender, DataGridViewCellEventArgs e)
         {
-
+            
         }
     }
 }
