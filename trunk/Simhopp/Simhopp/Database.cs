@@ -373,6 +373,27 @@ namespace Simhopp
         #endregion
 
         #region DD
+        public static DataTable GetDDList()
+        {
+            var conn = ConnectToDatabase();
+            if (conn != null)
+            {
+                var cmd = new MySqlCommand("SELECT * FROM DD", conn);
+                var dr = cmd.ExecuteReader();
+                var dt = new DataTable();
+                dt.Load(dr);
+                conn.Close();
+                return dt;
+            }
+            else
+            {
+                MessageBox.Show("Anslutningen till databasen misslyckades", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return null;
+            conn.Close();
+        }
+
+
         public static void GetDiveNoFromDDinDatabase(string[] DiveNo, string[] DiveName)
         {
             int count = 0;
