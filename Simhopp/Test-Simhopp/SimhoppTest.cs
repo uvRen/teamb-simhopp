@@ -1,5 +1,6 @@
 ﻿
 
+using System.ComponentModel;
 using Simhopp;
 using MySql.Data;
 using MySql.Data.MySqlClient;
@@ -230,10 +231,10 @@ namespace Nunit.Simhopp
         [Test]
         public void TestDD()
         {
-            DD.LoadDDTable();
+            DiveType.LoadDDTable();
             DiveType diveType = new DiveType(103, DiveType.DivePosition.A, DiveType.DiveHeight._1M);
-            Assert.AreEqual(DD.Difficulty(diveType), 2.0);
             Assert.AreEqual(diveType.Difficulty, 2.0);
+            System.Diagnostics.Debug.WriteLine("Name: " + diveType.Name);
         }
 
     }
