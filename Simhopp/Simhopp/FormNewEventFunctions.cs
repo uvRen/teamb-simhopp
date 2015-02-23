@@ -12,6 +12,13 @@ namespace Simhopp
 {
     public class FormNewEventFunctions
     {
+        public static void AddDivesToDiver(DataGrid dataGridView, ListView listViewDivers)
+        {
+            if(listViewDivers.SelectedItems.Count > 0)
+            {
+                dataGridView.Visible = true;
+            }
+        }
         //skriver ut alla hoppare som ska vara med i listan
         public static void FillListViewWithDivers(RadioButton radioButtonMale, RadioButton radioButtonFemale, ListView listViewDivers) 
         {

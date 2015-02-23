@@ -331,6 +331,7 @@
             this.columnHeader9,
             this.columnHeader10,
             this.columnHeader3});
+            this.listViewDivers.FullRowSelect = true;
             this.listViewDivers.GridLines = true;
             this.listViewDivers.Location = new System.Drawing.Point(313, 6);
             this.listViewDivers.Name = "listViewDivers";
@@ -444,6 +445,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(264, 150);
             this.dataGridView1.TabIndex = 26;
+            this.dataGridView1.Visible = false;
             this.dataGridView1.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView1_EditingControlShowing);
             // 
             // Code
