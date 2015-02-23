@@ -194,7 +194,7 @@ namespace Nunit.Simhopp
 
             Diver tDiver = new Diver(-1, "Greger");
             Dive tDive = new Dive(-1, tDiver, 1, _contest);
-            tDiver.AddDive(tDive);
+            tDiver.AddDi12ve(tDive);
             tDive.AddScore(new Score(0, tDive, _judges[0], 1));
             tDive.AddScore(new Score(0, tDive, _judges[1], 5));
             tDive.AddScore(new Score(0, tDive, _judges[2], 5));
