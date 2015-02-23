@@ -250,6 +250,31 @@ namespace Simhopp
                 return;
             }
         }
+
+        public static void RemoveEvent(int eventID)
+        {
+            MySqlConnection conn = ConnectToDatabase();
+            string sql = "";
+
+            if (conn != null)
+            {
+                sql = "DELETE FROM score WHERE diveId IN (SELECT id FROM dive WHERE eventId =" + eventID + ");";
+                var cmd = new MySqlCommand(sql, conn);
+                var dr = cmd.ExecuteNonQuery();
+                sql = "DELETE FROM dive WHERE eventId =" + eventID + ";" + "DELETE FROM event_diver WHERE eventId =" + eventID + ";" + "DELETE FROM event_judge WHERE eventId =" + eventID + ";";
+                cmd = new MySqlCommand(sql, conn);
+                dr = cmd.ExecuteNonQuery();
+                sql = "DELETE FROM event WHERE id =" + eventID + ";";
+                cmd = new MySqlCommand(sql, conn);
+                dr = cmd.ExecuteNonQuery();
+            }
+            else
+            {
+                MessageBox.Show("Anslutningen till databasen misslyckades", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
         #endregion
 
         #region Diver
@@ -337,6 +362,31 @@ namespace Simhopp
                 return null;
             }
         }
+
+        public static void RemoveDiver(int diverID)
+        {
+            MySqlConnection conn = ConnectToDatabase();
+            string sql = "";
+
+            if (conn != null)
+            {
+                sql = "DELETE FROM score WHERE diveId IN (SELECT id FROM dive WHERE diverId =" + diverID + ");";
+                var cmd = new MySqlCommand(sql, conn);
+                var dr = cmd.ExecuteNonQuery();
+                sql = "DELETE FROM dive WHERE diverId =" + diverID + ";" + "DELETE FROM event_diver WHERE diverId =" + diverID + ";";
+                cmd = new MySqlCommand(sql, conn);
+                dr = cmd.ExecuteNonQuery();
+                sql = "DELETE FROM diver WHERE id =" + diverID + ";";
+                cmd = new MySqlCommand(sql, conn);
+                dr = cmd.ExecuteNonQuery();
+            }
+            else
+            {
+                MessageBox.Show("Anslutningen till databasen misslyckades", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
         #endregion
 
         #region Score
@@ -389,8 +439,8 @@ namespace Simhopp
             {
                 MessageBox.Show("Anslutningen till databasen misslyckades", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return null;
             conn.Close();
+            return null;
         }
 
         public static void GetAutoCompleteListsFromDatabase(AutoCompleteStringCollection diveNo, AutoCompleteStringCollection diveName)
