@@ -72,6 +72,7 @@ namespace Simhopp
                     return dt.Difficulty;
                 }
             }
+            return 0;
         }
 
         public void FillArrays()

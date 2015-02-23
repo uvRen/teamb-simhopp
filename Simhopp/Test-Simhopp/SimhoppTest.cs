@@ -194,7 +194,7 @@ namespace Nunit.Simhopp
 
             Diver tDiver = new Diver(-1, "Greger");
             Dive tDive = new Dive(-1, tDiver, 1, _contest);
-            tDiver.AddDi12ve(tDive);
+            tDiver.AddDive(tDive);
             tDive.AddScore(new Score(0, tDive, _judges[0], 1));
             tDive.AddScore(new Score(0, tDive, _judges[1], 5));
             tDive.AddScore(new Score(0, tDive, _judges[2], 5));
@@ -225,6 +225,15 @@ namespace Nunit.Simhopp
             Assert.AreEqual(_divers[0].GetDives()[0].GetScores()[0].judge.GetJudgeName(), "Mr. Test");
 
             System.Diagnostics.Debug.WriteLine("Score: " + _divers[0].TotalScore);
+        }
+
+        [Test]
+        public void TestDD()
+        {
+            DD.LoadDDTable();
+            DiveType diveType = new DiveType(103, DiveType.DivePosition.A, DiveType.DiveHeight._1M);
+            Assert.AreEqual(DD.Difficulty(diveType), 2.0);
+            Assert.AreEqual(diveType.Difficulty, 2.0);
         }
 
     }
