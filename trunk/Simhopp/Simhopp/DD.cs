@@ -39,8 +39,8 @@ namespace Simhopp
             {
                 foreach (DiveType.DiveHeight diveHeight in Enum.GetValues(typeof (DiveType.DiveHeight)))
                 {
-                foreach (DiveType.DivePosition divePosition in Enum.GetValues(typeof (DiveType.DivePosition)))
-                {
+                    foreach (DiveType.DivePosition divePosition in Enum.GetValues(typeof (DiveType.DivePosition)))
+                    {
                         String colName = "A" + DiveType.GetDescription(diveHeight) + DiveType.GetDescription(divePosition);
                         
                         double difficutly = Double.Parse(row[colName].ToString());
@@ -68,7 +68,7 @@ namespace Simhopp
                 if (dt.Height == diveType.Height &&
                     dt.No == diveType.No &&
                     dt.Position == diveType.Position)
-                {
+        {
                     return dt.Difficulty;
                 }
             }

@@ -24,15 +24,15 @@ namespace Simhopp
             //fyller listorna med dommare och hoppare
             FormNewEventFunctions.FillListViewWithDivers(radioButtonMale, radioButtonFemale, listViewDivers);
             FormNewEventFunctions.FillListViewWithJudges(listViewJudge);
+
             
             listViewDivers.ItemDrag += listViewDivers_ItemDrag;
             listViewDivers.DragEnter += listViewDivers_DragEnter;
             listViewDivers.DragDrop += listViewDivers_DragDrop;
             listViewDivers.AllowDrop = true;
 
+            //hämtar autocomplete listorna från databasen
             Database.GetAutoCompleteListsFromDatabase(diveNo, diveName);
-
-          
         }
 
         #region Event Funktioner
@@ -135,7 +135,8 @@ namespace Simhopp
             FormNewEventFunctions.FillListViewWithDivers(radioButtonMale, radioButtonFemale, listViewDivers);
         }
         #endregion
-
+        
+        //autocomplete
         private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             int column = dataGridView1.CurrentCell.ColumnIndex;
