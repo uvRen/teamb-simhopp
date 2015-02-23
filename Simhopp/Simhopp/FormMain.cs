@@ -107,7 +107,8 @@ namespace Simhopp
         //tar bort event och allt tillhörande ur databasen
         private void taBortEventToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Database.RemoveEvent(Int32.Parse(selectedItem.SubItems[5].Text));
+            FormMainFunctions.FillListViewWithEvent(listViewEvent);
         }
         //kollar om det finns en extra skärm ansluten och skickar upp resulten (FormResultsToFullScreen) på den
         private void ResultsToFullScreen_btn_Click(object sender, EventArgs e)
