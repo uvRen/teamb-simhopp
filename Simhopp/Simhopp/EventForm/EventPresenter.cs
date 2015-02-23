@@ -120,7 +120,6 @@ namespace Simhopp
             }
 
             return score;
-
         }
     }
 }

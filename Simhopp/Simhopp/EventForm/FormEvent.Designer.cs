@@ -41,10 +41,13 @@
             this.listViewJudges = new System.Windows.Forms.ListView();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelEventInfo = new System.Windows.Forms.Panel();
-            this.labelTitle = new System.Windows.Forms.Label();
             this.labelSummary = new System.Windows.Forms.Label();
+            this.labelTitle = new System.Windows.Forms.Label();
+            this.panelServer = new System.Windows.Forms.Panel();
+            this.textBoxSeverLog = new System.Windows.Forms.TextBox();
             this.panelControls.SuspendLayout();
             this.panelEventInfo.SuspendLayout();
+            this.panelServer.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabsRounds
@@ -175,8 +178,18 @@
             this.panelEventInfo.Controls.Add(this.labelTitle);
             this.panelEventInfo.Location = new System.Drawing.Point(12, 12);
             this.panelEventInfo.Name = "panelEventInfo";
-            this.panelEventInfo.Size = new System.Drawing.Size(284, 329);
+            this.panelEventInfo.Size = new System.Drawing.Size(284, 240);
             this.panelEventInfo.TabIndex = 10;
+            // 
+            // labelSummary
+            // 
+            this.labelSummary.AutoSize = true;
+            this.labelSummary.ForeColor = System.Drawing.Color.White;
+            this.labelSummary.Location = new System.Drawing.Point(15, 60);
+            this.labelSummary.Name = "labelSummary";
+            this.labelSummary.Size = new System.Drawing.Size(72, 13);
+            this.labelSummary.TabIndex = 1;
+            this.labelSummary.Text = "labelSummary";
             // 
             // labelTitle
             // 
@@ -189,21 +202,31 @@
             this.labelTitle.TabIndex = 0;
             this.labelTitle.Text = "label1";
             // 
-            // labelSummary
+            // panelServer
             // 
-            this.labelSummary.AutoSize = true;
-            this.labelSummary.ForeColor = System.Drawing.Color.White;
-            this.labelSummary.Location = new System.Drawing.Point(15, 60);
-            this.labelSummary.Name = "labelSummary";
-            this.labelSummary.Size = new System.Drawing.Size(72, 13);
-            this.labelSummary.TabIndex = 1;
-            this.labelSummary.Text = "labelSummary";
+            this.panelServer.Controls.Add(this.textBoxSeverLog);
+            this.panelServer.Location = new System.Drawing.Point(12, 258);
+            this.panelServer.Name = "panelServer";
+            this.panelServer.Size = new System.Drawing.Size(284, 83);
+            this.panelServer.TabIndex = 11;
+            // 
+            // textBoxSeverLog
+            // 
+            this.textBoxSeverLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxSeverLog.Location = new System.Drawing.Point(4, 3);
+            this.textBoxSeverLog.Multiline = true;
+            this.textBoxSeverLog.Name = "textBoxSeverLog";
+            this.textBoxSeverLog.Size = new System.Drawing.Size(277, 77);
+            this.textBoxSeverLog.TabIndex = 0;
             // 
             // FormEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(958, 524);
+            this.Controls.Add(this.panelServer);
             this.Controls.Add(this.panelEventInfo);
             this.Controls.Add(this.listViewJudges);
             this.Controls.Add(this.listViewLeaderboard);
@@ -216,6 +239,8 @@
             this.panelControls.ResumeLayout(false);
             this.panelEventInfo.ResumeLayout(false);
             this.panelEventInfo.PerformLayout();
+            this.panelServer.ResumeLayout(false);
+            this.panelServer.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -237,5 +262,7 @@
         private System.Windows.Forms.Panel panelEventInfo;
         private System.Windows.Forms.Label labelSummary;
         private System.Windows.Forms.Label labelTitle;
+        private System.Windows.Forms.Panel panelServer;
+        private System.Windows.Forms.TextBox textBoxSeverLog;
     }
 }

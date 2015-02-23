@@ -140,6 +140,7 @@ namespace Simhopp
             pagePanelContainer.BackColor = colors[1];
             panelControls.BackColor = colors[1];
             panelEventInfo.BackColor = colors[1];
+            panelServer.BackColor = colors[1];
             listViewLeaderboard.BackColor = colors[1];
             listViewJudges.BackColor = colors[1];
             listViewLeaderboard.ForeColor = Color.White;
