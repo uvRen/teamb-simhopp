@@ -539,7 +539,6 @@
             this.RemoveJudge_toolStripMenuItem.Name = "RemoveJudge_toolStripMenuItem";
             this.RemoveJudge_toolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.RemoveJudge_toolStripMenuItem.Text = "Ta bort";
-            this.RemoveJudge_toolStripMenuItem.Click += new System.EventHandler(this.RemoveJudge_toolStripMenuItem_Click);
             // 
             // FormNewEvent
             // 
