@@ -47,7 +47,7 @@ namespace Simhopp
 
         public void FillArrays()
         {
-            Database.GetDiveNoFromDDinDatabase(DiveNo, DiveName);
+           // Database.GetDiveNoFromDDinDatabase(DiveNo, DiveName);
         }
     }
 }

@@ -393,6 +393,29 @@ namespace Simhopp
             conn.Close();
         }
 
+        public static void GetAutoCompleteListsFromDatabase(AutoCompleteStringCollection diveNo, AutoCompleteStringCollection diveName)
+        {
+            var conn = ConnectToDatabase();
+            if (conn != null)
+            {
+                var cmd = new MySqlCommand("SELECT DiveNo, DiveName FROM DD", conn);
+                var dr = cmd.ExecuteReader();
+                var dt = new DataTable();
+                dt.Load(dr);
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    diveNo.Add(row["DiveNo"].ToString());
+                    diveName.Add(row["DiveName"].ToString());
+                }
+            }
+
+            else
+            {
+                MessageBox.Show("Anslutningen till databasen misslyckades", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            conn.Close();
+        }
 
         public static void GetDiveNoFromDDinDatabase(string[] DiveNo, string[] DiveName)
         {
