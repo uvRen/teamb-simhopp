@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -13,10 +14,7 @@ namespace Simhopp
     {
         public enum DivePosition
         {
-            A,
-            B,
-            C,
-            D
+            A, B, C, D
         };
 
         /// <summary>
@@ -24,38 +22,95 @@ namespace Simhopp
         /// </summary>
         public enum DiveHeight
         {
-            [Description("1")]
-            _1M,
-            [Description("3")]
-            _3M,
-            [Description("5")]
-            _5M,
-            [Description("7_5")]
-            _7_5M,
-            [Description("10")]
-            _10M
+            [Description("1")] _1M,
+            [Description("3")] _3M,
+            [Description("5")] _5M,
+            [Description("7_5")] _7_5M,
+            [Description("10")] _10M
         };
 
+        //_dd håller information om svårighetsgraf för hopp.
+        //Användning: _dd[nummer][höjd][position]
+        private static Dictionary<int, Dictionary<DiveHeight, Dictionary<DivePosition, double>>> _dd;
+
+        //_names hämtar hoppnamn från hopp-nummer
+        private static Dictionary<int, String> _names;
+
         private double _difficulty;
+        private String _name;
 
         public int No { get; set; }
-        public String Name { get; set; }
+
+        public String Name
+        {
+            get { return _names[this.No]; }
+            set { _name = value; }
+        }
+        public double Difficulty
+        {
+            get { return _dd[this.No][this.Height][this.Position]; }
+            set { _difficulty = value; }
+        }
+
         public DivePosition Position { get; set; }
         public DiveHeight Height { get; set; }
         
-        public double Difficulty
+        public DiveType(int no, DivePosition position, DiveHeight height)
         {
-            get
+            No = no;
+            Position = position;
+            Height = height;
+        }
+
+
+        /// <summary>
+        /// Hämtar DD-listan från databasen
+        /// Måste anropas (endast en gång) innan man kan hämta Difficulty och Namn
+        /// </summary>
+        public static void LoadDDTable()
+        {
+            if (_dd != null)
+                return;
+
+            _dd = new Dictionary<int, Dictionary<DiveHeight, Dictionary<DivePosition, double>>>();
+            _names = new Dictionary<int, string>();
+
+            DataTable dt = Database.GetDDList();
+
+            if (dt == null)
             {
-                return _difficulty.Equals(0) ? DD.Difficulty(this) : _difficulty;
+                throw new Exception("Kunde ej ladda DD DataTable");
             }
-            set
+
+            foreach (DataRow row in dt.Rows)
             {
-                _difficulty = value;
+                int diveNo = Int32.Parse(row["DiveNo"].ToString());
+                _dd[diveNo] = new Dictionary<DiveHeight, Dictionary<DivePosition, double>>();
+
+                foreach (DiveType.DiveHeight diveHeight in Enum.GetValues(typeof(DiveType.DiveHeight)))
+                {
+                    _dd[diveNo][diveHeight] = new Dictionary<DivePosition, double>();
+                    foreach (DiveType.DivePosition divePosition in Enum.GetValues(typeof(DiveType.DivePosition)))
+                    {
+                        String colName = "A" + ColumnNameFromEnum(diveHeight) + ColumnNameFromEnum(divePosition);
+
+                        double difficutly = Double.Parse(row[colName].ToString());
+
+                        if (difficutly.Equals(0))
+                            continue;
+                        _names[diveNo] = row["DiveName"].ToString();
+                        _dd[diveNo][diveHeight][divePosition] = difficutly;
+                    }
+                }
             }
         }
 
-        public static String GetDescription(Enum en)
+        /// <summary>
+        /// Hämtar kolumnnamn på enum från dess Description-attribut
+        /// </summary>
+        /// <param name="en">DivePosition eller DiveHeight</param>
+        /// <returns></returns>
+        private static String ColumnNameFromEnum(Enum en)
         {
             Type type = en.GetType();
 
@@ -72,23 +127,6 @@ namespace Simhopp
             }
 
             return en.ToString();
-        }
-
-        public DiveType(int no, DivePosition position, DiveHeight height)
-        {
-            No = no;
-            Name = "";
-            Position = position;
-            Height = height;
-            Difficulty = 0;
-        }
-        public DiveType(int no, string name, DivePosition position, DiveHeight height, double difficulty)
-        {
-            No = no;
-            Name = name;
-            Position = position;
-            Height = height;
-            Difficulty = difficulty;
         }
     }
 }
