@@ -13,6 +13,9 @@ namespace Simhopp
     public partial class FormNewEvent : Form
     {
         private bool privateDrag;
+        AutoCompleteStringCollection diveNo = new AutoCompleteStringCollection();
+        AutoCompleteStringCollection diveName = new AutoCompleteStringCollection();
+        
 
         public FormNewEvent()
         {
@@ -27,52 +30,9 @@ namespace Simhopp
             listViewDivers.DragDrop += listViewDivers_DragDrop;
             listViewDivers.AllowDrop = true;
 
-            AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
-            //collection.AddRange()
+            Database.GetAutoCompleteListsFromDatabase(diveNo, diveName);
 
-
-
-            
-            for(int i=1; i <= 5; i++)
-            {
-                TextBox c1, c2, c3;
-                Label l1;
-                l1 = new Label();
-
-                c1 = new TextBox();
-                c1.Size = new System.Drawing.Size(50, 25);
-
-                c2 = new TextBox();
-                c2.Size = new System.Drawing.Size(50, 25);
-
-                c3 = new TextBox();
-                c3.Size = new System.Drawing.Size(50, 25);
-
-                string labelName = "Dive " + i;
-                l1.Text = labelName;
-                l1.Size = new System.Drawing.Size(40, 25);
-                l1.Location = new Point(0, i * 25);
-
-                string comboBoxCode = "code" + i;
-                string comboBoxPosition = "position" + i;
-                string comboBoxHeight = "height" + i;
-
-                c1.Name = comboBoxCode;
-                c2.Name = comboBoxPosition;
-                c2.Name = comboBoxHeight;
-
-                int count = 50;
-                c1.Location = new Point(count, i * 25);
-                count += 65;
-                c2.Location = new Point(count, i * 25);
-                count += 65;
-                c3.Location = new Point(count, i * 25);
-
-                panel1.Controls.Add(l1);
-                panel1.Controls.Add(c1);
-                panel1.Controls.Add(c2);
-                panel1.Controls.Add(c3);
-            }
+          
         }
 
         #region Event Funktioner
@@ -175,6 +135,27 @@ namespace Simhopp
             FormNewEventFunctions.FillListViewWithDivers(radioButtonMale, radioButtonFemale, listViewDivers);
         }
         #endregion
+
+        private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            int column = dataGridView1.CurrentCell.ColumnIndex;
+            string headerText = dataGridView1.Columns[column].HeaderText;
+
+            TextBox currentTextbox = e.Control as TextBox;
+
+            if (headerText.CompareTo("Kod") == 0)
+            {
+                currentTextbox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                currentTextbox.AutoCompleteCustomSource = diveNo;
+                currentTextbox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            }
+            else if (headerText.CompareTo("Name") == 0)
+            {
+                currentTextbox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                currentTextbox.AutoCompleteCustomSource = diveName;
+                currentTextbox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            }
+        }
 
     }
 }
