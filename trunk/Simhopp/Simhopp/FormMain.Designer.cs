@@ -49,6 +49,7 @@
             this.stoppaTävlingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.taBortEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RegisterResult_btn = new System.Windows.Forms.Button();
+            this.ResultsToFullScreen_btn = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -216,11 +217,22 @@
             this.RegisterResult_btn.UseVisualStyleBackColor = true;
             this.RegisterResult_btn.Click += new System.EventHandler(this.RegisterResultClick);
             // 
+            // ResultsToFullScreen_btn
+            // 
+            this.ResultsToFullScreen_btn.Location = new System.Drawing.Point(655, 444);
+            this.ResultsToFullScreen_btn.Name = "ResultsToFullScreen_btn";
+            this.ResultsToFullScreen_btn.Size = new System.Drawing.Size(100, 23);
+            this.ResultsToFullScreen_btn.TabIndex = 11;
+            this.ResultsToFullScreen_btn.Text = "Visa Fullskärm";
+            this.ResultsToFullScreen_btn.UseVisualStyleBackColor = true;
+            this.ResultsToFullScreen_btn.Click += new System.EventHandler(this.ResultsToFullScreen_btn_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 552);
+            this.Controls.Add(this.ResultsToFullScreen_btn);
             this.Controls.Add(this.RegisterResult_btn);
             this.Controls.Add(this.listViewEvent);
             this.Controls.Add(this.PrintResult_btn);
@@ -259,6 +271,7 @@
         private System.Windows.Forms.ToolStripMenuItem stoppaTävlingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem taBortEventToolStripMenuItem;
         private System.Windows.Forms.Button RegisterResult_btn;
+        private System.Windows.Forms.Button ResultsToFullScreen_btn;
 
     }
 }

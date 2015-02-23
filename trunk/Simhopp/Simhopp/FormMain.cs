@@ -109,6 +109,14 @@ namespace Simhopp
         {
 
         }
+        //kollar om det finns en extra skärm ansluten och skickar upp resulten (FormResultsToFullScreen) på den
+        private void ResultsToFullScreen_btn_Click(object sender, EventArgs e)
+        {
+
+            FormResultsToFullScreen ResultsToFullScreen = new FormResultsToFullScreen(listViewEvent);
+            ResultsToFullScreen.Show();
+
+        }
 
         
     }
