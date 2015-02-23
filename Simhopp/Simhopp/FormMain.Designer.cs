@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.button1 = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.StartEvent_btn = new System.Windows.Forms.Button();
+            this.listViewResult = new System.Windows.Forms.ListView();
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button2 = new System.Windows.Forms.Button();
+            this.CreateNewEvent_btn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.PrintResult_btn = new System.Windows.Forms.Button();
             this.listViewEvent = new System.Windows.Forms.ListView();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -48,33 +48,33 @@
             this.startaTävlingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stoppaTävlingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.taBortEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.RegisterResult = new System.Windows.Forms.Button();
+            this.RegisterResult_btn = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // StartEvent_btn
             // 
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(26, 444);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Starta Event";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.StartEventClick);
+            this.StartEvent_btn.Enabled = false;
+            this.StartEvent_btn.Location = new System.Drawing.Point(26, 444);
+            this.StartEvent_btn.Name = "StartEvent_btn";
+            this.StartEvent_btn.Size = new System.Drawing.Size(75, 23);
+            this.StartEvent_btn.TabIndex = 1;
+            this.StartEvent_btn.Text = "Starta Event";
+            this.StartEvent_btn.UseVisualStyleBackColor = true;
+            this.StartEvent_btn.Click += new System.EventHandler(this.StartEventClick);
             // 
-            // listView1
+            // listViewResult
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listViewResult.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader2,
             this.columnHeader1});
-            this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(522, 51);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(379, 387);
-            this.listView1.TabIndex = 3;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listViewResult.GridLines = true;
+            this.listViewResult.Location = new System.Drawing.Point(522, 51);
+            this.listViewResult.Name = "listViewResult";
+            this.listViewResult.Size = new System.Drawing.Size(379, 387);
+            this.listViewResult.TabIndex = 3;
+            this.listViewResult.UseCompatibleStateImageBehavior = false;
+            this.listViewResult.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader2
             // 
@@ -88,15 +88,15 @@
             this.columnHeader1.Text = "Namn";
             this.columnHeader1.Width = 290;
             // 
-            // button2
+            // CreateNewEvent_btn
             // 
-            this.button2.Location = new System.Drawing.Point(26, 517);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(122, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Skapa Nytt Event";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.CreateEventClick);
+            this.CreateNewEvent_btn.Location = new System.Drawing.Point(26, 517);
+            this.CreateNewEvent_btn.Name = "CreateNewEvent_btn";
+            this.CreateNewEvent_btn.Size = new System.Drawing.Size(122, 23);
+            this.CreateNewEvent_btn.TabIndex = 4;
+            this.CreateNewEvent_btn.Text = "Skapa Nytt Event";
+            this.CreateNewEvent_btn.UseVisualStyleBackColor = true;
+            this.CreateNewEvent_btn.Click += new System.EventHandler(this.CreateEventClick);
             // 
             // label1
             // 
@@ -116,14 +116,14 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Resultat";
             // 
-            // button3
+            // PrintResult_btn
             // 
-            this.button3.Location = new System.Drawing.Point(522, 444);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 23);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "Skriv Ut Resultat";
-            this.button3.UseVisualStyleBackColor = true;
+            this.PrintResult_btn.Location = new System.Drawing.Point(522, 444);
+            this.PrintResult_btn.Name = "PrintResult_btn";
+            this.PrintResult_btn.Size = new System.Drawing.Size(100, 23);
+            this.PrintResult_btn.TabIndex = 8;
+            this.PrintResult_btn.Text = "Skriv Ut Resultat";
+            this.PrintResult_btn.UseVisualStyleBackColor = true;
             // 
             // listViewEvent
             // 
@@ -206,29 +206,29 @@
             this.taBortEventToolStripMenuItem.Text = "Ta bort event";
             this.taBortEventToolStripMenuItem.Click += new System.EventHandler(this.taBortEventToolStripMenuItem_Click);
             // 
-            // RegisterResult
+            // RegisterResult_btn
             // 
-            this.RegisterResult.Location = new System.Drawing.Point(107, 444);
-            this.RegisterResult.Name = "RegisterResult";
-            this.RegisterResult.Size = new System.Drawing.Size(106, 23);
-            this.RegisterResult.TabIndex = 10;
-            this.RegisterResult.Text = "Registrera Resultat";
-            this.RegisterResult.UseVisualStyleBackColor = true;
-            this.RegisterResult.Click += new System.EventHandler(this.RegisterResultClick);
+            this.RegisterResult_btn.Location = new System.Drawing.Point(107, 444);
+            this.RegisterResult_btn.Name = "RegisterResult_btn";
+            this.RegisterResult_btn.Size = new System.Drawing.Size(106, 23);
+            this.RegisterResult_btn.TabIndex = 10;
+            this.RegisterResult_btn.Text = "Registrera Resultat";
+            this.RegisterResult_btn.UseVisualStyleBackColor = true;
+            this.RegisterResult_btn.Click += new System.EventHandler(this.RegisterResultClick);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 552);
-            this.Controls.Add(this.RegisterResult);
+            this.Controls.Add(this.RegisterResult_btn);
             this.Controls.Add(this.listViewEvent);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.PrintResult_btn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.listView1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.CreateNewEvent_btn);
+            this.Controls.Add(this.listViewResult);
+            this.Controls.Add(this.StartEvent_btn);
             this.Name = "FormMain";
             this.Text = "FormMain";
             this.contextMenuStrip1.ResumeLayout(false);
@@ -239,14 +239,14 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.Button StartEvent_btn;
+        private System.Windows.Forms.ListView listViewResult;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button CreateNewEvent_btn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button PrintResult_btn;
         private System.Windows.Forms.ListView listViewEvent;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
@@ -258,7 +258,7 @@
         private System.Windows.Forms.ToolStripMenuItem startaTävlingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stoppaTävlingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem taBortEventToolStripMenuItem;
-        private System.Windows.Forms.Button RegisterResult;
+        private System.Windows.Forms.Button RegisterResult_btn;
 
     }
 }

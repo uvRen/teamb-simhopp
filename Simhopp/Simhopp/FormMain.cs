@@ -28,16 +28,16 @@ namespace Simhopp
             int eventId = Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text);
             if (count != 0)
             {
-                button1.Enabled = true;
+                StartEvent_btn.Enabled = true;
             }
             else
             {
-                button1.Enabled = false;
+                StartEvent_btn.Enabled = false;
             }
             
 
 
-            listView1.Items.Clear();
+            listViewResult.Items.Clear();
 
             foreach (Diver d in Database.GetDiversInEvent(eventId))
             {
@@ -45,7 +45,7 @@ namespace Simhopp
                 item1.Text = d.ID.ToString();
 
                 item1.SubItems.Add(d.name);
-                listView1.Items.Add(item1);
+                listViewResult.Items.Add(item1);
             }
         }
 
