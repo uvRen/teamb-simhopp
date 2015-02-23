@@ -23,13 +23,30 @@ namespace Simhopp
         {
             InitializeComponent();
         }
-        private void ResultsToFullScreen_Load(object sender, System.EventArgs e)
+        private void listViewEvent_ItemActivate(object sender, EventArgs e)
         {
-            showOnMonitor(1);
+            int eventId = Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text);
+           
+            listViewResult.Items.Clear();
 
+            foreach (Diver d in Database.GetDiversInEvent(eventId))
+            {
+                ListViewItem item1 = new ListViewItem();
+                item1.Text = d.ID.ToString();
+
+                item1.SubItems.Add(d.name);
+                listViewResult.Items.Add(item1);
+            }
         }
 
-        private void showOnMonitor(int showOnMonitor)
+
+        private void ResultsToFullScreen_Load()
+        {
+            showOnMonitor(1);
+    
+        }
+
+        public void showOnMonitor(int showOnMonitor)
         {
             Screen[] sc;
             sc = Screen.AllScreens;
@@ -43,6 +60,11 @@ namespace Simhopp
             // If you intend the form to be maximized, change it to normal then maximized.
             this.WindowState = FormWindowState.Normal;
             this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void listViewResult_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
