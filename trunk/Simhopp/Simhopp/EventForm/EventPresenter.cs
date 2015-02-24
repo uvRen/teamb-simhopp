@@ -8,8 +8,7 @@ namespace Simhopp
 {
     public class EventPresenter
     {
-        
-        public IFormEvent view;
+        public IFormEvent _view;
         public Contest CurrentEvent { get; set; }
 
         public List<Diver> Divers { get; set; }
@@ -42,7 +41,8 @@ namespace Simhopp
 
         public EventPresenter(IFormEvent view)
         {
-            this.view = view;
+            this._view = view;
+            JudgeServer.Presenter = this;
         }
 
         public void CreateTestEvent()
@@ -91,19 +91,20 @@ namespace Simhopp
 
         }
 
-        public Score ScoreDive(double points)
+        public Score ScoreDive(double points, int judgeIndex = -1)
         {
 
             Score score = new Score(-1, CurrentDiver.dives[CurrentRoundIndex], CurrentJudge, points);
             CurrentDiver.dives[CurrentRoundIndex].AddScore(score); //Add score to current dive
 
-            view.PopulateScoreInput(score, CurrentJudgeIndex);
+            _view.PopulateScoreInput(score, CurrentJudgeIndex);
 
             CurrentJudgeIndex++;
 
-            if (CurrentJudgeIndex >= Judges.Count)
+            //if (CurrentJudgeIndex >= Judges.Count)
+            if (CurrentDive.Scores.Count == CurrentEvent.diveCount)
             {
-                view.CurrentDiveScore = CurrentDive.score;
+                _view.CurrentDiveScore = CurrentDive.Score;
 
                 CurrentJudgeIndex = 0;
                 CurrentDiverIndex++;
@@ -114,12 +115,23 @@ namespace Simhopp
                     CurrentRoundIndex++;
                 }
 
-                view.CompleteDive();
-                view.UpdateLeaderboard();
-                view.PrintEventStatus();
+                _view.CompleteDive();
+                _view.UpdateLeaderboard();
+                _view.PrintEventStatus();
             }
 
             return score;
+        }
+
+
+        public void LogToServer(string message)
+        {
+            _view.LogToServer(message);
+        }
+
+        public void StartServer()
+        {
+            JudgeServer.Start();
         }
     }
 }
