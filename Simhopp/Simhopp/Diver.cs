@@ -23,7 +23,7 @@ namespace Simhopp
                 double _score = 0;
                 foreach (Dive dive in dives)
                 {
-                    _score += dive.score;   
+                    _score += dive.Score;   
                 }
                 return _score;
             }

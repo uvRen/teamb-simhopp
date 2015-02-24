@@ -24,8 +24,8 @@ namespace Simhopp
             set
             {
                 _presenter = value;
-                if (value.view == null)
-                    value.view = this;
+                if (value._view == null)
+                    value._view = this;
             }
         }
 
@@ -132,6 +132,25 @@ namespace Simhopp
 
             DrawPanels();
         }
+        private void FormEvent_Load(object sender, EventArgs e)
+        {
+            btnDoDive.Focus();
+            btnDoDive.Select();
+        }
+
+        delegate void LogToServerCallback(string text);
+        public void LogToServer(string message)
+        {
+            if (this.textBoxSeverLog.InvokeRequired)
+            {
+                LogToServerCallback d = new LogToServerCallback(LogToServer);
+                this.Invoke(d, new object[] { message });
+            }
+            else
+            {
+                this.textBoxSeverLog.Text += message + "\r\n";
+            }
+        }
 
         private void DrawPanels()
         {
@@ -146,7 +165,7 @@ namespace Simhopp
             listViewLeaderboard.ForeColor = Color.White;
 
             //Skapa poäng-panelen
-            panelScoring = ScoringPanel();
+            panelScoring = PanelDrawer.ScoringPanel(panelControls, new EventHandler(btnScoreClick));
             panelControls.Controls.Add(panelScoring);
 
 
@@ -190,12 +209,6 @@ namespace Simhopp
         }
 
         //Keyboardshortcuts
-        private void FormEvent_Load(object sender, EventArgs e)
-        {
-            btnDoDive.Focus();
-            btnDoDive.Select();
-        }
-
         void FormEvent_KeyPress(object sender, KeyPressEventArgs e)
         {
             MessageBox.Show(e.KeyChar.ToString());
@@ -257,7 +270,7 @@ namespace Simhopp
 
             Panel scorePanel = (Panel)(tb.Parent);
             Label points = (Label)(scorePanel.Tag);
-            points.Text = score.dive.score.ToString();
+            points.Text = score.dive.Score.ToString();
         }
 
         private void btnDoDive_Click(object sender, EventArgs e)
@@ -281,6 +294,7 @@ namespace Simhopp
             UpdateJudgeList();
         }
 
+        
         /// <summary>
         /// Poängsätt senaste det hoppet
         /// </summary>
@@ -288,7 +302,6 @@ namespace Simhopp
         /// <param name="e"></param>
         private void btnScoreClick(object sender, EventArgs e)
         {
-
             Score score = Presenter.ScoreDive(Double.Parse(((Button)sender).Text));
             UpdateJudgeList();
         }
@@ -302,13 +315,9 @@ namespace Simhopp
 
         public void CompleteDive()
         {
-            
             panelScoring.Enabled = false;
 
             CurrentDivePanel.BackColor = colors[1];
-
-            //Nästa hoppare
-            
 
             //Nästa runda (hopp)
             if (CurrentDiverIndex == 0)
@@ -370,7 +379,7 @@ namespace Simhopp
 
 
             Label difficulty = new Label();
-            difficulty.Text = "Svårighetsgrad: " + dive.difficulty.ToString();
+            difficulty.Text = "Svårighetsgrad: " + dive.Difficulty.ToString();
             difficulty.Top = 22;
             difficulty.Left = 20;
             difficulty.Width = p.Width / 2;
@@ -422,39 +431,9 @@ namespace Simhopp
             return p;
         }
 
-        /// <summary>
-        /// Ritar upp en panel med poängalternativ för bedömning av hopp
-        /// </summary>
-        /// <returns></returns>
-        private Panel ScoringPanel()
+        private void btnStartServer_Click(object sender, EventArgs e)
         {
-            Panel p = new Panel();
-            p.Width = panelControls.Width - 200;
-            p.Height = panelControls.Height;
-            p.Left = 100;
-            p.Anchor = AnchorStyles.Top;
-            
-            p.BackColor = colors[1];
-
-            for (int i = 0; i < 21; i++)
-            {
-                Button btn = new Button();
-                btn.Width = 60;
-                btn.Height = 60;
-                btn.Text = (i * 0.5).ToString();
-                btn.Left = 10 + 32 * i - (i % 2) * 32 + ((i % 2)) * 32;
-                btn.Top = 20 + (i % 2) * 65; //Varannan uppe / nere
-                btn.BackColor = colors[0];
-                btn.ForeColor = Color.White;
-                btn.FlatStyle = FlatStyle.Flat;
-
-                btn.Font = new Font(new Font(FontFamily.GenericSerif, 20), FontStyle.Bold);
-                btn.Click += btnScoreClick;
-                p.Controls.Add(btn);
-            }
-
-            p.Enabled = false;
-            return p;
+            _presenter.StartServer();
         }
     }
 }

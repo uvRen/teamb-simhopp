@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simhopp", "Simhopp\Simhopp.csproj", "{BB06C865-A7DA-4CA5-BE0A-2DF168AC52CD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test-Simhopp", "Test-Simhopp\Test-Simhopp.csproj", "{C30DE9B9-08FE-41E1-A61C-4761B53BA085}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simhopp-JudgeClient", "Simhopp-JudgeClient\Simhopp-JudgeClient.csproj", "{94788BF8-DEED-4257-A546-DFD67EBA1AFB}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
@@ -25,6 +27,10 @@ Global
 		{C30DE9B9-08FE-41E1-A61C-4761B53BA085}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C30DE9B9-08FE-41E1-A61C-4761B53BA085}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C30DE9B9-08FE-41E1-A61C-4761B53BA085}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94788BF8-DEED-4257-A546-DFD67EBA1AFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94788BF8-DEED-4257-A546-DFD67EBA1AFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94788BF8-DEED-4257-A546-DFD67EBA1AFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94788BF8-DEED-4257-A546-DFD67EBA1AFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

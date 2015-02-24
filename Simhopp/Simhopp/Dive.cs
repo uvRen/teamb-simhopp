@@ -10,12 +10,12 @@ namespace Simhopp
     {
         private int ID;
         private Diver diver;
-        public double difficulty {get; set; }
-        public string name { get; set; }
+        public double Difficulty {get; set; }
+        public string Name { get; set; }
         private Contest comp;
-        private List<Score> scores;
+        public List<Score> Scores { get; set; } 
 
-        public double score
+        public double Score
         {
             get
             {
@@ -28,40 +28,40 @@ namespace Simhopp
         {
             this.ID = -1;
             this.diver = null;
-            this.difficulty = 0.0;
+            this.Difficulty = 0.0;
             this.comp = null;
-            scores = new List<Score>();
+            Scores = new List<Score>();
         }
 
         public Dive(int ID, Diver person, double difficulty, Contest comp)
         {
             this.ID = ID;
             this.diver = person;
-            this.difficulty = difficulty;
+            this.Difficulty = difficulty;
             this.comp = comp;
-            scores = new List<Score>();
+            Scores = new List<Score>();
         }
 
         public Dive(int ID, Diver person, double difficulty, string name, Contest comp)
         {
             this.ID = ID;
             this.diver = person;
-            this.difficulty = difficulty;
-            this.name = name;
+            this.Difficulty = difficulty;
+            this.Name = name;
             this.comp = comp;
-            scores = new List<Score>();
+            Scores = new List<Score>();
         }
         #endregion
 
         #region Funktioner
         public void AddScore(Score score)
         {
-            scores.Add(score);
+            Scores.Add(score);
         }
 
-        public List<Score> GetScores()
+        private List<Score> GetScores()
         {
-            return scores;
+            return Scores;
         }
 
         private double GetScore()
@@ -70,7 +70,7 @@ namespace Simhopp
             int scoreCount = 0;
             List <double> points = new List<double>();
             int start = 0;
-            foreach (Score score in scores)
+            foreach (Score score in Scores)
             {
                 points.Add(score.points);
                 scoreCount++;
@@ -99,7 +99,7 @@ namespace Simhopp
                   totalScore += points[i];     
             }
 
-            totalScore *= difficulty;
+            totalScore *= Difficulty;
             return totalScore;
         }
         #endregion

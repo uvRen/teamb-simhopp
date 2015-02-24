@@ -1,134 +1,116 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
+using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
 namespace Simhopp
 {
     public class JudgeServer
     {
-        public JudgeServer()
+        private static Thread _serverThread;
+        private static EventPresenter _presenter;
+        private static Dictionary<Guid, Judge> _judges; 
+
+        public static EventPresenter Presenter
+        {
+            set { _presenter = value; }
+        }
+        public JudgeServer(EventPresenter presenter)
         {
 
         }
 
-        public void Start()
+        public static void Start()
         {
-            ThreadStart ts = new ThreadStart(Start1);
-            Thread t = new Thread(ts);
-            t.Start();
+            _judges = new Dictionary<Guid, Judge>();
+            ThreadStart ts = new ThreadStart(UdpListener);
+            _serverThread = new Thread(ts) { IsBackground = true };
 
-            ThreadStart ts2 = new ThreadStart(Start2);
-            Thread t2 = new Thread(ts2);
-            t.Start();
+            _serverThread.Start();
+
         }
 
-        public void Start1()
+        private static void UdpListener()
         {
-
-            bool done = false;
-
-            UdpClient listener = new UdpClient(60068);
-            IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, 60068);
-            listener.EnableBroadcast = true;
+            UdpClient server = new UdpClient(60069);
+            IPEndPoint ipep = new IPEndPoint(IPAddress.Any, 60069);
+            server.EnableBroadcast = true;
             try
             {
-                while (!done)
+                while ( true )
                 {
-                    Console.WriteLine("Waiting for broadcast");
-                    byte[] bytes = listener.Receive(ref groupEP);
-                    Console.WriteLine("Received broadcast from {0} :\n {1}\n",groupEP.ToString(), Encoding.ASCII.GetString(bytes, 0, bytes.Length));
+                    LogToServer("Waiting for broadcast");
+
+                    //Receive
+                    byte[] data = server.Receive(ref ipep);
+                    string responseMessage = Encoding.ASCII.GetString(data, 0, data.Length);
+
+                    SimhoppMessage msg = SimhoppMessage.Deserialize(responseMessage);
+                    SimhoppMessage response;
+
+                    switch (msg.Action)
+                    {
+                        case SimhoppMessage.ClientAction.Ping:
+                            response = SendContestStatus();
+                            break;
+                        case SimhoppMessage.ClientAction.Login:
+                            response = AssignIdToJudge(msg);
+                            break;
+                        default:
+                            response = SimhoppMessage.ErrorMessage("No implemented");
+                            break;
+                    }
+                    LogToServer("Recieve: " + msg.Serialize());
+                    LogToServer("Response: " + response.Action.ToString());
+                    LogToServer("Response: " + response.Data);
+
+                    //Respond
+                    var responseData = Encoding.ASCII.GetBytes(response.Serialize());
+                    server.Send(responseData, responseData.Length, ipep);
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                _presenter.LogToServer(e.ToString());
             }
             finally
             {
-                listener.Close();
+                server.Close();
             }
         }
 
-        public void Start2()
+        private static SimhoppMessage SendContestStatus()
         {
-            byte[] data = new byte[1024];
-            IPEndPoint ipep = new IPEndPoint(IPAddress.Any, 60069);
 
-            UdpClient newsock = new UdpClient(ipep);
+            SimhoppMessage.SimhoppStatus status = new SimhoppMessage.SimhoppStatus(0, 0, _presenter.CurrentEvent);
 
-            System.Diagnostics.Debug.WriteLine("Waiting for a client...");
+            return new SimhoppMessage("server", SimhoppMessage.ClientAction.List, "", 0, status);
 
-            IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
-
-            data = newsock.Receive(ref sender);
-
-             System.Diagnostics.Debug.WriteLine("Message received from {0}:", sender.ToString());
-             System.Diagnostics.Debug.WriteLine(Encoding.ASCII.GetString(data, 0, data.Length));
-
-            string welcome = "Welcome to my test server";
-            data = Encoding.ASCII.GetBytes(welcome);
-            newsock.Send(data, data.Length, sender);
-
-            while (true)
+        }
+        private static SimhoppMessage AssignIdToJudge(SimhoppMessage msg)
+        {
+            
+            foreach (Judge judge in _presenter.Judges)
             {
-                data = newsock.Receive(ref sender);
-
-                System.Diagnostics.Debug.WriteLine(Encoding.ASCII.GetString(data, 0, data.Length));
-                newsock.Send(data, data.Length, sender);
-            }
-
-            /*
-            UdpClient server = new UdpClient(ipep);
-
-            int i = 0;
-            while (i < 10)
-            {
-                System.Diagnostics.Debug.WriteLine("Init loop ", ipep.ToString());
-                try
+                if (judge.name == msg.Data)
                 {
-                    string received_data;
-                    byte[] receive_byte_array;
-
-                    receive_byte_array = server.Receive(ref ipep);
-
-                    System.Diagnostics.Debug.WriteLine("Received a broadcast from {0}", ipep.ToString());
-                    Console.WriteLine("Received a broadcast from {0}", ipep.ToString());
-
-                    received_data = Encoding.ASCII.GetString(receive_byte_array, 0, receive_byte_array.Length);
-
-                    System.Diagnostics.Debug.WriteLine("data follows \n{0}\n\n", received_data);
-                    Console.WriteLine("data follows \n{0}\n\n", received_data);
-                    i++;
-                   
-                }
-                catch (Exception)
-                {
-                    System.Diagnostics.Debug.WriteLine("Ooopsxeption");
-                    throw;
+                    Guid guid = Guid.NewGuid();
+                    _judges[guid] = judge;
+                    SimhoppMessage response = new SimhoppMessage("server", SimhoppMessage.ClientAction.AssignId, guid.ToString());
+                    return response;
                 }
             }
-             * */
+            return SimhoppMessage.ErrorMessage("Judge not found");
+        }
 
-            /*
-            Socket sending_socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            IPAddress send_to_address = IPAddress.Parse("192.168.2.255");
-            IPEndPoint sending_end_point = new IPEndPoint(send_to_address, 11000);
-
-            byte[] send_buffer = Encoding.ASCII.GetBytes("Mega");
-            try
-            {
-                sending_socket.SendTo(send_buffer, sending_end_point);
-            }
-            catch (Exception send_exception)
-            {
-                Console.WriteLine(" Exception {0}", send_exception.Message);
-            }
-             * */
-
-
+        private static void LogToServer(string message)
+        {
+           _presenter.LogToServer(message);
         }
     }
 }

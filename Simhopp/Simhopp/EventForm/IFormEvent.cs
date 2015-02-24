@@ -15,5 +15,6 @@ namespace Simhopp
         void UpdateLeaderboard();
         void PrintEventStatus();
         void PopulateScoreInput(Score score, int judgeIndex);
+        void LogToServer(string message);
     }
 }
