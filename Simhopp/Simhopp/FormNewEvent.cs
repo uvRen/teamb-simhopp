@@ -220,26 +220,24 @@ namespace Simhopp
             tabControl1.TabPages.Clear();
             for(int i = 0; i < listViewDivers.CheckedItems.Count; i++)
             {
-                DataGridView diversJump = DiveTypeInput_dataGridView;
+                DataGridView newDataGrid = FormNewEventFunctions.GetNewDataGridView();
+                newDataGrid.Name = listViewDivers.CheckedItems[i].SubItems[4].Text;
 
                 string[] row = new string[] { "", "", "", "" };
                 for (int j = 0; j < Int32.Parse(DiveCount_numericUpDown.Value.ToString()); j++)
                 {
-                    diversJump.Rows.Add(row);
-                    diversJump.Rows[j].HeaderCell.Value = String.Format("{0}", j + 1);
+                    newDataGrid.Rows.Add(row);
+                    newDataGrid.Rows[j].HeaderCell.Value = String.Format("{0}", j + 1);
                 }
 
-                diversJump.Visible = true;
+                newDataGrid.Visible = true;
 
                 string title = listViewDivers.CheckedItems[i].Text;
                 TabPage newTab = new TabPage(title);
                 newTab.Tag = listViewDivers.CheckedItems[i];
                 
-                
-                newTab.SuspendLayout();
-                tabControl1.Controls.Add(newTab);
-                newTab.Controls.Add(diversJump);
-                newTab.ResumeLayout(false);
+                tabControl1.TabPages.Add(newTab);
+                newTab.Controls.Add(newDataGrid);
             }
         }
     }
