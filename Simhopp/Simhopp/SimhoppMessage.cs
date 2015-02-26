@@ -21,9 +21,11 @@ namespace Simhopp
         public enum ClientAction {
             Error,
             Ping,
+            Confirm,
             List,
             AssignId,
             Login,
+            RequestScore,
             SubmitScore
         };
 
@@ -48,7 +50,7 @@ namespace Simhopp
         }
 
         [DataMember]
-        public string Id;
+        public int Id;
         [DataMember]
         public ClientAction Action;
         [DataMember]
@@ -58,7 +60,7 @@ namespace Simhopp
         [DataMember]
         public SimhoppStatus Status;
 
-        public SimhoppMessage(string id, ClientAction action, string data = "", double value = 0, SimhoppStatus status = null)
+        public SimhoppMessage(int id, ClientAction action, string data = "", double value = 0, SimhoppStatus status = null)
         {
             Id = id;
             Action = action;
@@ -83,12 +85,12 @@ namespace Simhopp
 
         public static SimhoppMessage PingMessage()
         {
-            return new SimhoppMessage("", ClientAction.Ping);
+            return new SimhoppMessage(-1, ClientAction.Ping);
         }
 
         public static SimhoppMessage ErrorMessage(string message)
         {
-            return new SimhoppMessage("", ClientAction.Error, message);
+            return new SimhoppMessage(-1, ClientAction.Error, message);
         }
 
         public static SimhoppMessage Deserialize(string message)

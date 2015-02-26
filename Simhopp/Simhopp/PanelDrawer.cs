@@ -13,8 +13,20 @@ namespace Simhopp
     /// </summary>
     public class PanelDrawer
     {
+        public static List<Color> Colors
+        {
+            get
+            {
+                if (_colors == null)
+                    Init();
+                return _colors;
+            }
+        }
         private static List<Color> _colors;
 
+        /// <summary>
+        /// Skapar färg-tema. Måste anropas innan någon uppmålning
+        /// </summary>
         private static void Init()
         {
             if (_colors == null)
@@ -93,6 +105,107 @@ namespace Simhopp
             }
         }
 
+
+
+        /// <summary>
+        /// Ritar upp en panel med information om ett hopp.
+        /// Namn
+        /// Svårighetsgrad      Hopp-poäng
+        /// Domarpoäng
+        /// </summary>
+        /// <param name="diver">Hoppare</param>
+        /// <param name="round">Vilket hopp i ordningen</param>
+        /// <returns></returns>
+        public static Panel DivePanel(Diver diver, int round, int judgeCount, EventHandler UpdateScoreDelegate)
+        {
+            Init();
+
+            Dive dive = diver.dives[round];
+
+            FontFamily fontFamily = new FontFamily("Cambria");
+
+            Font fontName = new Font(
+               fontFamily,
+               15,
+               FontStyle.Bold,
+               GraphicsUnit.Pixel);
+
+            Font fontScore = new Font(
+               fontFamily,
+               18,
+               FontStyle.Bold,
+               GraphicsUnit.Pixel);
+
+            int pWidth = 402;
+            Panel p = new Panel();
+            p.BorderStyle = BorderStyle.FixedSingle;
+            p.Width = pWidth;
+            p.Height = 74;
+            p.BackColor = _colors[1];
+
+            Label name = new Label();
+            name.Text = diver.name;
+            name.Top = 2;
+            name.Left = 20;
+            name.Font = fontName;
+            name.ForeColor = Color.White;
+
+            p.Controls.Add(name);
+
+
+            Label difficulty = new Label();
+            difficulty.Text = "Svårighetsgrad: " + dive.Difficulty.ToString();
+            difficulty.Top = 22;
+            difficulty.Left = 20;
+            difficulty.Width = p.Width / 2;
+            difficulty.ForeColor = Color.White;
+            difficulty.Font = new Font(fontName, FontStyle.Regular);
+
+            p.Controls.Add(difficulty);
+
+
+            Label points = new Label();
+            points.Text = "";
+            points.Left = p.Width - points.Width - 10;
+            points.Top = 10;
+            points.Font = fontName;
+            points.TextAlign = ContentAlignment.MiddleRight;
+            points.ForeColor = Color.White;
+            points.Name = "Points";
+
+            p.Controls.Add(points);
+
+            Panel scorePanel = new Panel();
+            scorePanel.Width = pWidth;
+            scorePanel.Height = 30;
+            scorePanel.Left = 0;
+            scorePanel.Top = 45;
+            scorePanel.BackColor = Color.Transparent;
+            scorePanel.Tag = points;
+
+            for (int i = 0; i < judgeCount; i++)
+            {
+                TextBox tb = new TextBox();
+                tb.Text = " ";
+                tb.Left = 24 + i * 40;
+                tb.Width = 32;
+                tb.Height = 22;
+                tb.TextAlign = HorizontalAlignment.Center;
+                tb.BorderStyle = BorderStyle.None;
+                tb.BackColor = _colors[1];
+                tb.ForeColor = Color.White;
+                tb.Font = fontScore;
+                tb.Name = "Score";
+                tb.TextChanged += UpdateScoreDelegate;
+
+                scorePanel.Controls.Add(tb);
+            }
+
+            p.Controls.Add(scorePanel);
+
+            return p;
+        }
+
         /// <summary>
         /// Ritar upp en panel med poängalternativ för bedömning av hopp
         /// </summary>
@@ -117,8 +230,12 @@ namespace Simhopp
                 btn.Left = 10 + 32 * i - (i % 2) * 32 + ((i % 2)) * 32;
                 btn.Top = 20 + (i % 2) * 65; //Varannan uppe / nere
                 btn.BackColor = _colors[0];
+
                 btn.ForeColor = Color.White;
                 btn.FlatStyle = FlatStyle.Flat;
+
+                btn.FlatAppearance.BorderSize = 0;
+                btn.FlatAppearance.BorderColor = _colors[0];
 
                 btn.Font = new Font(new Font(FontFamily.GenericSerif, 20), FontStyle.Bold);
                 btn.Click += handler;

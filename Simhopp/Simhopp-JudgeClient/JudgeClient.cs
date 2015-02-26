@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -11,12 +12,14 @@ using Simhopp;
 
 namespace Simhopp_JudgeClient
 {
-    class JudgeClient
+    public class JudgeClient : Simhopp.IJudgeClient
     {
-        private static Thread _serverThread;
-        private static FormJudgeClientView _view;
-        private static UdpClient client;
-        private static IPEndPoint ipep;
+        public ConcurrentQueue<SimhoppMessage> Messages { get; set; }
+        public EventPresenter Presenter { get; set; }
+        private Thread _serverThread;
+        private FormJudgeClientView _view;
+        private UdpClient client;
+        private IPEndPoint ipep;
 
         public JudgeClient(FormJudgeClientView view)
         {
@@ -24,32 +27,34 @@ namespace Simhopp_JudgeClient
         }
 
         private delegate void ProcessMessage(SimhoppMessage msg);
-        private static void PopulateJudgeList(SimhoppMessage msg)
+        private  void PopulateJudgeList(SimhoppMessage msg)
         {
             ProcessMessage d = new ProcessMessage(_view.PopulateJudgeList);
             _view.Invoke(d, msg);
         }
 
-        private static void AssignLogin(SimhoppMessage msg)
+        private  void AssignLogin(SimhoppMessage msg)
         {
             ProcessMessage d = new ProcessMessage(_view.AssignLogin);
             _view.Invoke(d, msg);
         }
 
-        private static void LogMessage(SimhoppMessage msg)
+        private  void LogMessage(SimhoppMessage msg)
         {
             ProcessMessage d = new ProcessMessage(_view.LogMessage);
             _view.Invoke(d, msg);
         }
 
-        public static void Start()
+        public  void Start()
         {
+            Messages = new ConcurrentQueue<SimhoppMessage>();
+
             ThreadStart ts = new ThreadStart(ServerFinder);
             _serverThread = new Thread(ts) {IsBackground = true};
             _serverThread.Start();
         }
 
-        private static void ServerFinder()
+        private  void ServerFinder()
         {
             //Broadcasta ping-meddelande
             client = new UdpClient();
@@ -70,11 +75,11 @@ namespace Simhopp_JudgeClient
             while ( true )
             {
                 Thread.Sleep(100);
-                if (!_view.Messages.TryDequeue(out msg))
+
+                msg = SendReceive();
+
+                if (msg == null)
                     continue;
-
-                msg = SendReceive(msg);
-
 
                 switch (msg.Action)
                 {
@@ -84,6 +89,12 @@ namespace Simhopp_JudgeClient
                     case SimhoppMessage.ClientAction.AssignId:
                         AssignLogin(msg);
                         break;
+                    case SimhoppMessage.ClientAction.SubmitScore:
+                        Presenter.SubmitClientScore(msg.Value, msg.Id);
+                        break;
+                    case SimhoppMessage.ClientAction.RequestScore:
+                        Presenter.ScoreRequested(msg);
+                        break;
                 }
 
                 LogMessage(msg);
@@ -92,10 +103,32 @@ namespace Simhopp_JudgeClient
             client.Close();
         }
 
-        private static SimhoppMessage SendReceive(SimhoppMessage msg, bool broadcast = false)
+        private  SimhoppMessage SendReceive(SimhoppMessage msg = null, bool broadcast = false)
         {
+            byte[] data;
+            string responseData;
+            SimhoppMessage responseMsg;
+            if (msg == null && !Messages.TryDequeue(out msg))
+            {
+                try
+                {
+                    client.Client.ReceiveTimeout = 1000;
+                    data = client.Receive(ref ipep);
+                    responseData = Encoding.ASCII.GetString(data);
+                    responseMsg = SimhoppMessage.Deserialize(responseData);
 
-            byte[] data = Encoding.ASCII.GetBytes(msg.Serialize());
+                    return responseMsg;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+
+            if (msg == null)
+                return null;
+
+            data = Encoding.ASCII.GetBytes(msg.Serialize());
 
             int tries = 0;
             while (true)
@@ -124,10 +157,16 @@ namespace Simhopp_JudgeClient
                 }
             }
 
-            string responseData = Encoding.ASCII.GetString(data);
-            SimhoppMessage responseMsg = SimhoppMessage.Deserialize(responseData);
+            responseData = Encoding.ASCII.GetString(data);
+            responseMsg = SimhoppMessage.Deserialize(responseData);
 
             return responseMsg;
+        }
+
+        public void CommitScore(int judgeIndex, Score score)
+        {
+            SimhoppMessage msg = new SimhoppMessage(judgeIndex, SimhoppMessage.ClientAction.SubmitScore, "", score.points);
+            Messages.Enqueue(msg);
         }
     }
 }

@@ -11,6 +11,20 @@ namespace Simhopp
     {
         public int ID;
         public string name;
+
+        public int Index(List<Judge> judges)
+        {
+            int i = 0;
+            foreach (Judge judge in judges)
+            {
+                if (judge.ID == this.ID)
+                {
+                    return i;
+                }
+                i++;
+            }
+            return -1;
+        }
         #region Kontruktor
         public Judge() 
         {

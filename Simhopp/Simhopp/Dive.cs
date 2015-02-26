@@ -1,19 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Simhopp
 {
+    [DataContract]
     public class Dive
     {
         private int ID;
+        [IgnoreDataMember]
         private Diver diver;
+        [DataMember]
         public double Difficulty {get; set; }
         public string Name { get; set; }
         private Contest comp;
-        public List<Score> Scores { get; set; } 
+        [DataMember]
+        public List<Score> Scores { get; set; }
+
+        private DiveType _diveType;
 
         public double Score
         {
@@ -31,6 +38,11 @@ namespace Simhopp
             this.Difficulty = 0.0;
             this.comp = null;
             Scores = new List<Score>();
+        }
+
+        public Dive(int diveNumber, DiveType.DiveHeight diveHeight, DiveType.DivePosition divePosition)
+        {
+            _diveType = new DiveType(diveNumber, divePosition, diveHeight);
         }
 
         public Dive(int ID, Diver person, double difficulty, Contest comp)
@@ -56,6 +68,8 @@ namespace Simhopp
         #region Funktioner
         public void AddScore(Score score)
         {
+            if (score.dive == null)
+                score.dive = this;
             Scores.Add(score);
         }
 
