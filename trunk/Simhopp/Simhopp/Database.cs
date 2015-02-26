@@ -199,7 +199,7 @@ namespace Simhopp
 
             if(conn != null)
             {
-                var cmd = new MySqlCommand("SELECT * FROM event ORDER BY started DESC", conn);
+                var cmd = new MySqlCommand("SELECT * FROM event ORDER BY started DESC, date", conn);
                 var dr = cmd.ExecuteReader();
                 var dt = new DataTable();
                 dt.Load(dr);
