@@ -64,11 +64,6 @@ namespace Simhopp
             return showOnMonitor;
         }
 
-        private void listViewResult_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             listViewResult.Items.Clear();
