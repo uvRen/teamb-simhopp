@@ -114,8 +114,10 @@ namespace Simhopp
         private void ResultsToFullScreen_btn_Click(object sender, EventArgs e)
         {
 
-            //FormResultsToFullScreen ResultsToFullScreen = new FormResultsToFullScreen(listViewEvent);
-            //ResultsToFullScreen.Show();
+            FormResultsToFullScreen ResultsToFullScreen = new FormResultsToFullScreen(listViewEvent);
+            ResultsToFullScreen.showOnMonitor(1);
+            ResultsToFullScreen.Show();
+
 
         }
 
