@@ -42,6 +42,7 @@
             this.NamnHeader});
             this.listViewResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewResult.FullRowSelect = true;
             this.listViewResult.GridLines = true;
             this.listViewResult.Location = new System.Drawing.Point(0, 0);
             this.listViewResult.Name = "listViewResult";
@@ -49,7 +50,6 @@
             this.listViewResult.TabIndex = 4;
             this.listViewResult.UseCompatibleStateImageBehavior = false;
             this.listViewResult.View = System.Windows.Forms.View.Details;
-            this.listViewResult.SelectedIndexChanged += new System.EventHandler(this.listViewResult_SelectedIndexChanged);
             // 
             // ResultatHeader
             // 
@@ -74,9 +74,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.ClientSize = new System.Drawing.Size(772, 405);
             this.Controls.Add(this.listViewResult);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MinimizeBox = false;
             this.Name = "FormResultsToFullScreen";
             this.ShowIcon = false;
             this.Text = "FormResultsToFullScreen";
+            this.TopMost = true;
             this.ResumeLayout(false);
 
         }
