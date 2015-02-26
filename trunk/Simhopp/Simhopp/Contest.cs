@@ -20,6 +20,9 @@ namespace Simhopp
         public List<Judge> Judges { get; set; }
         public List<Diver> Divers { get; set; }
 
+        public int CurrentDiverIndex { get; set; }
+        public int CurrentRoundIndex { get; set; }
+
         #region Konstruktor
         public Contest() 
         {
@@ -33,6 +36,8 @@ namespace Simhopp
             this.diveCount = -1;
             this.Judges = new List<Judge>();
             this.Divers = new List<Diver>();
+
+            CurrentRoundIndex = CurrentDiverIndex = 0;
         }
 
         public Contest(int ID, string name, string date, string location, int discipline, int sync, int diveCount, int sex)
@@ -47,9 +52,11 @@ namespace Simhopp
             this.diveCount = diveCount;
             this.Judges = new List<Judge>();
             this.Divers = new List<Diver>();
+
+            CurrentRoundIndex = CurrentDiverIndex = 0;
         }
 
-        public Contest(int ID, string name, string date, string location, int discipline, int sync, int diveCount, int sex, int started)
+        public Contest(int ID, string name, string date, string location, int discipline, int sync, int diveCount, int sex, int started = 0)
         {
             this.ID = ID;
             this.name = name;
@@ -62,6 +69,8 @@ namespace Simhopp
             this.started = started;
             this.Judges = new List<Judge>();
             this.Divers = new List<Diver>();
+
+            CurrentRoundIndex = CurrentDiverIndex = 0;
         }
 
         public Contest(string name, string date, string location, int discipline, int sync, int diveCount, int sex)
@@ -75,6 +84,8 @@ namespace Simhopp
             this.diveCount = diveCount;
             this.Judges = new List<Judge>();
             this.Divers = new List<Diver>();
+
+            CurrentRoundIndex = CurrentDiverIndex = 0;
         }
         #endregion
 

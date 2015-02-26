@@ -20,28 +20,28 @@ namespace Simhopp_JudgeClient
 {
     public partial class FormJudgeClientView : Form
     {
-        public ConcurrentQueue<SimhoppMessage> Messages { get; set; } 
+        private JudgeClient judgeClient;
         public FormJudgeClientView()
         {
             InitializeComponent();
         }
 
-        
-
         private void FormMain_Load(object sender, EventArgs e)
         {
             PanelDrawer.Colorize(this);
 
-            Messages = new ConcurrentQueue<SimhoppMessage>();
-            JudgeClient c = new JudgeClient(this);
-            JudgeClient.Start();
+            judgeClient = new JudgeClient(this);
+            judgeClient.Start();
 
             listBoxJudges.Visible = false;
         }
-
+        
         public void AssignLogin(SimhoppMessage msg)
         {
-            MessageBox.Show(msg.Data);
+            EventPresenter presenter = new EventPresenter(null, msg.Status.Contest);
+            presenter.SetMode(EventPresenter.ViewMode.Client, (int)msg.Value, judgeClient);
+            presenter.ShowView();
+            judgeClient.Presenter = presenter;
         }
 
         public void PopulateJudgeList(SimhoppMessage msg)
@@ -69,8 +69,8 @@ namespace Simhopp_JudgeClient
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            SimhoppMessage msg = new SimhoppMessage("", SimhoppMessage.ClientAction.Login, listBoxJudges.SelectedItem.ToString());
-            Messages.Enqueue(msg);
+            SimhoppMessage msg = new SimhoppMessage(-1, SimhoppMessage.ClientAction.Login, listBoxJudges.SelectedItem.ToString());
+            judgeClient.Messages.Enqueue(msg);
         }
     }
 }

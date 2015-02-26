@@ -223,7 +223,7 @@ namespace Nunit.Simhopp
         [Test]
         public void RunSelectScoreJudge()
         {
-            Assert.AreEqual(_divers[0].GetDives()[0].GetScores()[0].judge.GetJudgeName(), "Mr. Test");
+            Assert.AreEqual(_divers[0].GetDives()[0].Scores[0].judge.GetJudgeName(), "Mr. Test");
 
             System.Diagnostics.Debug.WriteLine("Score: " + _divers[0].TotalScore);
         }

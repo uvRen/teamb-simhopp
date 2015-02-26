@@ -35,8 +35,8 @@
             this.textBoxLog = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.imgLoading = new System.Windows.Forms.PictureBox();
             this.labelJudgeList = new System.Windows.Forms.Label();
+            this.imgLoading = new System.Windows.Forms.PictureBox();
             this.panelSelectJudge.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -88,7 +88,7 @@
             this.textBoxLog.Location = new System.Drawing.Point(285, 12);
             this.textBoxLog.Multiline = true;
             this.textBoxLog.Name = "textBoxLog";
-            this.textBoxLog.Size = new System.Drawing.Size(249, 273);
+            this.textBoxLog.Size = new System.Drawing.Size(581, 421);
             this.textBoxLog.TabIndex = 0;
             // 
             // panel1
@@ -109,16 +109,6 @@
             this.panel2.Size = new System.Drawing.Size(258, 267);
             this.panel2.TabIndex = 5;
             // 
-            // imgLoading
-            // 
-            this.imgLoading.Image = global::Simhopp_JudgeClient.Properties.Resources.loading;
-            this.imgLoading.Location = new System.Drawing.Point(95, 94);
-            this.imgLoading.Name = "imgLoading";
-            this.imgLoading.Size = new System.Drawing.Size(66, 66);
-            this.imgLoading.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.imgLoading.TabIndex = 3;
-            this.imgLoading.TabStop = false;
-            // 
             // labelJudgeList
             // 
             this.labelJudgeList.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -129,11 +119,21 @@
             this.labelJudgeList.TabIndex = 8;
             this.labelJudgeList.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // imgLoading
+            // 
+            this.imgLoading.Image = global::Simhopp_JudgeClient.Properties.Resources.loading;
+            this.imgLoading.Location = new System.Drawing.Point(95, 94);
+            this.imgLoading.Name = "imgLoading";
+            this.imgLoading.Size = new System.Drawing.Size(66, 66);
+            this.imgLoading.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.imgLoading.TabIndex = 3;
+            this.imgLoading.TabStop = false;
+            // 
             // FormJudgeClientView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(573, 445);
+            this.ClientSize = new System.Drawing.Size(869, 445);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelSelectJudge);

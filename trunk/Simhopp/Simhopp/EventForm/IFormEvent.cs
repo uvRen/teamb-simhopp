@@ -11,10 +11,13 @@ namespace Simhopp
         EventPresenter Presenter { get; set; }
         double CurrentDiveScore { get; set; }
 
+        void Show();
         void CompleteDive();
         void UpdateLeaderboard();
         void PrintEventStatus();
         void PopulateScoreInput(Score score, int judgeIndex);
         void LogToServer(string message);
+        void RedrawContestInfo();
+        void EnableControls(bool enable);
     }
 }
