@@ -49,84 +49,75 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contest.cs" />
-    <Compile Include="Database.cs" />
-    <Compile Include="Dive.cs" />
-    <Compile Include="DiveType.cs" />
-    <Compile Include="EventForm\EventPresenter.cs" />
-    <Compile Include="EventForm\IJudgeClient.cs" />
-    <Compile Include="EventForm\JudgeServer.cs" />
-    <Compile Include="FormDiverList.cs">
+    <Compile Include="Modelclasses\Contest.cs" />
+    <Compile Include="Modelclasses\Static\Database.cs" />
+    <Compile Include="Modelclasses\Dive.cs" />
+    <Compile Include="Modelclasses\DiveType.cs" />
+    <Compile Include="Presenters\EventPresenter.cs" />
+    <Compile Include="Interfaces\IJudgeClient.cs" />
+    <Compile Include="Presenters\JudgeServer.cs" />
+    <Compile Include="Views\FormDiverList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDiverList.Designer.cs">
+    <Compile Include="Views\FormDiverList.Designer.cs">
       <DependentUpon>FormDiverList.cs</DependentUpon>
     </Compile>
-    <Compile Include="EventForm\FormEvent.cs">
+    <Compile Include="Views\FormEvent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EventForm\FormEvent.Designer.cs">
+    <Compile Include="Views\FormEvent.Designer.cs">
       <DependentUpon>FormEvent.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormJudgeList.cs">
+    <Compile Include="Views\FormJudgeList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormJudgeList.Designer.cs">
+    <Compile Include="Views\FormJudgeList.Designer.cs">
       <DependentUpon>FormJudgeList.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormMain.cs">
+    <Compile Include="Views\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.Designer.cs">
+    <Compile Include="Views\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormMainFunctions.cs" />
-    <Compile Include="FormNewEvent.cs">
+    <Compile Include="Presenters\FormMainFunctions.cs" />
+    <Compile Include="Views\FormNewEvent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormNewEvent.Designer.cs">
+    <Compile Include="Views\FormNewEvent.Designer.cs">
       <DependentUpon>FormNewEvent.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormNewEventFunctions.cs" />
-    <Compile Include="EventForm\IFormEvent.cs" />
-    <Compile Include="FormResultsToFullScreen.cs">
+    <Compile Include="Presenters\FormNewEventFunctions.cs" />
+    <Compile Include="Interfaces\IFormEvent.cs" />
+    <Compile Include="Views\FormResultsToFullScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormResultsToFullScreen.Designer.cs">
+    <Compile Include="Views\FormResultsToFullScreen.Designer.cs">
       <DependentUpon>FormResultsToFullScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Judge.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Diver.cs" />
-    <Compile Include="PanelDrawer.cs" />
+    <Compile Include="Modelclasses\Judge.cs" />
+    <Compile Include="Modelclasses\Diver.cs" />
+    <Compile Include="Modelclasses\Static\PanelDrawer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Score.cs" />
-    <Compile Include="SimhoppMessage.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormDiverList.resx">
+    <Compile Include="Modelclasses\Score.cs" />
+    <Compile Include="Modelclasses\SimhoppMessage.cs" />
+    <EmbeddedResource Include="Views\FormDiverList.resx">
       <DependentUpon>FormDiverList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EventForm\FormEvent.resx">
+    <EmbeddedResource Include="Views\FormEvent.resx">
       <DependentUpon>FormEvent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormJudgeList.resx">
+    <EmbeddedResource Include="Views\FormJudgeList.resx">
       <DependentUpon>FormJudgeList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormMain.resx">
+    <EmbeddedResource Include="Views\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormNewEvent.resx">
+    <EmbeddedResource Include="Views\FormNewEvent.resx">
       <DependentUpon>FormNewEvent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormResultsToFullScreen.resx">
+    <EmbeddedResource Include="Views\FormResultsToFullScreen.resx">
       <DependentUpon>FormResultsToFullScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
