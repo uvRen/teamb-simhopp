@@ -31,16 +31,22 @@ namespace Simhopp
             listViewResult.Columns[0].Width = bredd/2;
             listViewResult.Columns[1].Width = bredd/2;
 
-
             listViewResult.Items.Clear();
-
-            foreach (Diver d in Database.GetDiversInEvent(Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text)))
+            if (listViewEvent.SelectedItems.Count != 0)
             {
-                ListViewItem item1 = new ListViewItem();
-                item1.Text = d.ID.ToString();
+                foreach (Diver d in Database.GetDiversInEvent(Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text)))
+                {
+                    ListViewItem item1 = new ListViewItem();
+                    item1.Text = d.ID.ToString();
 
-                item1.SubItems.Add(d.name);
-                listViewResult.Items.Add(item1);
+                    item1.SubItems.Add(d.name);
+                    listViewResult.Items.Add(item1);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Välj ett event, försök igen", "Fel format", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 
