@@ -141,6 +141,7 @@
             this.PrintResult_btn.TabIndex = 8;
             this.PrintResult_btn.Text = "Skriv Ut Resultat";
             this.PrintResult_btn.UseVisualStyleBackColor = true;
+            this.PrintResult_btn.Click += new System.EventHandler(this.PrintResult_btn_Click);
             // 
             // listViewEvent
             // 

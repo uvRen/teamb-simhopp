@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Printing;
 
 namespace Simhopp
 {
     public partial class FormMain : Form
     {
         ListViewItem selectedItem = null;
+
+        int t=0;
         public FormMain()
         {
             InitializeComponent();
@@ -126,6 +129,37 @@ namespace Simhopp
 
         }
 
-        
+        #region Print
+
+        //Thomas -- INTE KLAR
+        private void PrintResult_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PrintDocument pd = new PrintDocument();
+                pd.DefaultPageSettings.PaperSize = new PaperSize("A4", 827, 1170); // all sizes are converted from mm to inches & then multiplied by 100.
+                pd.PrintPage += new PrintPageEventHandler(this.pd_PrintPage);
+                pd.Print();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while printing", ex.ToString());
+            }
+        }
+        private void pd_PrintPage(object sender, PrintPageEventArgs ev)
+        {
+	        if (t < 1)
+	        {
+                //for loop.... ändra koordinater 20, 225
+                //ev.Graphics.DrawString(BOXNAME.Text.ToString(), new Font("Times New Roman", 14, FontStyle.Bold), Brushes.Black, 20, 225);
+                ev.Graphics.DrawString("Hello world ", new Font("Times New Roman", 14, FontStyle.Bold), Brushes.Black, 20, 225);
+                t++;
+                if (t < 1)
+                    ev.HasMorePages = true;
+                else
+                     ev.HasMorePages = false;
+           }
+        }
+        #endregion
     }
 }
