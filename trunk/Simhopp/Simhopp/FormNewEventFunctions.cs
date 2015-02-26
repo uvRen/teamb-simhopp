@@ -218,5 +218,71 @@ namespace Simhopp
             if (box.Text == "Name" || box.Text == "Country" || box.Text == "Age")
                 box.Text = "";
         }
+
+        public static DataGridView GetNewDataGridView()
+        {
+            DataGridView newDataGrid = new DataGridView();
+
+            DataGridViewTextBoxColumn dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            DataGridViewTextBoxColumn dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            DataGridViewComboBoxColumn dataGridViewComboBoxColumn1 = new DataGridViewComboBoxColumn();
+            DataGridViewComboBoxColumn dataGridViewComboBoxColumn2 = new DataGridViewComboBoxColumn();
+
+            newDataGrid.AllowUserToAddRows = false;
+            newDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            newDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            dataGridViewTextBoxColumn1,
+            dataGridViewTextBoxColumn2,
+            dataGridViewComboBoxColumn1,
+            dataGridViewComboBoxColumn2});
+            newDataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            newDataGrid.EnableHeadersVisualStyles = false;
+            newDataGrid.TabIndex = 28;
+            newDataGrid.Size = new System.Drawing.Size(360, 142);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.HeaderText = "Kod";
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.Width = 51;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewTextBoxColumn2.HeaderText = "Name";
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.Width = 155;
+            // 
+            // dataGridViewComboBoxColumn1
+            // 
+            dataGridViewComboBoxColumn1.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            dataGridViewComboBoxColumn1.HeaderText = "Höjd";
+            dataGridViewComboBoxColumn1.Items.AddRange(new object[] {
+            "1m",
+            "3m",
+            "5m",
+            "7,5m",
+            "10m"});
+            dataGridViewComboBoxColumn1.Name = "dataGridViewComboBoxColumn1";
+            dataGridViewComboBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            dataGridViewComboBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            dataGridViewComboBoxColumn1.ToolTipText = "1m";
+            dataGridViewComboBoxColumn1.Width = 55;
+            // 
+            // dataGridViewComboBoxColumn2
+            // 
+            dataGridViewComboBoxColumn2.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            dataGridViewComboBoxColumn2.HeaderText = "Position";
+            dataGridViewComboBoxColumn2.Items.AddRange(new object[] {
+            "A",
+            "B",
+            "C",
+            "D"});
+            dataGridViewComboBoxColumn2.Name = "dataGridViewComboBoxColumn2";
+            dataGridViewComboBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            dataGridViewComboBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            dataGridViewComboBoxColumn2.Width = 55;
+
+            return newDataGrid;
+        }
     }
 }
