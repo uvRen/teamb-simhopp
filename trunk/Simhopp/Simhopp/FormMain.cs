@@ -113,7 +113,7 @@ namespace Simhopp
         //kollar om det finns en extra skärm ansluten och skickar upp resulten (FormResultsToFullScreen) på den
         private void ResultsToFullScreen_btn_Click(object sender, EventArgs e)
         {
-            FormResultsToFullScreen ResultsToFullScreen = new FormResultsToFullScreen(listViewEvent, Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text));
+            FormResultsToFullScreen ResultsToFullScreen = new FormResultsToFullScreen(listViewEvent);
             ResultsToFullScreen.showOnMonitor(1);
             ResultsToFullScreen.Show();
 
