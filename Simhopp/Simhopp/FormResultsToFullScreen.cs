@@ -21,6 +21,7 @@ namespace Simhopp
 
             InitializeComponent();
 
+            //kollar vilken skärm som används och anpassar kolumn storleken efter det
             Screen[] sc = Screen.AllScreens;
             int whichScreen = showOnMonitor(showMonitor);
             currentScreen = sc[whichScreen];
@@ -29,6 +30,7 @@ namespace Simhopp
 
             listViewResult.Columns[0].Width = bredd/2;
             listViewResult.Columns[1].Width = bredd/2;
+
 
             listViewResult.Items.Clear();
 
@@ -65,6 +67,20 @@ namespace Simhopp
         private void listViewResult_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            listViewResult.Items.Clear();
+
+            foreach (Diver d in Database.GetDiversInEvent(Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text)))
+            {
+                ListViewItem item1 = new ListViewItem();
+                item1.Text = d.ID.ToString();
+
+                item1.SubItems.Add(d.name);
+                listViewResult.Items.Add(item1);
+            }
         }
     }
 }
