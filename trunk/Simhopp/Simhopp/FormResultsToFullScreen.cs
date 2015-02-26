@@ -13,20 +13,14 @@ namespace Simhopp
     public partial class FormResultsToFullScreen : Form
     {
         ListView listViewEvent;
-        public FormResultsToFullScreen(ListView listViewEvent)
+        int eventId;
+        public FormResultsToFullScreen(ListView listViewEvent, int eventId)
         {
             this.listViewEvent = listViewEvent;
+            this.eventId = eventId;
 
             InitializeComponent();
-        }
-        public FormResultsToFullScreen()
-        {
-            InitializeComponent();
-        }
-        private void listViewEvent_ItemActivate(object sender, EventArgs e)
-        {
-            int eventId = Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text);
-           
+
             listViewResult.Items.Clear();
 
             foreach (Diver d in Database.GetDiversInEvent(eventId))
@@ -38,12 +32,9 @@ namespace Simhopp
                 listViewResult.Items.Add(item1);
             }
         }
-
-
-        private void ResultsToFullScreen_Load()
+        public FormResultsToFullScreen()
         {
-            showOnMonitor(1);
-    
+            InitializeComponent();
         }
 
         public void showOnMonitor(int showOnMonitor)
