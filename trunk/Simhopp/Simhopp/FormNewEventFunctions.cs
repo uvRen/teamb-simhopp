@@ -28,6 +28,7 @@ namespace Simhopp
                 if (radioButtonMale.Checked && diver.sex == 0)
                 {
                     ListViewItem item1 = new ListViewItem();
+                    item1.Tag = diver;
                     item1.Text = diver.name;
                     listViewDivers.Items.Add(item1);
 
@@ -39,6 +40,7 @@ namespace Simhopp
                 else if (radioButtonFemale.Checked && diver.sex == 1)
                 {
                     ListViewItem item1 = new ListViewItem();
+                    item1.Tag = diver;
                     item1.Text = diver.name;
                     listViewDivers.Items.Add(item1);
 
