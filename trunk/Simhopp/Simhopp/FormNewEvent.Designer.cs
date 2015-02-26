@@ -532,12 +532,13 @@
             this.listViewJudges_contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.RemoveJudge_toolStripMenuItem});
             this.listViewJudges_contextMenuStrip.Name = "listViewJudges_contextMenuStrip";
-            this.listViewJudges_contextMenuStrip.Size = new System.Drawing.Size(113, 26);
+            this.listViewJudges_contextMenuStrip.Size = new System.Drawing.Size(153, 48);
             // 
             // RemoveJudge_toolStripMenuItem
             // 
+            this.RemoveJudge_toolStripMenuItem.Enabled = false;
             this.RemoveJudge_toolStripMenuItem.Name = "RemoveJudge_toolStripMenuItem";
-            this.RemoveJudge_toolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.RemoveJudge_toolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.RemoveJudge_toolStripMenuItem.Text = "Ta bort";
             // 
             // FormNewEvent
