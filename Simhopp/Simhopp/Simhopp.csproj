@@ -88,6 +88,12 @@
     </Compile>
     <Compile Include="FormNewEventFunctions.cs" />
     <Compile Include="EventForm\IFormEvent.cs" />
+    <Compile Include="FormResultsToFullScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormResultsToFullScreen.Designer.cs">
+      <DependentUpon>FormResultsToFullScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Judge.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -118,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormNewEvent.resx">
       <DependentUpon>FormNewEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormResultsToFullScreen.resx">
+      <DependentUpon>FormResultsToFullScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
