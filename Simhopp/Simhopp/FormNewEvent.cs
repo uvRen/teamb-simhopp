@@ -135,7 +135,6 @@ namespace Simhopp
         {
             FormNewEventFunctions.FillListViewWithDivers(radioButtonMale, radioButtonFemale, listViewDivers);
         }
-        #endregion
         
         //autocomplete
         private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -207,7 +206,41 @@ namespace Simhopp
 
         private void dataGridView1_RowLeave(object sender, DataGridViewCellEventArgs e)
         {
-            
+            int currentDiverID = Int32.Parse(selectedItem.SubItems[4].Text);
+        }
+        #endregion
+
+        private void DiveTypeInput_dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void listViewDivers_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            tabControl1.TabPages.Clear();
+            for(int i = 0; i < listViewDivers.CheckedItems.Count; i++)
+            {
+                DataGridView diversJump = DiveTypeInput_dataGridView;
+
+                string[] row = new string[] { "", "", "", "" };
+                for (int j = 0; j < Int32.Parse(DiveCount_numericUpDown.Value.ToString()); j++)
+                {
+                    diversJump.Rows.Add(row);
+                    diversJump.Rows[j].HeaderCell.Value = String.Format("{0}", j + 1);
+                }
+
+                diversJump.Visible = true;
+
+                string title = listViewDivers.CheckedItems[i].Text;
+                TabPage newTab = new TabPage(title);
+                newTab.Tag = listViewDivers.CheckedItems[i];
+                
+                
+                newTab.SuspendLayout();
+                tabControl1.Controls.Add(newTab);
+                newTab.Controls.Add(diversJump);
+                newTab.ResumeLayout(false);
+            }
         }
     }
 }

@@ -66,23 +66,34 @@
             this.newJudgeName = new System.Windows.Forms.TextBox();
             this.newJudgeSubmit = new System.Windows.Forms.Button();
             this.newDiverSelectGender = new System.Windows.Forms.ComboBox();
-            this.DiveTypeInput_dataGridView = new System.Windows.Forms.DataGridView();
-            this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Height = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Position = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.listViewDivers_contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.EditDiverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveDiverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listViewJudges_contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.RemoveJudge_toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.DiveTypeInput_dataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridViewComboBoxColumn2 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewComboBoxColumn3 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridViewComboBoxColumn4 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DiveCount_numericUpDown)).BeginInit();
             this.groupBoxDisciplin.SuspendLayout();
             this.groupBoxSingle.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DiveTypeInput_dataGridView)).BeginInit();
             this.listViewDivers_contextMenuStrip.SuspendLayout();
             this.listViewJudges_contextMenuStrip.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DiveTypeInput_dataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // EventName_label
@@ -97,7 +108,7 @@
             // EventName_textBox
             // 
             this.EventName_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.EventName_textBox.Location = new System.Drawing.Point(88, 32);
+            this.EventName_textBox.Location = new System.Drawing.Point(86, 32);
             this.EventName_textBox.Name = "EventName_textBox";
             this.EventName_textBox.Size = new System.Drawing.Size(181, 20);
             this.EventName_textBox.TabIndex = 1;
@@ -105,7 +116,7 @@
             // EventLocation_textBox
             // 
             this.EventLocation_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.EventLocation_textBox.Location = new System.Drawing.Point(88, 57);
+            this.EventLocation_textBox.Location = new System.Drawing.Point(86, 57);
             this.EventLocation_textBox.Name = "EventLocation_textBox";
             this.EventLocation_textBox.Size = new System.Drawing.Size(181, 20);
             this.EventLocation_textBox.TabIndex = 2;
@@ -219,7 +230,7 @@
             // 
             this.btnSubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSubmit.Enabled = false;
-            this.btnSubmit.Location = new System.Drawing.Point(9, 512);
+            this.btnSubmit.Location = new System.Drawing.Point(15, 632);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(89, 23);
             this.btnSubmit.TabIndex = 18;
@@ -287,7 +298,7 @@
             // 
             this.successfully.AutoSize = true;
             this.successfully.ForeColor = System.Drawing.Color.Green;
-            this.successfully.Location = new System.Drawing.Point(107, 517);
+            this.successfully.Location = new System.Drawing.Point(115, 637);
             this.successfully.Name = "successfully";
             this.successfully.Size = new System.Drawing.Size(134, 13);
             this.successfully.TabIndex = 24;
@@ -298,7 +309,7 @@
             // 
             this.errorlabel.AutoSize = true;
             this.errorlabel.ForeColor = System.Drawing.Color.Firebrick;
-            this.errorlabel.Location = new System.Drawing.Point(107, 517);
+            this.errorlabel.Location = new System.Drawing.Point(115, 637);
             this.errorlabel.Name = "errorlabel";
             this.errorlabel.Size = new System.Drawing.Size(138, 13);
             this.errorlabel.TabIndex = 25;
@@ -315,7 +326,7 @@
             this.listViewJudge.GridLines = true;
             this.listViewJudge.Location = new System.Drawing.Point(710, 7);
             this.listViewJudge.Name = "listViewJudge";
-            this.listViewJudge.Size = new System.Drawing.Size(262, 504);
+            this.listViewJudge.Size = new System.Drawing.Size(262, 614);
             this.listViewJudge.TabIndex = 21;
             this.listViewJudge.UseCompatibleStateImageBehavior = false;
             this.listViewJudge.View = System.Windows.Forms.View.Details;
@@ -343,12 +354,13 @@
             this.columnHeader3});
             this.listViewDivers.FullRowSelect = true;
             this.listViewDivers.GridLines = true;
-            this.listViewDivers.Location = new System.Drawing.Point(313, 6);
+            this.listViewDivers.Location = new System.Drawing.Point(317, 7);
             this.listViewDivers.Name = "listViewDivers";
-            this.listViewDivers.Size = new System.Drawing.Size(371, 505);
+            this.listViewDivers.Size = new System.Drawing.Size(371, 421);
             this.listViewDivers.TabIndex = 15;
             this.listViewDivers.UseCompatibleStateImageBehavior = false;
             this.listViewDivers.View = System.Windows.Forms.View.Details;
+            this.listViewDivers.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listViewDivers_ItemChecked);
             this.listViewDivers.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listViewDivers_MouseDown);
             // 
             // columnHeader7
@@ -377,7 +389,7 @@
             // 
             // newDiverName
             // 
-            this.newDiverName.Location = new System.Drawing.Point(313, 518);
+            this.newDiverName.Location = new System.Drawing.Point(320, 434);
             this.newDiverName.Name = "newDiverName";
             this.newDiverName.Size = new System.Drawing.Size(121, 20);
             this.newDiverName.TabIndex = 16;
@@ -386,7 +398,7 @@
             // 
             // newDiverAge
             // 
-            this.newDiverAge.Location = new System.Drawing.Point(550, 518);
+            this.newDiverAge.Location = new System.Drawing.Point(557, 434);
             this.newDiverAge.Name = "newDiverAge";
             this.newDiverAge.Size = new System.Drawing.Size(34, 20);
             this.newDiverAge.TabIndex = 18;
@@ -395,7 +407,7 @@
             // 
             // newDiverCountry
             // 
-            this.newDiverCountry.Location = new System.Drawing.Point(440, 518);
+            this.newDiverCountry.Location = new System.Drawing.Point(447, 434);
             this.newDiverCountry.Name = "newDiverCountry";
             this.newDiverCountry.Size = new System.Drawing.Size(104, 20);
             this.newDiverCountry.TabIndex = 17;
@@ -404,7 +416,7 @@
             // 
             // AddNewDiverSubmit
             // 
-            this.AddNewDiverSubmit.Location = new System.Drawing.Point(658, 517);
+            this.AddNewDiverSubmit.Location = new System.Drawing.Point(665, 433);
             this.AddNewDiverSubmit.Name = "AddNewDiverSubmit";
             this.AddNewDiverSubmit.Size = new System.Drawing.Size(26, 23);
             this.AddNewDiverSubmit.TabIndex = 20;
@@ -414,7 +426,7 @@
             // 
             // newJudgeName
             // 
-            this.newJudgeName.Location = new System.Drawing.Point(710, 520);
+            this.newJudgeName.Location = new System.Drawing.Point(710, 629);
             this.newJudgeName.Name = "newJudgeName";
             this.newJudgeName.Size = new System.Drawing.Size(230, 20);
             this.newJudgeName.TabIndex = 22;
@@ -423,7 +435,7 @@
             // 
             // newJudgeSubmit
             // 
-            this.newJudgeSubmit.Location = new System.Drawing.Point(946, 518);
+            this.newJudgeSubmit.Location = new System.Drawing.Point(946, 627);
             this.newJudgeSubmit.Name = "newJudgeSubmit";
             this.newJudgeSubmit.Size = new System.Drawing.Size(26, 23);
             this.newJudgeSubmit.TabIndex = 23;
@@ -437,73 +449,12 @@
             this.newDiverSelectGender.Items.AddRange(new object[] {
             "Female",
             "Male"});
-            this.newDiverSelectGender.Location = new System.Drawing.Point(592, 518);
+            this.newDiverSelectGender.Location = new System.Drawing.Point(599, 434);
             this.newDiverSelectGender.MaxLength = 100;
             this.newDiverSelectGender.Name = "newDiverSelectGender";
             this.newDiverSelectGender.Size = new System.Drawing.Size(60, 21);
             this.newDiverSelectGender.Sorted = true;
             this.newDiverSelectGender.TabIndex = 19;
-            // 
-            // DiveTypeInput_dataGridView
-            // 
-            this.DiveTypeInput_dataGridView.AllowUserToAddRows = false;
-            this.DiveTypeInput_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DiveTypeInput_dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Code,
-            this.Type,
-            this.Height,
-            this.Position});
-            this.DiveTypeInput_dataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.DiveTypeInput_dataGridView.EnableHeadersVisualStyles = false;
-            this.DiveTypeInput_dataGridView.Location = new System.Drawing.Point(23, 315);
-            this.DiveTypeInput_dataGridView.Name = "DiveTypeInput_dataGridView";
-            this.DiveTypeInput_dataGridView.Size = new System.Drawing.Size(264, 142);
-            this.DiveTypeInput_dataGridView.TabIndex = 26;
-            this.DiveTypeInput_dataGridView.Visible = false;
-            this.DiveTypeInput_dataGridView.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView1_EditingControlShowing);
-            this.DiveTypeInput_dataGridView.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowLeave);
-            // 
-            // Code
-            // 
-            this.Code.HeaderText = "Kod";
-            this.Code.Name = "Code";
-            this.Code.Width = 51;
-            // 
-            // Type
-            // 
-            this.Type.HeaderText = "Name";
-            this.Type.Name = "Type";
-            this.Type.Width = 60;
-            // 
-            // Height
-            // 
-            this.Height.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            this.Height.HeaderText = "Höjd";
-            this.Height.Items.AddRange(new object[] {
-            "1m",
-            "3m",
-            "5m",
-            "7,5m",
-            "10m"});
-            this.Height.Name = "Height";
-            this.Height.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Height.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Height.ToolTipText = "1m";
-            this.Height.Width = 55;
-            // 
-            // Position
-            // 
-            this.Position.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            this.Position.HeaderText = "Position";
-            this.Position.Items.AddRange(new object[] {
-            "A",
-            "B",
-            "C",
-            "D"});
-            this.Position.Name = "Position";
-            this.Position.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Position.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Position.Width = 55;
             // 
             // listViewDivers_contextMenuStrip
             // 
@@ -532,21 +483,170 @@
             this.listViewJudges_contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.RemoveJudge_toolStripMenuItem});
             this.listViewJudges_contextMenuStrip.Name = "listViewJudges_contextMenuStrip";
-            this.listViewJudges_contextMenuStrip.Size = new System.Drawing.Size(153, 48);
+            this.listViewJudges_contextMenuStrip.Size = new System.Drawing.Size(113, 26);
             // 
             // RemoveJudge_toolStripMenuItem
             // 
-            this.RemoveJudge_toolStripMenuItem.Enabled = false;
             this.RemoveJudge_toolStripMenuItem.Name = "RemoveJudge_toolStripMenuItem";
-            this.RemoveJudge_toolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.RemoveJudge_toolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.RemoveJudge_toolStripMenuItem.Text = "Ta bort";
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(320, 478);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(371, 175);
+            this.tabControl1.TabIndex = 27;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(363, 149);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(363, 149);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // DiveTypeInput_dataGridView
+            // 
+            this.DiveTypeInput_dataGridView.AllowUserToAddRows = false;
+            this.DiveTypeInput_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DiveTypeInput_dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewComboBoxColumn1,
+            this.dataGridViewComboBoxColumn2});
+            this.DiveTypeInput_dataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.DiveTypeInput_dataGridView.EnableHeadersVisualStyles = false;
+            this.DiveTypeInput_dataGridView.Location = new System.Drawing.Point(7, 324);
+            this.DiveTypeInput_dataGridView.Name = "DiveTypeInput_dataGridView";
+            this.DiveTypeInput_dataGridView.Size = new System.Drawing.Size(262, 142);
+            this.DiveTypeInput_dataGridView.TabIndex = 28;
+            this.DiveTypeInput_dataGridView.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Kod";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 51;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 60;
+            // 
+            // dataGridViewComboBoxColumn1
+            // 
+            this.dataGridViewComboBoxColumn1.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.dataGridViewComboBoxColumn1.HeaderText = "Höjd";
+            this.dataGridViewComboBoxColumn1.Items.AddRange(new object[] {
+            "1m",
+            "3m",
+            "5m",
+            "7,5m",
+            "10m"});
+            this.dataGridViewComboBoxColumn1.Name = "dataGridViewComboBoxColumn1";
+            this.dataGridViewComboBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewComboBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewComboBoxColumn1.ToolTipText = "1m";
+            this.dataGridViewComboBoxColumn1.Width = 55;
+            // 
+            // dataGridViewComboBoxColumn2
+            // 
+            this.dataGridViewComboBoxColumn2.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.dataGridViewComboBoxColumn2.HeaderText = "Position";
+            this.dataGridViewComboBoxColumn2.Items.AddRange(new object[] {
+            "A",
+            "B",
+            "C",
+            "D"});
+            this.dataGridViewComboBoxColumn2.Name = "dataGridViewComboBoxColumn2";
+            this.dataGridViewComboBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewComboBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewComboBoxColumn2.Width = 55;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewComboBoxColumn3,
+            this.dataGridViewComboBoxColumn4});
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dataGridView1.EnableHeadersVisualStyles = false;
+            this.dataGridView1.Location = new System.Drawing.Point(6, 1);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(262, 142);
+            this.dataGridView1.TabIndex = 29;
+            this.dataGridView1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Kod";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 51;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Width = 60;
+            // 
+            // dataGridViewComboBoxColumn3
+            // 
+            this.dataGridViewComboBoxColumn3.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.dataGridViewComboBoxColumn3.HeaderText = "Höjd";
+            this.dataGridViewComboBoxColumn3.Items.AddRange(new object[] {
+            "1m",
+            "3m",
+            "5m",
+            "7,5m",
+            "10m"});
+            this.dataGridViewComboBoxColumn3.Name = "dataGridViewComboBoxColumn3";
+            this.dataGridViewComboBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewComboBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewComboBoxColumn3.ToolTipText = "1m";
+            this.dataGridViewComboBoxColumn3.Width = 55;
+            // 
+            // dataGridViewComboBoxColumn4
+            // 
+            this.dataGridViewComboBoxColumn4.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.dataGridViewComboBoxColumn4.HeaderText = "Position";
+            this.dataGridViewComboBoxColumn4.Items.AddRange(new object[] {
+            "A",
+            "B",
+            "C",
+            "D"});
+            this.dataGridViewComboBoxColumn4.Name = "dataGridViewComboBoxColumn4";
+            this.dataGridViewComboBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewComboBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewComboBoxColumn4.Width = 55;
             // 
             // FormNewEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 552);
+            this.ClientSize = new System.Drawing.Size(982, 691);
             this.Controls.Add(this.DiveTypeInput_dataGridView);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.newDiverSelectGender);
             this.Controls.Add(this.newJudgeSubmit);
             this.Controls.Add(this.newJudgeName);
@@ -579,9 +679,12 @@
             this.groupBoxSingle.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DiveTypeInput_dataGridView)).EndInit();
             this.listViewDivers_contextMenuStrip.ResumeLayout(false);
             this.listViewJudges_contextMenuStrip.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DiveTypeInput_dataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -636,15 +739,23 @@
         
         private System.Windows.Forms.ListView listViewJudge;
         private System.Windows.Forms.ListView listViewDivers;
-        private System.Windows.Forms.DataGridView DiveTypeInput_dataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Code;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Type;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Height;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Position;
         private System.Windows.Forms.ContextMenuStrip listViewDivers_contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem RemoveDiverToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem EditDiverToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip listViewJudges_contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem RemoveJudge_toolStripMenuItem;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.DataGridView DiveTypeInput_dataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn1;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn2;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn3;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn4;
     }
 }
