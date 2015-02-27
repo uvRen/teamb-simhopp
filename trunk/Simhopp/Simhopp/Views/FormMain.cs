@@ -159,8 +159,8 @@ namespace Simhopp
 
             for (int i = 0; i < count; ++i)
             {
-                ev.Graphics.DrawString(listViewResult.Items[i].SubItems[1].Text, new Font("Times New Roman", 14, FontStyle.Regular), Brushes.Black, 100, y);    //skriver ut namn
-                ev.Graphics.DrawString(listViewResult.Items[i].Text, new Font("Times New Roman", 14, FontStyle.Regular), Brushes.Black, 300, y);               //skriver ut id/resultat
+                ev.Graphics.DrawString(listViewResult.Items[i].SubItems[1].Text, new Font("Times New Roman", 14, FontStyle.Regular), Brushes.Black, 100, y);        //skriver ut namn
+                ev.Graphics.DrawString(listViewResult.Items[i].Text, new Font("Times New Roman", 14, FontStyle.Regular), Brushes.Black, 300, y);                    //skriver ut id/resultat
                 y += 40;
             }
         }
