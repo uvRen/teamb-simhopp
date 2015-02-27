@@ -15,7 +15,7 @@ namespace Simhopp
     {
         private ListViewItem _selectedItem = null;
 
-        int t=0;
+        //int pagesAmount=0;
         public FormMain()
         {
             InitializeComponent();
@@ -131,34 +131,38 @@ namespace Simhopp
 
         #region Print
 
-        //Thomas -- INTE KLAR
         private void PrintResult_btn_Click(object sender, EventArgs e)
         {
             try
             {
                 PrintDocument pd = new PrintDocument();
-                pd.DefaultPageSettings.PaperSize = new PaperSize("A4", 827, 1170); // all sizes are converted from mm to inches & then multiplied by 100.
+                pd.DefaultPageSettings.PaperSize = new PaperSize("A4", 827, 1170);
                 pd.PrintPage += new PrintPageEventHandler(this.pd_PrintPage);
                 pd.Print();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred while printing", ex.ToString());
+                MessageBox.Show("Kunde inte skriva ut, försök igen", ex.ToString());
             }
         }
         private void pd_PrintPage(object sender, PrintPageEventArgs ev)
         {
-	        if (t < 1)
-	        {
-                //for loop.... ändra koordinater 20, 225
-                //ev.Graphics.DrawString(BOXNAME.Text.ToString(), new Font("Times New Roman", 14, FontStyle.Bold), Brushes.Black, 20, 225);
-                ev.Graphics.DrawString("Hello world ", new Font("Times New Roman", 14, FontStyle.Bold), Brushes.Black, 20, 225);
-                t++;
-                if (t < 1)
-                    ev.HasMorePages = true;
-                else
-                     ev.HasMorePages = false;
-           }
+            int y = 200;
+            int count;
+
+            ev.Graphics.DrawString(listViewEvent.SelectedItems[0].SubItems[1].Text, new Font("Times New Roman", 18, FontStyle.Bold), Brushes.Black, 325, 75);       //Title event name
+
+            ev.Graphics.DrawString("Namn", new Font("Times New Roman", 14, FontStyle.Bold), Brushes.Black, 100, 150);                                               //column namn
+            ev.Graphics.DrawString("Resultat", new Font("Times New Roman", 14, FontStyle.Bold), Brushes.Black, 300, 150);                                           //column resultat
+
+            count = listViewResult.Items.Count;
+
+            for (int i = 0; i < count; ++i)
+            {
+                ev.Graphics.DrawString(listViewResult.Items[i].SubItems[1].Text, new Font("Times New Roman", 14, FontStyle.Regular), Brushes.Black, 100, y);    //skriver ut namn
+                ev.Graphics.DrawString(listViewResult.Items[i].Text, new Font("Times New Roman", 14, FontStyle.Regular), Brushes.Black, 300, y);               //skriver ut id/resultat
+                y += 40;
+            }
         }
         #endregion
     }
