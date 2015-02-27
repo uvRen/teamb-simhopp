@@ -8,12 +8,12 @@ namespace Simhopp
 {
     public class Contest
     {
-        public int ID { get; set; }
-        public string name { get; set; }
-        public string date { get; set; }
-        public string location { get; set; }
-        public int discipline { get; set; }
-        public int sync { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Date { get; set; }
+        public string Location { get; set; }
+        public int Discipline { get; set; }
+        public int Sync { get; set; }
         public int diveCount { get; set; }
         public int sex { get; set; }
         public int started;
@@ -26,13 +26,13 @@ namespace Simhopp
         #region Konstruktor
         public Contest() 
         {
-            this.ID = -1;
-            this.name = "";
-            this.location = "";
-            this.date = "";
-            this.discipline = -1;
+            this.Id = -1;
+            this.Name = "";
+            this.Location = "";
+            this.Date = "";
+            this.Discipline = -1;
             this.sex = -1;
-            this.sync = 0;
+            this.Sync = 0;
             this.diveCount = -1;
             this.Judges = new List<Judge>();
             this.Divers = new List<Diver>();
@@ -42,13 +42,13 @@ namespace Simhopp
 
         public Contest(int ID, string name, string date, string location, int discipline, int sync, int diveCount, int sex)
         {
-            this.ID = ID;
-            this.name = name;
-            this.location = location;
-            this.date = date;
-            this.discipline = discipline;
+            this.Id = ID;
+            this.Name = name;
+            this.Location = location;
+            this.Date = date;
+            this.Discipline = discipline;
             this.sex = sex;
-            this.sync = sync;
+            this.Sync = sync;
             this.diveCount = diveCount;
             this.Judges = new List<Judge>();
             this.Divers = new List<Diver>();
@@ -58,13 +58,13 @@ namespace Simhopp
 
         public Contest(int ID, string name, string date, string location, int discipline, int sync, int diveCount, int sex, int started = 0)
         {
-            this.ID = ID;
-            this.name = name;
-            this.location = location;
-            this.date = date;
-            this.discipline = discipline;
+            this.Id = ID;
+            this.Name = name;
+            this.Location = location;
+            this.Date = date;
+            this.Discipline = discipline;
             this.sex = sex;
-            this.sync = sync;
+            this.Sync = sync;
             this.diveCount = diveCount;
             this.started = started;
             this.Judges = new List<Judge>();
@@ -75,12 +75,12 @@ namespace Simhopp
 
         public Contest(string name, string date, string location, int discipline, int sync, int diveCount, int sex)
         {
-            this.name = name;
-            this.location = location;
-            this.date = date;
-            this.discipline = discipline;
+            this.Name = name;
+            this.Location = location;
+            this.Date = date;
+            this.Discipline = discipline;
             this.sex = sex;
-            this.sync = sync;
+            this.Sync = sync;
             this.diveCount = diveCount;
             this.Judges = new List<Judge>();
             this.Divers = new List<Diver>();
@@ -127,17 +127,6 @@ namespace Simhopp
         {
             this.Divers.Clear();
             this.Divers = divers;
-        }
-
-        public List<Diver> GetDivers()
-        {
-            return Divers;
-        }
-
-
-        public List<Judge> GetJudges()
-        {
-            return Judges;
         }
         #endregion
     }

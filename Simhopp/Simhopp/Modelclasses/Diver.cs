@@ -8,20 +8,20 @@ namespace Simhopp
 {
     public class Diver
     {
-        public List<Dive> dives {get; set;}
-        Diver sync;
-        public int ID { get; set; }
-        public string name { get; set; }
+        public List<Dive> Dives {get; set;}
+        public Diver SyncDiver;
+        public int Id { get; set; }
+        public string Name { get; set; }
 
-        public int age { get; set; }
-        public int sex { get; set; }
-        public string country { get; set; }
+        public int Age { get; set; }
+        public int Sex { get; set; }
+        public string Country { get; set; }
         public double TotalScore
         {
             get
             {
                 double _score = 0;
-                foreach (Dive dive in dives)
+                foreach (Dive dive in Dives)
                 {
                     _score += dive.Score;   
                 }
@@ -31,62 +31,57 @@ namespace Simhopp
         #region Konstruktor
         public Diver()
         {
-            this.ID = -1;
-            this.name = "";
-            this.age = -1;
-            this.sex = -1;
-            this.country = "";
-            dives = new List<Dive>();
+            this.Id = -1;
+            this.Name = "";
+            this.Age = -1;
+            this.Sex = -1;
+            this.Country = "";
+            Dives = new List<Dive>();
         }
 
         public Diver(string name)
         {
-            this.ID = -1;
-            this.name = name;
-            dives = new List<Dive>();
+            this.Id = -1;
+            this.Name = name;
+            Dives = new List<Dive>();
         }
 
         public Diver(int ID, string name)
         {
-            this.ID = ID;
-            this.name = name;
-            dives = new List<Dive>();
+            this.Id = ID;
+            this.Name = name;
+            Dives = new List<Dive>();
         }
         public Diver(int ID, string name, int age, int sex, string country)
         {
-            this.ID = ID;
-            this.name = name;
-            this.age = age;
-            this.sex = sex;
-            this.country = country;
-            dives = new List<Dive>();
+            this.Id = ID;
+            this.Name = name;
+            this.Age = age;
+            this.Sex = sex;
+            this.Country = country;
+            Dives = new List<Dive>();
         }
 
         public Diver(string name, int age, int sex, string country)
         {
-            this.ID = -1;
-            this.name = name;
-            this.age = age;
-            this.sex = sex;
-            this.country = country;
-            dives = new List<Dive>();
+            this.Id = -1;
+            this.Name = name;
+            this.Age = age;
+            this.Sex = sex;
+            this.Country = country;
+            Dives = new List<Dive>();
         }
         #endregion
 
         #region Funktioner
         public void AddDive(Dive dive)
         {
-            dives.Add(dive);
+            Dives.Add(dive);
         }
 
         public void ScoreDive(int diveNum, Score score)
         {
-            dives[diveNum].AddScore(score);
-        }
-
-        public List<Dive> GetDives()
-        {
-            return dives;
+            Dives[diveNum].AddScore(score);
         }
         #endregion
     }

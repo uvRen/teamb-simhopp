@@ -52,7 +52,7 @@ namespace Simhopp
         {
             get
             {
-                return CurrentDiver.dives[CurrentRoundIndex];
+                return CurrentDiver.Dives[CurrentRoundIndex];
             }
         }
         public int CurrentDiverIndex
@@ -119,12 +119,12 @@ namespace Simhopp
             CurrentEvent.AddDiver(new Diver(0, "Annika 2"));
             CurrentEvent.AddDiver(new Diver(0, "Annika 3"));
 
-            for (int i = 0; i < CurrentEvent.GetDivers().Count; i++)
+            for (int i = 0; i < CurrentEvent.Divers.Count; i++)
             {
                 for (int j = 0; j < 5; j++)
                 {
-                    Dive dive = new Dive(0, CurrentEvent.GetDivers()[i], j + 1, CurrentEvent);
-                    CurrentEvent.GetDivers()[i].AddDive(dive);
+                    Dive dive = new Dive(0, CurrentEvent.Divers[i], j + 1, CurrentEvent);
+                    CurrentEvent.Divers[i].AddDive(dive);
 
                     for (int k = 0; k < 5; k++)
                     {
@@ -135,8 +135,8 @@ namespace Simhopp
             }
             #endregion
 
-            Judges = CurrentEvent.GetJudges();
-            Divers = CurrentEvent.GetDivers();
+            Judges = CurrentEvent.Judges;
+            Divers = CurrentEvent.Divers;
 
         }
 
@@ -152,8 +152,8 @@ namespace Simhopp
             {
                 scoringJudge = Judges[judgeIndex];
             }
-            Score score = new Score(-1, CurrentDiver.dives[CurrentRoundIndex], scoringJudge, points);
-            CurrentDiver.dives[CurrentRoundIndex].AddScore(score); //Add score to current dive
+            Score score = new Score(-1, CurrentDiver.Dives[CurrentRoundIndex], scoringJudge, points);
+            CurrentDiver.Dives[CurrentRoundIndex].AddScore(score); //Add score to current dive
 
             _view.PopulateScoreInput(score, CurrentJudgeIndex);
 
@@ -224,8 +224,9 @@ namespace Simhopp
         public void SubmitClientScore(double points, int judgeIndex)
         {
             Judge scoringJudge = Judges[judgeIndex];
-            Score score = new Score(-1, CurrentDiver.dives[CurrentRoundIndex], scoringJudge, points);
-            CurrentDiver.dives[CurrentRoundIndex].AddScore(score); //Add score to current dive
+            Score score = new Score(-1, CurrentDiver.Dives[CurrentRoundIndex], scoringJudge, points);
+            CurrentDiver.Dives[CurrentRoundIndex].AddScore(score); //Add score to current dive
+
             JudgeServer.BroadcastScore(score);
 
             _view.RedrawContestInfo();

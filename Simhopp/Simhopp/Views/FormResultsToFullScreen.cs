@@ -37,9 +37,9 @@ namespace Simhopp
             foreach (Diver d in Database.GetDiversInEvent(Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text)))
             {
                 ListViewItem item1 = new ListViewItem();
-                item1.Text = d.ID.ToString();
+                item1.Text = d.Id.ToString();
 
-                item1.SubItems.Add(d.name);
+                item1.SubItems.Add(d.Name);
                 listViewResult.Items.Add(item1);
             }
         }
@@ -71,9 +71,9 @@ namespace Simhopp
             foreach (Diver d in Database.GetDiversInEvent(Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text)))
             {
                 ListViewItem item1 = new ListViewItem();
-                item1.Text = d.ID.ToString();
+                item1.Text = d.Id.ToString();
 
-                item1.SubItems.Add(d.name);
+                item1.SubItems.Add(d.Name);
                 listViewResult.Items.Add(item1);
             }
         }

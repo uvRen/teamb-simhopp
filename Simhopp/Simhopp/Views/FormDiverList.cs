@@ -24,13 +24,13 @@ namespace Simhopp
             foreach (Diver diver in Database.GetDivers())
             {
                 ListViewItem item1 = new ListViewItem();
-                item1.Text = diver.ID.ToString();
+                item1.Text = diver.Id.ToString();
                 listViewDivers.Items.Add(item1);
 
-                item1.SubItems.Add(diver.name);
-                item1.SubItems.Add(diver.country);
-                item1.SubItems.Add(diver.age.ToString());
-                item1.SubItems.Add(diver.sex.ToString());
+                item1.SubItems.Add(diver.Name);
+                item1.SubItems.Add(diver.Country);
+                item1.SubItems.Add(diver.Age.ToString());
+                item1.SubItems.Add(diver.Sex.ToString());
             }
         }
 

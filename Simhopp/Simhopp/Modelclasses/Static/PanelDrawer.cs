@@ -120,7 +120,7 @@ namespace Simhopp
         {
             Init();
 
-            Dive dive = diver.dives[round];
+            Dive dive = diver.Dives[round];
 
             FontFamily fontFamily = new FontFamily("Cambria");
 
@@ -144,7 +144,7 @@ namespace Simhopp
             p.BackColor = _colors[1];
 
             Label name = new Label();
-            name.Text = diver.name;
+            name.Text = diver.Name;
             name.Top = 2;
             name.Left = 20;
             name.Font = fontName;

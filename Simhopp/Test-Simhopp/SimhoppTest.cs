@@ -44,7 +44,7 @@ namespace Nunit.Simhopp
                 for (int j = 0; j < 5; j++)
                 {
                     Dive dive = new Dive(0, null, j + 1, _contest);
-                    _contest.GetDivers()[i].AddDive(dive);
+                    _contest.Divers[i].AddDive(dive);
 
                     for (int k = 0; k < 5; k++)
                     {
@@ -101,13 +101,13 @@ namespace Nunit.Simhopp
         [Test]
         public void DbAddSelectDiver()
         {
-            int lastId = _divers[0].ID;
+            int lastId = _divers[0].Id;
             int newId = Database.AddDiverToDatabase(_divers[0]);
             Assert.AreNotEqual(lastId, newId);
-            Assert.AreEqual(newId, _divers[0].ID);
+            Assert.AreEqual(newId, _divers[0].Id);
 
-            Diver temp = Database.GetSpecificDiverFromDatabase(_divers[0].ID);
-            Assert.AreEqual(_divers[0].ID, temp.ID);
+            Diver temp = Database.GetSpecificDiverFromDatabase(_divers[0].Id);
+            Assert.AreEqual(_divers[0].Id, temp.Id);
         }
     }
 
@@ -145,7 +145,7 @@ namespace Nunit.Simhopp
                 for (int j = 0; j < 5; j++)
                 {
                     Dive dive = new Dive(0, null, j + 1, _contest);
-                    _contest.GetDivers()[i].AddDive(dive);
+                    _contest.Divers[i].AddDive(dive);
 
                     for (int k = 0; k < 5; k++)
                     {
@@ -165,33 +165,33 @@ namespace Nunit.Simhopp
         [Test]
         public void RunCheckDiveCount()
         {
-            Assert.AreEqual(_contest.diveCount, _contest.GetDivers()[0].GetDives().Count);
+            Assert.AreEqual(_contest.diveCount, _contest.Divers[0].Dives.Count);
         }
 
         [Test]
         public void RunSelectDivers()
         {
-            Assert.AreEqual(_contest.GetDivers()[0], _divers[0]);
-            Assert.AreEqual(_contest.GetDivers()[1], _divers[1]);
-            Assert.AreEqual(_contest.GetDivers()[2], _divers[2]);
-            Assert.AreEqual(_contest.GetDivers().Count, 3);
+            Assert.AreEqual(_contest.Divers[0], _divers[0]);
+            Assert.AreEqual(_contest.Divers[1], _divers[1]);
+            Assert.AreEqual(_contest.Divers[2], _divers[2]);
+            Assert.AreEqual(_contest.Divers.Count, 3);
         }
 
         [Test]
         public void RunSelectJudges()
         {
-            Assert.AreEqual(_contest.GetJudges()[0], _judges[0]);
-            Assert.AreEqual(_contest.GetJudges()[1], _judges[1]);
-            Assert.AreEqual(_contest.GetJudges()[2], _judges[2]);
-            Assert.AreEqual(_contest.GetJudges()[3], _judges[3]);
-            Assert.AreEqual(_contest.GetJudges()[4], _judges[4]);
-            Assert.AreEqual(_contest.GetJudges().Count, 5);
+            Assert.AreEqual(_contest.Judges[0], _judges[0]);
+            Assert.AreEqual(_contest.Judges[1], _judges[1]);
+            Assert.AreEqual(_contest.Judges[2], _judges[2]);
+            Assert.AreEqual(_contest.Judges[3], _judges[3]);
+            Assert.AreEqual(_contest.Judges[4], _judges[4]);
+            Assert.AreEqual(_contest.Judges.Count, 5);
         }
 
         [Test]
         public void RunScoreDive()
         {
-            Assert.LessOrEqual(_divers[0].dives[0].Score, 30);
+            Assert.LessOrEqual(_divers[0].Dives[0].Score, 30);
 
             Diver tDiver = new Diver(-1, "Greger");
             Dive tDive = new Dive(-1, tDiver, 1, _contest);
@@ -223,7 +223,7 @@ namespace Nunit.Simhopp
         [Test]
         public void RunSelectScoreJudge()
         {
-            Assert.AreEqual(_divers[0].GetDives()[0].Scores[0].judge.GetJudgeName(), "Mr. Test");
+            Assert.AreEqual(_divers[0].Dives[0].Scores[0].judge.GetJudgeName(), "Mr. Test");
 
             System.Diagnostics.Debug.WriteLine("Score: " + _divers[0].TotalScore);
         }

@@ -13,7 +13,7 @@ namespace Simhopp
 {
     public partial class FormMain : Form
     {
-        ListViewItem selectedItem = null;
+        private ListViewItem _selectedItem = null;
 
         int t=0;
         public FormMain()
@@ -45,9 +45,9 @@ namespace Simhopp
             foreach (Diver d in Database.GetDiversInEvent(eventId))
             {
                 ListViewItem item1 = new ListViewItem();
-                item1.Text = d.ID.ToString();
+                item1.Text = d.Id.ToString();
 
-                item1.SubItems.Add(d.name);
+                item1.SubItems.Add(d.Name);
                 listViewResult.Items.Add(item1);
             }
         }
@@ -89,28 +89,28 @@ namespace Simhopp
             {
                 ListViewHitTestInfo test = listViewEvent.HitTest(e.X, e.Y);
                 contextMenuStrip1.Show(listViewEvent, e.Location);
-                selectedItem = test.Item;
+                _selectedItem = test.Item;
             }
         }
 
         //startar tävling
         private void startaTävlingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Database.StartEvent(Int32.Parse(selectedItem.SubItems[5].Text));
+            Database.StartEvent(Int32.Parse(_selectedItem.SubItems[5].Text));
             FormMainFunctions.FillListViewWithEvent(listViewEvent);
         }
 
         //stoppar tävling
         private void stoppaTävlingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Database.StopEvent(Int32.Parse(selectedItem.SubItems[5].Text));
+            Database.StopEvent(Int32.Parse(_selectedItem.SubItems[5].Text));
             FormMainFunctions.FillListViewWithEvent(listViewEvent);
         }
 
         //tar bort event och allt tillhörande ur databasen
         private void taBortEventToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Database.RemoveEvent(Int32.Parse(selectedItem.SubItems[5].Text));
+            Database.RemoveEvent(Int32.Parse(_selectedItem.SubItems[5].Text));
             FormMainFunctions.FillListViewWithEvent(listViewEvent);
         }
         //kollar om det finns en extra skärm ansluten och skickar upp resulten (FormResultsToFullScreen) på den

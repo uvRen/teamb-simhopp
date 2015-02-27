@@ -165,7 +165,7 @@ namespace Simhopp_JudgeClient
 
         public void CommitScore(int judgeIndex, Score score)
         {
-            SimhoppMessage msg = new SimhoppMessage(judgeIndex, SimhoppMessage.ClientAction.SubmitScore, "", score.points);
+            SimhoppMessage msg = new SimhoppMessage(judgeIndex, SimhoppMessage.ClientAction.SubmitScore, "", score.Points);
             Messages.Enqueue(msg);
         }
     }

@@ -13,7 +13,7 @@ namespace Simhopp
 {
     public class Database
     {
-        public static MySqlConnection conn = null;
+        private static MySqlConnection _connection = null;
         #region Connection
         /// <summary>
         /// ansluter till databasen och returnerar anslutningen
@@ -24,24 +24,24 @@ namespace Simhopp
             const string myConnectionString = "server=tuffast.com;uid=teamb;pwd=teambteamb;database=db_teamb;";
             try
             {
-                conn = new MySqlConnection();
-                conn.ConnectionString = myConnectionString;
-                conn.Open();
+                _connection = new MySqlConnection();
+                _connection.ConnectionString = myConnectionString;
+                _connection.Open();
             }
 
             catch (MySqlException ex)
             {
                 MessageBox.Show("Kunde inte ansluta till databasen, försök igen", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                conn = null;
+                _connection = null;
             }
 
             catch(Exception e)
             {
                 MessageBox.Show("Kunde inte ansluta till databasen, försök igen", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                conn = null;
+                _connection = null;
             }
 
-            return conn;
+            return _connection;
         }
         #endregion
 
@@ -121,7 +121,7 @@ namespace Simhopp
             {
                 //kollar om en tävling redan finns i databasen
                 MySqlCommand comm = conn.CreateCommand();
-                string sql = "SELECT * FROM event WHERE name=\"" + c.name + "\" AND date=\"" + c.date + "\"";
+                string sql = "SELECT * FROM event WHERE name=\"" + c.Name + "\" AND date=\"" + c.Date + "\"";
                 comm.CommandText = sql;
 
                 var dr = comm.ExecuteReader();
@@ -136,11 +136,11 @@ namespace Simhopp
                 //lägger till tävling i databasen
                 comm = conn.CreateCommand();
                 comm.CommandText = "INSERT INTO event(name, date, location, discipline, sync, diveCount, sex) VALUES(@name, @date, @location, @discipline, @sync, @diveCount, @sex)";
-                comm.Parameters.AddWithValue("@name", c.name);
-                comm.Parameters.AddWithValue("@date", c.date);
-                comm.Parameters.AddWithValue("@location", c.location);
-                comm.Parameters.AddWithValue("@discipline", c.discipline);
-                comm.Parameters.AddWithValue("@sync", c.sync);
+                comm.Parameters.AddWithValue("@name", c.Name);
+                comm.Parameters.AddWithValue("@date", c.Date);
+                comm.Parameters.AddWithValue("@location", c.Location);
+                comm.Parameters.AddWithValue("@discipline", c.Discipline);
+                comm.Parameters.AddWithValue("@sync", c.Sync);
                 comm.Parameters.AddWithValue("@diveCount", c.diveCount);
                 comm.Parameters.AddWithValue("@sex", c.sex);
                 int rowsAffected = comm.ExecuteNonQuery();
@@ -164,7 +164,7 @@ namespace Simhopp
                     comm = conn.CreateCommand();
                     comm.CommandText = "INSERT INTO event_diver(eventId, diverId) VALUES(@eventid, @diverid)";
                     comm.Parameters.AddWithValue("@eventid", eventID);
-                    comm.Parameters.AddWithValue("@diverid", diver.ID);
+                    comm.Parameters.AddWithValue("@diverid", diver.Id);
                     rowsAffected = comm.ExecuteNonQuery();
                     if (rowsAffected <= 0)
                         return 0;
@@ -175,7 +175,7 @@ namespace Simhopp
                     comm = conn.CreateCommand();
                     comm.CommandText = "INSERT INTO event_judge(eventId, judgeId) VALUES(@eventid, @judgeid)";
                     comm.Parameters.AddWithValue("@eventid", eventID);
-                    comm.Parameters.AddWithValue("@judgeid", judge.ID);
+                    comm.Parameters.AddWithValue("@judgeid", judge.Id);
                     rowsAffected = comm.ExecuteNonQuery();
                     if (rowsAffected <= 0)
                         return 0;
@@ -310,10 +310,10 @@ namespace Simhopp
                 MySqlCommand comm = conn.CreateCommand();
                 comm.CommandText = "INSERT INTO diver(name, age, sex, country) VALUES(@name, @age, @sex, @country)";
 
-                comm.Parameters.AddWithValue("@name", d1.name);
-                comm.Parameters.AddWithValue("@age", d1.age);
-                comm.Parameters.AddWithValue("@sex", d1.sex);
-                comm.Parameters.AddWithValue("@country", d1.country);
+                comm.Parameters.AddWithValue("@name", d1.Name);
+                comm.Parameters.AddWithValue("@age", d1.Age);
+                comm.Parameters.AddWithValue("@sex", d1.Sex);
+                comm.Parameters.AddWithValue("@country", d1.Country);
                 comm.ExecuteNonQuery();
                 comm.CommandText = "SELECT LAST_INSERT_ID() AS id";
                 var dr = comm.ExecuteReader();
@@ -323,7 +323,7 @@ namespace Simhopp
                 string id = row["id"].ToString();
                                 
                 conn.Close();
-                d1.ID = Int32.Parse(id);
+                d1.Id = Int32.Parse(id);
                 return Int32.Parse(id);
             }
             else
@@ -352,8 +352,8 @@ namespace Simhopp
             {
                 foreach (DataRow row in dt.Rows)
                 {
-                    d.ID = Int32.Parse(row["id"].ToString());
-                    d.name = row["name"].ToString();
+                    d.Id = Int32.Parse(row["id"].ToString());
+                    d.Name = row["name"].ToString();
                 }
                 return d;
             }
