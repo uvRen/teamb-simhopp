@@ -53,6 +53,7 @@
     <Compile Include="Modelclasses\Static\Database.cs" />
     <Compile Include="Modelclasses\Dive.cs" />
     <Compile Include="Modelclasses\DiveType.cs" />
+    <Compile Include="Modelclasses\Static\ExceptionHandler.cs" />
     <Compile Include="Presenters\EventPresenter.cs" />
     <Compile Include="Interfaces\IJudgeClient.cs" />
     <Compile Include="Presenters\JudgeServer.cs" />

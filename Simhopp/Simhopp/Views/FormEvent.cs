@@ -80,7 +80,8 @@ namespace Simhopp
         {
             set
             {
-                CurrentDivePanel.Controls.Find("Points", true)[0].Text = value.ToString();
+                //CurrentDive.Score = value;
+                //CurrentDivePanel.Controls.Find("Points", true)[0].Text = value.ToString();
             }
             get
             {
@@ -139,7 +140,7 @@ namespace Simhopp
             }
             else
             {
-                this.textBoxSeverLog.Text += message + "\r\n";
+                this.textBoxSeverLog.Text = message + "\r\n" + textBoxSeverLog.Text;
             }
         }
 
@@ -375,15 +376,31 @@ namespace Simhopp
             UpdateJudgeScores();
         }
 
+        private delegate void PopulateScoreInputDelegate(Score score, int judgeIndex);
         public void PopulateScoreInput(Score score, int judgeIndex)
         {
-            Control scoreInput = CurrentDivePanel.Controls.Find("Score", true)[judgeIndex];
+            if (CurrentDivePanel.InvokeRequired)
+            {
+                PopulateScoreInputDelegate d = new PopulateScoreInputDelegate(PopulateScoreInput);
+                this.Invoke(d, new object[] {score, judgeIndex});
+                return;
+            }
+            TextBox scoreInput = (TextBox)CurrentDivePanel.Controls.Find("Score", true)[judgeIndex];
             scoreInput.Text = score.Points.ToString();
             scoreInput.Tag = score;
         }
 
+        
+        delegate void CompleteDiveDelegate();
+        
         public void CompleteDive()
         {
+            if (_panelScoring.InvokeRequired)
+            {
+                CompleteDiveDelegate d = new CompleteDiveDelegate(CompleteDive);
+                this.Invoke(d);
+                return;
+            }
             _panelScoring.Enabled = false;
 
             CurrentDivePanel.BackColor = PanelDrawer.Colors[1];
@@ -400,6 +417,10 @@ namespace Simhopp
                 btnDoDive.Enabled = true;
                 btnDoDive.Focus();
             }
+
+            UpdateJudgeScores();
+            UpdateLeaderboard();
+            PrintEventStatus();
         }
 
 

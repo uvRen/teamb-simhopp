@@ -59,7 +59,7 @@ namespace Simhopp_JudgeClient
 
         public void LogMessage(SimhoppMessage msg)
         {
-            textBoxLog.Text += msg.Serialize() + "\r\n";
+            textBoxLog.Text = msg.Serialize() + "\r\n" + textBoxLog.Text;
         }
 
         private void listBoxJudges_SelectedIndexChanged(object sender, EventArgs e)
