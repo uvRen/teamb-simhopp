@@ -140,30 +140,52 @@ namespace Simhopp
 
         }
 
-        public Score ScoreDive(double points, int judgeIndex = -1)
+        /// <summary>
+        /// Sker när man klickar på ett domar-poäng i standalone
+        /// </summary>
+        /// <param name="points"></param>
+        /// <returns></returns>
+        public Score ScoreDive(double points)
         {
-            while (JudgeServer.IsJudgeClient(_currentJudgeIndex) && CurrentJudgeIndex < Judges.Count - 1)
-            {
+            SkipToNonClientJudges();
+            return CreateScoreForDive(points, _currentJudgeIndex, true);
+        }
+
+        /// <summary>
+        /// Hoppa över hoppare i klient-listan om bedömning sker i standalone
+        /// </summary>
+        private void SkipToNonClientJudges(bool next = false)
+        {
+            if (next)
                 CurrentJudgeIndex++;
+
+            while (JudgeServer.IsJudgeClient(_currentJudgeIndex) && Mode != ViewMode.Client)
+            {
+                _currentJudgeIndex++;
             }
 
-            Judge scoringJudge = CurrentJudge;
-            if (judgeIndex > -1)
+            if (_currentJudgeIndex >= Judges.Count)
             {
-                scoringJudge = Judges[judgeIndex];
+                _currentJudgeIndex--;
+                _view.EnableControls(false);
             }
+        }
+
+        private Score CreateScoreForDive(double points, int judgeIndex, bool broadcastScore = true)
+        {
+            Judge scoringJudge = Judges[judgeIndex];
+            
             Score score = new Score(-1, CurrentDiver.Dives[CurrentRoundIndex], scoringJudge, points);
             CurrentDiver.Dives[CurrentRoundIndex].AddScore(score); //Add score to current dive
 
             _view.PopulateScoreInput(score, CurrentJudgeIndex);
 
-            CurrentJudgeIndex++;
+            SkipToNonClientJudges(true);
 
-            //if (CurrentJudgeIndex >= Judges.Count)
             if (CurrentDive.Scores.Count == CurrentEvent.diveCount)
             {
                 _view.CurrentDiveScore = CurrentDive.Score;
-
+                
                 CurrentJudgeIndex = 0;
                 CurrentDiverIndex++;
 
@@ -172,10 +194,7 @@ namespace Simhopp
                     CurrentDiverIndex = 0;
                     CurrentRoundIndex++;
                 }
-
                 _view.CompleteDive();
-                _view.UpdateLeaderboard();
-                _view.PrintEventStatus();
             }
 
             if (Mode == ViewMode.Client)
@@ -183,7 +202,7 @@ namespace Simhopp
                 _judgeClient.CommitScore(_clientJudgeIndex, score);
                 _view.EnableControls(false);
             }
-            else
+            else if (broadcastScore)
             {
                 JudgeServer.BroadcastScore(score);
             }
@@ -223,6 +242,9 @@ namespace Simhopp
 
         public void SubmitClientScore(double points, int judgeIndex)
         {
+            CreateScoreForDive(points, judgeIndex, false);
+            return;
+
             Judge scoringJudge = Judges[judgeIndex];
             Score score = new Score(-1, CurrentDiver.Dives[CurrentRoundIndex], scoringJudge, points);
             CurrentDiver.Dives[CurrentRoundIndex].AddScore(score); //Add score to current dive

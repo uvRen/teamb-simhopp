@@ -59,9 +59,9 @@ namespace Simhopp
 
                     //Receive
                     byte[] data = _server.Receive(ref ipep);
-                    string responseMessage = Encoding.ASCII.GetString(data, 0, data.Length);
+                    string receiveMessage = Encoding.ASCII.GetString(data, 0, data.Length);
 
-                    SimhoppMessage msg = SimhoppMessage.Deserialize(responseMessage);
+                    SimhoppMessage msg = SimhoppMessage.Deserialize(receiveMessage);
                     SimhoppMessage response;
 
                     switch (msg.Action)
@@ -82,8 +82,7 @@ namespace Simhopp
                             break;
                     }
                     LogToServer("Recieve: " + msg.Serialize());
-                    LogToServer("Response: " + response.Action.ToString());
-                    LogToServer("Response: " + response.Data);
+                    LogToServer("Send: " + response.Serialize());
 
                     //Respond
                     var responseData = Encoding.ASCII.GetBytes(response.Serialize());
@@ -119,16 +118,23 @@ namespace Simhopp
             //Skicka poäng (eller be om bedömningspoäng) till anslutna domarklienter
             foreach (IPEndPoint ipep in _judgeClients)
             {
-                SimhoppMessage.SimhoppStatus status = new SimhoppMessage.SimhoppStatus(_presenter.CurrentRoundIndex,
-                    _presenter.CurrentDiverIndex, null);
-                SimhoppMessage msg;
-                if (score == null)
-                    msg = new SimhoppMessage(-2, SimhoppMessage.ClientAction.RequestScore, "", 0, status);
-                else
-                    msg = new SimhoppMessage(score.judge.Index((_presenter.Judges)), SimhoppMessage.ClientAction.SubmitScore, "", score.Points);
-
-                var sendData = Encoding.ASCII.GetBytes(msg.Serialize());
-                _server.Send(sendData, sendData.Length, ipep);
+                try
+                {
+                    SimhoppMessage.SimhoppStatus status = new SimhoppMessage.SimhoppStatus(_presenter.CurrentRoundIndex,
+                        _presenter.CurrentDiverIndex, null);
+                    SimhoppMessage msg;
+                    if (score == null)
+                        msg = new SimhoppMessage(-2, SimhoppMessage.ClientAction.RequestScore, "", 0, status);
+                    else
+                        msg = new SimhoppMessage(score.judge.Index((_presenter.Judges)), SimhoppMessage.ClientAction.SubmitScore, "", score.Points);
+                    LogToServer("Send: " + msg.Serialize());
+                    var sendData = Encoding.ASCII.GetBytes(msg.Serialize());
+                    _server.Send(sendData, sendData.Length, ipep);
+                }
+                catch (Exception ex)
+                {
+                    ExceptionHandler.Handle(ex);
+                }
             }
         }
 
