@@ -30,19 +30,19 @@ namespace Simhopp
                 }
                 item1.UseItemStyleForSubItems = false;
 
-                item1.SubItems.Add(e.name);
-                item1.SubItems.Add(e.location);
+                item1.SubItems.Add(e.Name);
+                item1.SubItems.Add(e.Location);
 
                 //formaterar bort klockslaget i datumet
-                e.date = e.date.Substring(0, 10);
-                item1.SubItems.Add(e.date);
+                e.Date = e.Date.Substring(0, 10);
+                item1.SubItems.Add(e.Date);
 
                 if (e.sex == 0)
                     item1.SubItems.Add("M");
                 else
                     item1.SubItems.Add("F");
 
-                item1.SubItems.Add(e.ID.ToString());
+                item1.SubItems.Add(e.Id.ToString());
                 listViewEvent.Items.Add(item1);
             }
         }

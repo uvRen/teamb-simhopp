@@ -14,8 +14,8 @@ namespace Simhopp
     public partial class FormNewEvent : Form
     {
         private bool privateDrag;
-        AutoCompleteStringCollection diveNo = new AutoCompleteStringCollection();
-        AutoCompleteStringCollection diveName = new AutoCompleteStringCollection();
+        private AutoCompleteStringCollection _diveNo = new AutoCompleteStringCollection();
+        private AutoCompleteStringCollection _diveName = new AutoCompleteStringCollection();
 
         ListViewItem selectedItem = null;
         public FormNewEvent()
@@ -33,7 +33,7 @@ namespace Simhopp
             listViewDivers.AllowDrop = true;
 
             //hämtar autocomplete listorna från databasen
-            Database.GetAutoCompleteListsFromDatabase(diveNo, diveName);
+            Database.GetAutoCompleteListsFromDatabase(_diveNo, _diveName);
         }
 
         #region Event Funktioner
@@ -89,15 +89,15 @@ namespace Simhopp
             ListViewItem item1 = new ListViewItem();
             if (isSync)
             {
-                item1.Text = "| | " + diver.name;
+                item1.Text = "| | " + diver.Name;
                 item1.Checked = true;
             }
             else
-                item1.Text = diver.name;
+                item1.Text = diver.Name;
             listViewDivers.Items.Add(item1);
 
-            item1.SubItems.Add(diver.country);
-            item1.SubItems.Add(diver.age.ToString());
+            item1.SubItems.Add(diver.Country);
+            item1.SubItems.Add(diver.Age.ToString());
             item1.SubItems.Add(newDiverSelectGender.Text);
         }
 
@@ -147,13 +147,13 @@ namespace Simhopp
             if (headerText.CompareTo("Kod") == 0)
             {
                 currentTextbox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                currentTextbox.AutoCompleteCustomSource = diveNo;
+                currentTextbox.AutoCompleteCustomSource = _diveNo;
                 currentTextbox.AutoCompleteSource = AutoCompleteSource.CustomSource;
             }
             else if (headerText.CompareTo("Name") == 0)
             {
                 currentTextbox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                currentTextbox.AutoCompleteCustomSource = diveName;
+                currentTextbox.AutoCompleteCustomSource = _diveName;
                 currentTextbox.AutoCompleteSource = AutoCompleteSource.CustomSource;
             }
         }

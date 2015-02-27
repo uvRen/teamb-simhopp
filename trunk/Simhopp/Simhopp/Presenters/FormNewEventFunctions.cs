@@ -25,29 +25,29 @@ namespace Simhopp
             listViewDivers.Items.Clear();
             foreach (Diver diver in Database.GetDivers())
             {
-                if (radioButtonMale.Checked && diver.sex == 0)
+                if (radioButtonMale.Checked && diver.Sex == 0)
                 {
                     ListViewItem item1 = new ListViewItem();
                     item1.Tag = diver;
-                    item1.Text = diver.name;
+                    item1.Text = diver.Name;
                     listViewDivers.Items.Add(item1);
 
-                    item1.SubItems.Add(diver.country);
-                    item1.SubItems.Add(diver.age.ToString());
+                    item1.SubItems.Add(diver.Country);
+                    item1.SubItems.Add(diver.Age.ToString());
                     item1.SubItems.Add("M");
-                    item1.SubItems.Add(diver.ID.ToString());
+                    item1.SubItems.Add(diver.Id.ToString());
                 }
-                else if (radioButtonFemale.Checked && diver.sex == 1)
+                else if (radioButtonFemale.Checked && diver.Sex == 1)
                 {
                     ListViewItem item1 = new ListViewItem();
                     item1.Tag = diver;
-                    item1.Text = diver.name;
+                    item1.Text = diver.Name;
                     listViewDivers.Items.Add(item1);
 
-                    item1.SubItems.Add(diver.country);
-                    item1.SubItems.Add(diver.age.ToString());
+                    item1.SubItems.Add(diver.Country);
+                    item1.SubItems.Add(diver.Age.ToString());
                     item1.SubItems.Add("F");
-                    item1.SubItems.Add(diver.ID.ToString());
+                    item1.SubItems.Add(diver.Id.ToString());
                 }
             }
         }
@@ -60,10 +60,10 @@ namespace Simhopp
             {
                 ListViewItem item1 = new ListViewItem();
                 item1.Tag = judge;
-                item1.Text = judge.ID.ToString();
+                item1.Text = judge.Id.ToString();
                 listViewJudge.Items.Add(item1);
 
-                item1.SubItems.Add(judge.name);
+                item1.SubItems.Add(judge.Name);
             }
         }
 
@@ -96,12 +96,12 @@ namespace Simhopp
 
             //lägger till den nya hopparen i listan
             ListViewItem item1 = new ListViewItem();
-            item1.Text = diver.name;
+            item1.Text = diver.Name;
             listViewDivers.Items.Add(item1);
 
             //item1.SubItems.Add(diver.name);
-            item1.SubItems.Add(diver.country);
-            item1.SubItems.Add(diver.age.ToString());
+            item1.SubItems.Add(diver.Country);
+            item1.SubItems.Add(diver.Age.ToString());
             item1.SubItems.Add(newDiverSelectGender.Text);
 
             //restore textbox
@@ -121,7 +121,7 @@ namespace Simhopp
             item1.Text = ID.ToString();
             listViewJudge.Items.Add(item1);
 
-            item1.SubItems.Add(judge.name);
+            item1.SubItems.Add(judge.Name);
 
             //restore textbox
             newJudgeName.Text = "Name";

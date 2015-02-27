@@ -125,7 +125,7 @@ namespace Simhopp
                 if (score == null)
                     msg = new SimhoppMessage(-2, SimhoppMessage.ClientAction.RequestScore, "", 0, status);
                 else
-                    msg = new SimhoppMessage(score.judge.Index((_presenter.Judges)), SimhoppMessage.ClientAction.SubmitScore, "", score.points);
+                    msg = new SimhoppMessage(score.judge.Index((_presenter.Judges)), SimhoppMessage.ClientAction.SubmitScore, "", score.Points);
 
                 var sendData = Encoding.ASCII.GetBytes(msg.Serialize());
                 _server.Send(sendData, sendData.Length, ipep);
@@ -145,7 +145,7 @@ namespace Simhopp
             int index = 0;
             foreach (Judge judge in _presenter.Judges)
             {
-                if (judge.name == msg.Data)
+                if (judge.Name == msg.Data)
                 {
                     Guid guid = Guid.NewGuid();
                     _judges[index] = judge;

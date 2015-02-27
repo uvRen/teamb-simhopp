@@ -48,7 +48,7 @@ namespace Simhopp_JudgeClient
         {
             listBoxJudges.Visible = true;
             imgLoading.Visible = false;
-            labelTitle.Text = msg.Status.Contest.name;
+            labelTitle.Text = msg.Status.Contest.Name;
             labelJudgeList.Text = "Logga in som domare:";
 
             foreach (Judge judge in msg.Status.Contest.Judges)

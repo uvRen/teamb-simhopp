@@ -153,7 +153,7 @@ namespace Simhopp
             panelControls.Controls.Add(_panelScoring);
 
             //Måla upp alla hopp och skapa tabs
-            for (int i = 0; i < CurrentDiver.dives.Count; i++) //Rundor
+            for (int i = 0; i < CurrentDiver.Dives.Count; i++) //Rundor
             {
                 tabsRounds.TabPages.Add("Runda " + (i + 1));
 
@@ -206,8 +206,8 @@ namespace Simhopp
         #region Printa data för tävling
         public void PrintEventStatus()
         {
-            labelTitle.Text = Presenter.CurrentEvent.name;
-            labelSummary.Text = Presenter.CurrentEvent.location + "\n" + Presenter.CurrentEvent.sync + "\n" + Presenter.CurrentEvent.sex;
+            labelTitle.Text = Presenter.CurrentEvent.Name;
+            labelSummary.Text = Presenter.CurrentEvent.Location + "\n" + Presenter.CurrentEvent.Sync + "\n" + Presenter.CurrentEvent.sex;
             labelRound.Text = "Runda\n" + (CurrentRoundIndex + 1) + " av " + Presenter.CurrentEvent.diveCount;
             labelDiver.Text = "Hoppare\n" + (CurrentDiverIndex + 1) + " av " + Divers.Count;
         }
@@ -219,7 +219,7 @@ namespace Simhopp
             foreach (Diver diver in sortedDivers)
             { 
                 ListViewItem tItem = new ListViewItem();
-                tItem.Text = diver.name;
+                tItem.Text = diver.Name;
                 tItem.SubItems.Add(diver.TotalScore.ToString());
 
                 listViewLeaderboard.Items.Add(tItem);
@@ -236,7 +236,7 @@ namespace Simhopp
             foreach (Diver diver in _presenter.Divers)
             {
                 iDive = 0;
-                foreach (Dive dive in diver.dives)
+                foreach (Dive dive in diver.Dives)
                 {
                     foreach (Score score in dive.Scores)
                     {
@@ -249,7 +249,7 @@ namespace Simhopp
                         TextBox scoreInput = (TextBox)scoreTextBoxes[scoringJudgeIndex];
 
                         scoreInput.Tag = score;
-                        scoreInput.Text = score.points.ToString();
+                        scoreInput.Text = score.Points.ToString();
 
                         //Uppdatera hopptes total-poäng
                         Panel scorePanel = (Panel)(scoreInput.Parent);
@@ -270,7 +270,7 @@ namespace Simhopp
             foreach (Judge judge in Judges)
             {
                 ListViewItem tItem = new ListViewItem();
-                tItem.Text = judge.name;
+                tItem.Text = judge.Name;
                 listViewJudges.Items.Add(tItem);
 
                 if (judge == CurrentJudge && _panelScoring.Enabled)
@@ -308,7 +308,7 @@ namespace Simhopp
             tb.Text = newScorePoint.ToString();
 
             Score score = (Score)(tb.Tag);
-            score.points = newScorePoint;
+            score.Points = newScorePoint;
 
             Panel scorePanel = (Panel)(tb.Parent);
             Label points = (Label)(scorePanel.Tag);
@@ -378,7 +378,7 @@ namespace Simhopp
         public void PopulateScoreInput(Score score, int judgeIndex)
         {
             Control scoreInput = CurrentDivePanel.Controls.Find("Score", true)[judgeIndex];
-            scoreInput.Text = score.points.ToString();
+            scoreInput.Text = score.Points.ToString();
             scoreInput.Tag = score;
         }
 

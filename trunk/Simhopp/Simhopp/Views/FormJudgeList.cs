@@ -27,10 +27,10 @@ namespace Simhopp
             foreach (Judge judge in Database.GetJudges())
             {
                 ListViewItem item1 = new ListViewItem();
-                item1.Text = judge.ID.ToString();
+                item1.Text = judge.Id.ToString();
                 listViewJudge.Items.Add(item1);
 
-                item1.SubItems.Add(judge.name);
+                item1.SubItems.Add(judge.Name);
             }
         }
 

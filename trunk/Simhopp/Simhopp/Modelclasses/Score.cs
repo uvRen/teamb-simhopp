@@ -11,29 +11,29 @@ namespace Simhopp
     public class Score
     {
         [IgnoreDataMember]
-        private int ID;
+        private int Id;
         [IgnoreDataMember]
         public Dive dive { get; set; }
         [DataMember]
         public Judge judge {get; set;}
         [DataMember]
-        public double points {get; set;}
+        public double Points {get; set;}
 
         #region Konstruktor
         public Score()
         {
-            this.ID = -1;
+            this.Id = -1;
             this.dive = null;
             this.judge = null;
-            this.points = 0.0;
+            this.Points = 0.0;
         }
 
         public Score(int ID, Dive d, Judge j, double points)
         {
-            this.ID = ID;
+            this.Id = ID;
             this.dive = d;
             this.judge = j;
-            this.points = points;
+            this.Points = points;
         }
         #endregion
 

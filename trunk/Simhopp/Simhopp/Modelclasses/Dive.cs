@@ -10,33 +10,33 @@ namespace Simhopp
     [DataContract]
     public class Dive
     {
-        private int ID;
         [IgnoreDataMember]
-        private Diver diver;
+        private Diver _diver;
+        private Contest _contest;
+        private int Id;
+        private DiveType _diveType;
+
         [DataMember]
         public double Difficulty {get; set; }
-        public string Name { get; set; }
-        private Contest comp;
         [DataMember]
         public List<Score> Scores { get; set; }
-
-        private DiveType _diveType;
+        public string Name { get; set; }
 
         public double Score
         {
             get
             {
-                return GetScore();
+                return CalculateScore();
             }
         } 
 
         #region Konstruktor
         public Dive()
         {
-            this.ID = -1;
-            this.diver = null;
+            this.Id = -1;
+            this._diver = null;
             this.Difficulty = 0.0;
-            this.comp = null;
+            this._contest = null;
             Scores = new List<Score>();
         }
 
@@ -47,20 +47,20 @@ namespace Simhopp
 
         public Dive(int ID, Diver person, double difficulty, Contest comp)
         {
-            this.ID = ID;
-            this.diver = person;
+            this.Id = ID;
+            this._diver = person;
             this.Difficulty = difficulty;
-            this.comp = comp;
+            this._contest = comp;
             Scores = new List<Score>();
         }
 
         public Dive(int ID, Diver person, double difficulty, string name, Contest comp)
         {
-            this.ID = ID;
-            this.diver = person;
+            this.Id = ID;
+            this._diver = person;
             this.Difficulty = difficulty;
             this.Name = name;
-            this.comp = comp;
+            this._contest = comp;
             Scores = new List<Score>();
         }
         #endregion
@@ -73,12 +73,7 @@ namespace Simhopp
             Scores.Add(score);
         }
 
-        private List<Score> GetScores()
-        {
-            return Scores;
-        }
-
-        private double GetScore()
+        private double CalculateScore()
         {
             double totalScore = 0;
             int scoreCount = 0;
@@ -86,7 +81,7 @@ namespace Simhopp
             int start = 0;
             foreach (Score score in Scores)
             {
-                points.Add(score.points);
+                points.Add(score.Points);
                 scoreCount++;
             }
 

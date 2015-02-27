@@ -9,15 +9,15 @@ namespace Simhopp
 {
     public class Judge
     {
-        public int ID;
-        public string name;
+        public int Id { get; set; }
+        public string Name { get; set; }
 
         public int Index(List<Judge> judges)
         {
             int i = 0;
             foreach (Judge judge in judges)
             {
-                if (judge.ID == this.ID)
+                if (judge.Id == this.Id)
                 {
                     return i;
                 }
@@ -28,19 +28,19 @@ namespace Simhopp
         #region Kontruktor
         public Judge() 
         {
-            this.ID = -1;
-            this.name = "";
+            this.Id = -1;
+            this.Name = "";
         }
 
         public Judge(int ID, string name)
         {
-            this.ID = ID;
-            this.name = name;
+            this.Id = ID;
+            this.Name = name;
         }
 
         public Judge(string name)
         {
-            this.name = name;
+            this.Name = name;
         }
         #endregion
 
@@ -49,22 +49,22 @@ namespace Simhopp
 
         public void SetJudgeName(string name)
         {
-            this.name = name;
+            this.Name = name;
         }
 
         public string GetJudgeName()
         {
-            return this.name;
+            return this.Name;
         }
 
         public int GetJudgeID()
         {
-            return this.ID;
+            return this.Id;
         }
 
         public override string ToString()
         {
-            return this.name;
+            return this.Name;
         }
         #endregion
     }
