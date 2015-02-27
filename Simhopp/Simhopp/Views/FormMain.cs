@@ -129,7 +129,7 @@ namespace Simhopp
 
         }
 
-        #region Print
+        #region Print result
 
         private void PrintResult_btn_Click(object sender, EventArgs e)
         {
