@@ -389,12 +389,74 @@ namespace Simhopp
 
         #endregion
 
-        #region Score
+        #region Score ***
         public static List<double> getScoreFromDatabase()
         {
             List<double> points = new List<double>();
             return points;
         }
+
+        //*** THOMAS - RESULT (EJ KLAR)
+        /*
+        public static void SetDiveTotalScore(int diveID)
+        {
+            MySqlConnection conn = ConnectToDatabase();
+            string sql = "";
+
+            if (conn != null)
+            {
+                sql = "UPDATE dive SET totalScore=" * **CalculateScore().totalScore * **"WHERE id=" + diveID + ";";
+                var cmd = new MySqlCommand(sql, conn);
+                var dr = cmd.ExecuteNonQuery();
+            }
+
+            else
+            {
+                MessageBox.Show("Anslutningen till databasen misslyckades", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+        */
+
+        //public static List<Diver> GetDiveTotalScore(int eventID, ListView listViewResult)
+        //{
+        //    List<Diver> divers = new List<Diver>();
+        //    List<double> points = new List<double>();
+
+        //    MySqlConnection conn = ConnectToDatabase();
+        //    if (conn != null)
+        //    {
+        //        Diver d;
+        //        // HÄMTAR ENDAST DEM SOM HOPPAT
+        //        string sql = "SELECT diver.name, IFNULL(sum(dive.totalScore),0) AS totalScore FROM diver, dive WHERE dive.eventId =" + eventID + "AND diver.id = dive.diverId GROUP BY diver.name;";
+        //        var cmd = new MySqlCommand(sql, conn);
+        //        var dr = cmd.ExecuteReader();
+        //        var dt = new DataTable();
+        //        dt.Load(dr);
+
+        //        //HÄMTAR DE SOM INTE HOPPAT
+        //        /* 
+        //        string sql = 
+
+        //        SELECT diver.name 
+        //        FROM diver
+        //        WHERE event_diver.eventId = " + eventID + " AND
+        //        event_diver.diverId NOT IN(SELECT dive.diverId FROM dive);
+
+
+        //        */
+
+        //        foreach (DataRow row in dt.Rows)
+        //        {
+        //            ListViewItem item1 = new ListViewItem();
+        //            item1.Text = row["name"].ToString();
+        //            listViewResult.Items.Add(item1);
+        //            item1.SubItems.Add(row["totalScore"].ToString());
+        //        }
+        //    }
+        //    return divers;
+        //}
+
         #endregion
 
         #region Event_diver
