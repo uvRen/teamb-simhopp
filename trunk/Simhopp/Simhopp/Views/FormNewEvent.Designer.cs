@@ -72,8 +72,8 @@
             this.listViewJudges_contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.RemoveJudge_toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.DiveTypeInput_dataGridView = new System.Windows.Forms.DataGridView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.DiveTypeInput_dataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -85,8 +85,8 @@
             this.listViewDivers_contextMenuStrip.SuspendLayout();
             this.listViewJudges_contextMenuStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DiveTypeInput_dataGridView)).BeginInit();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DiveTypeInput_dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // EventName_label
@@ -494,6 +494,16 @@
             this.tabControl1.Size = new System.Drawing.Size(371, 175);
             this.tabControl1.TabIndex = 27;
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.DiveTypeInput_dataGridView);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(363, 149);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
             // DiveTypeInput_dataGridView
             // 
             this.DiveTypeInput_dataGridView.AllowUserToAddRows = false;
@@ -510,16 +520,7 @@
             this.DiveTypeInput_dataGridView.Size = new System.Drawing.Size(364, 149);
             this.DiveTypeInput_dataGridView.TabIndex = 28;
             this.DiveTypeInput_dataGridView.Visible = false;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.DiveTypeInput_dataGridView);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(363, 149);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.DiveTypeInput_dataGridView.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DiveTypeInput_dataGridView_EditingControlShowing);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -604,8 +605,8 @@
             this.listViewDivers_contextMenuStrip.ResumeLayout(false);
             this.listViewJudges_contextMenuStrip.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DiveTypeInput_dataGridView)).EndInit();
             this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DiveTypeInput_dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

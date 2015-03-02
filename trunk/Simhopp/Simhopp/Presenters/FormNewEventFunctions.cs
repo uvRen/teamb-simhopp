@@ -128,7 +128,7 @@ namespace Simhopp
         }
 
         //lägger till ett event till databasen med tillhörande domare och hoppare
-        public static void AddNewEventToDatabase(TextBox textBox1, TextBox textBox2, DateTimePicker dateTimePicker1, NumericUpDown numericUpDown1, RadioButton radioButton1meter, RadioButton radioButton3meter, RadioButton radioButtonTower, RadioButton radioButtonSingle, RadioButton radioButtonSync, RadioButton radioButtonMale, RadioButton radioButtonFemale, ListView listViewDivers, ListView listViewJudge, Label successfully, Label errorlabel)
+        public static void AddNewEventToDatabase(TextBox textBox1, TextBox textBox2, DateTimePicker dateTimePicker1, NumericUpDown numericUpDown1, RadioButton radioButton1meter, RadioButton radioButton3meter, RadioButton radioButtonTower, RadioButton radioButtonSingle, RadioButton radioButtonSync, RadioButton radioButtonMale, RadioButton radioButtonFemale, ListView listViewDivers, ListView listViewJudge, Label successfully, Label errorlabel, List<DataGridView> dataGridViewList)
         {
             string eventName;
             string location;
@@ -219,7 +219,7 @@ namespace Simhopp
                 box.Text = "";
         }
 
-        public static DataGridView GetNewDataGridView()
+        public static DataGridView GetNewDataGridView(AutoCompleteStringCollection diveNo, AutoCompleteStringCollection diveName)
         {
             DataGridView newDataGrid = new DataGridView();
 
@@ -245,12 +245,14 @@ namespace Simhopp
             dataGridViewTextBoxColumn1.HeaderText = "Kod";
             dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             dataGridViewTextBoxColumn1.Width = 51;
+            dataGridViewTextBoxColumn1.Tag = "Kod";
             // 
             // dataGridViewTextBoxColumn2
             // 
             dataGridViewTextBoxColumn2.HeaderText = "Name";
             dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             dataGridViewTextBoxColumn2.Width = 155;
+            dataGridViewTextBoxColumn2.Tag = "Name";
             // 
             // dataGridViewComboBoxColumn1
             // 
@@ -281,6 +283,8 @@ namespace Simhopp
             dataGridViewComboBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             dataGridViewComboBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             dataGridViewComboBoxColumn2.Width = 55;
+
+            
 
             return newDataGrid;
         }
