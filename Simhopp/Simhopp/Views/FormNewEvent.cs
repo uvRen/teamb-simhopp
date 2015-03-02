@@ -16,6 +16,7 @@ namespace Simhopp
         private bool privateDrag;
         private AutoCompleteStringCollection _diveNo = new AutoCompleteStringCollection();
         private AutoCompleteStringCollection _diveName = new AutoCompleteStringCollection();
+        private List<DataGridView> _dataGridViewList = new List<DataGridView>();
 
         ListViewItem selectedItem = null;
         public FormNewEvent()
@@ -208,7 +209,7 @@ namespace Simhopp
         {
             int currentDiverID = Int32.Parse(selectedItem.SubItems[4].Text);
         }
-        #endregion
+        
 
         private void DiveTypeInput_dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -217,29 +218,36 @@ namespace Simhopp
 
         private void listViewDivers_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
+            string[] row = new string[] { "", "", "", "" };
             tabControl1.TabPages.Clear();
-            for(int i = 0; i < listViewDivers.CheckedItems.Count; i++)
+
+            if (listViewDivers.CheckedItems.Count > 0)
             {
-                DataGridView newDataGrid = FormNewEventFunctions.GetNewDataGridView();
-                newDataGrid.Name = listViewDivers.CheckedItems[i].SubItems[4].Text;
-
-                string[] row = new string[] { "", "", "", "" };
-                for (int j = 0; j < Int32.Parse(DiveCount_numericUpDown.Value.ToString()); j++)
+                for (int i = 0; i < listViewDivers.CheckedItems.Count; i++)
                 {
-                    newDataGrid.Rows.Add(row);
-                    newDataGrid.Rows[j].HeaderCell.Value = String.Format("{0}", j + 1);
+                    DataGridView newDataGrid = FormNewEventFunctions.GetNewDataGridView();
+                    newDataGrid.Name = listViewDivers.CheckedItems[i].SubItems[4].Text;
+
+                    _dataGridViewList.Add(newDataGrid);
+
+                    for (int j = _dataGridViewList[i].RowCount; j < Int32.Parse(DiveCount_numericUpDown.Value.ToString()); j++)
+                    {
+                        _dataGridViewList[i].Rows.Add(row);
+                        _dataGridViewList[i].Rows[j].HeaderCell.Value = String.Format("{0}", j + 1);
+                    }
+
+                    _dataGridViewList[i].Visible = true;
+                    
+                    string title = listViewDivers.CheckedItems[i].Text;
+                    TabPage newTab = new TabPage(title);
+                    newTab.Tag = listViewDivers.CheckedItems[i].SubItems[4].Text;
+
+                    tabControl1.TabPages.Add(newTab);
+                    newTab.Controls.Add(_dataGridViewList[i]);
                 }
-
-                newDataGrid.Visible = true;
-
-                string title = listViewDivers.CheckedItems[i].Text;
-                TabPage newTab = new TabPage(title);
-                newTab.Tag = listViewDivers.CheckedItems[i];
-                
-                tabControl1.TabPages.Add(newTab);
-                newTab.Controls.Add(newDataGrid);
             }
         }
+        #endregion
     }
 }
 
