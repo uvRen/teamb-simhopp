@@ -183,15 +183,15 @@ namespace Simhopp
                     g = 1;
                 d = new Diver(Int32.Parse(item.SubItems[4].Text), item.SubItems[0].Text, Int32.Parse(item.SubItems[2].Text), g, item.SubItems[1].Text);
                 addDiversToEvent.Add(d);
-                ev.AddDivers(addDiversToEvent);
             }
+            ev.AddDivers(addDiversToEvent);
 
             foreach (ListViewItem item in listViewJudge.CheckedItems)
             {
                 j = new Judge(Int32.Parse(item.SubItems[0].Text), item.SubItems[1].Text);
                 addJudgesToEvent.Add(j);
-                ev.AddJudges(addJudgesToEvent);
             }
+            ev.AddJudges(addJudgesToEvent);
 
             //om inmatningen lyckades
             int code = Database.AddEventToDatabase(ev);
