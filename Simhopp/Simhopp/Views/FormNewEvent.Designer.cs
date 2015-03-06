@@ -112,6 +112,7 @@
             this.EventName_textBox.Name = "EventName_textBox";
             this.EventName_textBox.Size = new System.Drawing.Size(181, 20);
             this.EventName_textBox.TabIndex = 1;
+            this.EventName_textBox.Leave += new System.EventHandler(this.EventName_textBox_Leave);
             // 
             // EventLocation_textBox
             // 
@@ -119,6 +120,7 @@
             this.EventLocation_textBox.Name = "EventLocation_textBox";
             this.EventLocation_textBox.Size = new System.Drawing.Size(181, 20);
             this.EventLocation_textBox.TabIndex = 2;
+            this.EventLocation_textBox.Leave += new System.EventHandler(this.EventLocation_textBox_Leave);
             // 
             // EventLocation_label
             // 
@@ -172,6 +174,7 @@
             0,
             0,
             0});
+            this.DiveCount_numericUpDown.Leave += new System.EventHandler(this.DiveCount_numericUpDown_Leave);
             // 
             // radioButton1meter
             // 

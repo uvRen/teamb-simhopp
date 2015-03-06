@@ -17,6 +17,7 @@ namespace Simhopp
         private AutoCompleteStringCollection _diveNo = new AutoCompleteStringCollection();
         private AutoCompleteStringCollection _diveName = new AutoCompleteStringCollection();
         private List<DataGridView> _dataGridViewList = new List<DataGridView>();
+        private bool EnableSubmitButton = false;
 
         ListViewItem selectedItem = null;
         public FormNewEvent()
@@ -105,7 +106,7 @@ namespace Simhopp
 
         private void AddNewDiver_Click(object sender, EventArgs e)
         {
-            FormNewEventFunctions.AddNewDiver(newDiverSelectGender, newDiverName, newDiverAge, newDiverCountry, listViewDivers);
+            FormNewEventFunctions.AddNewDiver(newDiverSelectGender, newDiverName, newDiverAge, newDiverCountry, listViewDivers, radioButtonMale, radioButtonFemale);
         }
 
         private void newJudgeName_Enter(object sender, EventArgs e)
@@ -120,16 +121,7 @@ namespace Simhopp
 
         private void listViewJudge_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
-            int count = listViewJudge.CheckedItems.Count;
-
-            if (count % 2 != 0 && count >= 3)
-            {
-                btnSubmit.Enabled = true;
-            }
-            else
-            {
-                btnSubmit.Enabled = false;
-            }
+            FormNewEventFunctions.CheckIfSubmitButtonBeEnable(EnableSubmitButton, btnSubmit, EventName_textBox, EventLocation_textBox, DiveCount_numericUpDown, listViewDivers, listViewJudge);
         }
 
         //uppdaterar listViewDivers när användaren väljer mellan Male och Female
@@ -204,6 +196,8 @@ namespace Simhopp
 
         private void listViewDivers_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
+            FormNewEventFunctions.CheckIfSubmitButtonBeEnable(EnableSubmitButton, btnSubmit, EventName_textBox, EventLocation_textBox, DiveCount_numericUpDown, listViewDivers, listViewJudge);
+
             FormNewEventFunctions.AddDataGridViewToTabControl(tabControl1, listViewDivers, _diveNo, _diveName, _dataGridViewList, DiveCount_numericUpDown, panel1);
             PanelDrawer.Colorize(this);
             //lägger till en eventhandler till varje DataGridView
@@ -213,8 +207,7 @@ namespace Simhopp
             }
 
         }
-        #endregion
-
+        
         private void DiveTypeInput_dataGridView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             FormNewEventFunctions.AddAutoCompleteToDataGridView(_dataGridViewList, tabControl1, e, _diveNo, _diveName);
@@ -227,6 +220,22 @@ namespace Simhopp
                 _dataGridViewList[i].Columns[1].Width = tabControl1.Width - (51 + 55 + 55 + 55);
             }
         }
+
+        private void EventName_textBox_Leave(object sender, EventArgs e)
+        {
+            FormNewEventFunctions.CheckIfSubmitButtonBeEnable(EnableSubmitButton, btnSubmit, EventName_textBox, EventLocation_textBox, DiveCount_numericUpDown, listViewDivers, listViewJudge);
+        }
+
+        private void EventLocation_textBox_Leave(object sender, EventArgs e)
+        {
+            FormNewEventFunctions.CheckIfSubmitButtonBeEnable(EnableSubmitButton, btnSubmit, EventName_textBox, EventLocation_textBox, DiveCount_numericUpDown, listViewDivers, listViewJudge);
+        }
+
+        private void DiveCount_numericUpDown_Leave(object sender, EventArgs e)
+        {
+            FormNewEventFunctions.CheckIfSubmitButtonBeEnable(EnableSubmitButton, btnSubmit, EventName_textBox, EventLocation_textBox, DiveCount_numericUpDown, listViewDivers, listViewJudge);
+        }
+        #endregion
     }
 }
 
