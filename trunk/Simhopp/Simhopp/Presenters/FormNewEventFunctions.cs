@@ -219,6 +219,7 @@ namespace Simhopp
                 box.Text = "";
         }
 
+        //returnerar en ny DataGridView
         public static DataGridView GetNewDataGridView(AutoCompleteStringCollection diveNo, AutoCompleteStringCollection diveName)
         {
             DataGridView newDataGrid = new DataGridView();
@@ -284,9 +285,77 @@ namespace Simhopp
             dataGridViewComboBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             dataGridViewComboBoxColumn2.Width = 55;
 
-            
-
             return newDataGrid;
+        }
+
+        public static void AddAutoCompleteToDataGridView(List<DataGridView> _dataGridViewList, TabControl tabControl1, DataGridViewEditingControlShowingEventArgs e, AutoCompleteStringCollection _diveNo, AutoCompleteStringCollection _diveName)
+        {
+            int columnIndex = _dataGridViewList[Int32.Parse(tabControl1.SelectedTab.Name)].CurrentCell.ColumnIndex;
+            string headerText = _dataGridViewList[Int32.Parse(tabControl1.SelectedTab.Name)].Columns[columnIndex].HeaderText;
+
+            if (headerText.Equals("Kod"))
+            {
+                TextBox tb = e.Control as TextBox;
+
+                if (tb != null)
+                {
+                    tb.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    tb.AutoCompleteCustomSource = _diveNo;
+                    tb.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                }
+            }
+
+            if (headerText.Equals("Name"))
+            {
+                TextBox tb = e.Control as TextBox;
+
+                if (tb != null)
+                {
+                    tb.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    tb.AutoCompleteCustomSource = _diveName;
+                    tb.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                }
+            } 
+        }
+
+        //lägger till DataGridViews i TabControlern
+        public static void AddDataGridViewToTabControl(TabControl tabControl1, ListView listViewDivers, AutoCompleteStringCollection _diveNo, AutoCompleteStringCollection _diveName, List<DataGridView> _dataGridViewList, NumericUpDown DiveCount_numericUpDown)
+        {
+            string[] row = new string[] { "", "", "", "" };
+            tabControl1.TabPages.Clear();
+
+            if (listViewDivers.CheckedItems.Count > 0)
+            {
+                tabControl1.Visible = true;
+                //antal tabbar
+                for (int i = 0; i < listViewDivers.CheckedItems.Count; i++)
+                {
+                    DataGridView newDataGrid = FormNewEventFunctions.GetNewDataGridView(_diveNo, _diveName);
+
+                    _dataGridViewList.Add(newDataGrid);
+
+                    //antal rader
+                    for (int j = _dataGridViewList[i].RowCount; j < Int32.Parse(DiveCount_numericUpDown.Value.ToString()); j++)
+                    {
+                        _dataGridViewList[i].Rows.Add(row);
+                        _dataGridViewList[i].Rows[j].HeaderCell.Value = String.Format("{0}", j + 1);
+
+                    }
+
+                    _dataGridViewList[i].Visible = true;
+                    string title = listViewDivers.CheckedItems[i].Text;
+                    TabPage newTab = new TabPage(title);
+                    newTab.Name = i.ToString();
+                    newTab.Tag = listViewDivers.CheckedItems[i].SubItems[4].Text;
+
+                    tabControl1.TabPages.Add(newTab);
+                    newTab.Controls.Add(_dataGridViewList[i]);
+                }
+            }
+            else
+            {
+                tabControl1.Visible = false;
+            }
         }
     }
 }
