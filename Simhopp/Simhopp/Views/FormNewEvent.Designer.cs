@@ -79,10 +79,10 @@
             this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.dataGridViewComboBoxColumn2 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.DiveCount_numericUpDown)).BeginInit();
             this.groupBoxDisciplin.SuspendLayout();
             this.groupBoxSingle.SuspendLayout();
@@ -93,10 +93,10 @@
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DiveTypeInput_dataGridView)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // EventName_label
@@ -169,6 +169,11 @@
             this.DiveCount_numericUpDown.Name = "DiveCount_numericUpDown";
             this.DiveCount_numericUpDown.Size = new System.Drawing.Size(54, 20);
             this.DiveCount_numericUpDown.TabIndex = 4;
+            this.DiveCount_numericUpDown.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
             // 
             // radioButton1meter
             // 
@@ -330,7 +335,7 @@
             this.listViewJudge.GridLines = true;
             this.listViewJudge.Location = new System.Drawing.Point(3, 3);
             this.listViewJudge.Name = "listViewJudge";
-            this.listViewJudge.Size = new System.Drawing.Size(328, 599);
+            this.listViewJudge.Size = new System.Drawing.Size(328, 598);
             this.listViewJudge.TabIndex = 21;
             this.listViewJudge.UseCompatibleStateImageBehavior = false;
             this.listViewJudge.View = System.Windows.Forms.View.Details;
@@ -361,7 +366,7 @@
             this.listViewDivers.GridLines = true;
             this.listViewDivers.Location = new System.Drawing.Point(3, 3);
             this.listViewDivers.Name = "listViewDivers";
-            this.listViewDivers.Size = new System.Drawing.Size(327, 487);
+            this.listViewDivers.Size = new System.Drawing.Size(327, 483);
             this.listViewDivers.TabIndex = 15;
             this.listViewDivers.UseCompatibleStateImageBehavior = false;
             this.listViewDivers.View = System.Windows.Forms.View.Details;
@@ -396,14 +401,14 @@
             // 
             this.newDiverName.Location = new System.Drawing.Point(3, 3);
             this.newDiverName.Name = "newDiverName";
-            this.newDiverName.Size = new System.Drawing.Size(91, 20);
+            this.newDiverName.Size = new System.Drawing.Size(90, 20);
             this.newDiverName.TabIndex = 16;
             this.newDiverName.Text = "Name";
             this.newDiverName.Enter += new System.EventHandler(this.textBox3_Enter);
             // 
             // newDiverAge
             // 
-            this.newDiverAge.Location = new System.Drawing.Point(219, 3);
+            this.newDiverAge.Location = new System.Drawing.Point(218, 3);
             this.newDiverAge.Name = "newDiverAge";
             this.newDiverAge.Size = new System.Drawing.Size(34, 20);
             this.newDiverAge.TabIndex = 18;
@@ -412,7 +417,7 @@
             // 
             // newDiverCountry
             // 
-            this.newDiverCountry.Location = new System.Drawing.Point(100, 3);
+            this.newDiverCountry.Location = new System.Drawing.Point(99, 3);
             this.newDiverCountry.Name = "newDiverCountry";
             this.newDiverCountry.Size = new System.Drawing.Size(104, 20);
             this.newDiverCountry.TabIndex = 17;
@@ -421,7 +426,7 @@
             // 
             // AddNewDiverSubmit
             // 
-            this.AddNewDiverSubmit.Location = new System.Drawing.Point(309, 3);
+            this.AddNewDiverSubmit.Location = new System.Drawing.Point(308, 3);
             this.AddNewDiverSubmit.Name = "AddNewDiverSubmit";
             this.AddNewDiverSubmit.Size = new System.Drawing.Size(15, 23);
             this.AddNewDiverSubmit.TabIndex = 20;
@@ -454,7 +459,7 @@
             this.newDiverSelectGender.Items.AddRange(new object[] {
             "Female",
             "Male"});
-            this.newDiverSelectGender.Location = new System.Drawing.Point(289, 3);
+            this.newDiverSelectGender.Location = new System.Drawing.Point(288, 3);
             this.newDiverSelectGender.MaxLength = 100;
             this.newDiverSelectGender.Name = "newDiverSelectGender";
             this.newDiverSelectGender.Size = new System.Drawing.Size(14, 21);
@@ -594,23 +599,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(679, 643);
             this.tableLayoutPanel1.TabIndex = 28;
             // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.listViewDivers, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.tabControl1, 0, 2);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 3;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 92.84369F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.156309F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 105F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(333, 637);
-            this.tableLayoutPanel2.TabIndex = 0;
-            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
@@ -626,27 +614,6 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(334, 637);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 5;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.73684F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.26316F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Controls.Add(this.newDiverName, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.newDiverCountry, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.newDiverAge, 2, 0);
-            this.tableLayoutPanel4.Controls.Add(this.newDiverSelectGender, 3, 0);
-            this.tableLayoutPanel4.Controls.Add(this.AddNewDiverSubmit, 4, 0);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 496);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(327, 32);
-            this.tableLayoutPanel4.TabIndex = 0;
-            // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 2;
@@ -654,12 +621,50 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.22535F));
             this.tableLayoutPanel5.Controls.Add(this.newJudgeName, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.newJudgeSubmit, 1, 0);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 608);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 607);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(284, 26);
             this.tableLayoutPanel5.TabIndex = 0;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.listViewDivers, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tabControl1, 0, 2);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 92.09039F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.909605F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 105F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(333, 637);
+            this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 5;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.73684F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.26316F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 21F));
+            this.tableLayoutPanel4.Controls.Add(this.newDiverName, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.newDiverCountry, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.newDiverAge, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.newDiverSelectGender, 3, 0);
+            this.tableLayoutPanel4.Controls.Add(this.AddNewDiverSubmit, 4, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 492);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(327, 36);
+            this.tableLayoutPanel4.TabIndex = 0;
             // 
             // FormNewEvent
             // 
@@ -696,12 +701,12 @@
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DiveTypeInput_dataGridView)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
