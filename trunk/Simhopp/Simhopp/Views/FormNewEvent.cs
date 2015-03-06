@@ -140,23 +140,7 @@ namespace Simhopp
         //autocomplete
         private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            int column = DiveTypeInput_dataGridView.CurrentCell.ColumnIndex;
-            string headerText = DiveTypeInput_dataGridView.Columns[column].HeaderText;
-
-            TextBox currentTextbox = e.Control as TextBox;
-
-            if (headerText.CompareTo("Kod") == 0)
-            {
-                currentTextbox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                currentTextbox.AutoCompleteCustomSource = _diveNo;
-                currentTextbox.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            }
-            else if (headerText.CompareTo("Name") == 0)
-            {
-                currentTextbox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                currentTextbox.AutoCompleteCustomSource = _diveName;
-                currentTextbox.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            }
+            FormNewEventFunctions.AddAutoCompleteToDataGridView(_dataGridViewList, tabControl1, e, _diveNo, _diveName);
         }
 
         //Simhoppare högerklick
