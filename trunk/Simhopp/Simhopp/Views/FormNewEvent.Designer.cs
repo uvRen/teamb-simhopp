@@ -366,7 +366,7 @@
             this.listViewDivers.GridLines = true;
             this.listViewDivers.Location = new System.Drawing.Point(3, 3);
             this.listViewDivers.Name = "listViewDivers";
-            this.listViewDivers.Size = new System.Drawing.Size(367, 425);
+            this.listViewDivers.Size = new System.Drawing.Size(367, 426);
             this.listViewDivers.TabIndex = 15;
             this.listViewDivers.UseCompatibleStateImageBehavior = false;
             this.listViewDivers.View = System.Windows.Forms.View.Details;
@@ -644,8 +644,8 @@
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 92.68817F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.311828F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 92.90323F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.096774F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 171F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(373, 637);
             this.tableLayoutPanel2.TabIndex = 0;
@@ -664,11 +664,11 @@
             this.tableLayoutPanel4.Controls.Add(this.newDiverSelectGender, 3, 0);
             this.tableLayoutPanel4.Controls.Add(this.AddNewDiverSubmit, 4, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 434);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 435);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(367, 28);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(367, 27);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // FormNewEvent
