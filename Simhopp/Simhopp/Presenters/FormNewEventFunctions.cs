@@ -355,6 +355,7 @@ namespace Simhopp
                     if(listViewDivers.CheckedItems.Count > _dataGridViewList.Count)
                     {
                         DataGridView newDataGrid = FormNewEventFunctions.GetNewDataGridView(_diveNo, _diveName);
+                        newDataGrid.Dock = DockStyle.Fill;
                         _dataGridViewList.Add(newDataGrid);
                     }
 
