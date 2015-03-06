@@ -22,7 +22,7 @@ namespace Simhopp
         public FormNewEvent()
         {
             InitializeComponent();
-
+            PanelDrawer.Colorize(this);
             //fyller listorna med dommare och hoppare
             FormNewEventFunctions.FillListViewWithDivers(radioButtonMale, radioButtonFemale, listViewDivers);
             FormNewEventFunctions.FillListViewWithJudges(listViewJudge);
