@@ -19,6 +19,28 @@ namespace Simhopp
                 dataGridView.Visible = true;
             }
         }
+
+        public static void CheckIfSubmitButtonBeEnable(bool EnableSubmitButton, Button btnSubmit, TextBox EventName_textBox, TextBox EventLocation_textBox, NumericUpDown DiveCount_numericUpDown, ListView listViewDivers, ListView listViewJudge)
+        {
+            if(EventName_textBox.Text.Length > 0)
+                if(EventLocation_textBox.Text.Length > 0)
+                    if(Int32.Parse(DiveCount_numericUpDown.Value.ToString()) > 0)
+                        if(listViewDivers.CheckedItems.Count > 0)
+                        {
+                            int count = listViewJudge.CheckedItems.Count;
+
+                            if (count % 2 != 0 && count >= 3)
+                            {
+                                EnableSubmitButton = true;
+                            }
+                            else
+                            {
+                                EnableSubmitButton = false;
+                            }
+                        }
+            btnSubmit.Enabled = EnableSubmitButton;
+        }
+
         //skriver ut alla hoppare som ska vara med i listan
         public static void FillListViewWithDivers(RadioButton radioButtonMale, RadioButton radioButtonFemale, ListView listViewDivers) 
         {
@@ -68,7 +90,7 @@ namespace Simhopp
         }
 
         //lägger till en ny hoppare i listan och i databasen
-        public static void AddNewDiver(ComboBox newDiverSelectGender, TextBox newDiverName, TextBox newDiverAge, TextBox newDiverCountry, ListView listViewDivers)
+        public static void AddNewDiver(ComboBox newDiverSelectGender, TextBox newDiverName, TextBox newDiverAge, TextBox newDiverCountry, ListView listViewDivers, RadioButton radioButtonMale, RadioButton radioButtonFemale)
         {
             //fel hantering, måste ange giltigt namn och nationalitet
             if (newDiverName.Text.CompareTo("Namn") == 0 || newDiverCountry.Text.CompareTo("Nationalitet") == 0 || newDiverSelectGender.Text.Length == 0)
@@ -102,21 +124,23 @@ namespace Simhopp
                 int ID = Database.AddDiverToDatabase(diver);
 
                 //lägger till den nya hopparen i listan
-                ListViewItem item1 = new ListViewItem();
-                item1.Text = diver.Name;
-                listViewDivers.Items.Add(item1);
+                if ((radioButtonMale.Checked && newDiverSelectGender.Text.CompareTo("Man") == 0) || (radioButtonFemale.Checked && newDiverSelectGender.Text.CompareTo("Kvinna") == 0))
+                {
+                    ListViewItem item1 = new ListViewItem();
+                    item1.Text = diver.Name;
+                    listViewDivers.Items.Add(item1);
 
-                item1.SubItems.Add(diver.Country);
-                item1.SubItems.Add(diver.Age.ToString());
-                if(gender == 0)
-                {
-                    item1.SubItems.Add("M");
+                    item1.SubItems.Add(diver.Country);
+                    item1.SubItems.Add(diver.Age.ToString());
+                    if (gender == 0)
+                    {
+                        item1.SubItems.Add("M");
+                    }
+                    else
+                    {
+                        item1.SubItems.Add("F");
+                    }
                 }
-                else
-                {
-                    item1.SubItems.Add("F");
-                }
-                
             }
             
             //restore textbox
@@ -166,6 +190,7 @@ namespace Simhopp
                 //antal rader i en DataGridView
                 for (int rad = 0; rad < dataGridViewList[i].RowCount; rad++)
                 {
+                    text += "Tag: " + dataGridViewList[i].Tag + "\n";
                     text += dataGridViewList[i].Rows[rad].Cells[0].Value.ToString() + "\n";
                     text += dataGridViewList[i].Rows[rad].Cells[1].Value.ToString() + "\n";
                     text += dataGridViewList[i].Rows[rad].Cells[2].Value.ToString() + "\n";
@@ -176,74 +201,74 @@ namespace Simhopp
             }
             //----------------------------
 
-            //discipline: 1m = 0, 3m = 1, Tower = 2
-            if (radioButton1meter.Checked)
-                discipline = 0;
-            else if (radioButton3meter.Checked)
-                discipline = 1;
-            else if (radioButtonTower.Checked)
-                discipline = 2;
+            ////discipline: 1m = 0, 3m = 1, Tower = 2
+            //if (radioButton1meter.Checked)
+            //    discipline = 0;
+            //else if (radioButton3meter.Checked)
+            //    discipline = 1;
+            //else if (radioButtonTower.Checked)
+            //    discipline = 2;
 
-            //sync: single = 0, sync = 1
-            if (radioButtonSingle.Checked)
-                sync = 0;
-            else if (radioButtonSync.Checked)
-                sync = 1;
+            ////sync: single = 0, sync = 1
+            //if (radioButtonSingle.Checked)
+            //    sync = 0;
+            //else if (radioButtonSync.Checked)
+            //    sync = 1;
 
-            //sex: male = 0, female = 1
-            if (radioButtonMale.Checked)
-                sex = 0;
-            else if (radioButtonFemale.Checked)
-                sex = 1;
+            ////sex: male = 0, female = 1
+            //if (radioButtonMale.Checked)
+            //    sex = 0;
+            //else if (radioButtonFemale.Checked)
+            //    sex = 1;
 
-            //lägger till eventet i databasen
-            Contest ev = new Contest(eventName, date, location, discipline, sync, diveCount, sex);
+            ////lägger till eventet i databasen
+            //Contest ev = new Contest(eventName, date, location, discipline, sync, diveCount, sex);
 
-            //hämtar dommare och hoppare från tabellerna
-            List<Judge> addJudgesToEvent = new List<Judge>();
-            List<Diver> addDiversToEvent = new List<Diver>();
-            Diver d;
-            Judge j;
-            string gender;
-            int g;
+            ////hämtar dommare och hoppare från tabellerna
+            //List<Judge> addJudgesToEvent = new List<Judge>();
+            //List<Diver> addDiversToEvent = new List<Diver>();
+            //Diver d;
+            //Judge j;
+            //string gender;
+            //int g;
 
-            foreach (ListViewItem item in listViewDivers.CheckedItems)
-            {
-                gender = item.SubItems[3].Text;
-                if (gender.CompareTo("M") == 0)
-                    g = 0;
-                else
-                    g = 1;
-                d = new Diver(Int32.Parse(item.SubItems[4].Text), item.SubItems[0].Text, Int32.Parse(item.SubItems[2].Text), g, item.SubItems[1].Text);
-                addDiversToEvent.Add(d);
-            }
-            ev.AddDivers(addDiversToEvent);
+            //foreach (ListViewItem item in listViewDivers.CheckedItems)
+            //{
+            //    gender = item.SubItems[3].Text;
+            //    if (gender.CompareTo("M") == 0)
+            //        g = 0;
+            //    else
+            //        g = 1;
+            //    d = new Diver(Int32.Parse(item.SubItems[4].Text), item.SubItems[0].Text, Int32.Parse(item.SubItems[2].Text), g, item.SubItems[1].Text);
+            //    addDiversToEvent.Add(d);
+            //}
+            //ev.AddDivers(addDiversToEvent);
 
-            foreach (ListViewItem item in listViewJudge.CheckedItems)
-            {
-                j = new Judge(Int32.Parse(item.SubItems[0].Text), item.SubItems[1].Text);
-                addJudgesToEvent.Add(j);
-            }
-            ev.AddJudges(addJudgesToEvent);
+            //foreach (ListViewItem item in listViewJudge.CheckedItems)
+            //{
+            //    j = new Judge(Int32.Parse(item.SubItems[0].Text), item.SubItems[1].Text);
+            //    addJudgesToEvent.Add(j);
+            //}
+            //ev.AddJudges(addJudgesToEvent);
 
-            //om inmatningen lyckades
-            int code = Database.AddEventToDatabase(ev);
-            if (code == 1)
-            {
-                successfully.Visible = true;
-            }
-            else if (code == -1)
-            {
-                successfully.Visible = false;
-                errorlabel.Text = "Identical event already exist";
-                errorlabel.Visible = true; ;
-            }
-            else
-            {
-                successfully.Visible = false;
-                errorlabel.Text = "An error occoured, try again";
-                errorlabel.Visible = true;
-            }
+            ////om inmatningen lyckades
+            //int code = Database.AddEventToDatabase(ev);
+            //if (code == 1)
+            //{
+            //    successfully.Visible = true;
+            //}
+            //else if (code == -1)
+            //{
+            //    successfully.Visible = false;
+            //    errorlabel.Text = "Identical event already exist";
+            //    errorlabel.Visible = true; ;
+            //}
+            //else
+            //{
+            //    successfully.Visible = false;
+            //    errorlabel.Text = "An error occoured, try again";
+            //    errorlabel.Visible = true;
+            //}
         }
 
         public static void ResetTextBox(TextBox box)
@@ -375,6 +400,9 @@ namespace Simhopp
                     }
 
                     _dataGridViewList[i].Columns[1].Width = tabControl1.Width - (51 + 55 + 55 + 55);
+
+                    //DataGridViewens tag är den samma som Diverns ID
+                    _dataGridViewList[i].Tag = listViewDivers.CheckedItems[i].SubItems[4].Text;
 
                     //antal rader
                     for (int j = _dataGridViewList[i].RowCount; j < Int32.Parse(DiveCount_numericUpDown.Value.ToString()); j++)
