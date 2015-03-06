@@ -288,6 +288,7 @@ namespace Simhopp
             dataGridViewComboBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             dataGridViewComboBoxColumn1.ToolTipText = "1m";
             dataGridViewComboBoxColumn1.Width = 55;
+            dataGridViewComboBoxColumn1.FlatStyle = FlatStyle.Flat;
             // 
             // dataGridViewComboBoxColumn2
             // 
@@ -302,6 +303,7 @@ namespace Simhopp
             dataGridViewComboBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             dataGridViewComboBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             dataGridViewComboBoxColumn2.Width = 55;
+            dataGridViewComboBoxColumn2.FlatStyle = FlatStyle.Flat;
 
             return newDataGrid;
         }
@@ -337,13 +339,14 @@ namespace Simhopp
         }
 
         //lägger till DataGridViews i TabControlern
-        public static void AddDataGridViewToTabControl(TabControl tabControl1, ListView listViewDivers, AutoCompleteStringCollection _diveNo, AutoCompleteStringCollection _diveName, List<DataGridView> _dataGridViewList, NumericUpDown DiveCount_numericUpDown)
+        public static void AddDataGridViewToTabControl(TabControl tabControl1, ListView listViewDivers, AutoCompleteStringCollection _diveNo, AutoCompleteStringCollection _diveName, List<DataGridView> _dataGridViewList, NumericUpDown DiveCount_numericUpDown, Panel panel1)
         {
             string[] row = new string[] { "", "", "", "" };
             tabControl1.TabPages.Clear();
 
             if (listViewDivers.CheckedItems.Count > 0)
             {
+                panel1.Visible = true;
                 tabControl1.Visible = true;
                 //antal tabbar
                 for (int i = 0; i < listViewDivers.CheckedItems.Count; i++)
@@ -375,6 +378,7 @@ namespace Simhopp
             }
             else
             {
+                panel1.Visible = false;
                 tabControl1.Visible = false;
             }
         }

@@ -110,6 +110,16 @@ namespace Simhopp
                     tmp.BorderStyle = BorderStyle.FixedSingle;
                     
                 }
+
+                if (c is ComboBox)
+                {
+                    ComboBox tmp = (ComboBox)c;
+                    tmp.BackColor = _colors[1];
+                    tmp.ForeColor = Color.White;
+                    
+
+                }
+
                 if (c is DataGridView)
                 {
                     DataGridView tmp = (DataGridView)c;

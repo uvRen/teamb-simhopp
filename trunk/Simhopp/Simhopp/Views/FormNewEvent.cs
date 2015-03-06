@@ -203,7 +203,7 @@ namespace Simhopp
 
         private void listViewDivers_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
-            FormNewEventFunctions.AddDataGridViewToTabControl(tabControl1, listViewDivers, _diveNo, _diveName, _dataGridViewList, DiveCount_numericUpDown);
+            FormNewEventFunctions.AddDataGridViewToTabControl(tabControl1, listViewDivers, _diveNo, _diveName, _dataGridViewList, DiveCount_numericUpDown, panel1);
             PanelDrawer.Colorize(this);
             //lägger till en eventhandler till varje DataGridView
             for(int i = 0; i < _dataGridViewList.Count; i++)

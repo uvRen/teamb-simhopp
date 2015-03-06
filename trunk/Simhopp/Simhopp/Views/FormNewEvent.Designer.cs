@@ -457,6 +457,7 @@
             // newDiverSelectGender
             // 
             this.newDiverSelectGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.newDiverSelectGender.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.newDiverSelectGender.Items.AddRange(new object[] {
             "Female",
             "Male"});
