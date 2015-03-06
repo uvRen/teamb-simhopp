@@ -78,6 +78,13 @@ namespace Simhopp
                     tmp.ForeColor = Color.White;
                 }
 
+                if (c is TableLayoutPanel)
+                {
+                    TableLayoutPanel tmp = (TableLayoutPanel)c;
+                    tmp.BackColor = _colors[0];
+                    tmp.ForeColor = Color.White;
+                }
+
                 if (c is ListView)
                 {
                     ListView tmp = (ListView)c;
@@ -100,12 +107,11 @@ namespace Simhopp
                     TextBox tmp = (TextBox)c;
                     tmp.BackColor = _colors[1];
                     tmp.ForeColor = Color.White;
-                    tmp.BorderStyle = BorderStyle.None;
+                    tmp.BorderStyle = BorderStyle.FixedSingle;
+                    
                 }
             }
         }
-
-
 
         /// <summary>
         /// Ritar upp en panel med information om ett hopp.

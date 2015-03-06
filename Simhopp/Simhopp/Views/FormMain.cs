@@ -19,7 +19,7 @@ namespace Simhopp
         public FormMain()
         {
             InitializeComponent();
-
+            PanelDrawer.Colorize(this);
 
             FormMainFunctions.FillListViewWithEvent(listViewEvent);
         }
