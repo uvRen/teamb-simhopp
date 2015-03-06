@@ -650,6 +650,7 @@
             this.Controls.Add(this.EventName_label);
             this.Name = "FormNewEvent";
             this.Text = "FormNewEvent";
+            this.ResizeEnd += new System.EventHandler(this.FormNewEvent_ResizeEnd);
             ((System.ComponentModel.ISupportInitialize)(this.DiveCount_numericUpDown)).EndInit();
             this.groupBoxDisciplin.ResumeLayout(false);
             this.groupBoxDisciplin.PerformLayout();
