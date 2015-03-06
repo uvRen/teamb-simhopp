@@ -348,9 +348,12 @@ namespace Simhopp
                 //antal tabbar
                 for (int i = 0; i < listViewDivers.CheckedItems.Count; i++)
                 {
-                    DataGridView newDataGrid = FormNewEventFunctions.GetNewDataGridView(_diveNo, _diveName);
-
-                    _dataGridViewList.Add(newDataGrid);
+                    //om det har lagts till en ny hoppare skapas en ny DataGridView
+                    if(listViewDivers.CheckedItems.Count > _dataGridViewList.Count)
+                    {
+                        DataGridView newDataGrid = FormNewEventFunctions.GetNewDataGridView(_diveNo, _diveName);
+                        _dataGridViewList.Add(newDataGrid);
+                    }
 
                     //antal rader
                     for (int j = _dataGridViewList[i].RowCount; j < Int32.Parse(DiveCount_numericUpDown.Value.ToString()); j++)
