@@ -238,7 +238,7 @@ namespace Simhopp
         }
 
         //returnerar en ny DataGridView
-        public static DataGridView GetNewDataGridView(AutoCompleteStringCollection diveNo, AutoCompleteStringCollection diveName)
+        public static DataGridView GetNewDataGridView(AutoCompleteStringCollection diveNo, AutoCompleteStringCollection diveName, TabControl tabControl1)
         {
             DataGridView newDataGrid = new DataGridView();
 
@@ -257,7 +257,7 @@ namespace Simhopp
             newDataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             newDataGrid.EnableHeadersVisualStyles = false;
             newDataGrid.TabIndex = 28;
-            newDataGrid.Size = new System.Drawing.Size(360, 142);
+            newDataGrid.Size = new System.Drawing.Size(360, 150);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -270,7 +270,7 @@ namespace Simhopp
             // 
             dataGridViewTextBoxColumn2.HeaderText = "Name";
             dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            //dataGridViewTextBoxColumn2.Width = 155;
+            dataGridViewTextBoxColumn2.Width = tabControl1.Width - (51+55+55+55);
             dataGridViewTextBoxColumn2.Tag = "Name";
             // 
             // dataGridViewComboBoxColumn1
@@ -354,10 +354,12 @@ namespace Simhopp
                     //om det har lagts till en ny hoppare skapas en ny DataGridView
                     if(listViewDivers.CheckedItems.Count > _dataGridViewList.Count)
                     {
-                        DataGridView newDataGrid = FormNewEventFunctions.GetNewDataGridView(_diveNo, _diveName);
+                        DataGridView newDataGrid = FormNewEventFunctions.GetNewDataGridView(_diveNo, _diveName, tabControl1);
                         newDataGrid.Dock = DockStyle.Fill;
                         _dataGridViewList.Add(newDataGrid);
                     }
+
+                    _dataGridViewList[i].Columns[1].Width = tabControl1.Width - (51 + 55 + 55 + 55);
 
                     //antal rader
                     for (int j = _dataGridViewList[i].RowCount; j < Int32.Parse(DiveCount_numericUpDown.Value.ToString()); j++)

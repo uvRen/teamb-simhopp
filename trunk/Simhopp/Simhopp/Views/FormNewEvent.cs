@@ -219,6 +219,14 @@ namespace Simhopp
         {
             FormNewEventFunctions.AddAutoCompleteToDataGridView(_dataGridViewList, tabControl1, e, _diveNo, _diveName);
         }
+
+        private void FormNewEvent_ResizeEnd(object sender, EventArgs e)
+        {
+            for(int i = 0; i < _dataGridViewList.Count; i++)
+            {
+                _dataGridViewList[i].Columns[1].Width = tabControl1.Width - (51 + 55 + 55 + 55);
+            }
+        }
     }
 }
 
