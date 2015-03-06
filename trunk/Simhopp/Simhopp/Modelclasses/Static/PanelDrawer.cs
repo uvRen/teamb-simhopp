@@ -123,6 +123,7 @@ namespace Simhopp
                 if (c is DataGridView)
                 {
                     DataGridView tmp = (DataGridView)c;
+                    tmp.BackgroundColor = _colors[1];
                     for (int i = 0; i < tmp.RowCount; i++)
                     {
                         tmp.Rows[i].DefaultCellStyle.BackColor = _colors[1];

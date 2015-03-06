@@ -33,6 +33,7 @@ namespace Simhopp
             listViewDivers.DragDrop += listViewDivers_DragDrop;
             listViewDivers.AllowDrop = true;
 
+
             //hämtar autocomplete listorna från databasen
             Database.GetAutoCompleteListsFromDatabase(_diveNo, _diveName);
         }
