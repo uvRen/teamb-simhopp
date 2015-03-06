@@ -70,44 +70,59 @@ namespace Simhopp
         //lägger till en ny hoppare i listan och i databasen
         public static void AddNewDiver(ComboBox newDiverSelectGender, TextBox newDiverName, TextBox newDiverAge, TextBox newDiverCountry, ListView listViewDivers)
         {
-            int gender = -1;
-            if (newDiverSelectGender.Text.CompareTo("Male") == 0)
+            //fel hantering, måste ange giltigt namn och nationalitet
+            if (newDiverName.Text.CompareTo("Namn") == 0 || newDiverCountry.Text.CompareTo("Nationalitet") == 0 || newDiverSelectGender.Text.Length == 0)
             {
-                gender = 0;
+                MessageBox.Show("Fel inmatning, försök igen");
             }
-            else
+            else 
             {
-                gender = 1;
+                int gender = -1;
+                if (newDiverSelectGender.Text.CompareTo("Man") == 0)
+                {
+                    gender = 0;
+                }
+                else
+                {
+                    gender = 1;
+                }
+
+                //lägger till den nya hopparen i databasen
+                Diver diver = new Diver();
+                try
+                {
+                    diver = new Diver(newDiverName.Text, Int32.Parse(newDiverAge.Text), gender, newDiverCountry.Text);
+                }
+                catch (FormatException e)
+                {
+                    MessageBox.Show("Du har angivit fel format, försök igen", "Fel format", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int ID = Database.AddDiverToDatabase(diver);
+
+                //lägger till den nya hopparen i listan
+                ListViewItem item1 = new ListViewItem();
+                item1.Text = diver.Name;
+                listViewDivers.Items.Add(item1);
+
+                item1.SubItems.Add(diver.Country);
+                item1.SubItems.Add(diver.Age.ToString());
+                if(gender == 0)
+                {
+                    item1.SubItems.Add("M");
+                }
+                else
+                {
+                    item1.SubItems.Add("F");
+                }
+                
             }
-
-            //lägger till den nya hopparen i databasen
-            Diver diver = new Diver();
-            try
-            {
-                diver = new Diver(newDiverName.Text, Int32.Parse(newDiverAge.Text), gender, newDiverCountry.Text);
-            }
-            catch (FormatException e)
-            {
-                MessageBox.Show("Du har angivit fel format, försök igen", "Fel format", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            int ID = Database.AddDiverToDatabase(diver);
-
-            //lägger till den nya hopparen i listan
-            ListViewItem item1 = new ListViewItem();
-            item1.Text = diver.Name;
-            listViewDivers.Items.Add(item1);
-
-            //item1.SubItems.Add(diver.name);
-            item1.SubItems.Add(diver.Country);
-            item1.SubItems.Add(diver.Age.ToString());
-            item1.SubItems.Add(newDiverSelectGender.Text);
-
+            
             //restore textbox
-            newDiverName.Text = "Name";
-            newDiverAge.Text = "Age";
-            newDiverCountry.Text = "Country";
+            newDiverName.Text = "Namn";
+            newDiverAge.Text = "Ålder";
+            newDiverCountry.Text = "Nationalitet";
         }
 
         //lägger till en ny domare i databasen och i listan
@@ -124,7 +139,7 @@ namespace Simhopp
             item1.SubItems.Add(judge.Name);
 
             //restore textbox
-            newJudgeName.Text = "Name";
+            newJudgeName.Text = "Namn";
         }
 
         //lägger till ett event till databasen med tillhörande domare och hoppare
@@ -233,7 +248,7 @@ namespace Simhopp
 
         public static void ResetTextBox(TextBox box)
         {
-            if (box.Text == "Name" || box.Text == "Country" || box.Text == "Age")
+            if (box.Text == "Namn" || box.Text == "Nationalitet" || box.Text == "Ålder")
                 box.Text = "";
         }
 
@@ -268,10 +283,10 @@ namespace Simhopp
             // 
             // dataGridViewTextBoxColumn2
             // 
-            dataGridViewTextBoxColumn2.HeaderText = "Name";
+            dataGridViewTextBoxColumn2.HeaderText = "Namn";
             dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             dataGridViewTextBoxColumn2.Width = tabControl1.Width - (51+55+55+55);
-            dataGridViewTextBoxColumn2.Tag = "Name";
+            dataGridViewTextBoxColumn2.Tag = "Namn";
             // 
             // dataGridViewComboBoxColumn1
             // 
@@ -325,7 +340,7 @@ namespace Simhopp
                 }
             }
 
-            if (headerText.Equals("Name"))
+            if (headerText.Equals("Namn"))
             {
                 TextBox tb = e.Control as TextBox;
 
