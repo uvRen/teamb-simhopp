@@ -78,6 +78,7 @@
             this.columnHeader2,
             this.columnHeader1});
             this.listViewResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewResult.FullRowSelect = true;
             this.listViewResult.GridLines = true;
             this.listViewResult.Location = new System.Drawing.Point(495, 36);
             this.listViewResult.Name = "listViewResult";
@@ -137,7 +138,7 @@
             // 
             this.PrintResult_btn.Location = new System.Drawing.Point(3, 3);
             this.PrintResult_btn.Name = "PrintResult_btn";
-            this.PrintResult_btn.Size = new System.Drawing.Size(100, 23);
+            this.PrintResult_btn.Size = new System.Drawing.Size(99, 23);
             this.PrintResult_btn.TabIndex = 8;
             this.PrintResult_btn.Text = "Skriv Ut Resultat";
             this.PrintResult_btn.UseVisualStyleBackColor = true;
@@ -237,7 +238,7 @@
             // 
             // ResultsToFullScreen_btn
             // 
-            this.ResultsToFullScreen_btn.Location = new System.Drawing.Point(109, 3);
+            this.ResultsToFullScreen_btn.Location = new System.Drawing.Point(108, 3);
             this.ResultsToFullScreen_btn.Name = "ResultsToFullScreen_btn";
             this.ResultsToFullScreen_btn.Size = new System.Drawing.Size(92, 23);
             this.ResultsToFullScreen_btn.TabIndex = 11;
