@@ -468,7 +468,7 @@ namespace Simhopp
             if (conn != null)
             {
                 Diver d;
-                string sql = "SELECT * FROM diver WHERE id IN (SELECT diverId FROM event_diver WHERE event_diver.eventId=" + eventID + ");";
+                string sql = "SELECT * FROM diver WHERE id IN (SELECT diverId FROM event_diver WHERE event_diver.eventId=" + eventID + ") ORDER BY id DESC;"; //RADERA: ORDER BY id DESC, endast för "resultat"
                 var cmd = new MySqlCommand(sql, conn);
                 var dr = cmd.ExecuteReader();
                 var dt = new DataTable();
