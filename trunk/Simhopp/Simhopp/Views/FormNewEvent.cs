@@ -218,68 +218,20 @@ namespace Simhopp
 
         private void listViewDivers_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
-            string[] row = new string[] { "", "", "", "" };
-            tabControl1.TabPages.Clear();
+            FormNewEventFunctions.AddDataGridViewToTabControl(tabControl1, listViewDivers, _diveNo, _diveName, _dataGridViewList, DiveCount_numericUpDown);
 
-            if (listViewDivers.CheckedItems.Count > 0)
+            //lägger till en eventhandler till varje DataGridView
+            for(int i = 0; i < _dataGridViewList.Count; i++)
             {
-                //antal tabbar
-                for (int i = 0; i < listViewDivers.CheckedItems.Count; i++)
-                {
-                    DataGridView newDataGrid = FormNewEventFunctions.GetNewDataGridView(_diveNo, _diveName);
-
-                    _dataGridViewList.Add(newDataGrid);
-
-                    //antal rader
-                    for (int j = _dataGridViewList[i].RowCount; j < Int32.Parse(DiveCount_numericUpDown.Value.ToString()); j++)
-                    {
-                        _dataGridViewList[i].Rows.Add(row);
-                        _dataGridViewList[i].Rows[j].HeaderCell.Value = String.Format("{0}", j + 1);
-                        
-                    }
-
-                    _dataGridViewList[i].Visible = true;
-                    _dataGridViewList[i].EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(DiveTypeInput_dataGridView_EditingControlShowing);
-                    string title = listViewDivers.CheckedItems[i].Text;
-                    TabPage newTab = new TabPage(title);
-                    newTab.Name = i.ToString();
-                    newTab.Tag = listViewDivers.CheckedItems[i].SubItems[4].Text;
-
-                    tabControl1.TabPages.Add(newTab);
-                    newTab.Controls.Add(_dataGridViewList[i]);
-                }
+                _dataGridViewList[i].EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(DiveTypeInput_dataGridView_EditingControlShowing);
             }
+
         }
         #endregion
 
         private void DiveTypeInput_dataGridView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            int columnIndex = _dataGridViewList[Int32.Parse(tabControl1.SelectedTab.Name)].CurrentCell.ColumnIndex;
-            string headerText = _dataGridViewList[Int32.Parse(tabControl1.SelectedTab.Name)].Columns[columnIndex].HeaderText;
-
-            if (headerText.Equals("Kod"))
-            {
-                TextBox tb = e.Control as TextBox;
-
-                if (tb != null)
-                {
-                    tb.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                    tb.AutoCompleteCustomSource = _diveNo;
-                    tb.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                }
-            }
-
-            if (headerText.Equals("Name"))
-            {
-                TextBox tb = e.Control as TextBox;
-
-                if (tb != null)
-                {
-                    tb.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                    tb.AutoCompleteCustomSource = _diveName;
-                    tb.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                }
-            } 
+            FormNewEventFunctions.AddAutoCompleteToDataGridView(_dataGridViewList, tabControl1, e, _diveNo, _diveName);
         }
     }
 }
