@@ -143,10 +143,10 @@
             this.radioButtonSync.AutoSize = true;
             this.radioButtonSync.Location = new System.Drawing.Point(95, 19);
             this.radioButtonSync.Name = "radioButtonSync";
-            this.radioButtonSync.Size = new System.Drawing.Size(49, 17);
+            this.radioButtonSync.Size = new System.Drawing.Size(89, 17);
             this.radioButtonSync.TabIndex = 11;
             this.radioButtonSync.TabStop = true;
-            this.radioButtonSync.Text = "Sync";
+            this.radioButtonSync.Text = "Synkroniserat";
             this.radioButtonSync.UseVisualStyleBackColor = true;
             // 
             // radioButtonSingle
@@ -201,10 +201,10 @@
             this.radioButtonTower.AutoSize = true;
             this.radioButtonTower.Location = new System.Drawing.Point(203, 19);
             this.radioButtonTower.Name = "radioButtonTower";
-            this.radioButtonTower.Size = new System.Drawing.Size(55, 17);
+            this.radioButtonTower.Size = new System.Drawing.Size(47, 17);
             this.radioButtonTower.TabIndex = 8;
             this.radioButtonTower.TabStop = true;
-            this.radioButtonTower.Text = "Tower";
+            this.radioButtonTower.Text = "Torn";
             this.radioButtonTower.UseVisualStyleBackColor = true;
             // 
             // groupBoxDisciplin
@@ -228,7 +228,7 @@
             this.groupBoxSingle.Size = new System.Drawing.Size(264, 47);
             this.groupBoxSingle.TabIndex = 9;
             this.groupBoxSingle.TabStop = false;
-            this.groupBoxSingle.Text = "Single/sync";
+            this.groupBoxSingle.Text = "Single/synkroniserat";
             // 
             // btnSubmit
             // 
@@ -272,7 +272,7 @@
             this.groupBox1.Size = new System.Drawing.Size(264, 46);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Gender";
+            this.groupBox1.Text = "Kön";
             // 
             // radioButtonMale
             // 
@@ -280,10 +280,10 @@
             this.radioButtonMale.Checked = true;
             this.radioButtonMale.Location = new System.Drawing.Point(6, 19);
             this.radioButtonMale.Name = "radioButtonMale";
-            this.radioButtonMale.Size = new System.Drawing.Size(48, 17);
+            this.radioButtonMale.Size = new System.Drawing.Size(46, 17);
             this.radioButtonMale.TabIndex = 13;
             this.radioButtonMale.TabStop = true;
-            this.radioButtonMale.Text = "Male";
+            this.radioButtonMale.Text = "Man";
             this.radioButtonMale.UseVisualStyleBackColor = true;
             this.radioButtonMale.CheckedChanged += new System.EventHandler(this.radioButtonMale_CheckedChanged);
             // 
@@ -292,10 +292,10 @@
             this.radioButtonFemale.AutoSize = true;
             this.radioButtonFemale.Location = new System.Drawing.Point(95, 19);
             this.radioButtonFemale.Name = "radioButtonFemale";
-            this.radioButtonFemale.Size = new System.Drawing.Size(59, 17);
+            this.radioButtonFemale.Size = new System.Drawing.Size(58, 17);
             this.radioButtonFemale.TabIndex = 14;
             this.radioButtonFemale.TabStop = true;
-            this.radioButtonFemale.Text = "Female";
+            this.radioButtonFemale.Text = "Kvinna";
             this.radioButtonFemale.UseVisualStyleBackColor = true;
             // 
             // successfully
@@ -317,9 +317,9 @@
             this.errorlabel.ForeColor = System.Drawing.Color.Firebrick;
             this.errorlabel.Location = new System.Drawing.Point(115, 637);
             this.errorlabel.Name = "errorlabel";
-            this.errorlabel.Size = new System.Drawing.Size(138, 13);
+            this.errorlabel.Size = new System.Drawing.Size(132, 13);
             this.errorlabel.TabIndex = 25;
-            this.errorlabel.Text = "An error occoured, try again";
+            this.errorlabel.Text = "An error occured, try again";
             this.errorlabel.Visible = false;
             // 
             // listViewJudge
@@ -347,7 +347,7 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "Judge";
+            this.columnHeader2.Text = "Domare";
             this.columnHeader2.Width = 210;
             // 
             // listViewDivers
@@ -373,22 +373,22 @@
             // 
             // columnHeader7
             // 
-            this.columnHeader7.Text = "     Diver";
+            this.columnHeader7.Text = "     Hoppare";
             this.columnHeader7.Width = 154;
             // 
             // columnHeader8
             // 
-            this.columnHeader8.Text = "Country";
+            this.columnHeader8.Text = "Nationalitet";
             this.columnHeader8.Width = 95;
             // 
             // columnHeader9
             // 
-            this.columnHeader9.Text = "Age";
+            this.columnHeader9.Text = "Ålder";
             this.columnHeader9.Width = 49;
             // 
             // columnHeader10
             // 
-            this.columnHeader10.Text = "Gender";
+            this.columnHeader10.Text = "Kön";
             // 
             // columnHeader3
             // 
@@ -402,7 +402,7 @@
             this.newDiverName.Name = "newDiverName";
             this.newDiverName.Size = new System.Drawing.Size(126, 20);
             this.newDiverName.TabIndex = 16;
-            this.newDiverName.Text = "Name";
+            this.newDiverName.Text = "Namn";
             this.newDiverName.Enter += new System.EventHandler(this.textBox3_Enter);
             // 
             // newDiverAge
@@ -411,7 +411,7 @@
             this.newDiverAge.Name = "newDiverAge";
             this.newDiverAge.Size = new System.Drawing.Size(37, 20);
             this.newDiverAge.TabIndex = 18;
-            this.newDiverAge.Text = "Age";
+            this.newDiverAge.Text = "Ålder";
             this.newDiverAge.Enter += new System.EventHandler(this.textBox5_Enter);
             // 
             // newDiverCountry
@@ -421,7 +421,7 @@
             this.newDiverCountry.Name = "newDiverCountry";
             this.newDiverCountry.Size = new System.Drawing.Size(91, 20);
             this.newDiverCountry.TabIndex = 17;
-            this.newDiverCountry.Text = "Country";
+            this.newDiverCountry.Text = "Nationalitet";
             this.newDiverCountry.Enter += new System.EventHandler(this.textBox6_Enter);
             // 
             // AddNewDiverSubmit
@@ -441,7 +441,7 @@
             this.newJudgeName.Name = "newJudgeName";
             this.newJudgeName.Size = new System.Drawing.Size(255, 20);
             this.newJudgeName.TabIndex = 22;
-            this.newJudgeName.Text = "Name";
+            this.newJudgeName.Text = "Namn";
             this.newJudgeName.Enter += new System.EventHandler(this.newJudgeName_Enter);
             // 
             // newJudgeSubmit
