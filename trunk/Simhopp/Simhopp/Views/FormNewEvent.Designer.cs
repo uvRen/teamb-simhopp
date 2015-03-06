@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.EventName_label = new System.Windows.Forms.Label();
             this.EventName_textBox = new System.Windows.Forms.TextBox();
             this.EventLocation_textBox = new System.Windows.Forms.TextBox();
@@ -335,7 +336,7 @@
             this.listViewJudge.GridLines = true;
             this.listViewJudge.Location = new System.Drawing.Point(3, 3);
             this.listViewJudge.Name = "listViewJudge";
-            this.listViewJudge.Size = new System.Drawing.Size(288, 598);
+            this.listViewJudge.Size = new System.Drawing.Size(328, 598);
             this.listViewJudge.TabIndex = 21;
             this.listViewJudge.UseCompatibleStateImageBehavior = false;
             this.listViewJudge.View = System.Windows.Forms.View.Details;
@@ -529,6 +530,8 @@
             // DiveTypeInput_dataGridView
             // 
             this.DiveTypeInput_dataGridView.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            this.DiveTypeInput_dataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DiveTypeInput_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DiveTypeInput_dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,

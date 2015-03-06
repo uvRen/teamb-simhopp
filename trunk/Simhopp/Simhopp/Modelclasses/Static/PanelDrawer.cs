@@ -110,6 +110,15 @@ namespace Simhopp
                     tmp.BorderStyle = BorderStyle.FixedSingle;
                     
                 }
+                if (c is DataGridView)
+                {
+                    DataGridView tmp = (DataGridView)c;
+                    for (int i = 0; i < tmp.RowCount; i++)
+                    {
+                        tmp.Rows[i].DefaultCellStyle.BackColor = _colors[1];
+                        tmp.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                    }
+                }
             }
         }
 
