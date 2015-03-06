@@ -143,6 +143,24 @@ namespace Simhopp
             date = dateTimePicker1.Value.ToString("yyyy-MM-dd");
             diveCount = (int)numericUpDown1.Value;
 
+
+            //----------------------------
+            for (int i = 0; i < dataGridViewList.Count; i++)
+            {
+                string text = "";
+                //antal rader i en DataGridView
+                for (int rad = 0; rad < dataGridViewList[i].RowCount; rad++)
+                {
+                    text += dataGridViewList[i].Rows[rad].Cells[0].Value.ToString() + "\n";
+                    text += dataGridViewList[i].Rows[rad].Cells[1].Value.ToString() + "\n";
+                    text += dataGridViewList[i].Rows[rad].Cells[2].Value.ToString() + "\n";
+                    text += dataGridViewList[i].Rows[rad].Cells[3].Value.ToString();
+                }
+                MessageBox.Show("" + dataGridViewList.Count);
+                MessageBox.Show(text);
+            }
+            //----------------------------
+
             //discipline: 1m = 0, 3m = 1, Tower = 2
             if (radioButton1meter.Checked)
                 discipline = 0;
@@ -252,7 +270,7 @@ namespace Simhopp
             // 
             dataGridViewTextBoxColumn2.HeaderText = "Name";
             dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            dataGridViewTextBoxColumn2.Width = 155;
+            //dataGridViewTextBoxColumn2.Width = 155;
             dataGridViewTextBoxColumn2.Tag = "Name";
             // 
             // dataGridViewComboBoxColumn1
