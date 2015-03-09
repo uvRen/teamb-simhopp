@@ -252,6 +252,9 @@ namespace Simhopp
                         scoreInput.Tag = score;
                         scoreInput.Text = score.Points.ToString();
 
+                        if (dive.Scores.Count < Judges.Count)
+                            break;
+
                         //Uppdatera hopptes total-poäng
                         Panel scorePanel = (Panel)(scoreInput.Parent);
                         Label points = (Label)diverPanels[iDiver].Controls.Find("Points", true)[0];

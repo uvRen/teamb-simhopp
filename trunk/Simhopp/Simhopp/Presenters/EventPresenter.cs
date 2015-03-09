@@ -123,7 +123,8 @@ namespace Simhopp
             {
                 for (int j = 0; j < 5; j++)
                 {
-                    Dive dive = new Dive(0, CurrentEvent.Divers[i], j + 1, CurrentEvent);
+                    DiveType diveType = new DiveType(621 + ((i+j) % 2)*10 + ((i+j)%4), DiveType.DivePosition.A, DiveType.DiveHeight._10M);
+                    Dive dive = new Dive(0, CurrentEvent.Divers[i], CurrentEvent, diveType);
                     CurrentEvent.Divers[i].AddDive(dive);
 
                     for (int k = 0; k < 5; k++)

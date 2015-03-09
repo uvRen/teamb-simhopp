@@ -29,16 +29,22 @@ namespace Simhopp
 
         //_dd håller information om svårighetsgraf för hopp.
         //Användning: _dd[nummer][höjd][position]
+        [DataMember]
         private static Dictionary<int, Dictionary<DiveHeight, Dictionary<DivePosition, double>>> _dd;
 
         //_names hämtar hoppnamn från hopp-nummer
+        [DataMember]
         private static Dictionary<int, String> _names;
-        [DataMember]
+        [IgnoreDataMember]
         private double _difficulty;
-        [DataMember]
-        private String _name;
+        [IgnoreDataMember]
+        private string _name;
         [DataMember]
         public int No { get; set; }
+        [DataMember]
+        public DivePosition Position { get; set; }
+        [DataMember]
+        public DiveHeight Height { get; set; }
 
         public double GetHeight()
         {
@@ -59,8 +65,8 @@ namespace Simhopp
                     return -1;
             }
         }
-        [DataMember]
-        public String Name
+        //[DataMember]
+        public string Name
         {
             get
             {
@@ -69,11 +75,12 @@ namespace Simhopp
 
                 if (_name == null)
                     _name = _names[this.No];
+
                 return _names[this.No];
             }
             set { _name = value; }
         }
-        [DataMember]
+        //[DataMember]
         public double Difficulty
         {
             get
@@ -82,15 +89,10 @@ namespace Simhopp
                     LoadDDTable();
                 //Returnerar 0 om difficulty inte finns i _dd
                 //Annars returnerar difficulty från _dd
-                if (_difficulty == null)
-                    _difficulty = !_dd[this.No][this.Height].ContainsKey(this.Position) ? 0 : _dd[this.No][this.Height][this.Position];
-                return _difficulty;
+                return !_dd[this.No][this.Height].ContainsKey(this.Position) ? 0 : _dd[this.No][this.Height][this.Position];
             }
             set { _difficulty = value; }
         }
-
-        public DivePosition Position { get; set; }
-        public DiveHeight Height { get; set; }
         
         public DiveType(int no, DivePosition position, DiveHeight height)
         {

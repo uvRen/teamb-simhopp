@@ -90,9 +90,13 @@ namespace Simhopp_JudgeClient
                         AssignLogin(msg);
                         break;
                     case SimhoppMessage.ClientAction.SubmitScore:
+                        if (Presenter == null)
+                            break;
                         Presenter.SubmitClientScore(msg.Value, msg.Id);
                         break;
                     case SimhoppMessage.ClientAction.RequestScore:
+                        if (Presenter == null)
+                            break;
                         Presenter.ScoreRequested(msg);
                         break;
                 }
@@ -151,9 +155,10 @@ namespace Simhopp_JudgeClient
                     data = client.Receive(ref ipep);
                     break;
                 }
-                catch (SocketException)
+                catch (SocketException ex)
                 {
                     LogMessage(SimhoppMessage.ErrorMessage(Encoding.ASCII.GetString(data)));
+                    ExceptionHandler.Handle(ex);
                 }
             }
 
