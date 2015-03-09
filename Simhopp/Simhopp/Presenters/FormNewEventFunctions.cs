@@ -167,7 +167,7 @@ namespace Simhopp
         }
 
         //lägger till ett event till databasen med tillhörande domare och hoppare
-        public static void AddNewEventToDatabase(TextBox textBox1, TextBox textBox2, DateTimePicker dateTimePicker1, NumericUpDown numericUpDown1, RadioButton radioButton1meter, RadioButton radioButton3meter, RadioButton radioButtonTower, RadioButton radioButtonSingle, RadioButton radioButtonSync, RadioButton radioButtonMale, RadioButton radioButtonFemale, ListView listViewDivers, ListView listViewJudge, Label successfully, Label errorlabel, List<DataGridView> dataGridViewList)
+        public static void AddNewEventToDatabase(TextBox textBox1, TextBox textBox2, DateTimePicker dateTimePicker1, NumericUpDown numericUpDown1, RadioButton radioButton1meter, RadioButton radioButton3meter, RadioButton radioButton7meter, RadioButton radioButtonSingle, RadioButton radioButtonSync, RadioButton radioButtonMale, RadioButton radioButtonFemale, ListView listViewDivers, ListView listViewJudge, Label successfully, Label errorlabel, List<DataGridView> dataGridViewList)
         {
             string eventName;
             string location;
@@ -184,91 +184,99 @@ namespace Simhopp
 
 
             //----------------------------
+            DiveType dType;
+            int diverID, dNumber;
+            string dPosition, dHeight, diveTypeID;
             for (int i = 0; i < dataGridViewList.Count; i++)
             {
-                string text = "";
                 //antal rader i en DataGridView
                 for (int rad = 0; rad < dataGridViewList[i].RowCount; rad++)
                 {
-                    text += "Tag: " + dataGridViewList[i].Tag + "\n";
-                    text += dataGridViewList[i].Rows[rad].Cells[0].Value.ToString() + "\n";
-                    text += dataGridViewList[i].Rows[rad].Cells[1].Value.ToString() + "\n";
-                    text += dataGridViewList[i].Rows[rad].Cells[2].Value.ToString() + "\n";
-                    text += dataGridViewList[i].Rows[rad].Cells[3].Value.ToString();
+                    //diver ID
+                    diverID = Int32.Parse(dataGridViewList[i].Tag.ToString());
+                    //DiveNo
+                    dNumber = Int32.Parse(dataGridViewList[i].Rows[rad].Cells[0].Value.ToString());
+                    //Height
+                    dHeight = dataGridViewList[i].Rows[rad].Cells[2].Value.ToString();
+                    //Position
+                    dPosition = dataGridViewList[i].Rows[rad].Cells[3].Value.ToString();
+
+                    dType = new DiveType(dNumber);
+                    SetDiveTypeHeight(dType, dHeight);
+                    SetDiveTypePosition(dType, dPosition);
                 }
-                MessageBox.Show("" + dataGridViewList.Count);
-                MessageBox.Show(text);
             }
             //----------------------------
 
-            ////discipline: 1m = 0, 3m = 1, Tower = 2
-            //if (radioButton1meter.Checked)
-            //    discipline = 0;
-            //else if (radioButton3meter.Checked)
-            //    discipline = 1;
-            //else if (radioButtonTower.Checked)
-            //    discipline = 2;
+            //discipline: 1m = 0, 3m = 1, Tower = 2
+            if (radioButton1meter.Checked)
+                discipline = 0;
+            else if (radioButton3meter.Checked)
+                discipline = 1;
+            else if (radioButton7meter.Checked)
+                discipline = 2;
 
-            ////sync: single = 0, sync = 1
-            //if (radioButtonSingle.Checked)
-            //    sync = 0;
-            //else if (radioButtonSync.Checked)
-            //    sync = 1;
+            //sync: single = 0, sync = 1
+            if (radioButtonSingle.Checked)
+                sync = 0;
+            else if (radioButtonSync.Checked)
+                sync = 1;
 
-            ////sex: male = 0, female = 1
-            //if (radioButtonMale.Checked)
-            //    sex = 0;
-            //else if (radioButtonFemale.Checked)
-            //    sex = 1;
+            //sex: male = 0, female = 1
+            if (radioButtonMale.Checked)
+                sex = 0;
+            else if (radioButtonFemale.Checked)
+                sex = 1;
 
-            ////lägger till eventet i databasen
-            //Contest ev = new Contest(eventName, date, location, discipline, sync, diveCount, sex);
+            //lägger till eventet i databasen
+            Contest ev = new Contest(eventName, date, location, discipline, sync, diveCount, sex);
 
-            ////hämtar dommare och hoppare från tabellerna
-            //List<Judge> addJudgesToEvent = new List<Judge>();
-            //List<Diver> addDiversToEvent = new List<Diver>();
-            //Diver d;
-            //Judge j;
-            //string gender;
-            //int g;
+            //hämtar dommare och hoppare från tabellerna
+            List<Judge> addJudgesToEvent = new List<Judge>();
+            List<Diver> addDiversToEvent = new List<Diver>();
+            Diver d;
+            Judge j;
+            string gender;
+            int g;
 
-            //foreach (ListViewItem item in listViewDivers.CheckedItems)
-            //{
-            //    gender = item.SubItems[3].Text;
-            //    if (gender.CompareTo("M") == 0)
-            //        g = 0;
-            //    else
-            //        g = 1;
-            //    d = new Diver(Int32.Parse(item.SubItems[4].Text), item.SubItems[0].Text, Int32.Parse(item.SubItems[2].Text), g, item.SubItems[1].Text);
-            //    addDiversToEvent.Add(d);
-            //}
-            //ev.AddDivers(addDiversToEvent);
+            foreach (ListViewItem item in listViewDivers.CheckedItems)
+            {
+                gender = item.SubItems[3].Text;
+                if (gender.CompareTo("M") == 0)
+                    g = 0;
+                else
+                    g = 1;
+                d = new Diver(Int32.Parse(item.SubItems[4].Text), item.SubItems[0].Text, Int32.Parse(item.SubItems[2].Text), g, item.SubItems[1].Text);
+                addDiversToEvent.Add(d);
+            }
+            ev.AddDivers(addDiversToEvent);
 
-            //foreach (ListViewItem item in listViewJudge.CheckedItems)
-            //{
-            //    j = new Judge(Int32.Parse(item.SubItems[0].Text), item.SubItems[1].Text);
-            //    addJudgesToEvent.Add(j);
-            //}
-            //ev.AddJudges(addJudgesToEvent);
+            foreach (ListViewItem item in listViewJudge.CheckedItems)
+            {
+                j = new Judge(Int32.Parse(item.SubItems[0].Text), item.SubItems[1].Text);
+                addJudgesToEvent.Add(j);
+            }
+            ev.AddJudges(addJudgesToEvent);
 
-            ////om inmatningen lyckades
-            //int code = Database.AddEventToDatabase(ev);
-            //if (code == 1)
-            //{
-            //    successfully.Visible = true;
-            //}
-            //else if (code == -1)
-            //{
-            //    successfully.Visible = false;
-            //    errorlabel.Text = "Identical event already exist";
-            //    errorlabel.Visible = true; ;
-            //}
-            //else
-            //{
-            //    successfully.Visible = false;
-            //    errorlabel.Text = "An error occoured, try again";
-            //    errorlabel.Visible = true;
-            //}
+            //om inmatningen lyckades
+            int code = Database.AddEventToDatabase(ev);
+            if (code == 1)
+            {
+                diveTypeID = Database.AddDiveTypeToDatabase(dType);
+                successfully.Visible = true;
+            }
+            else if (code == -1)
+            {
+                successfully.Visible = false;
+                errorlabel.Text = "Identical event already exist";
+                errorlabel.Visible = true; ;
+            }
+            else
+            {
+                successfully.Visible = false;
+                errorlabel.Text = "An error occoured, try again";
+                errorlabel.Visible = true;
+            }
         }
 
         public static void ResetTextBox(TextBox box)
@@ -427,6 +435,39 @@ namespace Simhopp
                 panel1.Visible = false;
                 tabControl1.Visible = false;
             }
+        }
+
+        private static void SetDiveTypeHeight(DiveType d, string height)
+        {
+            if (height.CompareTo("1m") == 0)
+                d.Height = DiveType.DiveHeight._1M;
+
+            else if(height.CompareTo("3m") == 0)
+                d.Height = DiveType.DiveHeight._3M;
+
+            else if (height.CompareTo("5m") == 0)
+                d.Height = DiveType.DiveHeight._5M;
+
+            else if (height.CompareTo("7,5m") == 0)
+                d.Height = DiveType.DiveHeight._7_5M;
+
+            else if (height.CompareTo("10m") == 0)
+                d.Height = DiveType.DiveHeight._10M;
+        }
+
+        private static void SetDiveTypePosition(DiveType d, string position)
+        {
+            if (position.CompareTo("A") == 0)
+                d.Position = DiveType.DivePosition.A;
+
+            else if(position.CompareTo("B") == 0)
+                d.Position = DiveType.DivePosition.B;
+
+            else if (position.CompareTo("C") == 0)
+                d.Position = DiveType.DivePosition.C;
+
+            else if (position.CompareTo("D") == 0)
+                d.Position = DiveType.DivePosition.D;
         }
     }
 }

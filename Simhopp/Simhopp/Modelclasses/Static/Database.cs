@@ -275,6 +275,29 @@ namespace Simhopp
             }
         }
 
+        public static int GetLatestAddedEventID()
+        {
+            MySqlConnection conn = Database.ConnectToDatabase();
+            int ID = -1;
+            if(conn != null)
+            {
+                MySqlCommand comm = conn.CreateCommand();
+                comm.CommandText = "SELECT AUTO_INCREMENT WHERE TABLE_NAME=event";
+                var dr = comm.ExecuteReader();
+                var dt = new DataTable();
+                dt.Load(dr);
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    ID = Int32.Parse(row["AUTO_INCREMENT"].ToString());
+                }
+
+                return ID;
+
+            }
+            return ID;
+        }
+
         #endregion
 
         #region Diver
@@ -554,6 +577,41 @@ namespace Simhopp
                 MessageBox.Show("Anslutningen till databasen misslyckades", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             conn.Close();
+        }
+
+        public static string AddDiveTypeToDatabase(DiveType d)
+        {
+            MySqlConnection conn = Database.ConnectToDatabase();
+
+            if (conn != null)
+            {
+                string id = "";
+                //lägger till i databasen
+                MySqlCommand comm = conn.CreateCommand();
+                comm.CommandText = "INSERT INTO divetype(Type, Position, Height) VALUES(@type, @position, @height)";
+                comm.Parameters.AddWithValue("@type", d.No);
+                comm.Parameters.AddWithValue("@position", d.Position.ToString());
+
+                comm.Parameters.AddWithValue("@height", d.GetHeight());
+                comm.ExecuteNonQuery();
+
+                comm.CommandText = "SELECT LAST_INSERT_ID() AS id";
+                var dr = comm.ExecuteReader();
+                var dt = new DataTable();
+                dt.Load(dr);
+                DataRow row = dt.Rows[0];
+                id = row["id"].ToString();
+
+                conn.Close();
+                return id;
+            }
+            else
+                return null;
+        }
+
+        public static void AddDiveToDiver(DiveType d)
+        {
+
         }
 
         #endregion
