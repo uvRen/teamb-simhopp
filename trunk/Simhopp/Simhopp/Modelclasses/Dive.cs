@@ -11,11 +11,11 @@ namespace Simhopp
     public class Dive
     {
         [IgnoreDataMember]
-        private Diver _diver;
+        public Diver _diver;
         private Contest _contest;
-        private int Id;
+        public int Id;
         [DataMember]
-        private DiveType _diveType;
+        public DiveType _diveType;
 
         //[DataMember]
         public double Difficulty
