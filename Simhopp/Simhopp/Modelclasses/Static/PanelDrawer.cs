@@ -135,9 +135,12 @@ namespace Simhopp
 
         /// <summary>
         /// Ritar upp en panel med information om ett hopp.
-        /// Namn
-        /// Svårighetsgrad      Hopp-poäng
-        /// Domarpoäng
+        /// Layout-sketch:
+        /// 
+        ///     [Namn]
+        ///     ([DD])  [Hopp-typ]      [Hopp-poäng]
+        ///     [] [] [] [] [] < Domarpoäng
+        /// 
         /// </summary>
         /// <param name="diver">Hoppare</param>
         /// <param name="round">Vilket hopp i ordningen</param>
@@ -180,10 +183,11 @@ namespace Simhopp
 
 
             Label difficulty = new Label();
-            difficulty.Text = "Svårighetsgrad: " + dive.Difficulty.ToString();
+            difficulty.Text = "[" + dive.Difficulty + "] " + dive.Name;
             difficulty.Top = 22;
             difficulty.Left = 20;
-            difficulty.Width = p.Width / 2;
+            difficulty.AutoSize = true;
+            difficulty.MaximumSize = new Size(p.Width - 60, 22);
             difficulty.ForeColor = Color.White;
             difficulty.Font = new Font(fontName, FontStyle.Regular);
 

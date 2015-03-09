@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization.Json;
 using System.Windows.Forms;
+using System.Xml;
+using MySql.Data.MySqlClient;
 
 namespace Simhopp
 {
@@ -26,7 +28,8 @@ namespace Simhopp
             AssignId,
             Login,
             RequestScore,
-            SubmitScore
+            SubmitScore,
+            StatusUpdate
         };
 
         [DataContract]
@@ -73,6 +76,7 @@ namespace Simhopp
         {
             DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(SimhoppMessage));
             MemoryStream ms = new MemoryStream();
+            
             js.WriteObject(ms, this);
 
             ms.Position = 0;
@@ -106,6 +110,7 @@ namespace Simhopp
             catch (Exception ex)
             {
                 msg = ErrorMessage(ex.Message);
+                ExceptionHandler.Handle(ex);
             }
             return msg;
         }

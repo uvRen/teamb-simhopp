@@ -14,13 +14,26 @@ namespace Simhopp
         private Diver _diver;
         private Contest _contest;
         private int Id;
+        [DataMember]
         private DiveType _diveType;
 
-        [DataMember]
-        public double Difficulty {get; set; }
+        //[DataMember]
+        public double Difficulty
+        {
+            get { return _diveType.Difficulty; }
+            set {
+                //_diveType.Difficulty = value;
+            }
+        }
+
         [DataMember]
         public List<Score> Scores { get; set; }
-        public string Name { get; set; }
+
+        public string Name
+        {
+            get { return _diveType.Name; }
+            set { _diveType.Name = value; }
+        }
 
         public double Score
         {
@@ -38,6 +51,7 @@ namespace Simhopp
             this.Difficulty = 0.0;
             this._contest = null;
             Scores = new List<Score>();
+            _diveType = new DiveType(1, DiveType.DivePosition.A, DiveType.DiveHeight._1M);
         }
 
         public Dive(int diveNumber, DiveType.DiveHeight diveHeight, DiveType.DivePosition divePosition)
@@ -52,6 +66,17 @@ namespace Simhopp
             this.Difficulty = difficulty;
             this._contest = comp;
             Scores = new List<Score>();
+            _diveType = new DiveType(1, DiveType.DivePosition.A, DiveType.DiveHeight._1M);
+        }
+
+        public Dive(int ID, Diver person, Contest comp, DiveType diveType)
+        {
+            this.Id = ID;
+            this._diver = person;
+            this._contest = comp;
+            _diveType = diveType;
+
+            Scores = new List<Score>();
         }
 
         public Dive(int ID, Diver person, double difficulty, string name, Contest comp)
@@ -59,9 +84,10 @@ namespace Simhopp
             this.Id = ID;
             this._diver = person;
             this.Difficulty = difficulty;
-            this.Name = name;
+            //this.Name = name;
             this._contest = comp;
             Scores = new List<Score>();
+            _diveType = new DiveType(1, DiveType.DivePosition.A, DiveType.DiveHeight._1M);
         }
         #endregion
 
