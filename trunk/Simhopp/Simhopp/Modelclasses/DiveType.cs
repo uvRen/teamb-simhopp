@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Reflection;
+using System.Runtime.Serialization;
 
 namespace Simhopp
 {
+    [DataContract]
     public class DiveType
     {
         public enum DivePosition
@@ -31,10 +33,11 @@ namespace Simhopp
 
         //_names hämtar hoppnamn från hopp-nummer
         private static Dictionary<int, String> _names;
-
+        [DataMember]
         private double _difficulty;
+        [DataMember]
         private String _name;
-
+        [DataMember]
         public int No { get; set; }
 
         public double GetHeight()
@@ -56,19 +59,32 @@ namespace Simhopp
                     return -1;
             }
         }
-
+        [DataMember]
         public String Name
         {
-            get { return _names[this.No]; }
+            get
+            {
+                if (_dd == null)
+                    LoadDDTable();
+
+                if (_name == null)
+                    _name = _names[this.No];
+                return _names[this.No];
+            }
             set { _name = value; }
         }
+        [DataMember]
         public double Difficulty
         {
             get
             {
+                if (_dd == null)
+                    LoadDDTable();
                 //Returnerar 0 om difficulty inte finns i _dd
                 //Annars returnerar difficulty från _dd
-                return !_dd[this.No][this.Height].ContainsKey(this.Position) ? 0 : _dd[this.No][this.Height][this.Position];
+                if (_difficulty == null)
+                    _difficulty = !_dd[this.No][this.Height].ContainsKey(this.Position) ? 0 : _dd[this.No][this.Height][this.Position];
+                return _difficulty;
             }
             set { _difficulty = value; }
         }
@@ -78,6 +94,10 @@ namespace Simhopp
         
         public DiveType(int no, DivePosition position, DiveHeight height)
         {
+
+            if (_dd == null)
+                LoadDDTable();
+
             No = no;
             Position = position;
             Height = height;
@@ -86,6 +106,12 @@ namespace Simhopp
         public DiveType(int no)
         {
             No = no;
+        }
+        public DiveType()
+        {
+            No = 1;
+            Height = DiveHeight._1M;
+            Position = DivePosition.A;
         }
 
 
