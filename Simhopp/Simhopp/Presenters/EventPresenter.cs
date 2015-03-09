@@ -161,11 +161,13 @@ namespace Simhopp
 
             while (JudgeServer.IsJudgeClient(_currentJudgeIndex) && Mode != ViewMode.Client)
             {
+                Console.WriteLine(Mode.ToString() + " Current: " + _currentJudgeIndex + " is client. ++ing");
                 _currentJudgeIndex++;
             }
 
             if (_currentJudgeIndex >= Judges.Count)
             {
+                Console.WriteLine(Mode.ToString() + " Current: " + _currentJudgeIndex + " more than count");
                 _currentJudgeIndex--;
                 _view.EnableControls(false);
             }
@@ -173,14 +175,16 @@ namespace Simhopp
 
         private Score CreateScoreForDive(double points, int judgeIndex, bool broadcastScore = true)
         {
+            Console.WriteLine(Mode.ToString() + " Scoring: " + points + " for index: " + judgeIndex + " with broadcast:" + broadcastScore.ToString());
+            Console.WriteLine(Mode.ToString() + " Current: " + _currentJudgeIndex);
             Judge scoringJudge = Judges[judgeIndex];
             
             Score score = new Score(-1, CurrentDiver.Dives[CurrentRoundIndex], scoringJudge, points);
             CurrentDiver.Dives[CurrentRoundIndex].AddScore(score); //Add score to current dive
 
-            _view.PopulateScoreInput(score, CurrentJudgeIndex);
+            _view.PopulateScoreInput(score, judgeIndex);
 
-            SkipToNonClientJudges(true);
+            SkipToNonClientJudges(broadcastScore);
 
             if (CurrentDive.Scores.Count == CurrentEvent.diveCount)
             {
@@ -197,13 +201,15 @@ namespace Simhopp
                 _view.CompleteDive();
             }
 
-            if (Mode == ViewMode.Client)
+            if (Mode == ViewMode.Client && broadcastScore)
             {
+                Console.WriteLine(Mode.ToString() + " Commiting score to client (is client)");
                 _judgeClient.CommitScore(_clientJudgeIndex, score);
                 _view.EnableControls(false);
             }
             else if (broadcastScore)
             {
+                Console.WriteLine(Mode.ToString() + " Broadcasting score (is server)");
                 JudgeServer.BroadcastScore(score);
             }
             return score;
@@ -237,11 +243,13 @@ namespace Simhopp
 
         public void LogToServer(string message)
         {
+            Console.WriteLine(Mode.ToString() + " UDP: " + message);
             _view.LogToServer(message);
         }
 
         public void SubmitClientScore(double points, int judgeIndex)
         {
+            Console.WriteLine(Mode.ToString() + " Submitting client score: " + points + ", judgeIndex: " + judgeIndex);
             CreateScoreForDive(points, judgeIndex, false);
             return;
 

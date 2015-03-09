@@ -103,7 +103,6 @@ namespace Simhopp
         {
             if (_server == null)
                 return;
-
             _serverThread = new Thread(() => SendScoreToConnectedClients(score)) { IsBackground = true };
             _serverThread.Start();
         }

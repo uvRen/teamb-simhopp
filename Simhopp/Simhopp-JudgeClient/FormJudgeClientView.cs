@@ -40,6 +40,7 @@ namespace Simhopp_JudgeClient
         {
             EventPresenter presenter = new EventPresenter(null, msg.Status.Contest);
             presenter.SetMode(EventPresenter.ViewMode.Client, (int)msg.Value, judgeClient);
+            Console.WriteLine("Assigning login: " + msg.Serialize());
             presenter.ShowView();
             judgeClient.Presenter = presenter;
         }
