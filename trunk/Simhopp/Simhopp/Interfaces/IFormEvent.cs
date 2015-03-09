@@ -12,12 +12,13 @@ namespace Simhopp
         double CurrentDiveScore { get; set; }
 
         void Show();
+        void ShowDialog();
         void CompleteDive();
         void UpdateLeaderboard();
         void PrintEventStatus();
         void PopulateScoreInput(Score score, int judgeIndex);
         void LogToServer(string message);
-        void RedrawContestInfo();
-        void EnableControls(bool enable);
+        void RedrawContestInfo(bool highlightDivePanel = false);
+        void EnableControls(bool enable, bool hideControls = false);
     }
 }
