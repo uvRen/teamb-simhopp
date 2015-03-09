@@ -179,36 +179,9 @@ namespace Simhopp
         #endregion
 
         #region HotKeys
-        private void StartEvent_btn_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Control && e.KeyCode.ToString() == "S")
-                StartEventClick(sender, e);
-        }
-        private void RegisterResult_btn_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Control && e.KeyCode.ToString() == "R")
-                RegisterResultClick(sender, e);
-        }
-        private void PrintResult_btn_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Control && e.KeyCode.ToString() == "P")
-                PrintResult_btn_Click(sender, e);
-        }
-        private void ResultsToFullScreen_btn_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Control && e.KeyValue == 122)                                                                                 //F11 = keyvalue 122
-                ResultsToFullScreen_btn_Click(sender, e);
-        }
-        private void CreateNewEvent_btn_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Control && e.KeyCode.ToString() == "N")
-                CreateEventClick(sender, e);
-        }
 
-        //FIX OR REMOVE *
         private void FormMain_KeyDown(object sender, KeyEventArgs e)
         {
-            /*
             if (e.Control && e.KeyCode.ToString() == "S")
                 StartEventClick(sender, e);
 
@@ -223,16 +196,8 @@ namespace Simhopp
 
             if (e.Control && e.KeyCode.ToString() == "N")
                 CreateEventClick(sender, e);
-            */
-        }
-        private void FormMain_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            /*
-            CreateNewEvent_btn.PerformClick();
-            e.Handled = true;
-            */
-        }
-        // * REMOVE
+       }
+
 
         #endregion
 
