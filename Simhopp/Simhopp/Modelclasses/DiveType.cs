@@ -37,6 +37,26 @@ namespace Simhopp
 
         public int No { get; set; }
 
+        public double GetHeight()
+        {
+            DiveHeight a = this.Height;
+            switch (a)
+            {
+                case DiveHeight._1M:
+                    return 1;
+                case DiveHeight._3M:
+                    return 3;
+                case DiveHeight._5M:
+                    return 5;
+                case DiveHeight._7_5M:
+                    return 7.5;
+                case DiveHeight._10M:
+                    return 10;
+                default:
+                    return -1;
+            }
+        }
+
         public String Name
         {
             get { return _names[this.No]; }
@@ -61,6 +81,11 @@ namespace Simhopp
             No = no;
             Position = position;
             Height = height;
+        }
+
+        public DiveType(int no)
+        {
+            No = no;
         }
 
 
