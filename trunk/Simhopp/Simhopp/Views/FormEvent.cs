@@ -186,15 +186,15 @@ namespace Simhopp
         }
 
 
-        delegate void RedrawDelegate();
+        delegate void RedrawDelegate(bool highlightDivePanel = false);
         
 
-        public void RedrawContestInfo()
+        public void RedrawContestInfo(bool highlightDivePanel = false)
         {
             if (this.listViewLeaderboard.InvokeRequired)
             {
                 RedrawDelegate d = new RedrawDelegate(RedrawContestInfo);
-                this.Invoke(d);
+                this.Invoke(d, highlightDivePanel);
                 return;
             }
 
@@ -202,6 +202,11 @@ namespace Simhopp
             UpdateJudgeList();
             UpdateJudgeScores();
             PrintEventStatus();
+
+            tabsRounds.SelectedIndex = CurrentRoundIndex;
+
+            if (highlightDivePanel)
+                HighlightCurrentDive();
         }
 
         #region Printa data för tävling
@@ -279,6 +284,8 @@ namespace Simhopp
 
                 if (judge == CurrentJudge && _panelScoring.Enabled)
                 {
+                    tItem.Text = "» " + tItem.Text;
+                    //tItem.Font = new Font(tItem.Font, FontStyle.Bold);
                     tItem.BackColor = PanelDrawer.Colors[2];
                     tItem.EnsureVisible();
                 }
@@ -326,15 +333,15 @@ namespace Simhopp
             ScoreDive();
         }
 
-        delegate void ToggleControlsDelegate(bool enable);
+        delegate void ToggleControlsDelegate(bool enable, bool hideControls = false);
 
 
-        public void EnableControls(bool enable)
+        public void EnableControls(bool enable, bool hideControls = false)
         {
             if (this._panelScoring.InvokeRequired)
             {
                 ToggleControlsDelegate d = new ToggleControlsDelegate(EnableControls);
-                this.Invoke(d, enable);
+                this.Invoke(d, new object[] {enable, hideControls});
                 return;
             }
             _panelScoring.Enabled = enable;
@@ -348,6 +355,12 @@ namespace Simhopp
                 btnDoDive.Enabled = enable;
                 btnNextRound.Enabled = enable;
             }
+
+            if (hideControls)
+            {
+                btnDoDive.Visible = false;
+                btnNextRound.Visible = false;
+            }
         }
 
         private void btnNextRound_Click(object sender, EventArgs e)
@@ -356,11 +369,17 @@ namespace Simhopp
             btnNextRound.Enabled = false;
             tabsRounds.SelectedIndex++;
             btnDoDive.Focus();
+            _presenter.SendStatusToClient();
+        }
+
+        private void HighlightCurrentDive()
+        {
+            CurrentDivePanel.BackColor = PanelDrawer.Colors[2];
         }
 
         private void ScoreDive()
         {
-            CurrentDivePanel.BackColor = PanelDrawer.Colors[2];
+            HighlightCurrentDive();
             _panelScoring.Enabled = true;
             btnDoDive.Enabled = false;
             UpdateJudgeList();
@@ -406,7 +425,7 @@ namespace Simhopp
             }
             _panelScoring.Enabled = false;
 
-            CurrentDivePanel.BackColor = PanelDrawer.Colors[1];
+            //CurrentDivePanel.BackColor = PanelDrawer.Colors[1];
 
             //Nästa runda (hopp)
             if (CurrentDiverIndex == 0)
