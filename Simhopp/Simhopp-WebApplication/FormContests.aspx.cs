@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Simhopp;
-using 
+ 
 
 namespace Simhopp_WebApplication
 {
@@ -13,10 +13,15 @@ namespace Simhopp_WebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Simhopp.FormMainFunctions.FillListViewWithEvent();
-            MySqlConnection _connection = Database.ConnectToDatabase();
+            //Simhopp.FormMainFunctions.FillListViewWithEvent();
+           // MySqlConnection _connection = Database.ConnectToDatabase();
          
             
+
+        }
+
+        protected void ListView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }
