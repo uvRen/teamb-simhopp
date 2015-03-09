@@ -39,7 +39,6 @@ namespace Simhopp
             }
             
 
-
             listViewResult.Items.Clear();
 
             foreach (Diver d in Database.GetDiversInEvent(eventId))
