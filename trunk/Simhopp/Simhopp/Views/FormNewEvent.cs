@@ -18,6 +18,8 @@ namespace Simhopp
         private AutoCompleteStringCollection _diveName = new AutoCompleteStringCollection();
         private List<DataGridView> _dataGridViewList = new List<DataGridView>();
         private bool EnableSubmitButton = false;
+        private bool DataGridViewCellIndex_Back = false;
+        private Point _jumpBackToCell;
 
         ListViewItem selectedItem = null;
         public FormNewEvent()
@@ -204,6 +206,8 @@ namespace Simhopp
             for(int i = 0; i < _dataGridViewList.Count; i++)
             {
                 _dataGridViewList[i].EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(DiveTypeInput_dataGridView_EditingControlShowing);
+                _dataGridViewList[i].CellEndEdit += new DataGridViewCellEventHandler(DataGridViewDives_CellEndEdit);
+                _dataGridViewList[i].CellBeginEdit += new DataGridViewCellCancelEventHandler(DataGridViewDives_CellBeginEdit);
             }
 
         }
@@ -255,8 +259,118 @@ namespace Simhopp
         }
         #endregion
 
+        //kollar så att ett giltigt värde finns i DataGridViewCellen
+        private void DataGridViewDives_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView currentDataGridView = new DataGridView();
 
+            foreach(DataGridView gridView in _dataGridViewList)
+            {
+                if (sender.Equals(gridView))
+                    currentDataGridView = gridView;
+            }
 
+            switch (e.ColumnIndex)
+            {
+                case 0:
+                    if (_jumpBackToCell.X == e.RowIndex && _jumpBackToCell.Y == e.ColumnIndex)
+                    {
+                        //om det angivna värdet inte finns med i AutoComplete listan
+                        if (!_diveNo.Contains(currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()) && currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().Length > 0)
+                        {
+                            MessageBox.Show(currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + ": är ej ett giltigt värde!");
+                            DataGridViewCellIndex_Back = true;
+                            _jumpBackToCell.X = e.RowIndex;
+                            _jumpBackToCell.Y = e.ColumnIndex;
+                        }
+                        else
+                        {
+                            DataGridViewCellIndex_Back = false;
+                            _jumpBackToCell.X = -1;
+                            _jumpBackToCell.Y = -1;
+                        }
+                    }
+                    break;
+
+                case 1:
+                    if (_jumpBackToCell.X == e.RowIndex && _jumpBackToCell.Y == e.ColumnIndex)
+                    {
+                        //om det angivna värdet inte finns med i AutoComplete listan
+                        if (!_diveName.Contains(currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()) && currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().Length > 0)
+                        {
+                            MessageBox.Show(currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + ": är ej ett giltigt värde!");
+                            DataGridViewCellIndex_Back = true;
+                            _jumpBackToCell.X = e.RowIndex;
+                            _jumpBackToCell.Y = e.ColumnIndex;
+                        }
+                        else
+                        {
+                            DataGridViewCellIndex_Back = false;
+                            _jumpBackToCell.X = -1;
+                            _jumpBackToCell.Y = -1;
+                        }
+                    }
+                    break;
+            }
+        }
+
+        private void DataGridViewDives_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if(DataGridViewCellIndex_Back)
+            {
+                DataGridView currentDataGridView = new DataGridView();
+
+                foreach (DataGridView gridView in _dataGridViewList)
+                {
+                    if (sender.Equals(gridView))
+                        currentDataGridView = gridView;
+                }
+
+                //currentDataGridView.MultiSelect = false;
+
+                //switch(e.ColumnIndex)
+                //{
+                //    case 1:
+                //        MessageBox.Show(e.ColumnIndex + "");
+                //        try
+                //        {
+                //            MessageBox.Show("CurrentCellBefore: " + currentDataGridView.CurrentCell.ColumnIndex);
+                //            //currentDataGridView.CurrentCell = currentDataGridView[e.RowIndex, 0];
+                            
+                //            currentDataGridView.CurrentCell = currentDataGridView[e.RowIndex, 0];
+
+                //            //currentDataGridView.Rows[e.RowIndex].Cells[0].Selected = true;
+                //            MessageBox.Show("CurrentCellAfter: " + currentDataGridView.CurrentCell.ColumnIndex);
+                //        }
+                //        catch(Exception ex)
+                //        {
+                //            MessageBox.Show("Catch: " + e.ColumnIndex);
+                //            MessageBox.Show("Catch: " + ex.Data.ToString());
+                //        }
+                        
+                //        //
+                        
+                //        break;
+
+                //    default:
+                //        break;
+                //}
+
+                BeginInvoke((Action)delegate
+                {
+                        DataGridViewCell cell = currentDataGridView.Rows[_jumpBackToCell.X].Cells[_jumpBackToCell.Y];
+                        currentDataGridView.CurrentCell = cell;
+                        currentDataGridView.BeginEdit(true);
+                });
+
+                DataGridViewCellIndex_Back = false;
+            }
+            else
+            {
+                _jumpBackToCell.X = e.RowIndex;
+                _jumpBackToCell.Y = e.ColumnIndex;
+            }
+        }
     }
 }
 

@@ -212,8 +212,9 @@ namespace Simhopp
         #region Printa data för tävling
         public void PrintEventStatus()
         {
+            List<string> necessaryInfo = Presenter.CurrentEvent.GetCollectedContestInfo();
             labelTitle.Text = Presenter.CurrentEvent.Name;
-            labelSummary.Text = Presenter.CurrentEvent.Location + "\n" + Presenter.CurrentEvent.Sync + "\n" + Presenter.CurrentEvent.sex;
+            labelSummary.Text = Presenter.CurrentEvent.Location + "\n" + necessaryInfo[1] + "\n" + necessaryInfo[2];
             labelRound.Text = "Runda\n" + (CurrentRoundIndex + 1) + " av " + Presenter.CurrentEvent.diveCount;
             labelDiver.Text = "Hoppare\n" + (CurrentDiverIndex + 1) + " av " + Divers.Count;
         }

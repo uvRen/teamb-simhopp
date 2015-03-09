@@ -185,17 +185,17 @@ namespace Simhopp
 
             
 
-            //discipline: 1m = 0, 3m = 1, Tower = 2
+            //discipline
             if (radioButton1meter.Checked)
                 discipline = 0;
             else if (radioButton3meter.Checked)
                 discipline = 1;
             else if (radioButton5meter.Checked)
-                discipline = 1;
-            else if (radioButton7meter.Checked)
                 discipline = 2;
+            else if (radioButton7meter.Checked)
+                discipline = 3;
             else if (radioButton10meter.Checked)
-                discipline = 1;
+                discipline = 4;
 
             //sync: single = 0, sync = 1
             if (radioButtonSingle.Checked)
@@ -426,7 +426,6 @@ namespace Simhopp
                     {
                         _dataGridViewList[i].Rows.Add(row);
                         _dataGridViewList[i].Rows[j].HeaderCell.Value = String.Format("{0}", j + 1);
-
                     }
 
                     _dataGridViewList[i].Visible = true;
