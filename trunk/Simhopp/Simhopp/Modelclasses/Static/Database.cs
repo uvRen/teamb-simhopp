@@ -601,7 +601,7 @@ namespace Simhopp
             if (conn != null)
             {
                 Judge j;
-                string sql = "SELECT * FROM judge WHERE id IN (SELECT judgeId FROM event_judge WHERE event_diver.eventId=" + eventID + ") ORDER BY id DESC;"; //RADERA: ORDER BY id DESC, endast för "resultat"
+                string sql = "SELECT * FROM judge WHERE id IN (SELECT judgeId FROM event_judge WHERE eventId=" + eventID + ")"; //RADERA: ORDER BY id DESC, endast för "resultat"
                 var cmd = new MySqlCommand(sql, conn);
                 var dr = cmd.ExecuteReader();
                 var dt = new DataTable();
@@ -634,7 +634,6 @@ namespace Simhopp
             {
                 MessageBox.Show("Anslutningen till databasen misslyckades", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            conn.Close();
             return null;
         }
 
