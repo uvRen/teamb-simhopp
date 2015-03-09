@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Simhopp
 {
@@ -19,6 +20,58 @@ namespace Simhopp
         public int started;
         public List<Judge> Judges { get; set; }
         public List<Diver> Divers { get; set; }
+
+        public List<string> GetCollectedContestInfo()
+        {
+            List<string> collected = new List<string>();
+
+            switch (Discipline)
+            {
+                case 0:
+                    collected.Add("1m");
+                    break;
+                case 1:
+                    collected.Add("3m");
+                    break;
+                case 2:
+                    collected.Add("5m");
+                    break;
+                case 3:
+                    collected.Add("7,5m");
+                    break;
+                case 4:
+                    collected.Add("10m");
+                    break;
+                default:
+                    break;
+            }
+
+            switch (Sync)
+            {
+                case 0:
+                    collected.Add("Single");
+                    break;
+                case 1:
+                    collected.Add("Synkroniserat");
+                    break;
+                default:
+                    break;
+            }
+
+            switch (sex)
+            {
+                case 0:
+                    collected.Add("Män");
+                    break;
+                case 1:
+                    collected.Add("Kvinnor");
+                    break;
+                default:
+                    break;
+            }
+
+            return collected;
+        }
 
         public int CurrentDiverIndex { get; set; }
         public int CurrentRoundIndex { get; set; }

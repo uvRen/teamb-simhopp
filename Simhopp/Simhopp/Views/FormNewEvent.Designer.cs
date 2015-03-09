@@ -91,6 +91,7 @@
             this.registreraProduktToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.teamBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.DiveCount_numericUpDown)).BeginInit();
             this.groupBoxDisciplin.SuspendLayout();
             this.groupBoxSingle.SuspendLayout();
@@ -107,6 +108,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DiveTypeInput_dataGridView)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // EventName_label
@@ -439,14 +441,14 @@
             this.newDiverName.Dock = System.Windows.Forms.DockStyle.Top;
             this.newDiverName.Location = new System.Drawing.Point(3, 3);
             this.newDiverName.Name = "newDiverName";
-            this.newDiverName.Size = new System.Drawing.Size(124, 20);
+            this.newDiverName.Size = new System.Drawing.Size(123, 20);
             this.newDiverName.TabIndex = 16;
             this.newDiverName.Text = "Namn";
             this.newDiverName.Enter += new System.EventHandler(this.textBox3_Enter);
             // 
             // newDiverAge
             // 
-            this.newDiverAge.Location = new System.Drawing.Point(228, 3);
+            this.newDiverAge.Location = new System.Drawing.Point(226, 3);
             this.newDiverAge.Name = "newDiverAge";
             this.newDiverAge.Size = new System.Drawing.Size(37, 20);
             this.newDiverAge.TabIndex = 18;
@@ -456,16 +458,16 @@
             // newDiverCountry
             // 
             this.newDiverCountry.Dock = System.Windows.Forms.DockStyle.Top;
-            this.newDiverCountry.Location = new System.Drawing.Point(133, 3);
+            this.newDiverCountry.Location = new System.Drawing.Point(132, 3);
             this.newDiverCountry.Name = "newDiverCountry";
-            this.newDiverCountry.Size = new System.Drawing.Size(89, 20);
+            this.newDiverCountry.Size = new System.Drawing.Size(88, 20);
             this.newDiverCountry.TabIndex = 17;
             this.newDiverCountry.Text = "Nationalitet";
             this.newDiverCountry.Enter += new System.EventHandler(this.textBox6_Enter);
             // 
             // AddNewDiverSubmit
             // 
-            this.AddNewDiverSubmit.Location = new System.Drawing.Point(337, 3);
+            this.AddNewDiverSubmit.Location = new System.Drawing.Point(335, 3);
             this.AddNewDiverSubmit.Name = "AddNewDiverSubmit";
             this.AddNewDiverSubmit.Size = new System.Drawing.Size(21, 19);
             this.AddNewDiverSubmit.TabIndex = 20;
@@ -500,7 +502,7 @@
             this.newDiverSelectGender.Items.AddRange(new object[] {
             "Kvinna",
             "Man"});
-            this.newDiverSelectGender.Location = new System.Drawing.Point(271, 3);
+            this.newDiverSelectGender.Location = new System.Drawing.Point(269, 3);
             this.newDiverSelectGender.MaxLength = 100;
             this.newDiverSelectGender.Name = "newDiverSelectGender";
             this.newDiverSelectGender.Size = new System.Drawing.Size(60, 21);
@@ -653,7 +655,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.40838F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanel4.Controls.Add(this.newDiverName, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.newDiverCountry, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.newDiverAge, 2, 0);
@@ -734,11 +736,20 @@
             this.teamBToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.teamBToolStripMenuItem.Text = "Team B";
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 327);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView1.TabIndex = 30;
+            // 
             // FormNewEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 662);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.errorlabel);
@@ -783,6 +794,7 @@
             this.tableLayoutPanel4.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -862,5 +874,6 @@
         private System.Windows.Forms.ToolStripMenuItem registreraProduktToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem teamBToolStripMenuItem;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

@@ -74,10 +74,13 @@ namespace Simhopp
         private void RegisterResultClick(object sender, EventArgs e)                    //EJ KLAR
         {
             //SELECTED EVENT
-            this.Hide();
-            Contest c = Database.GetContest(Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text));
-            EventPresenter presenter = new EventPresenter(null, c);
-            presenter.ShowView();
+            if (listViewEvent.SelectedItems.Count > 0)
+            {
+                this.Hide();
+                Contest c = Database.GetContest(Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text));
+                EventPresenter presenter = new EventPresenter(null, c);
+                presenter.ShowView();
+            }
         }
 
         private void listViewEvent_MouseDown(object sender, MouseEventArgs e)
