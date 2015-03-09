@@ -14,6 +14,7 @@ namespace Simhopp
     {
 
         private EventPresenter _presenter;
+        private Contest _contest;
 
         public EventPresenter Presenter
         {
@@ -102,8 +103,9 @@ namespace Simhopp
                 return _presenter.Divers;
             }
         }
-        public FormEvent(EventPresenter presenter = null)
+        public FormEvent(EventPresenter presenter = null, Contest c = null)
         {
+            _contest = c;
             if (presenter == null)
             {
                 Presenter = new EventPresenter(this);

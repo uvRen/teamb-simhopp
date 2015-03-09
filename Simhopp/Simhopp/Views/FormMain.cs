@@ -75,8 +75,9 @@ namespace Simhopp
         private void RegisterResultClick(object sender, EventArgs e)
         {
             this.Hide();
-            FormEvent FE = new FormEvent();
-            FE.ShowDialog();
+            Contest c = Database.GetContest(Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text));
+            EventPresenter presenter = new EventPresenter(null, c);
+            
             Show();
         }
 
