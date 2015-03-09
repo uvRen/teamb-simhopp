@@ -77,8 +77,7 @@ namespace Simhopp
             this.Hide();
             Contest c = Database.GetContest(Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text));
             EventPresenter presenter = new EventPresenter(null, c);
-            
-            Show();
+            presenter.ShowView();
         }
 
         private void listViewEvent_MouseDown(object sender, MouseEventArgs e)

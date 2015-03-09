@@ -263,6 +263,28 @@ namespace Simhopp
                 //hämtar alla dommare och hoppare som är med i contesten
                 c.AddDivers(Database.GetDiversInEvent(contestId));
                 c.AddJudges(Database.GetJudgesInEvent(contestId));
+
+
+                //lägger till hopp till alla hoppare
+                foreach(Diver d in c.Divers)
+                {
+                    List<DiveType> dType = new List<DiveType>();
+                    List<Dive> dives = new List<Dive>();
+
+                    Console.WriteLine("C = " + contestId);
+                    dType = Database.GetDiversDiveInContest(d.Id, contestId);
+                    
+                    foreach(DiveType type in dType)
+                    {
+                        Console.WriteLine(type.Name + "\n" + d.Name);
+                        Dive dDive = new Dive();
+                        dDive._diveType = type;
+                        dDive._diver = d;
+
+                        dives.Add(dDive);
+                    }
+                    d.Dives = dives;
+                }
             }
 
             return c;
@@ -347,7 +369,7 @@ namespace Simhopp
                     ID = Int32.Parse(row["AUTO_INCREMENT"].ToString());
                 }
 
-                return ID;
+                return ID-1;
 
             }
             return ID;
