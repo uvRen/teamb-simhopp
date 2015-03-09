@@ -15,7 +15,6 @@ namespace Simhopp
     {
         private ListViewItem _selectedItem = null;
 
-        //int pagesAmount=0;
         public FormMain()
         {
             InitializeComponent();
@@ -72,16 +71,15 @@ namespace Simhopp
             }
         }
 
-        private void RegisterResultClick(object sender, EventArgs e)
+        private void RegisterResultClick(object sender, EventArgs e)                    //EJ KLAR
         {
+            //SELECTED EVENT
             this.Hide();
             Contest c = Database.GetContest(Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text));
             EventPresenter presenter = new EventPresenter(null, c);
             
             Show();
         }
-
-        #endregion
 
         private void listViewEvent_MouseDown(object sender, MouseEventArgs e)
         {
@@ -129,7 +127,9 @@ namespace Simhopp
 
         }
 
-        #region Print result
+        #endregion
+
+        #region Print Result
 
         private void PrintResult_btn_Click(object sender, EventArgs e)
         {
@@ -170,5 +170,72 @@ namespace Simhopp
             }
         }
         #endregion
+
+        #region Menustrip
+        private void avslutaCtrlEscToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }        
+        #endregion
+
+        #region HotKeys
+        private void StartEvent_btn_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode.ToString() == "S")
+                StartEventClick(sender, e);
+        }
+        private void RegisterResult_btn_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode.ToString() == "R")
+                RegisterResultClick(sender, e);
+        }
+        private void PrintResult_btn_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode.ToString() == "P")
+                PrintResult_btn_Click(sender, e);
+        }
+        private void ResultsToFullScreen_btn_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyValue == 122)                                                                                 //F11 = keyvalue 122
+                ResultsToFullScreen_btn_Click(sender, e);
+        }
+        private void CreateNewEvent_btn_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode.ToString() == "N")
+                CreateEventClick(sender, e);
+        }
+
+        //FIX OR REMOVE *
+        private void FormMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            /*
+            if (e.Control && e.KeyCode.ToString() == "S")
+                StartEventClick(sender, e);
+
+            if (e.Control && e.KeyCode.ToString() == "R")
+                RegisterResultClick(sender, e);
+
+            if (e.Control && e.KeyCode.ToString() == "P")
+                PrintResult_btn_Click(sender, e);
+
+            if (e.Control && e.KeyValue == 122)                                                                                 //F11 = keyvalue 122
+                ResultsToFullScreen_btn_Click(sender, e);
+
+            if (e.Control && e.KeyCode.ToString() == "N")
+                CreateEventClick(sender, e);
+            */
+        }
+        private void FormMain_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            /*
+            CreateNewEvent_btn.PerformClick();
+            e.Handled = true;
+            */
+        }
+        // * REMOVE
+
+        #endregion
+
+
     }
 }
