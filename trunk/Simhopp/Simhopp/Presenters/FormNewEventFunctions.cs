@@ -167,7 +167,7 @@ namespace Simhopp
         }
 
         //lägger till ett event till databasen med tillhörande domare och hoppare
-        public static void AddNewEventToDatabase(TextBox textBox1, TextBox textBox2, DateTimePicker dateTimePicker1, NumericUpDown numericUpDown1, RadioButton radioButton1meter, RadioButton radioButton3meter, RadioButton radioButton7meter, RadioButton radioButtonSingle, RadioButton radioButtonSync, RadioButton radioButtonMale, RadioButton radioButtonFemale, ListView listViewDivers, ListView listViewJudge, Label successfully, Label errorlabel, List<DataGridView> dataGridViewList)
+        public static void AddNewEventToDatabase(TextBox textBox1, TextBox textBox2, DateTimePicker dateTimePicker1, NumericUpDown numericUpDown1, RadioButton radioButton1meter, RadioButton radioButton3meter, RadioButton radioButton5meter, RadioButton radioButton7meter, RadioButton radioButton10meter, RadioButton radioButtonSingle, RadioButton radioButtonSync, RadioButton radioButtonMale, RadioButton radioButtonFemale, ListView listViewDivers, ListView listViewJudge, Label successfully, Label errorlabel, List<DataGridView> dataGridViewList)
         {
             string eventName;
             string location;
@@ -183,38 +183,19 @@ namespace Simhopp
             diveCount = (int)numericUpDown1.Value;
 
 
-            //----------------------------
-            DiveType dType;
-            int diverID, dNumber;
-            string dPosition, dHeight, diveTypeID;
-            for (int i = 0; i < dataGridViewList.Count; i++)
-            {
-                //antal rader i en DataGridView
-                for (int rad = 0; rad < dataGridViewList[i].RowCount; rad++)
-                {
-                    //diver ID
-                    diverID = Int32.Parse(dataGridViewList[i].Tag.ToString());
-                    //DiveNo
-                    dNumber = Int32.Parse(dataGridViewList[i].Rows[rad].Cells[0].Value.ToString());
-                    //Height
-                    dHeight = dataGridViewList[i].Rows[rad].Cells[2].Value.ToString();
-                    //Position
-                    dPosition = dataGridViewList[i].Rows[rad].Cells[3].Value.ToString();
-
-                    dType = new DiveType(dNumber);
-                    SetDiveTypeHeight(dType, dHeight);
-                    SetDiveTypePosition(dType, dPosition);
-                }
-            }
-            //----------------------------
+            
 
             //discipline: 1m = 0, 3m = 1, Tower = 2
             if (radioButton1meter.Checked)
                 discipline = 0;
             else if (radioButton3meter.Checked)
                 discipline = 1;
+            else if (radioButton5meter.Checked)
+                discipline = 1;
             else if (radioButton7meter.Checked)
                 discipline = 2;
+            else if (radioButton10meter.Checked)
+                discipline = 1;
 
             //sync: single = 0, sync = 1
             if (radioButtonSingle.Checked)
@@ -260,9 +241,37 @@ namespace Simhopp
 
             //om inmatningen lyckades
             int code = Database.AddEventToDatabase(ev);
+            //om inmatningen lyckades
             if (code == 1)
             {
-                diveTypeID = Database.AddDiveTypeToDatabase(dType);
+                int eventID = Database.GetLatestAddedEventID();
+                //----------------------------
+                DiveType dType = new DiveType();
+                int diverID = -1, dNumber, diveTypeID;
+                string dPosition, dHeight;
+                for (int i = 0; i < dataGridViewList.Count; i++)
+                {
+                    //antal rader i en DataGridView
+                    for (int rad = 0; rad < dataGridViewList[i].RowCount; rad++)
+                    {
+                        //diver ID
+                        diverID = Int32.Parse(dataGridViewList[i].Tag.ToString());
+                        //DiveNo
+                        dNumber = Int32.Parse(dataGridViewList[i].Rows[rad].Cells[0].Value.ToString());
+                        //Height
+                        dHeight = dataGridViewList[i].Rows[rad].Cells[2].Value.ToString();
+                        //Position
+                        dPosition = dataGridViewList[i].Rows[rad].Cells[3].Value.ToString();
+
+                        dType.No = dNumber;
+                        SetDiveTypeHeight(dType, dHeight);
+                        SetDiveTypePosition(dType, dPosition);
+
+                        diveTypeID = Database.AddDiveTypeToDatabase(dType);
+                        Database.AddDiveToDiver(dType, eventID, rad + 1, diveTypeID, diverID);
+                    }
+                }
+                //----------------------------
                 successfully.Visible = true;
             }
             else if (code == -1)

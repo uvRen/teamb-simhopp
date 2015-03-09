@@ -43,6 +43,31 @@ namespace Simhopp
 
             return _connection;
         }
+
+        public static MySqlConnection ConnectToInformation_Schema()
+        {
+            const string myConnectionString = "server=tuffast.com;uid=teamb;pwd=teambteamb;database=information_schema;";
+            try
+            {
+                _connection = new MySqlConnection();
+                _connection.ConnectionString = myConnectionString;
+                _connection.Open();
+            }
+
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Kunde inte ansluta till databasen, försök igen", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _connection = null;
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show("Kunde inte ansluta till databasen, försök igen", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _connection = null;
+            }
+
+            return _connection;
+        }
         #endregion
 
         #region Judge
@@ -277,12 +302,12 @@ namespace Simhopp
 
         public static int GetLatestAddedEventID()
         {
-            MySqlConnection conn = Database.ConnectToDatabase();
+            MySqlConnection conn = Database.ConnectToInformation_Schema();
             int ID = -1;
             if(conn != null)
             {
                 MySqlCommand comm = conn.CreateCommand();
-                comm.CommandText = "SELECT AUTO_INCREMENT WHERE TABLE_NAME=event";
+                comm.CommandText = "SELECT AUTO_INCREMENT FROM TABLES WHERE TABLE_NAME='event'";
                 var dr = comm.ExecuteReader();
                 var dt = new DataTable();
                 dt.Load(dr);
@@ -579,7 +604,7 @@ namespace Simhopp
             conn.Close();
         }
 
-        public static string AddDiveTypeToDatabase(DiveType d)
+        public static int AddDiveTypeToDatabase(DiveType d)
         {
             MySqlConnection conn = Database.ConnectToDatabase();
 
@@ -591,7 +616,6 @@ namespace Simhopp
                 comm.CommandText = "INSERT INTO divetype(Type, Position, Height) VALUES(@type, @position, @height)";
                 comm.Parameters.AddWithValue("@type", d.No);
                 comm.Parameters.AddWithValue("@position", d.Position.ToString());
-
                 comm.Parameters.AddWithValue("@height", d.GetHeight());
                 comm.ExecuteNonQuery();
 
@@ -603,15 +627,29 @@ namespace Simhopp
                 id = row["id"].ToString();
 
                 conn.Close();
-                return id;
+                return Int32.Parse(id);
             }
             else
-                return null;
+                return -1;
         }
 
-        public static void AddDiveToDiver(DiveType d)
+        public static void AddDiveToDiver(DiveType d, int eventID, int diveNumber, int diveTypeID, int diverID)
         {
+            MySqlConnection conn = Database.ConnectToDatabase();
 
+            if(conn != null)
+            {
+                MySqlCommand comm = conn.CreateCommand();
+                comm.CommandText = "INSERT INTO dive(diverId, difficulty, eventId, diveNumber, DiveTypeID) VALUES(@diverId, @difficulty, @eventId, @diveNumber, @DiveTypeID)";
+                comm.Parameters.AddWithValue("@diverId", diverID);
+                comm.Parameters.AddWithValue("@difficulty", d.Difficulty);
+                comm.Parameters.AddWithValue("@eventId", eventID);
+                comm.Parameters.AddWithValue("@diveNumber", diveNumber);
+                comm.Parameters.AddWithValue("@DiveTypeID", diveTypeID);
+                comm.ExecuteNonQuery();
+
+                conn.Close();
+            }
         }
 
         #endregion
