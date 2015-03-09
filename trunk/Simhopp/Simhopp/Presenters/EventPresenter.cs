@@ -114,10 +114,10 @@ namespace Simhopp
 
             CurrentEvent.AddDiver(new Diver(0, "Kalle"));
             CurrentEvent.AddDiver(new Diver(0, "Greger"));
-            CurrentEvent.AddDiver(new Diver(0, "Hopptjej"));
-            CurrentEvent.AddDiver(new Diver(0, "Annika 1"));
-            CurrentEvent.AddDiver(new Diver(0, "Annika 2"));
-            CurrentEvent.AddDiver(new Diver(0, "Annika 3"));
+            //CurrentEvent.AddDiver(new Diver(0, "Hopptjej"));
+            //CurrentEvent.AddDiver(new Diver(0, "Annika 1"));
+            //CurrentEvent.AddDiver(new Diver(0, "Annika 2"));
+            //CurrentEvent.AddDiver(new Diver(0, "Annika 3"));
 
             for (int i = 0; i < CurrentEvent.Divers.Count; i++)
             {
@@ -149,7 +149,7 @@ namespace Simhopp
         public Score ScoreDive(double points)
         {
             SkipToNonClientJudges();
-            return CreateScoreForDive(points, _currentJudgeIndex, true);
+            return CreateScoreForDive(points, CurrentJudgeIndex, true);
         }
 
         /// <summary>
@@ -208,7 +208,7 @@ namespace Simhopp
                 _judgeClient.CommitScore(_clientJudgeIndex, score);
                 _view.EnableControls(false);
             }
-            else if (broadcastScore)
+            else if (Mode == ViewMode.Standalone)
             {
                 Console.WriteLine(Mode.ToString() + " Broadcasting score (is server)");
                 JudgeServer.BroadcastScore(score);
@@ -221,11 +221,17 @@ namespace Simhopp
             _view.Show();
         }
 
+        public void ShowViewDialog()
+        {
+            _view.ShowDialog();
+        }
+
         public void SetMode(ViewMode mode, int clientJudgeIndex = -1, IJudgeClient judgeClient = null)
         {
             Mode = mode;
             _clientJudgeIndex = clientJudgeIndex;
             _judgeClient = judgeClient;
+            _view.EnableControls(false, true);
         }
 
         public void ScoreRequested(SimhoppMessage msg)
@@ -234,12 +240,24 @@ namespace Simhopp
             CurrentDiverIndex = msg.Status.DiverIndex;
 
             _view.EnableControls(true);
+            _view.RedrawContestInfo(true);
+        }
+
+        public void StatusUpdated(SimhoppMessage msg)
+        {
+            CurrentRoundIndex = msg.Status.RoundIndex;
+            CurrentDiverIndex = msg.Status.DiverIndex;
+
             _view.RedrawContestInfo();
         }
 
         public void RequestScoreFromClients()
         {
             JudgeServer.RequestScore();
+        }
+        public void SendStatusToClient()
+        {
+            JudgeServer.SendStatus();
         }
 
         public void LogToServer(string message)
