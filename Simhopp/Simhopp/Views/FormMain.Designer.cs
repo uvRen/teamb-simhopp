@@ -54,11 +54,25 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fILEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startaEventCTRLSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registreraResultatCTRLRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.skrivUtResultatCTRLPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.visaFullskarmCTRLF11ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.skapaNyttEventCTRLNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.avslutaCtrlEscToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aBOUTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registreraProduktToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.teamBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // StartEvent_btn
@@ -71,6 +85,7 @@
             this.StartEvent_btn.Text = "Starta Event";
             this.StartEvent_btn.UseVisualStyleBackColor = true;
             this.StartEvent_btn.Click += new System.EventHandler(this.StartEventClick);
+            this.StartEvent_btn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.StartEvent_btn_KeyDown);
             // 
             // listViewResult
             // 
@@ -80,9 +95,9 @@
             this.listViewResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewResult.FullRowSelect = true;
             this.listViewResult.GridLines = true;
-            this.listViewResult.Location = new System.Drawing.Point(495, 37);
+            this.listViewResult.Location = new System.Drawing.Point(495, 24);
             this.listViewResult.Name = "listViewResult";
-            this.listViewResult.Size = new System.Drawing.Size(486, 444);
+            this.listViewResult.Size = new System.Drawing.Size(486, 430);
             this.listViewResult.TabIndex = 3;
             this.listViewResult.UseCompatibleStateImageBehavior = false;
             this.listViewResult.View = System.Windows.Forms.View.Details;
@@ -109,6 +124,7 @@
             this.CreateNewEvent_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.CreateNewEvent_btn.UseVisualStyleBackColor = true;
             this.CreateNewEvent_btn.Click += new System.EventHandler(this.CreateEventClick);
+            this.CreateNewEvent_btn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CreateNewEvent_btn_KeyDown);
             // 
             // Event_label
             // 
@@ -117,7 +133,7 @@
             this.Event_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Event_label.Location = new System.Drawing.Point(3, 0);
             this.Event_label.Name = "Event_label";
-            this.Event_label.Size = new System.Drawing.Size(486, 34);
+            this.Event_label.Size = new System.Drawing.Size(486, 21);
             this.Event_label.TabIndex = 5;
             this.Event_label.Text = "Event";
             this.Event_label.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -129,7 +145,7 @@
             this.Resultat_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Resultat_label.Location = new System.Drawing.Point(495, 0);
             this.Resultat_label.Name = "Resultat_label";
-            this.Resultat_label.Size = new System.Drawing.Size(486, 34);
+            this.Resultat_label.Size = new System.Drawing.Size(486, 21);
             this.Resultat_label.TabIndex = 6;
             this.Resultat_label.Text = "Resultat";
             this.Resultat_label.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -143,6 +159,7 @@
             this.PrintResult_btn.Text = "Skriv Ut Resultat";
             this.PrintResult_btn.UseVisualStyleBackColor = true;
             this.PrintResult_btn.Click += new System.EventHandler(this.PrintResult_btn_Click);
+            this.PrintResult_btn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrintResult_btn_KeyDown);
             // 
             // listViewEvent
             // 
@@ -157,9 +174,9 @@
             this.listViewEvent.FullRowSelect = true;
             this.listViewEvent.GridLines = true;
             this.listViewEvent.HideSelection = false;
-            this.listViewEvent.Location = new System.Drawing.Point(3, 37);
+            this.listViewEvent.Location = new System.Drawing.Point(3, 24);
             this.listViewEvent.Name = "listViewEvent";
-            this.listViewEvent.Size = new System.Drawing.Size(486, 444);
+            this.listViewEvent.Size = new System.Drawing.Size(486, 430);
             this.listViewEvent.TabIndex = 9;
             this.listViewEvent.UseCompatibleStateImageBehavior = false;
             this.listViewEvent.View = System.Windows.Forms.View.Details;
@@ -235,6 +252,7 @@
             this.RegisterResult_btn.Text = "Registrera Resultat";
             this.RegisterResult_btn.UseVisualStyleBackColor = true;
             this.RegisterResult_btn.Click += new System.EventHandler(this.RegisterResultClick);
+            this.RegisterResult_btn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RegisterResult_btn_KeyDown);
             // 
             // ResultsToFullScreen_btn
             // 
@@ -245,9 +263,13 @@
             this.ResultsToFullScreen_btn.Text = "Visa Fullskärm";
             this.ResultsToFullScreen_btn.UseVisualStyleBackColor = true;
             this.ResultsToFullScreen_btn.Click += new System.EventHandler(this.ResultsToFullScreen_btn_Click);
+            this.ResultsToFullScreen_btn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ResultsToFullScreen_btn_KeyDown);
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -258,15 +280,14 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.Event_label, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 3);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 27);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.03125F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 92.96875F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.595186F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 95.40482F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 562);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 535);
             this.tableLayoutPanel1.TabIndex = 12;
             // 
             // tableLayoutPanel2
@@ -276,7 +297,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.78571F));
             this.tableLayoutPanel2.Controls.Add(this.StartEvent_btn, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.RegisterResult_btn, 1, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 487);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 460);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -290,7 +311,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.03922F));
             this.tableLayoutPanel3.Controls.Add(this.PrintResult_btn, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.ResultsToFullScreen_btn, 1, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(495, 487);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(495, 460);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -302,28 +323,134 @@
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Controls.Add(this.CreateNewEvent_btn, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 523);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 496);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(200, 36);
             this.tableLayoutPanel4.TabIndex = 12;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fILEToolStripMenuItem,
+            this.aBOUTToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(984, 24);
+            this.menuStrip1.TabIndex = 13;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fILEToolStripMenuItem
+            // 
+            this.fILEToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.startaEventCTRLSToolStripMenuItem,
+            this.registreraResultatCTRLRToolStripMenuItem,
+            this.skrivUtResultatCTRLPToolStripMenuItem,
+            this.visaFullskarmCTRLF11ToolStripMenuItem,
+            this.skapaNyttEventCTRLNToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.avslutaCtrlEscToolStripMenuItem});
+            this.fILEToolStripMenuItem.Name = "fILEToolStripMenuItem";
+            this.fILEToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
+            this.fILEToolStripMenuItem.Text = "Meny";
+            // 
+            // startaEventCTRLSToolStripMenuItem
+            // 
+            this.startaEventCTRLSToolStripMenuItem.Name = "startaEventCTRLSToolStripMenuItem";
+            this.startaEventCTRLSToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.startaEventCTRLSToolStripMenuItem.Text = "Starta Event                   (Ctrl+S)";
+            this.startaEventCTRLSToolStripMenuItem.Click += new System.EventHandler(this.StartEventClick);
+            // 
+            // registreraResultatCTRLRToolStripMenuItem
+            // 
+            this.registreraResultatCTRLRToolStripMenuItem.Name = "registreraResultatCTRLRToolStripMenuItem";
+            this.registreraResultatCTRLRToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.registreraResultatCTRLRToolStripMenuItem.Text = "Registrera Resultat       (Ctrl+R)";
+            this.registreraResultatCTRLRToolStripMenuItem.Click += new System.EventHandler(this.RegisterResultClick);
+            // 
+            // skrivUtResultatCTRLPToolStripMenuItem
+            // 
+            this.skrivUtResultatCTRLPToolStripMenuItem.Name = "skrivUtResultatCTRLPToolStripMenuItem";
+            this.skrivUtResultatCTRLPToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.skrivUtResultatCTRLPToolStripMenuItem.Text = "Skriv Ut Resultat           (Ctrl+P)";
+            this.skrivUtResultatCTRLPToolStripMenuItem.Click += new System.EventHandler(this.PrintResult_btn_Click);
+            // 
+            // visaFullskarmCTRLF11ToolStripMenuItem
+            // 
+            this.visaFullskarmCTRLF11ToolStripMenuItem.Name = "visaFullskarmCTRLF11ToolStripMenuItem";
+            this.visaFullskarmCTRLF11ToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.visaFullskarmCTRLF11ToolStripMenuItem.Text = "Visa Fullskärm              (Ctrl+F11)";
+            this.visaFullskarmCTRLF11ToolStripMenuItem.Click += new System.EventHandler(this.ResultsToFullScreen_btn_Click);
+            // 
+            // skapaNyttEventCTRLNToolStripMenuItem
+            // 
+            this.skapaNyttEventCTRLNToolStripMenuItem.Name = "skapaNyttEventCTRLNToolStripMenuItem";
+            this.skapaNyttEventCTRLNToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.skapaNyttEventCTRLNToolStripMenuItem.Text = "Skapa Nytt Event         (Ctrl+N)";
+            this.skapaNyttEventCTRLNToolStripMenuItem.Click += new System.EventHandler(this.CreateEventClick);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(241, 6);
+            // 
+            // avslutaCtrlEscToolStripMenuItem
+            // 
+            this.avslutaCtrlEscToolStripMenuItem.Name = "avslutaCtrlEscToolStripMenuItem";
+            this.avslutaCtrlEscToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.avslutaCtrlEscToolStripMenuItem.Text = "Avsluta                          (Alt+F4)";
+            this.avslutaCtrlEscToolStripMenuItem.Click += new System.EventHandler(this.avslutaCtrlEscToolStripMenuItem_Click);
+            // 
+            // aBOUTToolStripMenuItem
+            // 
+            this.aBOUTToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.registreraProduktToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.teamBToolStripMenuItem});
+            this.aBOUTToolStripMenuItem.Name = "aBOUTToolStripMenuItem";
+            this.aBOUTToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.aBOUTToolStripMenuItem.Text = "Info";
+            // 
+            // registreraProduktToolStripMenuItem
+            // 
+            this.registreraProduktToolStripMenuItem.Name = "registreraProduktToolStripMenuItem";
+            this.registreraProduktToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.registreraProduktToolStripMenuItem.Text = "Registrera Produkt";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(168, 6);
+            // 
+            // teamBToolStripMenuItem
+            // 
+            this.teamBToolStripMenuItem.Name = "teamBToolStripMenuItem";
+            this.teamBToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.teamBToolStripMenuItem.Text = "Team B";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 562);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMain";
             this.Text = "FormMain";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormMain_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FormMain_KeyPress);
             this.contextMenuStrip1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -354,6 +481,19 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fILEToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aBOUTToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem startaEventCTRLSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem registreraResultatCTRLRToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem skrivUtResultatCTRLPToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem visaFullskarmCTRLF11ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem skapaNyttEventCTRLNToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem avslutaCtrlEscToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem registreraProduktToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem teamBToolStripMenuItem;
 
     }
 }
