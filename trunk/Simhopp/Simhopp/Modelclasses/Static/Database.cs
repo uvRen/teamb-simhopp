@@ -5,6 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
@@ -437,6 +439,36 @@ namespace Simhopp
 
         #endregion
 
+        #region Dive
+        public static List<DiveType> GetDiversDiveInContest(int diverId, int eventId)
+        {
+            List<DiveType> dives = new List<DiveType>();
+
+            MySqlConnection conn = Database.ConnectToDatabase();
+            if(conn != null)
+            {
+                MySqlCommand comm = conn.CreateCommand();
+                string sql = "SELECT * FROM divetype WHERE id IN(SELECT DiveTypeID FROM dive WHERE diverId=" + diverId + " AND eventId=" + eventId + ")";
+                comm.CommandText = sql;
+                var dr = comm.ExecuteReader();
+                var dt = new DataTable();
+                dt.Load(dr);
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    DiveType d = new DiveType();
+                    d.No = Int32.Parse(row["Type"].ToString());
+                    d.SetPosition(row["Position"].ToString());
+                    d.SetHeight(Double.Parse(row["Height"].ToString()));
+
+                    dives.Add(d);
+                }
+                conn.Close();
+            }
+            return dives;
+        }
+        #endregion
+
         #region Score ***
         public static List<double> getScoreFromDatabase()
         {
@@ -635,6 +667,11 @@ namespace Simhopp
 
         public static void AddDiveToDiver(DiveType d, int eventID, int diveNumber, int diveTypeID, int diverID)
         {
+            System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+            customCulture.NumberFormat.NumberDecimalSeparator = ".";
+
+            System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
+
             MySqlConnection conn = Database.ConnectToDatabase();
 
             if(conn != null)

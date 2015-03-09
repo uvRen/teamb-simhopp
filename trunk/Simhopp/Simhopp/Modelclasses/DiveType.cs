@@ -65,8 +65,53 @@ namespace Simhopp
                     return -1;
             }
         }
-        //[DataMember]
-        public string Name
+
+        public void SetPosition(string p)
+        {
+            switch(p)
+            {
+                case "A":
+                    this.Position = DivePosition.A;
+                    break;
+                case "B":
+                    this.Position = DivePosition.B;
+                    break;
+                case "C":
+                    this.Position = DivePosition.C;
+                    break;
+                case "D":
+                    this.Position = DivePosition.D;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void SetHeight(double h)
+        {
+            switch(h.ToString())
+            {
+                case "1.0":
+                    this.Height = DiveHeight._1M;
+                    break;
+                case "3.0":
+                    this.Height = DiveHeight._3M;
+                    break;
+                case "5.0":
+                    this.Height = DiveHeight._5M;
+                    break;
+                case "7.5":
+                    this.Height = DiveHeight._7_5M;
+                    break;
+                case "10.0":
+                    this.Height = DiveHeight._10M;
+                    break;
+                default:
+                    break;
+            }
+        }
+        [DataMember]
+        public String Name
         {
             get
             {
@@ -93,7 +138,7 @@ namespace Simhopp
             }
             set { _difficulty = value; }
         }
-        
+
         public DiveType(int no, DivePosition position, DiveHeight height)
         {
 
