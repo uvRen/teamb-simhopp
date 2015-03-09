@@ -69,7 +69,7 @@ namespace Simhopp
         //Skapar ett nytt event när användaren klickar på "Klar" i fönstret "FormNewEvent"
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            FormNewEventFunctions.AddNewEventToDatabase(EventName_textBox, EventLocation_textBox, dateTimePicker1, DiveCount_numericUpDown, radioButton1meter, radioButton3meter, radioButtonTower, radioButtonSingle, radioButtonSync, radioButtonMale, radioButtonFemale, listViewDivers, listViewJudge, successfully, errorlabel, _dataGridViewList);
+            FormNewEventFunctions.AddNewEventToDatabase(EventName_textBox, EventLocation_textBox, dateTimePicker1, DiveCount_numericUpDown, radioButton1meter, radioButton3meter, radioButton7meter, radioButtonSingle, radioButtonSync, radioButtonMale, radioButtonFemale, listViewDivers, listViewJudge, successfully, errorlabel, _dataGridViewList);
         }
 
         private void textBox3_Enter(object sender, EventArgs e)
@@ -236,6 +236,7 @@ namespace Simhopp
             FormNewEventFunctions.CheckIfSubmitButtonBeEnable(EnableSubmitButton, btnSubmit, EventName_textBox, EventLocation_textBox, DiveCount_numericUpDown, listViewDivers, listViewJudge);
         }
         #endregion
+
     }
 }
 

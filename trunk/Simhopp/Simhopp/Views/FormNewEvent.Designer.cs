@@ -39,7 +39,7 @@
             this.DiveCount_numericUpDown = new System.Windows.Forms.NumericUpDown();
             this.radioButton1meter = new System.Windows.Forms.RadioButton();
             this.radioButton3meter = new System.Windows.Forms.RadioButton();
-            this.radioButtonTower = new System.Windows.Forms.RadioButton();
+            this.radioButton7meter = new System.Windows.Forms.RadioButton();
             this.groupBoxDisciplin = new System.Windows.Forms.GroupBox();
             this.groupBoxSingle = new System.Windows.Forms.GroupBox();
             this.btnSubmit = new System.Windows.Forms.Button();
@@ -80,6 +80,8 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.DiveTypeInput_dataGridView = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.radioButton5meter = new System.Windows.Forms.RadioButton();
+            this.radioButton10meter = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.DiveCount_numericUpDown)).BeginInit();
             this.groupBoxDisciplin.SuspendLayout();
             this.groupBoxSingle.SuspendLayout();
@@ -182,39 +184,41 @@
             this.radioButton1meter.Checked = true;
             this.radioButton1meter.Location = new System.Drawing.Point(6, 19);
             this.radioButton1meter.Name = "radioButton1meter";
-            this.radioButton1meter.Size = new System.Drawing.Size(42, 17);
+            this.radioButton1meter.Size = new System.Drawing.Size(39, 17);
             this.radioButton1meter.TabIndex = 6;
             this.radioButton1meter.TabStop = true;
-            this.radioButton1meter.Text = "1 m";
+            this.radioButton1meter.Text = "1m";
             this.radioButton1meter.UseVisualStyleBackColor = true;
             // 
             // radioButton3meter
             // 
             this.radioButton3meter.AutoSize = true;
-            this.radioButton3meter.Location = new System.Drawing.Point(95, 19);
+            this.radioButton3meter.Location = new System.Drawing.Point(54, 19);
             this.radioButton3meter.Name = "radioButton3meter";
-            this.radioButton3meter.Size = new System.Drawing.Size(42, 17);
+            this.radioButton3meter.Size = new System.Drawing.Size(39, 17);
             this.radioButton3meter.TabIndex = 7;
             this.radioButton3meter.TabStop = true;
-            this.radioButton3meter.Text = "3 m";
+            this.radioButton3meter.Text = "3m";
             this.radioButton3meter.UseVisualStyleBackColor = true;
             // 
-            // radioButtonTower
+            // radioButton7meter
             // 
-            this.radioButtonTower.AutoSize = true;
-            this.radioButtonTower.Location = new System.Drawing.Point(203, 19);
-            this.radioButtonTower.Name = "radioButtonTower";
-            this.radioButtonTower.Size = new System.Drawing.Size(47, 17);
-            this.radioButtonTower.TabIndex = 8;
-            this.radioButtonTower.TabStop = true;
-            this.radioButtonTower.Text = "Torn";
-            this.radioButtonTower.UseVisualStyleBackColor = true;
+            this.radioButton7meter.AutoSize = true;
+            this.radioButton7meter.Location = new System.Drawing.Point(150, 19);
+            this.radioButton7meter.Name = "radioButton7meter";
+            this.radioButton7meter.Size = new System.Drawing.Size(48, 17);
+            this.radioButton7meter.TabIndex = 8;
+            this.radioButton7meter.TabStop = true;
+            this.radioButton7meter.Text = "7,5m";
+            this.radioButton7meter.UseVisualStyleBackColor = true;
             // 
             // groupBoxDisciplin
             // 
+            this.groupBoxDisciplin.Controls.Add(this.radioButton10meter);
+            this.groupBoxDisciplin.Controls.Add(this.radioButton5meter);
             this.groupBoxDisciplin.Controls.Add(this.radioButton1meter);
             this.groupBoxDisciplin.Controls.Add(this.radioButton3meter);
-            this.groupBoxDisciplin.Controls.Add(this.radioButtonTower);
+            this.groupBoxDisciplin.Controls.Add(this.radioButton7meter);
             this.groupBoxDisciplin.Location = new System.Drawing.Point(23, 137);
             this.groupBoxDisciplin.Name = "groupBoxDisciplin";
             this.groupBoxDisciplin.Size = new System.Drawing.Size(264, 46);
@@ -410,7 +414,7 @@
             // 
             // newDiverAge
             // 
-            this.newDiverAge.Location = new System.Drawing.Point(231, 3);
+            this.newDiverAge.Location = new System.Drawing.Point(230, 3);
             this.newDiverAge.Name = "newDiverAge";
             this.newDiverAge.Size = new System.Drawing.Size(37, 20);
             this.newDiverAge.TabIndex = 18;
@@ -422,14 +426,14 @@
             this.newDiverCountry.Dock = System.Windows.Forms.DockStyle.Top;
             this.newDiverCountry.Location = new System.Drawing.Point(134, 3);
             this.newDiverCountry.Name = "newDiverCountry";
-            this.newDiverCountry.Size = new System.Drawing.Size(91, 20);
+            this.newDiverCountry.Size = new System.Drawing.Size(90, 20);
             this.newDiverCountry.TabIndex = 17;
             this.newDiverCountry.Text = "Nationalitet";
             this.newDiverCountry.Enter += new System.EventHandler(this.textBox6_Enter);
             // 
             // AddNewDiverSubmit
             // 
-            this.AddNewDiverSubmit.Location = new System.Drawing.Point(340, 3);
+            this.AddNewDiverSubmit.Location = new System.Drawing.Point(339, 3);
             this.AddNewDiverSubmit.Name = "AddNewDiverSubmit";
             this.AddNewDiverSubmit.Size = new System.Drawing.Size(21, 21);
             this.AddNewDiverSubmit.TabIndex = 20;
@@ -464,7 +468,7 @@
             this.newDiverSelectGender.Items.AddRange(new object[] {
             "Kvinna",
             "Man"});
-            this.newDiverSelectGender.Location = new System.Drawing.Point(274, 3);
+            this.newDiverSelectGender.Location = new System.Drawing.Point(273, 3);
             this.newDiverSelectGender.MaxLength = 100;
             this.newDiverSelectGender.Name = "newDiverSelectGender";
             this.newDiverSelectGender.Size = new System.Drawing.Size(60, 21);
@@ -617,7 +621,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.40838F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel4.Controls.Add(this.newDiverName, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.newDiverCountry, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.newDiverAge, 2, 0);
@@ -630,6 +634,28 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(367, 27);
             this.tableLayoutPanel4.TabIndex = 0;
+            // 
+            // radioButton5meter
+            // 
+            this.radioButton5meter.AutoSize = true;
+            this.radioButton5meter.Location = new System.Drawing.Point(102, 19);
+            this.radioButton5meter.Name = "radioButton5meter";
+            this.radioButton5meter.Size = new System.Drawing.Size(39, 17);
+            this.radioButton5meter.TabIndex = 9;
+            this.radioButton5meter.TabStop = true;
+            this.radioButton5meter.Text = "5m";
+            this.radioButton5meter.UseVisualStyleBackColor = true;
+            // 
+            // radioButton10meter
+            // 
+            this.radioButton10meter.AutoSize = true;
+            this.radioButton10meter.Location = new System.Drawing.Point(203, 19);
+            this.radioButton10meter.Name = "radioButton10meter";
+            this.radioButton10meter.Size = new System.Drawing.Size(45, 17);
+            this.radioButton10meter.TabIndex = 10;
+            this.radioButton10meter.TabStop = true;
+            this.radioButton10meter.Text = "10m";
+            this.radioButton10meter.UseVisualStyleBackColor = true;
             // 
             // FormNewEvent
             // 
@@ -702,7 +728,7 @@
         private System.Windows.Forms.RadioButton radioButtonSingle;
         private System.Windows.Forms.RadioButton radioButton1meter;
         private System.Windows.Forms.RadioButton radioButton3meter;
-        private System.Windows.Forms.RadioButton radioButtonTower;
+        private System.Windows.Forms.RadioButton radioButton7meter;
         private System.Windows.Forms.RadioButton radioButtonMale;
         private System.Windows.Forms.RadioButton radioButtonFemale;
 
@@ -742,5 +768,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView DiveTypeInput_dataGridView;
+        private System.Windows.Forms.RadioButton radioButton10meter;
+        private System.Windows.Forms.RadioButton radioButton5meter;
     }
 }
