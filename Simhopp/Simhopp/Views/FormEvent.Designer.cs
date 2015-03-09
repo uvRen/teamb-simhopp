@@ -44,9 +44,9 @@
             this.labelSummary = new System.Windows.Forms.Label();
             this.labelTitle = new System.Windows.Forms.Label();
             this.panelServer = new System.Windows.Forms.Panel();
-            this.textBoxSeverLog = new System.Windows.Forms.TextBox();
-            this.btnStartServer = new System.Windows.Forms.Button();
             this.btnStopServer = new System.Windows.Forms.Button();
+            this.btnStartServer = new System.Windows.Forms.Button();
+            this.textBoxSeverLog = new System.Windows.Forms.TextBox();
             this.panelControls.SuspendLayout();
             this.panelEventInfo.SuspendLayout();
             this.panelServer.SuspendLayout();
@@ -214,16 +214,15 @@
             this.panelServer.Size = new System.Drawing.Size(284, 83);
             this.panelServer.TabIndex = 11;
             // 
-            // textBoxSeverLog
+            // btnStopServer
             // 
-            this.textBoxSeverLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxSeverLog.Location = new System.Drawing.Point(57, 3);
-            this.textBoxSeverLog.Multiline = true;
-            this.textBoxSeverLog.Name = "textBoxSeverLog";
-            this.textBoxSeverLog.Size = new System.Drawing.Size(224, 77);
-            this.textBoxSeverLog.TabIndex = 0;
+            this.btnStopServer.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStopServer.Location = new System.Drawing.Point(10, 57);
+            this.btnStopServer.Name = "btnStopServer";
+            this.btnStopServer.Size = new System.Drawing.Size(25, 23);
+            this.btnStopServer.TabIndex = 2;
+            this.btnStopServer.Text = "■";
+            this.btnStopServer.UseVisualStyleBackColor = true;
             // 
             // btnStartServer
             // 
@@ -236,15 +235,16 @@
             this.btnStartServer.UseVisualStyleBackColor = true;
             this.btnStartServer.Click += new System.EventHandler(this.btnStartServer_Click);
             // 
-            // btnStopServer
+            // textBoxSeverLog
             // 
-            this.btnStopServer.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStopServer.Location = new System.Drawing.Point(10, 57);
-            this.btnStopServer.Name = "btnStopServer";
-            this.btnStopServer.Size = new System.Drawing.Size(25, 23);
-            this.btnStopServer.TabIndex = 2;
-            this.btnStopServer.Text = "■";
-            this.btnStopServer.UseVisualStyleBackColor = true;
+            this.textBoxSeverLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxSeverLog.Location = new System.Drawing.Point(77, 3);
+            this.textBoxSeverLog.Multiline = true;
+            this.textBoxSeverLog.Name = "textBoxSeverLog";
+            this.textBoxSeverLog.Size = new System.Drawing.Size(204, 77);
+            this.textBoxSeverLog.TabIndex = 0;
             // 
             // FormEvent
             // 

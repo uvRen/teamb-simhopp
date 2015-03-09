@@ -99,6 +99,11 @@ namespace Simhopp_JudgeClient
                             break;
                         Presenter.ScoreRequested(msg);
                         break;
+                    case SimhoppMessage.ClientAction.StatusUpdate:
+                        if (Presenter == null)
+                            break;
+                        Presenter.StatusUpdated(msg);
+                        break;
                 }
 
                 LogMessage(msg);

@@ -99,20 +99,25 @@ namespace Simhopp
             }
         }
 
-        public static void BroadcastScore(Score score)
+        public static void BroadcastScore(Score score, SimhoppMessage.ClientAction action = SimhoppMessage.ClientAction.Ping)
         {
             if (_server == null)
                 return;
-            _serverThread = new Thread(() => SendScoreToConnectedClients(score)) { IsBackground = true };
+            _serverThread = new Thread(() => SendScoreToConnectedClients(score, action)) { IsBackground = true };
             _serverThread.Start();
         }
 
         public static void RequestScore()
         {
-            BroadcastScore(null);
+            BroadcastScore(null, SimhoppMessage.ClientAction.RequestScore);
         }
 
-        private static void SendScoreToConnectedClients(Score score)
+        public static void SendStatus()
+        {
+            BroadcastScore(null, SimhoppMessage.ClientAction.StatusUpdate);
+        }
+
+        private static void SendScoreToConnectedClients(Score score, SimhoppMessage.ClientAction action = SimhoppMessage.ClientAction.Ping)
         {
             //Skicka poäng (eller be om bedömningspoäng) till anslutna domarklienter
             foreach (IPEndPoint ipep in _judgeClients)
@@ -123,7 +128,7 @@ namespace Simhopp
                         _presenter.CurrentDiverIndex, null);
                     SimhoppMessage msg;
                     if (score == null)
-                        msg = new SimhoppMessage(-2, SimhoppMessage.ClientAction.RequestScore, "", 0, status);
+                        msg = new SimhoppMessage(-2, action, "", 0, status);
                     else
                         msg = new SimhoppMessage(score.judge.Index((_presenter.Judges)), SimhoppMessage.ClientAction.SubmitScore, "", score.Points);
                     LogToServer("Send: " + msg.Serialize());

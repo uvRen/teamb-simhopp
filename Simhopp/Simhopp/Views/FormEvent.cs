@@ -14,11 +14,10 @@ namespace Simhopp
     {
 
         private EventPresenter _presenter;
-        private Contest _contest;
 
         public EventPresenter Presenter
         {
-            get
+           get
             {
                 return _presenter;
             }
@@ -103,9 +102,8 @@ namespace Simhopp
                 return _presenter.Divers;
             }
         }
-        public FormEvent(EventPresenter presenter = null, Contest c = null)
+        public FormEvent(EventPresenter presenter = null)
         {
-            _contest = c;
             if (presenter == null)
             {
                 Presenter = new EventPresenter(this);
@@ -274,10 +272,15 @@ namespace Simhopp
 
         }
 
+        public void ShowDialog()
+        {
+            this.ShowDialog();
+        }
         private void UpdateJudgeList()
         {
             listViewJudges.Items.Clear();
             listViewJudges.Columns[0].Width = listViewJudges.Width - 30;
+            
             foreach (Judge judge in Judges)
             {
                 ListViewItem tItem = new ListViewItem();
