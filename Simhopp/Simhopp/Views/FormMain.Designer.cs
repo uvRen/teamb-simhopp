@@ -85,7 +85,6 @@
             this.StartEvent_btn.Text = "Starta Event";
             this.StartEvent_btn.UseVisualStyleBackColor = true;
             this.StartEvent_btn.Click += new System.EventHandler(this.StartEventClick);
-            this.StartEvent_btn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.StartEvent_btn_KeyDown);
             // 
             // listViewResult
             // 
@@ -124,7 +123,6 @@
             this.CreateNewEvent_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.CreateNewEvent_btn.UseVisualStyleBackColor = true;
             this.CreateNewEvent_btn.Click += new System.EventHandler(this.CreateEventClick);
-            this.CreateNewEvent_btn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CreateNewEvent_btn_KeyDown);
             // 
             // Event_label
             // 
@@ -159,7 +157,6 @@
             this.PrintResult_btn.Text = "Skriv Ut Resultat";
             this.PrintResult_btn.UseVisualStyleBackColor = true;
             this.PrintResult_btn.Click += new System.EventHandler(this.PrintResult_btn_Click);
-            this.PrintResult_btn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrintResult_btn_KeyDown);
             // 
             // listViewEvent
             // 
@@ -252,7 +249,6 @@
             this.RegisterResult_btn.Text = "Registrera Resultat";
             this.RegisterResult_btn.UseVisualStyleBackColor = true;
             this.RegisterResult_btn.Click += new System.EventHandler(this.RegisterResultClick);
-            this.RegisterResult_btn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RegisterResult_btn_KeyDown);
             // 
             // ResultsToFullScreen_btn
             // 
@@ -263,7 +259,6 @@
             this.ResultsToFullScreen_btn.Text = "Visa Fullskärm";
             this.ResultsToFullScreen_btn.UseVisualStyleBackColor = true;
             this.ResultsToFullScreen_btn.Click += new System.EventHandler(this.ResultsToFullScreen_btn_Click);
-            this.ResultsToFullScreen_btn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ResultsToFullScreen_btn_KeyDown);
             // 
             // tableLayoutPanel1
             // 
@@ -436,11 +431,11 @@
             this.ClientSize = new System.Drawing.Size(984, 562);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMain";
             this.Text = "FormMain";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormMain_KeyDown);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FormMain_KeyPress);
             this.contextMenuStrip1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
