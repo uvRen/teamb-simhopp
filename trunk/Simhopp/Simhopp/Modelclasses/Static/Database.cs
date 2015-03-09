@@ -240,6 +240,34 @@ namespace Simhopp
             return events;
         }
 
+        public static Contest GetContest(int contestId)
+        {
+            Contest c = new Contest();
+
+            MySqlConnection conn = Database.ConnectToDatabase();
+            if(conn != null)
+            {
+                MySqlCommand comm = conn.CreateCommand();
+                string sql = "SELECT * FROM event WHERE id=" + contestId;
+                comm.CommandText = sql;
+                var dr = comm.ExecuteReader();
+                var dt = new DataTable();
+                dt.Load(dr);
+
+                //skapar en Contest
+                foreach (DataRow row in dt.Rows)
+                {
+                    c = new Contest(Int32.Parse(row["id"].ToString()), row["name"].ToString(), row["date"].ToString(), row["location"].ToString(), Int32.Parse(row["discipline"].ToString()), Int32.Parse(row["sync"].ToString()), Int32.Parse(row["diveCount"].ToString()), Int32.Parse(row["sex"].ToString()), Int32.Parse(row["started"].ToString()));
+                }
+
+                //hämtar alla dommare och hoppare som är med i contesten
+                c.AddDivers(Database.GetDiversInEvent(contestId));
+                c.AddJudges(Database.GetJudgesInEvent(contestId));
+            }
+
+            return c;
+        }
+
         public static void StartEvent(int eventID)
         {
             MySqlConnection conn = ConnectToDatabase();
@@ -561,6 +589,31 @@ namespace Simhopp
                 }
             }
             return divers;
+        }
+        #endregion
+
+        #region Event_judge
+        public static List<Judge> GetJudgesInEvent(int eventID)
+        {
+            List<Judge> judges = new List<Judge>();
+
+            MySqlConnection conn = ConnectToDatabase();
+            if (conn != null)
+            {
+                Judge j;
+                string sql = "SELECT * FROM judge WHERE id IN (SELECT judgeId FROM event_judge WHERE event_diver.eventId=" + eventID + ") ORDER BY id DESC;"; //RADERA: ORDER BY id DESC, endast för "resultat"
+                var cmd = new MySqlCommand(sql, conn);
+                var dr = cmd.ExecuteReader();
+                var dt = new DataTable();
+                dt.Load(dr);
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    j = new Judge(Int32.Parse(row["id"].ToString()), row["name"].ToString());
+                    judges.Add(j);
+                }
+            }
+            return judges;
         }
         #endregion
 
