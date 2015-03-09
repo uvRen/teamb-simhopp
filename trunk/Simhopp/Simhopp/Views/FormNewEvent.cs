@@ -237,6 +237,26 @@ namespace Simhopp
         }
         #endregion
 
+        #region HotKeys
+        private void FormNewEvent_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (EnableSubmitButton == true)
+            {
+                if (e.Control && e.KeyCode.ToString() == "S")
+                    btnSubmit_Click(sender, e);
+            }
+        }
+        #endregion
+
+        #region MenuStrip
+        private void avslutaAltF4ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        #endregion
+
+
+
     }
 }
 
