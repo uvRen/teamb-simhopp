@@ -283,11 +283,17 @@ namespace Simhopp
                             _jumpBackToCell.X = e.RowIndex;
                             _jumpBackToCell.Y = e.ColumnIndex;
                         }
+                        //om det var ett giltigt värde ska DiveName cellen autocompletas
                         else
                         {
-                            DataGridViewCellIndex_Back = false;
-                            _jumpBackToCell.X = -1;
-                            _jumpBackToCell.Y = -1;
+                            if (currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().Length > 0)
+                            {
+                                DiveType dType = new DiveType(Int32.Parse(currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()));
+                                currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex + 1].Value = dType.Name;
+                                DataGridViewCellIndex_Back = false;
+                                _jumpBackToCell.X = -1;
+                                _jumpBackToCell.Y = -1;
+                            }
                         }
                     }
                     break;
@@ -305,9 +311,15 @@ namespace Simhopp
                         }
                         else
                         {
-                            DataGridViewCellIndex_Back = false;
-                            _jumpBackToCell.X = -1;
-                            _jumpBackToCell.Y = -1;
+                            if (currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().Length > 0)
+                            {
+                                DiveType dType = new DiveType();
+                                dType.Name = currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                                currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value = dType.No.ToString();
+                                DataGridViewCellIndex_Back = false;
+                                _jumpBackToCell.X = -1;
+                                _jumpBackToCell.Y = -1;
+                            }
                         }
                     }
                     break;
@@ -326,42 +338,24 @@ namespace Simhopp
                         currentDataGridView = gridView;
                 }
 
-                //currentDataGridView.MultiSelect = false;
-
-                //switch(e.ColumnIndex)
-                //{
-                //    case 1:
-                //        MessageBox.Show(e.ColumnIndex + "");
-                //        try
-                //        {
-                //            MessageBox.Show("CurrentCellBefore: " + currentDataGridView.CurrentCell.ColumnIndex);
-                //            //currentDataGridView.CurrentCell = currentDataGridView[e.RowIndex, 0];
-                            
-                //            currentDataGridView.CurrentCell = currentDataGridView[e.RowIndex, 0];
-
-                //            //currentDataGridView.Rows[e.RowIndex].Cells[0].Selected = true;
-                //            MessageBox.Show("CurrentCellAfter: " + currentDataGridView.CurrentCell.ColumnIndex);
-                //        }
-                //        catch(Exception ex)
-                //        {
-                //            MessageBox.Show("Catch: " + e.ColumnIndex);
-                //            MessageBox.Show("Catch: " + ex.Data.ToString());
-                //        }
-                        
-                //        //
-                        
-                //        break;
-
-                //    default:
-                //        break;
-                //}
-
-                BeginInvoke((Action)delegate
+                switch(e.ColumnIndex)
                 {
-                        DataGridViewCell cell = currentDataGridView.Rows[_jumpBackToCell.X].Cells[_jumpBackToCell.Y];
-                        currentDataGridView.CurrentCell = cell;
-                        currentDataGridView.BeginEdit(true);
-                });
+                    case 0:
+                    case 1:
+                    case 2:
+                        BeginInvoke((Action)delegate
+                        {
+                            DataGridViewCell cell = currentDataGridView.Rows[_jumpBackToCell.X].Cells[_jumpBackToCell.Y];
+                            currentDataGridView.CurrentCell = cell;
+                            currentDataGridView.BeginEdit(true);
+                        });
+                        break;
+
+                    default:
+                        break;
+                }
+
+                
 
                 DataGridViewCellIndex_Back = false;
             }
