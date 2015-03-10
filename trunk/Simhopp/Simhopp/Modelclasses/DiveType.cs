@@ -35,12 +35,14 @@ namespace Simhopp
         //_names hämtar hoppnamn från hopp-nummer
         [DataMember]
         private static Dictionary<int, String> _names;
+        [DataMember]
+        private static Dictionary<String, int> _nos;
         [IgnoreDataMember]
         private double _difficulty;
         [IgnoreDataMember]
         private string _name;
-        [DataMember]
-        public int No { get; set; }
+        [IgnoreDataMember]
+        private int _no;
         [DataMember]
         public DivePosition Position { get; set; }
         [DataMember]
@@ -110,6 +112,23 @@ namespace Simhopp
                     break;
             }
         }
+
+        [DataMember]
+        public int No 
+        {
+            get
+            {
+                if (_dd == null)
+                    LoadDDTable();
+
+                if (_no == null)
+                    _no = _nos[this._name];
+
+                return _nos[this._name];
+            }
+            set { _no = value; }
+        }
+
         [DataMember]
         public String Name
         {
@@ -173,6 +192,7 @@ namespace Simhopp
 
             _dd = new Dictionary<int, Dictionary<DiveHeight, Dictionary<DivePosition, double>>>();
             _names = new Dictionary<int, string>();
+            _nos = new Dictionary<string, int>();
 
             DataTable dt = Database.GetDDList();
 
@@ -186,6 +206,7 @@ namespace Simhopp
             {
                 int diveNo = Int32.Parse(row["DiveNo"].ToString());
                 _names[diveNo] = row["DiveName"].ToString();
+                _nos[row["DiveName"].ToString()] = diveNo;
                 _dd[diveNo] = new Dictionary<DiveHeight, Dictionary<DivePosition, double>>();
 
                 //Loopa möjliga hopp-höjder
