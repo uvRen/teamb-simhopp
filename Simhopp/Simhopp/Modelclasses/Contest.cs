@@ -77,7 +77,7 @@ namespace Simhopp
                     break;
             }
             collected.Add(Location);
-            collected.Add(Date.ToString().Substring(0, 9));
+            collected.Add(Date.ToString().Substring(0, 10));
             collected.Add(Name);
 
             return collected;
