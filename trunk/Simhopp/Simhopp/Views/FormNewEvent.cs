@@ -185,17 +185,6 @@ namespace Simhopp
             }
         }
 
-        private void dataGridView1_RowLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            int currentDiverID = Int32.Parse(selectedItem.SubItems[4].Text);
-        }
-        
-
-        private void DiveTypeInput_dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void listViewDivers_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             FormNewEventFunctions.CheckIfSubmitButtonBeEnable(EnableSubmitButton, btnSubmit, EventName_textBox, EventLocation_textBox, DiveCount_numericUpDown, listViewDivers, listViewJudge);
@@ -239,52 +228,13 @@ namespace Simhopp
         {
             FormNewEventFunctions.CheckIfSubmitButtonBeEnable(EnableSubmitButton, btnSubmit, EventName_textBox, EventLocation_textBox, DiveCount_numericUpDown, listViewDivers, listViewJudge);
         }
-        #endregion
-
-        #region HotKeys
-        private void FormNewEvent_KeyDown(object sender, KeyEventArgs e)
-        {
-            //Buttons
-            if (btnSubmit.Enabled == true)
-            {
-                if (e.Control && e.KeyCode == Keys.S)
-                {
-                    btnSubmit_Click(sender, null);
-                }
-                    
-            }
-
-            //Focus
-            if (e.Control && e.KeyCode == Keys.NumPad1)
-            {
-                EventName_textBox.Focus();      //FOCUS LEFT DATA
-            }
-
-            if (e.Control && e.KeyCode == Keys.NumPad2)
-            {
-                listViewDivers.Focus();         //FOCUS MIDDLE DIVERS
-            }
-                
-            if (e.Control && e.KeyCode == Keys.NumPad3)
-            {
-                listViewJudge.Focus();          //FOCUS RIGHT JUDGES
-            }
-        }
-        #endregion
-
-        #region MenuStrip
-        private void avslutaAltF4ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-        #endregion
 
         //kollar så att ett giltigt värde finns i DataGridViewCellen
         private void DataGridViewDives_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView currentDataGridView = new DataGridView();
 
-            foreach(DataGridView gridView in _dataGridViewList)
+            foreach (DataGridView gridView in _dataGridViewList)
             {
                 if (sender.Equals(gridView))
                     currentDataGridView = gridView;
@@ -346,9 +296,10 @@ namespace Simhopp
             }
         }
 
+        //kollar om den ska hoppa tillbaka till en ofärdig cell
         private void DataGridViewDives_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            if(DataGridViewCellIndex_Back)
+            if (DataGridViewCellIndex_Back)
             {
                 DataGridView currentDataGridView = new DataGridView();
 
@@ -358,7 +309,7 @@ namespace Simhopp
                         currentDataGridView = gridView;
                 }
 
-                switch(e.ColumnIndex)
+                switch (e.ColumnIndex)
                 {
                     case 0:
                     case 1:
@@ -375,8 +326,6 @@ namespace Simhopp
                         break;
                 }
 
-                
-
                 DataGridViewCellIndex_Back = false;
             }
             else
@@ -385,6 +334,53 @@ namespace Simhopp
                 _jumpBackToCell.Y = e.ColumnIndex;
             }
         }
+
+        private void listViewDivers_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            FormNewEventFunctions.FillListViewWithDivers(radioButtonMale, radioButtonFemale, listViewDivers, e.Column);
+        }
+
+        #endregion
+
+        #region HotKeys
+        private void FormNewEvent_KeyDown(object sender, KeyEventArgs e)
+        {
+            //Buttons
+            if (btnSubmit.Enabled == true)
+            {
+                if (e.Control && e.KeyCode == Keys.S)
+                {
+                    btnSubmit_Click(sender, null);
+                }
+                    
+            }
+
+            //Focus
+            if (e.Control && e.KeyCode == Keys.NumPad1)
+            {
+                EventName_textBox.Focus();      //FOCUS LEFT DATA
+            }
+
+            if (e.Control && e.KeyCode == Keys.NumPad2)
+            {
+                listViewDivers.Focus();         //FOCUS MIDDLE DIVERS
+            }
+                
+            if (e.Control && e.KeyCode == Keys.NumPad3)
+            {
+                listViewJudge.Focus();          //FOCUS RIGHT JUDGES
+            }
+        }
+        #endregion
+
+        #region MenuStrip
+        private void avslutaAltF4ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        #endregion
+
+
 
     }
 }
