@@ -244,11 +244,32 @@ namespace Simhopp
         #region HotKeys
         private void FormNewEvent_KeyDown(object sender, KeyEventArgs e)
         {
+            //Buttons
             if (EnableSubmitButton == true)
             {
-                if (e.Control && e.KeyCode.ToString() == "S")
+                if (e.Control && e.KeyCode == Keys.S)
+                {
                     btnSubmit_Click(sender, e);
+                }
+                    
             }
+
+            //Focus
+            if (e.Control && e.KeyCode == Keys.NumPad1)
+                EventName_textBox.Focus();      //FOCUS LEFT DATA
+
+            if (e.Control && e.KeyCode == Keys.NumPad2)
+                listViewDivers.Focus();         //FOCUS MIDDLE DIVERS
+
+            if (e.Control && e.KeyCode == Keys.NumPad3)
+            {
+                MessageBox.Show("Hello");
+                //EventName_textBox.Focused = false;
+                listViewJudge.Focus();          //FOCUS RIGHT JUDGES
+                listViewJudge.Select();
+            }
+                
+
         }
         #endregion
 
@@ -365,6 +386,7 @@ namespace Simhopp
                 _jumpBackToCell.Y = e.ColumnIndex;
             }
         }
+
     }
 }
 
