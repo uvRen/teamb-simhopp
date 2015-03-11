@@ -273,10 +273,6 @@ namespace Simhopp
 
         }
 
-        public void ShowDialog()
-        {
-            this.ShowDialog();
-        }
         private void UpdateJudgeList()
         {
             listViewJudges.Items.Clear();

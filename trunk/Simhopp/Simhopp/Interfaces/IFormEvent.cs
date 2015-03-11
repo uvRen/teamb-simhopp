@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Simhopp
 {
@@ -12,7 +13,7 @@ namespace Simhopp
         double CurrentDiveScore { get; set; }
 
         void Show();
-        void ShowDialog();
+        DialogResult ShowDialog();
         void CompleteDive();
         void UpdateLeaderboard();
         void PrintEventStatus();
