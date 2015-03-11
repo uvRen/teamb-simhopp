@@ -21,6 +21,10 @@ namespace Simhopp
         public List<Judge> Judges { get; set; }
         public List<Diver> Divers { get; set; }
 
+        /// <summary>
+        /// [0] Discipline, [1] Singel/Sync, [2] Male/Female, [3] Location, [4] Date
+        /// </summary>
+        /// <returns></returns>
         public List<string> GetCollectedContestInfo()
         {
             List<string> collected = new List<string>();
