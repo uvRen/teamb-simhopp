@@ -73,6 +73,9 @@ namespace Simhopp
                     break;
             }
 
+            collected.Add(Location);
+            collected.Add(Date);
+
             return collected;
         }
 
