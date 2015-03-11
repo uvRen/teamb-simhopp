@@ -158,7 +158,7 @@
             this.radioButtonSync.Location = new System.Drawing.Point(95, 19);
             this.radioButtonSync.Name = "radioButtonSync";
             this.radioButtonSync.Size = new System.Drawing.Size(89, 17);
-            this.radioButtonSync.TabIndex = 11;
+            this.radioButtonSync.TabIndex = 13;
             this.radioButtonSync.TabStop = true;
             this.radioButtonSync.Text = "Synkroniserat";
             this.radioButtonSync.UseVisualStyleBackColor = true;
@@ -170,7 +170,7 @@
             this.radioButtonSingle.Location = new System.Drawing.Point(6, 19);
             this.radioButtonSingle.Name = "radioButtonSingle";
             this.radioButtonSingle.Size = new System.Drawing.Size(54, 17);
-            this.radioButtonSingle.TabIndex = 10;
+            this.radioButtonSingle.TabIndex = 12;
             this.radioButtonSingle.TabStop = true;
             this.radioButtonSingle.Text = "Single";
             this.radioButtonSingle.UseVisualStyleBackColor = true;
@@ -217,7 +217,7 @@
             this.radioButton7meter.Location = new System.Drawing.Point(150, 19);
             this.radioButton7meter.Name = "radioButton7meter";
             this.radioButton7meter.Size = new System.Drawing.Size(48, 17);
-            this.radioButton7meter.TabIndex = 8;
+            this.radioButton7meter.TabIndex = 9;
             this.radioButton7meter.TabStop = true;
             this.radioButton7meter.Text = "7,5m";
             this.radioButton7meter.UseVisualStyleBackColor = true;
@@ -253,7 +253,7 @@
             this.radioButton5meter.Location = new System.Drawing.Point(102, 19);
             this.radioButton5meter.Name = "radioButton5meter";
             this.radioButton5meter.Size = new System.Drawing.Size(39, 17);
-            this.radioButton5meter.TabIndex = 9;
+            this.radioButton5meter.TabIndex = 8;
             this.radioButton5meter.TabStop = true;
             this.radioButton5meter.Text = "5m";
             this.radioButton5meter.UseVisualStyleBackColor = true;
@@ -265,7 +265,7 @@
             this.groupBoxSingle.Location = new System.Drawing.Point(17, 220);
             this.groupBoxSingle.Name = "groupBoxSingle";
             this.groupBoxSingle.Size = new System.Drawing.Size(264, 47);
-            this.groupBoxSingle.TabIndex = 9;
+            this.groupBoxSingle.TabIndex = 11;
             this.groupBoxSingle.TabStop = false;
             this.groupBoxSingle.Text = "Single/synkroniserat";
             // 
@@ -309,7 +309,7 @@
             this.groupBox1.Location = new System.Drawing.Point(17, 273);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(264, 46);
-            this.groupBox1.TabIndex = 12;
+            this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Kön";
             // 
@@ -320,7 +320,7 @@
             this.radioButtonMale.Location = new System.Drawing.Point(6, 19);
             this.radioButtonMale.Name = "radioButtonMale";
             this.radioButtonMale.Size = new System.Drawing.Size(46, 17);
-            this.radioButtonMale.TabIndex = 13;
+            this.radioButtonMale.TabIndex = 15;
             this.radioButtonMale.TabStop = true;
             this.radioButtonMale.Text = "Man";
             this.radioButtonMale.UseVisualStyleBackColor = true;
@@ -332,7 +332,7 @@
             this.radioButtonFemale.Location = new System.Drawing.Point(95, 19);
             this.radioButtonFemale.Name = "radioButtonFemale";
             this.radioButtonFemale.Size = new System.Drawing.Size(58, 17);
-            this.radioButtonFemale.TabIndex = 14;
+            this.radioButtonFemale.TabIndex = 16;
             this.radioButtonFemale.TabStop = true;
             this.radioButtonFemale.Text = "Kvinna";
             this.radioButtonFemale.UseVisualStyleBackColor = true;
@@ -373,7 +373,7 @@
             this.listViewJudge.Location = new System.Drawing.Point(3, 3);
             this.listViewJudge.Name = "listViewJudge";
             this.listViewJudge.Size = new System.Drawing.Size(288, 580);
-            this.listViewJudge.TabIndex = 21;
+            this.listViewJudge.TabIndex = 2;
             this.listViewJudge.UseCompatibleStateImageBehavior = false;
             this.listViewJudge.View = System.Windows.Forms.View.Details;
             this.listViewJudge.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listViewJudge_ItemChecked);
@@ -404,7 +404,7 @@
             this.listViewDivers.Location = new System.Drawing.Point(3, 3);
             this.listViewDivers.Name = "listViewDivers";
             this.listViewDivers.Size = new System.Drawing.Size(367, 408);
-            this.listViewDivers.TabIndex = 15;
+            this.listViewDivers.TabIndex = 1;
             this.listViewDivers.UseCompatibleStateImageBehavior = false;
             this.listViewDivers.View = System.Windows.Forms.View.Details;
             this.listViewDivers.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listViewDivers_ItemChecked);
@@ -440,7 +440,7 @@
             this.newDiverName.Location = new System.Drawing.Point(3, 3);
             this.newDiverName.Name = "newDiverName";
             this.newDiverName.Size = new System.Drawing.Size(121, 20);
-            this.newDiverName.TabIndex = 16;
+            this.newDiverName.TabIndex = 19;
             this.newDiverName.Text = "Namn";
             this.newDiverName.Enter += new System.EventHandler(this.textBox3_Enter);
             // 
@@ -449,7 +449,7 @@
             this.newDiverAge.Location = new System.Drawing.Point(224, 3);
             this.newDiverAge.Name = "newDiverAge";
             this.newDiverAge.Size = new System.Drawing.Size(37, 20);
-            this.newDiverAge.TabIndex = 18;
+            this.newDiverAge.TabIndex = 21;
             this.newDiverAge.Text = "Ålder";
             this.newDiverAge.Enter += new System.EventHandler(this.textBox5_Enter);
             // 
@@ -459,7 +459,7 @@
             this.newDiverCountry.Location = new System.Drawing.Point(130, 3);
             this.newDiverCountry.Name = "newDiverCountry";
             this.newDiverCountry.Size = new System.Drawing.Size(88, 20);
-            this.newDiverCountry.TabIndex = 17;
+            this.newDiverCountry.TabIndex = 20;
             this.newDiverCountry.Text = "Nationalitet";
             this.newDiverCountry.Enter += new System.EventHandler(this.textBox6_Enter);
             // 
@@ -468,7 +468,7 @@
             this.AddNewDiverSubmit.Location = new System.Drawing.Point(333, 3);
             this.AddNewDiverSubmit.Name = "AddNewDiverSubmit";
             this.AddNewDiverSubmit.Size = new System.Drawing.Size(21, 19);
-            this.AddNewDiverSubmit.TabIndex = 20;
+            this.AddNewDiverSubmit.TabIndex = 23;
             this.AddNewDiverSubmit.Text = "+";
             this.AddNewDiverSubmit.UseVisualStyleBackColor = true;
             this.AddNewDiverSubmit.Click += new System.EventHandler(this.AddNewDiver_Click);
@@ -479,7 +479,7 @@
             this.newJudgeName.Location = new System.Drawing.Point(3, 3);
             this.newJudgeName.Name = "newJudgeName";
             this.newJudgeName.Size = new System.Drawing.Size(255, 20);
-            this.newJudgeName.TabIndex = 22;
+            this.newJudgeName.TabIndex = 24;
             this.newJudgeName.Text = "Namn";
             this.newJudgeName.Enter += new System.EventHandler(this.newJudgeName_Enter);
             // 
@@ -488,7 +488,7 @@
             this.newJudgeSubmit.Location = new System.Drawing.Point(264, 3);
             this.newJudgeSubmit.Name = "newJudgeSubmit";
             this.newJudgeSubmit.Size = new System.Drawing.Size(21, 19);
-            this.newJudgeSubmit.TabIndex = 23;
+            this.newJudgeSubmit.TabIndex = 25;
             this.newJudgeSubmit.Text = "+";
             this.newJudgeSubmit.UseVisualStyleBackColor = true;
             this.newJudgeSubmit.Click += new System.EventHandler(this.newJudgeSubmit_Click);
@@ -497,6 +497,7 @@
             // 
             this.newDiverSelectGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.newDiverSelectGender.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.newDiverSelectGender.ItemHeight = 13;
             this.newDiverSelectGender.Items.AddRange(new object[] {
             "Kvinna",
             "Man"});
@@ -505,7 +506,7 @@
             this.newDiverSelectGender.Name = "newDiverSelectGender";
             this.newDiverSelectGender.Size = new System.Drawing.Size(60, 21);
             this.newDiverSelectGender.Sorted = true;
-            this.newDiverSelectGender.TabIndex = 19;
+            this.newDiverSelectGender.TabIndex = 22;
             // 
             // listViewDivers_contextMenuStrip
             // 
@@ -572,7 +573,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 94.97646F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.023548F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(294, 617);
-            this.tableLayoutPanel3.TabIndex = 1;
+            this.tableLayoutPanel3.TabIndex = 4;
             // 
             // tableLayoutPanel5
             // 
@@ -587,7 +588,7 @@
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(288, 25);
-            this.tableLayoutPanel5.TabIndex = 0;
+            this.tableLayoutPanel5.TabIndex = 24;
             // 
             // tableLayoutPanel2
             // 
@@ -604,7 +605,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.096774F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 171F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(373, 617);
-            this.tableLayoutPanel2.TabIndex = 0;
+            this.tableLayoutPanel2.TabIndex = 3;
             // 
             // panel1
             // 
@@ -665,7 +666,7 @@
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(367, 25);
-            this.tableLayoutPanel4.TabIndex = 0;
+            this.tableLayoutPanel4.TabIndex = 19;
             // 
             // menuStrip1
             // 
