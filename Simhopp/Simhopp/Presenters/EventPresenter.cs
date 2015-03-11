@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Simhopp
 {
@@ -221,9 +222,9 @@ namespace Simhopp
             _view.Show();
         }
 
-        public void ShowViewDialog()
+        public DialogResult ShowViewDialog()
         {
-            _view.ShowDialog();
+            return _view.ShowDialog();
         }
 
         public void SetMode(ViewMode mode, int clientJudgeIndex = -1, IJudgeClient judgeClient = null)
