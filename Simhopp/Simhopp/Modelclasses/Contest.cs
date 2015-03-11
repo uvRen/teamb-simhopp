@@ -76,8 +76,7 @@ namespace Simhopp
                     collected.Add("N/A");
                     break;
             }
-
-            collected.Add(Location);
+            collected.Add(Location.ToString().Substring(0, 9));
             collected.Add(Date);
             collected.Add(Name);
 
