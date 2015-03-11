@@ -226,6 +226,7 @@ namespace Simhopp
                 tb.ForeColor = Color.White;
                 tb.Font = fontScore;
                 tb.Name = "Score";
+                tb.ReadOnly = true;
                 tb.TextChanged += UpdateScoreDelegate;
 
                 scorePanel.Controls.Add(tb);

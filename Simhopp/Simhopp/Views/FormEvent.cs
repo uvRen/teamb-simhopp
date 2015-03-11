@@ -454,6 +454,7 @@ namespace Simhopp
 
         private void btnStartServer_Click(object sender, EventArgs e)
         {
+            btnLabelServerStatus.Text = "";
             _presenter.StartServer();
         }
     }
