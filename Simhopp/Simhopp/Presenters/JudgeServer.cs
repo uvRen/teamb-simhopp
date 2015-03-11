@@ -48,13 +48,13 @@ namespace Simhopp
 
         private static void UdpListener()
         {
-            _server = new UdpClient(9059); //60069
+            _server = new UdpClient(60069); //60069
             _server.EnableBroadcast = true;
             try
             {
                 while ( true )
                 {
-                    IPEndPoint ipep = new IPEndPoint(IPAddress.Any, 9059);
+                    IPEndPoint ipep = new IPEndPoint(IPAddress.Any, 60069);
                     LogToServer("Waiting for broadcast");
 
                     //Receive
