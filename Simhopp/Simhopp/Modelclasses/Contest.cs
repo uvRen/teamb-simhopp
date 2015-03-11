@@ -43,18 +43,20 @@ namespace Simhopp
                     collected.Add("10m");
                     break;
                 default:
+                    collected.Add("N/A");
                     break;
             }
 
             switch (Sync)
             {
                 case 0:
-                    collected.Add("Single");
+                    collected.Add("Singel");
                     break;
                 case 1:
                     collected.Add("Synkroniserat");
                     break;
                 default:
+                    collected.Add("N/A");
                     break;
             }
 

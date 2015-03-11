@@ -42,7 +42,7 @@ namespace Simhopp
         [IgnoreDataMember]
         private string _name;
         [IgnoreDataMember]
-        private int _no;
+        public int _no;
         [DataMember]
         public DivePosition Position { get; set; }
         [DataMember]
@@ -122,7 +122,7 @@ namespace Simhopp
                     LoadDDTable();
 
                 if (_no == null)
-                    _no = _nos[this._name];
+                _no = _nos[this._name];
 
                 return _no;
             }
@@ -165,16 +165,23 @@ namespace Simhopp
                 LoadDDTable();
 
             _no = no;
+            _name = _names[_no];
             Position = position;
             Height = height;
         }
 
         public DiveType(int no)
         {
+            if (_dd == null)
+                LoadDDTable();
             _no = no;
+            _name = _names[_no];
         }
         public DiveType()
         {
+            if (_dd == null)
+                LoadDDTable();
+
             _no = 1;
             Height = DiveHeight._1M;
             Position = DivePosition.A;

@@ -720,7 +720,7 @@ namespace Simhopp
                 //lägger till i databasen
                 MySqlCommand comm = conn.CreateCommand();
                 comm.CommandText = "INSERT INTO divetype(Type, Position, Height) VALUES(@type, @position, @height)";
-                comm.Parameters.AddWithValue("@type", d.No);
+                comm.Parameters.AddWithValue("@type", d._no);
                 comm.Parameters.AddWithValue("@position", d.Position.ToString());
                 comm.Parameters.AddWithValue("@height", d.GetHeight());
                 comm.ExecuteNonQuery();

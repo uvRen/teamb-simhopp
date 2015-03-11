@@ -239,7 +239,6 @@ namespace Simhopp
             }
             ev.AddJudges(addJudgesToEvent);
 
-            //om inmatningen lyckades
             int code = Database.AddEventToDatabase(ev);
             //om inmatningen lyckades
             if (code == 1)
@@ -259,12 +258,13 @@ namespace Simhopp
                         //DiveNo
                         dNumber = Int32.Parse(dataGridViewList[i].Rows[rad].Cells[0].Value.ToString());
                         //Height
-                        dHeight = dataGridViewList[i].Rows[rad].Cells[2].Value.ToString();
+                        //dHeight = dataGridViewList[i].Rows[rad].Cells[2].Value.ToString();
                         //Position
-                        dPosition = dataGridViewList[i].Rows[rad].Cells[3].Value.ToString();
+                        dPosition = dataGridViewList[i].Rows[rad].Cells[2].Value.ToString();
 
                         dType.No = dNumber;
-                        SetDiveTypeHeight(dType, dHeight);
+                        //SetDiveTypeHeight(dType, dHeight);
+                        SetDiveTypeHeight(dType, radioButton1meter, radioButton3meter, radioButton5meter, radioButton7meter, radioButton10meter);
                         SetDiveTypePosition(dType, dPosition);
 
                         diveTypeID = Database.AddDiveTypeToDatabase(dType);
@@ -435,6 +435,7 @@ namespace Simhopp
 
                     tabControl1.TabPages.Add(newTab);
                     newTab.Controls.Add(_dataGridViewList[i]);
+                    listViewDivers.Focus();
                 }
             }
             else
@@ -444,21 +445,17 @@ namespace Simhopp
             }
         }
 
-        private static void SetDiveTypeHeight(DiveType d, string height)
+        private static void SetDiveTypeHeight(DiveType d, RadioButton radioButton1meter, RadioButton radioButton3meter, RadioButton radioButton5meter, RadioButton radioButton7meter, RadioButton radioButton10meter)
         {
-            if (height.CompareTo("1m") == 0)
+            if (radioButton1meter.Checked)
                 d.Height = DiveType.DiveHeight._1M;
-
-            else if(height.CompareTo("3m") == 0)
+            if (radioButton3meter.Checked)
                 d.Height = DiveType.DiveHeight._3M;
-
-            else if (height.CompareTo("5m") == 0)
+            if (radioButton5meter.Checked)
                 d.Height = DiveType.DiveHeight._5M;
-
-            else if (height.CompareTo("7,5m") == 0)
+            if (radioButton7meter.Checked)
                 d.Height = DiveType.DiveHeight._7_5M;
-
-            else if (height.CompareTo("10m") == 0)
+            if (radioButton10meter.Checked)
                 d.Height = DiveType.DiveHeight._10M;
         }
 
