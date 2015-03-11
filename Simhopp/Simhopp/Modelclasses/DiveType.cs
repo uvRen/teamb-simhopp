@@ -121,8 +121,7 @@ namespace Simhopp
                 if (_dd == null)
                     LoadDDTable();
 
-                if (_no == null)
-                    _no = _nos[this._name];
+                _no = _nos[this._name];
 
                 return _nos[this._name];
             }
@@ -138,9 +137,9 @@ namespace Simhopp
                     LoadDDTable();
 
                 if (_name == null)
-                    _name = _names[this.No];
+                    _name = _names[this._no];
 
-                return _names[this.No];
+                return _names[this._no];
             }
             set { _name = value; }
         }
@@ -153,7 +152,7 @@ namespace Simhopp
                     LoadDDTable();
                 //Returnerar 0 om difficulty inte finns i _dd
                 //Annars returnerar difficulty från _dd
-                return !_dd[this.No][this.Height].ContainsKey(this.Position) ? 0 : _dd[this.No][this.Height][this.Position];
+                return !_dd[this._no][this.Height].ContainsKey(this.Position) ? 0 : _dd[this._no][this.Height][this.Position];
             }
             set { _difficulty = value; }
         }
@@ -164,18 +163,18 @@ namespace Simhopp
             if (_dd == null)
                 LoadDDTable();
 
-            No = no;
+            _no = no;
             Position = position;
             Height = height;
         }
 
         public DiveType(int no)
         {
-            No = no;
+            _no = no;
         }
         public DiveType()
         {
-            No = 1;
+            _no = 1;
             Height = DiveHeight._1M;
             Position = DivePosition.A;
         }

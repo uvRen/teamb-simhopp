@@ -301,7 +301,7 @@ namespace Simhopp
 
             DataGridViewTextBoxColumn dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             DataGridViewTextBoxColumn dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            DataGridViewComboBoxColumn dataGridViewComboBoxColumn1 = new DataGridViewComboBoxColumn();
+            //DataGridViewComboBoxColumn dataGridViewComboBoxColumn1 = new DataGridViewComboBoxColumn();
             DataGridViewComboBoxColumn dataGridViewComboBoxColumn2 = new DataGridViewComboBoxColumn();
 
             newDataGrid.AllowUserToAddRows = false;
@@ -309,7 +309,6 @@ namespace Simhopp
             newDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             dataGridViewTextBoxColumn1,
             dataGridViewTextBoxColumn2,
-            dataGridViewComboBoxColumn1,
             dataGridViewComboBoxColumn2});
             newDataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             newDataGrid.EnableHeadersVisualStyles = false;
@@ -327,25 +326,25 @@ namespace Simhopp
             // 
             dataGridViewTextBoxColumn2.HeaderText = "Namn";
             dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            dataGridViewTextBoxColumn2.Width = tabControl1.Width - (51+55+55+55);
+            dataGridViewTextBoxColumn2.Width = tabControl1.Width - (51+55+55);
             dataGridViewTextBoxColumn2.Tag = "Namn";
             // 
             // dataGridViewComboBoxColumn1
             // 
-            dataGridViewComboBoxColumn1.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            dataGridViewComboBoxColumn1.HeaderText = "Höjd";
-            dataGridViewComboBoxColumn1.Items.AddRange(new object[] {
-            "1m",
-            "3m",
-            "5m",
-            "7,5m",
-            "10m"});
-            dataGridViewComboBoxColumn1.Name = "dataGridViewComboBoxColumn1";
-            dataGridViewComboBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            dataGridViewComboBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            dataGridViewComboBoxColumn1.ToolTipText = "1m";
-            dataGridViewComboBoxColumn1.Width = 55;
-            dataGridViewComboBoxColumn1.FlatStyle = FlatStyle.Flat;
+            //dataGridViewComboBoxColumn1.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            //dataGridViewComboBoxColumn1.HeaderText = "Höjd";
+            //dataGridViewComboBoxColumn1.Items.AddRange(new object[] {
+            //"1m",
+            //"3m",
+            //"5m",
+            //"7,5m",
+            //"10m"});
+            //dataGridViewComboBoxColumn1.Name = "dataGridViewComboBoxColumn1";
+            //dataGridViewComboBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            //dataGridViewComboBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            //dataGridViewComboBoxColumn1.ToolTipText = "1m";
+            //dataGridViewComboBoxColumn1.Width = 55;
+            //dataGridViewComboBoxColumn1.FlatStyle = FlatStyle.Flat;
             // 
             // dataGridViewComboBoxColumn2
             // 
@@ -416,7 +415,7 @@ namespace Simhopp
                         _dataGridViewList.Add(newDataGrid);
                     }
 
-                    _dataGridViewList[i].Columns[1].Width = tabControl1.Width - (51 + 55 + 55 + 55);
+                    _dataGridViewList[i].Columns[1].Width = tabControl1.Width - (51 + 55 + 55);
 
                     //DataGridViewens tag är den samma som Diverns ID
                     _dataGridViewList[i].Tag = listViewDivers.CheckedItems[i].SubItems[4].Text;

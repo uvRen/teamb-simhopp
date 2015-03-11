@@ -221,7 +221,7 @@ namespace Simhopp
         {
             for(int i = 0; i < _dataGridViewList.Count; i++)
             {
-                _dataGridViewList[i].Columns[1].Width = tabControl1.Width - (51 + 55 + 55 + 55);
+                _dataGridViewList[i].Columns[1].Width = tabControl1.Width - (51 + 55 + 55);
             }
         }
 
