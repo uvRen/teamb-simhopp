@@ -138,19 +138,30 @@ namespace Simhopp
         #endregion
 
         #region Print Result
-
         private void PrintResult_btn_Click(object sender, EventArgs e)
         {
             try
             {
-                PrintDocument pd = new PrintDocument();
-                pd.DefaultPageSettings.PaperSize = new PaperSize("A4", 827, 1170);
-                pd.PrintPage += new PrintPageEventHandler(this.pd_PrintPage);
-                pd.Print();
+                if(listViewEvent.SelectedItems.Count > 0)
+                {
+                    PrintPreviewDialog printPreviewDialog1 = new PrintPreviewDialog();
+                    PrintDocument pd = new PrintDocument();
+
+                    printPreviewDialog1.Document = pd;
+                    printPreviewDialog1.Show();
+                    pd.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.pd_PrintPage);
+                    pd.DefaultPageSettings.PaperSize = new PaperSize("A4", 827, 1170);
+                    pd.PrintPage += new PrintPageEventHandler(this.pd_PrintPage);
+                }
+                else
+                {
+                    MessageBox.Show("Välje ett event, försök igen", "Fel format", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Kunde inte skriva ut, försök igen", ex.ToString());
+
             }
         }
         private void pd_PrintPage(object sender, PrintPageEventArgs ev)
@@ -170,9 +181,9 @@ namespace Simhopp
                 int placering = i + 1;
                 ev.Graphics.DrawString(placering + ". " + listViewResult.Items[i].SubItems[1].Text, new Font("Times New Roman", 14, FontStyle.Regular), Brushes.Black, 100, y);        //skriver ut namn
                 ev.Graphics.DrawString(listViewResult.Items[i].Text, new Font("Times New Roman", 14, FontStyle.Regular), Brushes.Black, 300, y);                    //skriver ut id/resultat
-                if (placering == 3)
+                if (placering == 4)
                 {
-                    ev.Graphics.DrawString("------------------------------------------", new Font("Times New Roman", 14, FontStyle.Regular), Brushes.Black, 100, y + 20);
+                    ev.Graphics.DrawString("------------------------------------------", new Font("Times New Roman", 14, FontStyle.Regular), Brushes.Black, 100, y - 20);
                 }
                 y += 40;
             }
