@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormJudgeClientView));
             this.listBoxJudges = new System.Windows.Forms.ListBox();
             this.panelSelectJudge = new System.Windows.Forms.Panel();
             this.labelTitle = new System.Windows.Forms.Label();
@@ -138,6 +139,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelSelectJudge);
             this.Controls.Add(this.textBoxLog);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormJudgeClientView";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FormMain_Load);
