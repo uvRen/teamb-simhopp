@@ -90,8 +90,8 @@ namespace Simhopp_JudgeClient
                         AssignLogin(msg);
                         break;
                     case SimhoppMessage.ClientAction.SubmitScore:
-                        if (Presenter == null)
-                            break;
+                        //if (Presenter == null)
+                        //    break;
                         Presenter.SubmitClientScore(msg.Value, msg.Id);
                         break;
                     case SimhoppMessage.ClientAction.RequestScore:
@@ -177,6 +177,13 @@ namespace Simhopp_JudgeClient
         {
             SimhoppMessage msg = new SimhoppMessage(judgeIndex, SimhoppMessage.ClientAction.SubmitScore, "", score.Points);
             Messages.Enqueue(msg);
+        }
+
+        public void SendLogout(int judgeIndex)
+        {
+            SimhoppMessage msg = new SimhoppMessage(judgeIndex, SimhoppMessage.ClientAction.Logout, "");
+            Messages.Enqueue(msg);
+            _view.Close();
         }
     }
 }

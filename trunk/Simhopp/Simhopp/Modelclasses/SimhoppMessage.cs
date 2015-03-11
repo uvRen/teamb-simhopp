@@ -29,7 +29,8 @@ namespace Simhopp
             Login,
             RequestScore,
             SubmitScore,
-            StatusUpdate
+            StatusUpdate,
+            Logout
         };
 
         [DataContract]

@@ -12,7 +12,6 @@ namespace Simhopp
 {
     public partial class FormEvent : Form, IFormEvent
     {
-
         private EventPresenter _presenter;
 
         public EventPresenter Presenter
@@ -450,8 +449,37 @@ namespace Simhopp
 
         private void btnStartServer_Click(object sender, EventArgs e)
         {
-            btnLabelServerStatus.Text = "";
+            labelServerStatus.Text = "Klientinloggning startad";
+
+            btnStopServer.Location = btnStartServer.Location;
+
+            btnStartServer.Visible = false;
+            btnStopServer.Visible = true;
+
             _presenter.StartServer();
+        }
+
+        private void btnStopServer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public void SetClientLogin()
+        {
+            foreach (Control c in panelServer.Controls)
+            {
+                c.Visible = false;
+            }
+
+            labelClientServerTitle.Visible = true;
+            labelClientServerTitle.Text = "Inloggad som: " + CurrentJudge.Name;
+            labelClientServerTitle.TextAlign = ContentAlignment.MiddleCenter;
+            labelClientServerTitle.Top = (panelServer.Height/2) - (labelClientServerTitle.Height/2);
+        }
+
+        private void FormEvent_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _presenter.Close();
         }
     }
 }

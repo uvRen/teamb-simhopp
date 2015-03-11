@@ -10,5 +10,6 @@ namespace Simhopp
     public interface IJudgeClient
     {
         void CommitScore(int judgeIndex, Score score);
+        void SendLogout(int judgeIndex);
     }
 }
