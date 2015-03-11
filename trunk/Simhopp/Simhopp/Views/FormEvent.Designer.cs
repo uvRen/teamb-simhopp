@@ -49,7 +49,7 @@
             this.textBoxSeverLog = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnLabelServerStatus = new System.Windows.Forms.Button();
             this.panelControls.SuspendLayout();
             this.panelEventInfo.SuspendLayout();
             this.panelServer.SuspendLayout();
@@ -212,7 +212,7 @@
             // 
             this.panelServer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelServer.Controls.Add(this.button2);
+            this.panelServer.Controls.Add(this.btnLabelServerStatus);
             this.panelServer.Controls.Add(this.button1);
             this.panelServer.Controls.Add(this.btnStopServer);
             this.panelServer.Controls.Add(this.label1);
@@ -274,16 +274,16 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Klientinloggning avstängd";
             // 
-            // button2
+            // btnLabelServerStatus
             // 
-            this.button2.Enabled = false;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.button2.Location = new System.Drawing.Point(5, 9);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(24, 21);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "■";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnLabelServerStatus.Enabled = false;
+            this.btnLabelServerStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btnLabelServerStatus.Location = new System.Drawing.Point(5, 9);
+            this.btnLabelServerStatus.Name = "btnLabelServerStatus";
+            this.btnLabelServerStatus.Size = new System.Drawing.Size(24, 21);
+            this.btnLabelServerStatus.TabIndex = 4;
+            this.btnLabelServerStatus.Text = "■";
+            this.btnLabelServerStatus.UseVisualStyleBackColor = true;
             // 
             // FormEvent
             // 
@@ -332,6 +332,6 @@
         private System.Windows.Forms.Button btnStartServer;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnLabelServerStatus;
     }
 }

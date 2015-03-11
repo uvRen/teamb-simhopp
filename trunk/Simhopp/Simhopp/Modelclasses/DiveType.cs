@@ -121,9 +121,10 @@ namespace Simhopp
                 if (_dd == null)
                     LoadDDTable();
 
-                _no = _nos[this._name];
+                if (_no == null)
+                    _no = _nos[this._name];
 
-                return _nos[this._name];
+                return _no;
             }
             set { _no = value; }
         }
