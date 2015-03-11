@@ -244,10 +244,10 @@ namespace Simhopp
             if (code == 1)
             {
                 int eventID = Database.GetLatestAddedEventID();
-                //----------------------------
+
                 DiveType dType = new DiveType();
                 int diverID = -1, dNumber, diveTypeID;
-                string dPosition, dHeight;
+                string dPosition;
                 for (int i = 0; i < dataGridViewList.Count; i++)
                 {
                     //antal rader i en DataGridView
@@ -257,13 +257,10 @@ namespace Simhopp
                         diverID = Int32.Parse(dataGridViewList[i].Tag.ToString());
                         //DiveNo
                         dNumber = Int32.Parse(dataGridViewList[i].Rows[rad].Cells[0].Value.ToString());
-                        //Height
-                        //dHeight = dataGridViewList[i].Rows[rad].Cells[2].Value.ToString();
-                        //Position
                         dPosition = dataGridViewList[i].Rows[rad].Cells[2].Value.ToString();
 
                         dType.No = dNumber;
-                        //SetDiveTypeHeight(dType, dHeight);
+
                         SetDiveTypeHeight(dType, radioButton1meter, radioButton3meter, radioButton5meter, radioButton7meter, radioButton10meter);
                         SetDiveTypePosition(dType, dPosition);
 
@@ -271,7 +268,6 @@ namespace Simhopp
                         Database.AddDiveToDiver(dType, eventID, rad + 1, diveTypeID, diverID);
                     }
                 }
-                //----------------------------
                 successfully.Visible = true;
             }
             else if (code == -1)
