@@ -202,7 +202,7 @@
             // 
             // columnHeader6
             // 
-            this.columnHeader6.Text = "Gender";
+            this.columnHeader6.Text = "Kön";
             this.columnHeader6.Width = 50;
             // 
             // columnHeader8

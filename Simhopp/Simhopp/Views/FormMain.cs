@@ -148,6 +148,7 @@ namespace Simhopp
                     PrintDocument pd = new PrintDocument();
 
                     printPreviewDialog1.Document = pd;
+                    printPreviewDialog1.Size = new System.Drawing.Size(350, 550);
                     printPreviewDialog1.Show();
                     pd.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.pd_PrintPage);
                     pd.DefaultPageSettings.PaperSize = new PaperSize("A4", 827, 1170);
@@ -166,13 +167,25 @@ namespace Simhopp
         }
         private void pd_PrintPage(object sender, PrintPageEventArgs ev)
         {
-            int y = 200;
+            int y = 300;
             int count;
 
-            ev.Graphics.DrawString(listViewEvent.SelectedItems[0].SubItems[1].Text, new Font("Times New Roman", 18, FontStyle.Bold), Brushes.Black, 325, 75);       //Title event name
+            Contest c = Database.GetContest(Int32.Parse(listViewEvent.SelectedItems[0].SubItems[0].Text));
 
-            ev.Graphics.DrawString("Namn", new Font("Times New Roman", 14, FontStyle.Bold), Brushes.Black, 100, 150);                                               //column namn
-            ev.Graphics.DrawString("Resultat", new Font("Times New Roman", 14, FontStyle.Bold), Brushes.Black, 300, 150);                                           //column resultat
+            List<string> information = c.GetCollectedContestInfo();
+
+             //title
+            ev.Graphics.DrawString(information[5], new Font("Times New Roman", 18, FontStyle.Bold), Brushes.Black, 325, 75);
+            //infobox
+            ev.Graphics.DrawString("Plats", new Font("Times New Roman", 14, FontStyle.Bold), Brushes.DimGray, 100, 120);
+            ev.Graphics.DrawString(information[3], new Font("Times New Roman", 14, FontStyle.Regular), Brushes.DimGray, 175, 120);
+            ev.Graphics.DrawString("Datum", new Font("Times New Roman", 14, FontStyle.Bold), Brushes.DimGray, 100, 145);
+            ev.Graphics.DrawString(information[4], new Font("Times New Roman", 14, FontStyle.Regular), Brushes.DimGray, 175, 145);
+            ev.Graphics.DrawString("Kön", new Font("Times New Roman", 14, FontStyle.Bold), Brushes.DimGray, 100, 170);
+            ev.Graphics.DrawString(information[2], new Font("Times New Roman", 14, FontStyle.Regular), Brushes.DimGray, 175, 170); 
+            //undertitlar
+            ev.Graphics.DrawString("Namn", new Font("Times New Roman", 14, FontStyle.Bold), Brushes.Black, 100, 250);
+            ev.Graphics.DrawString("Resultat", new Font("Times New Roman", 14, FontStyle.Bold), Brushes.Black, 300, 250);   
 
             count = listViewResult.Items.Count;
 
