@@ -184,22 +184,21 @@ namespace Simhopp
 
         private void FormMain_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Control && e.KeyCode.ToString() == "S")
+            if (e.Control && e.KeyCode == Keys.S)
                 StartEventClick(sender, e);
 
-            if (e.Control && e.KeyCode.ToString() == "R")
+            if (e.Control && e.KeyCode == Keys.R)
                 RegisterResultClick(sender, e);
 
-            if (e.Control && e.KeyCode.ToString() == "P")
+            if (e.Control && e.KeyCode == Keys.P)
                 PrintResult_btn_Click(sender, e);
 
             if (e.Control && e.KeyValue == 122)                                                                                 //F11 = keyvalue 122
                 ResultsToFullScreen_btn_Click(sender, e);
 
-            if (e.Control && e.KeyCode.ToString() == "N")
+            if (e.Control && e.KeyCode == Keys.N)
                 CreateEventClick(sender, e);
        }
-
 
         #endregion
 
