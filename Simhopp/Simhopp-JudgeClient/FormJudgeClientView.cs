@@ -26,7 +26,9 @@ namespace Simhopp_JudgeClient
             InitializeComponent();
 
             //Dölj loggning
-            this.Width = 285;
+            this.Width = 295;
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             textBoxLog.Visible = false;
         }
 
