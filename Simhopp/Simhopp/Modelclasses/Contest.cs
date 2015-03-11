@@ -67,6 +67,7 @@ namespace Simhopp
                     collected.Add("Kvinnor");
                     break;
                 default:
+                    collected.Add("N/A");
                     break;
             }
 
