@@ -22,7 +22,7 @@ namespace Simhopp
         public List<Diver> Divers { get; set; }
 
         /// <summary>
-        /// [0] Discipline, [1] Singel/Sync, [2] Male/Female, [3] Location, [4] Date
+        /// [0] Discipline, [1] Singel/Sync, [2] Male/Female, [3] Location, [4] Date, [5] Name
         /// </summary>
         /// <returns></returns>
         public List<string> GetCollectedContestInfo()
@@ -79,6 +79,7 @@ namespace Simhopp
 
             collected.Add(Location);
             collected.Add(Date);
+            collected.Add(Name);
 
             return collected;
         }
