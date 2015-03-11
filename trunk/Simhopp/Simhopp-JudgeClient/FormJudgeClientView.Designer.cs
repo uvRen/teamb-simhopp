@@ -141,7 +141,7 @@
             this.Controls.Add(this.textBoxLog);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormJudgeClientView";
-            this.Text = "Form1";
+            this.Text = "Domarklient";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.panelSelectJudge.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
