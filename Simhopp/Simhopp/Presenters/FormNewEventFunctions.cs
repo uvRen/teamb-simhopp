@@ -42,10 +42,10 @@ namespace Simhopp
         }
 
         //skriver ut alla hoppare som ska vara med i listan
-        public static void FillListViewWithDivers(RadioButton radioButtonMale, RadioButton radioButtonFemale, ListView listViewDivers) 
+        public static void FillListViewWithDivers(RadioButton radioButtonMale, RadioButton radioButtonFemale, ListView listViewDivers, int ColumnIndex = 0) 
         {
             listViewDivers.Items.Clear();
-            foreach (Diver diver in Database.GetDivers())
+            foreach (Diver diver in Database.GetDivers(ColumnIndex))
             {
                 if (radioButtonMale.Checked && diver.Sex == 0)
                 {
@@ -182,9 +182,6 @@ namespace Simhopp
             date = dateTimePicker1.Value.ToString("yyyy-MM-dd");
             diveCount = (int)numericUpDown1.Value;
 
-
-            
-
             //discipline
             if (radioButton1meter.Checked)
                 discipline = 0;
@@ -297,7 +294,6 @@ namespace Simhopp
 
             DataGridViewTextBoxColumn dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             DataGridViewTextBoxColumn dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            //DataGridViewComboBoxColumn dataGridViewComboBoxColumn1 = new DataGridViewComboBoxColumn();
             DataGridViewComboBoxColumn dataGridViewComboBoxColumn2 = new DataGridViewComboBoxColumn();
 
             newDataGrid.AllowUserToAddRows = false;
@@ -324,23 +320,7 @@ namespace Simhopp
             dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             dataGridViewTextBoxColumn2.Width = tabControl1.Width - (51+55+55);
             dataGridViewTextBoxColumn2.Tag = "Namn";
-            // 
-            // dataGridViewComboBoxColumn1
-            // 
-            //dataGridViewComboBoxColumn1.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            //dataGridViewComboBoxColumn1.HeaderText = "Höjd";
-            //dataGridViewComboBoxColumn1.Items.AddRange(new object[] {
-            //"1m",
-            //"3m",
-            //"5m",
-            //"7,5m",
-            //"10m"});
-            //dataGridViewComboBoxColumn1.Name = "dataGridViewComboBoxColumn1";
-            //dataGridViewComboBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            //dataGridViewComboBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            //dataGridViewComboBoxColumn1.ToolTipText = "1m";
-            //dataGridViewComboBoxColumn1.Width = 55;
-            //dataGridViewComboBoxColumn1.FlatStyle = FlatStyle.Flat;
+            
             // 
             // dataGridViewComboBoxColumn2
             // 
@@ -393,7 +373,7 @@ namespace Simhopp
         //lägger till DataGridViews i TabControlern
         public static void AddDataGridViewToTabControl(TabControl tabControl1, ListView listViewDivers, AutoCompleteStringCollection _diveNo, AutoCompleteStringCollection _diveName, List<DataGridView> _dataGridViewList, NumericUpDown DiveCount_numericUpDown, Panel panel1)
         {
-            string[] row = new string[] { "", "", "", "" };
+            string[] row = new string[] { "1", "Dummy Dive", "A"};
             tabControl1.TabPages.Clear();
 
             if (listViewDivers.CheckedItems.Count > 0)

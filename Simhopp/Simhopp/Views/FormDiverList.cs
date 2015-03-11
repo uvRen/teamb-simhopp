@@ -21,7 +21,7 @@ namespace Simhopp
         private void FormDiverList_Load(object sender, EventArgs e)
         {
             diverList = new List<Diver>();
-            foreach (Diver diver in Database.GetDivers())
+            foreach (Diver diver in Database.GetDivers(0))
             {
                 ListViewItem item1 = new ListViewItem();
                 item1.Text = diver.Id.ToString();

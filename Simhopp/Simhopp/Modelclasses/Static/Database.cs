@@ -378,12 +378,28 @@ namespace Simhopp
         #endregion
 
         #region Diver
-        public static List<Diver> GetDivers()
+        public static List<Diver> GetDivers(int ColumnIndex)
         {
+            string sql = "";
             var diverList = new List<Diver>();
 
+            switch(ColumnIndex)
+            {
+                case 0:
+                    sql = "SELECT * FROM diver ORDER BY name";
+                    break;
+
+                case 1:
+                    sql = "SELECT * FROM diver ORDER BY country";
+                    break;
+
+                case 2:
+                    sql = "SELECT * FROM diver ORDER BY age";
+                    break;
+            }
+
             var conn = ConnectToDatabase();
-            var cmd = new MySqlCommand("SELECT * FROM diver ORDER BY name", conn);
+            var cmd = new MySqlCommand(sql, conn);
             var dr = cmd.ExecuteReader();
             var dt = new DataTable();
             dt.Load(dr);

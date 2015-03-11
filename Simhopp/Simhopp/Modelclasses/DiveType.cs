@@ -124,7 +124,7 @@ namespace Simhopp
                 if (_no == null)
                 _no = _nos[this._name];
 
-                return _no;
+                return _nos[this._name];
             }
             set { _no = value; }
         }
@@ -165,7 +165,6 @@ namespace Simhopp
                 LoadDDTable();
 
             _no = no;
-            _name = _names[_no];
             Position = position;
             Height = height;
         }
@@ -175,7 +174,6 @@ namespace Simhopp
             if (_dd == null)
                 LoadDDTable();
             _no = no;
-            _name = _names[_no];
         }
         public DiveType()
         {
