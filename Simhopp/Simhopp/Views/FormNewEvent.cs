@@ -245,31 +245,30 @@ namespace Simhopp
         private void FormNewEvent_KeyDown(object sender, KeyEventArgs e)
         {
             //Buttons
-            if (EnableSubmitButton == true)
+            if (btnSubmit.Enabled == true)
             {
                 if (e.Control && e.KeyCode == Keys.S)
                 {
-                    btnSubmit_Click(sender, e);
+                    btnSubmit_Click(sender, null);
                 }
                     
             }
 
             //Focus
             if (e.Control && e.KeyCode == Keys.NumPad1)
+            {
                 EventName_textBox.Focus();      //FOCUS LEFT DATA
+            }
 
             if (e.Control && e.KeyCode == Keys.NumPad2)
-                listViewDivers.Focus();         //FOCUS MIDDLE DIVERS
-
-            if (e.Control && e.KeyCode == Keys.NumPad3)
             {
-                MessageBox.Show("Hello");
-                //EventName_textBox.Focused = false;
-                listViewJudge.Focus();          //FOCUS RIGHT JUDGES
-                listViewJudge.Select();
+                listViewDivers.Focus();         //FOCUS MIDDLE DIVERS
             }
                 
-
+            if (e.Control && e.KeyCode == Keys.NumPad3)
+            {
+                listViewJudge.Focus();          //FOCUS RIGHT JUDGES
+            }
         }
         #endregion
 
