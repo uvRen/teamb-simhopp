@@ -21,5 +21,6 @@ namespace Simhopp
         void LogToServer(string message);
         void RedrawContestInfo(bool highlightDivePanel = false);
         void EnableControls(bool enable, bool hideControls = false);
+        void SetClientLogin();
     }
 }

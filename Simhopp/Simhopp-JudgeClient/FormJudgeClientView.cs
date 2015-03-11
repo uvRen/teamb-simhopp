@@ -24,6 +24,10 @@ namespace Simhopp_JudgeClient
         public FormJudgeClientView()
         {
             InitializeComponent();
+
+            //Dölj loggning
+            this.Width = 285;
+            textBoxLog.Visible = false;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -41,8 +45,13 @@ namespace Simhopp_JudgeClient
             EventPresenter presenter = new EventPresenter(null, msg.Status.Contest);
             presenter.SetMode(EventPresenter.ViewMode.Client, (int)msg.Value, judgeClient);
             Console.WriteLine("Assigning login: " + msg.Serialize());
-            presenter.ShowView();
             judgeClient.Presenter = presenter;
+
+            this.Hide();
+            presenter.ShowView();
+
+            //presenter.ShowViewDiialog();
+            //this.Close();
         }
 
         public void PopulateJudgeList(SimhoppMessage msg)
@@ -70,6 +79,12 @@ namespace Simhopp_JudgeClient
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+
+            listBoxJudges.Visible = false;
+            imgLoading.Visible = true;
+            labelJudgeList.Text = "Loggar in...";
+            btnLogin.Enabled = false;
+
             SimhoppMessage msg = new SimhoppMessage(-1, SimhoppMessage.ClientAction.Login, listBoxJudges.SelectedItem.ToString());
             judgeClient.Messages.Enqueue(msg);
         }

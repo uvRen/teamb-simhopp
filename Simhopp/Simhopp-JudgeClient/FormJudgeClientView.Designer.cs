@@ -88,7 +88,7 @@
             this.textBoxLog.Location = new System.Drawing.Point(285, 12);
             this.textBoxLog.Multiline = true;
             this.textBoxLog.Name = "textBoxLog";
-            this.textBoxLog.Size = new System.Drawing.Size(581, 421);
+            this.textBoxLog.Size = new System.Drawing.Size(572, 421);
             this.textBoxLog.TabIndex = 0;
             // 
             // panel1

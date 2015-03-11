@@ -43,13 +43,13 @@
             this.panelEventInfo = new System.Windows.Forms.Panel();
             this.labelSummary = new System.Windows.Forms.Label();
             this.labelTitle = new System.Windows.Forms.Label();
+            this.textBoxSeverLog = new System.Windows.Forms.TextBox();
             this.panelServer = new System.Windows.Forms.Panel();
+            this.labelClientServerTitle = new System.Windows.Forms.Label();
+            this.labelServerStatus = new System.Windows.Forms.Label();
+            this.btnServerKick = new System.Windows.Forms.Button();
             this.btnStopServer = new System.Windows.Forms.Button();
             this.btnStartServer = new System.Windows.Forms.Button();
-            this.textBoxSeverLog = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnLabelServerStatus = new System.Windows.Forms.Button();
             this.panelControls.SuspendLayout();
             this.panelEventInfo.SuspendLayout();
             this.panelServer.SuspendLayout();
@@ -208,41 +208,6 @@
             this.labelTitle.TabIndex = 0;
             this.labelTitle.Text = "label1";
             // 
-            // panelServer
-            // 
-            this.panelServer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelServer.Controls.Add(this.btnLabelServerStatus);
-            this.panelServer.Controls.Add(this.button1);
-            this.panelServer.Controls.Add(this.btnStopServer);
-            this.panelServer.Controls.Add(this.label1);
-            this.panelServer.Controls.Add(this.btnStartServer);
-            this.panelServer.Location = new System.Drawing.Point(12, 258);
-            this.panelServer.Name = "panelServer";
-            this.panelServer.Size = new System.Drawing.Size(284, 83);
-            this.panelServer.TabIndex = 11;
-            // 
-            // btnStopServer
-            // 
-            this.btnStopServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnStopServer.Location = new System.Drawing.Point(97, 40);
-            this.btnStopServer.Name = "btnStopServer";
-            this.btnStopServer.Size = new System.Drawing.Size(88, 37);
-            this.btnStopServer.TabIndex = 2;
-            this.btnStopServer.Text = "Stäng klientinloggning";
-            this.btnStopServer.UseVisualStyleBackColor = true;
-            // 
-            // btnStartServer
-            // 
-            this.btnStartServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnStartServer.Location = new System.Drawing.Point(5, 40);
-            this.btnStartServer.Name = "btnStartServer";
-            this.btnStartServer.Size = new System.Drawing.Size(88, 37);
-            this.btnStartServer.TabIndex = 1;
-            this.btnStartServer.Text = "Öppna klientinloggning";
-            this.btnStartServer.UseVisualStyleBackColor = true;
-            this.btnStartServer.Click += new System.EventHandler(this.btnStartServer_Click);
-            // 
             // textBoxSeverLog
             // 
             this.textBoxSeverLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -254,36 +219,79 @@
             this.textBoxSeverLog.TabIndex = 0;
             this.textBoxSeverLog.Visible = false;
             // 
-            // button1
+            // panelServer
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.button1.Location = new System.Drawing.Point(189, 40);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(88, 37);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Sparka klienter";
-            this.button1.UseVisualStyleBackColor = true;
+            this.panelServer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelServer.Controls.Add(this.labelClientServerTitle);
+            this.panelServer.Controls.Add(this.btnServerKick);
+            this.panelServer.Controls.Add(this.btnStopServer);
+            this.panelServer.Controls.Add(this.labelServerStatus);
+            this.panelServer.Controls.Add(this.btnStartServer);
+            this.panelServer.Location = new System.Drawing.Point(12, 258);
+            this.panelServer.Name = "panelServer";
+            this.panelServer.Size = new System.Drawing.Size(284, 83);
+            this.panelServer.TabIndex = 11;
             // 
-            // label1
+            // labelClientServerTitle
             // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(36, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(128, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Klientinloggning avstängd";
+            this.labelClientServerTitle.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold);
+            this.labelClientServerTitle.ForeColor = System.Drawing.Color.White;
+            this.labelClientServerTitle.Location = new System.Drawing.Point(10, 8);
+            this.labelClientServerTitle.Name = "labelClientServerTitle";
+            this.labelClientServerTitle.Size = new System.Drawing.Size(260, 19);
+            this.labelClientServerTitle.TabIndex = 6;
+            this.labelClientServerTitle.Text = "Klientinloggning";
             // 
-            // btnLabelServerStatus
+            // labelServerStatus
             // 
-            this.btnLabelServerStatus.Enabled = false;
-            this.btnLabelServerStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnLabelServerStatus.Location = new System.Drawing.Point(5, 9);
-            this.btnLabelServerStatus.Name = "btnLabelServerStatus";
-            this.btnLabelServerStatus.Size = new System.Drawing.Size(24, 21);
-            this.btnLabelServerStatus.TabIndex = 4;
-            this.btnLabelServerStatus.Text = "■";
-            this.btnLabelServerStatus.UseVisualStyleBackColor = true;
+            this.labelServerStatus.AutoSize = true;
+            this.labelServerStatus.ForeColor = System.Drawing.Color.White;
+            this.labelServerStatus.Location = new System.Drawing.Point(40, 53);
+            this.labelServerStatus.Name = "labelServerStatus";
+            this.labelServerStatus.Size = new System.Drawing.Size(128, 13);
+            this.labelServerStatus.TabIndex = 2;
+            this.labelServerStatus.Text = "Klientinloggning avstängd";
+            // 
+            // btnServerKick
+            // 
+            this.btnServerKick.BackgroundImage = global::Simhopp.Properties.Resources.Cut_32;
+            this.btnServerKick.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnServerKick.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btnServerKick.Location = new System.Drawing.Point(246, 47);
+            this.btnServerKick.Name = "btnServerKick";
+            this.btnServerKick.Size = new System.Drawing.Size(24, 24);
+            this.btnServerKick.TabIndex = 5;
+            this.btnServerKick.Text = " ";
+            this.btnServerKick.UseVisualStyleBackColor = true;
+            this.btnServerKick.Visible = false;
+            // 
+            // btnStopServer
+            // 
+            this.btnStopServer.BackgroundImage = global::Simhopp.Properties.Resources.Controls_stop_32;
+            this.btnStopServer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnStopServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btnStopServer.Location = new System.Drawing.Point(216, 47);
+            this.btnStopServer.Name = "btnStopServer";
+            this.btnStopServer.Size = new System.Drawing.Size(24, 24);
+            this.btnStopServer.TabIndex = 4;
+            this.btnStopServer.Text = " ";
+            this.btnStopServer.UseVisualStyleBackColor = true;
+            this.btnStopServer.Visible = false;
+            this.btnStopServer.Click += new System.EventHandler(this.btnStopServer_Click);
+            // 
+            // btnStartServer
+            // 
+            this.btnStartServer.BackgroundImage = global::Simhopp.Properties.Resources.Controls_play_32;
+            this.btnStartServer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnStartServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btnStartServer.Location = new System.Drawing.Point(10, 47);
+            this.btnStartServer.Name = "btnStartServer";
+            this.btnStartServer.Size = new System.Drawing.Size(24, 24);
+            this.btnStartServer.TabIndex = 1;
+            this.btnStartServer.Text = " ";
+            this.btnStartServer.UseVisualStyleBackColor = true;
+            this.btnStartServer.Click += new System.EventHandler(this.btnStartServer_Click);
             // 
             // FormEvent
             // 
@@ -299,6 +307,7 @@
             this.Controls.Add(this.tabsRounds);
             this.Name = "FormEvent";
             this.Text = "FormEvent";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormEvent_FormClosing);
             this.Load += new System.EventHandler(this.FormEvent_Load);
             this.panelControls.ResumeLayout(false);
             this.panelEventInfo.ResumeLayout(false);
@@ -328,10 +337,10 @@
         private System.Windows.Forms.Label labelTitle;
         private System.Windows.Forms.Panel panelServer;
         private System.Windows.Forms.TextBox textBoxSeverLog;
-        private System.Windows.Forms.Button btnStopServer;
         private System.Windows.Forms.Button btnStartServer;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnLabelServerStatus;
+        private System.Windows.Forms.Label labelServerStatus;
+        private System.Windows.Forms.Button btnStopServer;
+        private System.Windows.Forms.Label labelClientServerTitle;
+        private System.Windows.Forms.Button btnServerKick;
     }
 }

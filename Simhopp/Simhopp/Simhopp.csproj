@@ -132,6 +132,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
@@ -150,6 +151,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="external\MySql.Data.dll" />
+    <None Include="Resources\Cut-32.png" />
+    <None Include="Resources\Controls-stop-32.png" />
+    <None Include="Resources\Controls-play-32.png" />
+    <None Include="Resources\Stop-256.png" />
+    <None Include="Resources\Award-256.png" />
+    <None Include="Resources\Play-256.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -175,6 +175,15 @@ namespace Simhopp
             }
         }
 
+        /// <summary>
+        /// Skapa ett poäng för CurrentDive och lägg till det i Dive
+        /// Skicka poängen till domarklienterna om server
+        /// Skicka poängen till server om client
+        /// </summary>
+        /// <param name="points"></param>
+        /// <param name="judgeIndex"></param>
+        /// <param name="broadcastScore"></param>
+        /// <returns></returns>
         private Score CreateScoreForDive(double points, int judgeIndex, bool broadcastScore = true)
         {
             Console.WriteLine(Mode.ToString() + " Scoring: " + points + " for index: " + judgeIndex + " with broadcast:" + broadcastScore.ToString());
@@ -188,21 +197,6 @@ namespace Simhopp
 
             SkipToNonClientJudges(broadcastScore);
 
-            if (CurrentDive.Scores.Count == CurrentEvent.diveCount)
-            {
-                _view.CurrentDiveScore = CurrentDive.Score;
-                
-                CurrentJudgeIndex = 0;
-                CurrentDiverIndex++;
-
-                if (CurrentDiverIndex >= Divers.Count)
-                {
-                    CurrentDiverIndex = 0;
-                    CurrentRoundIndex++;
-                }
-                _view.CompleteDive();
-            }
-
             if (Mode == ViewMode.Client && broadcastScore)
             {
                 Console.WriteLine(Mode.ToString() + " Commiting score to client (is client)");
@@ -212,7 +206,26 @@ namespace Simhopp
             else if (Mode == ViewMode.Standalone)
             {
                 Console.WriteLine(Mode.ToString() + " Broadcasting score (is server)");
-                JudgeServer.BroadcastScore(score);
+                JudgeServer.BroadcastScore(score, CurrentRoundIndex, CurrentDiverIndex);
+            }
+
+            if (CurrentDive.Scores.Count == CurrentEvent.diveCount && Mode == ViewMode.Standalone)
+            {
+                _view.CurrentDiveScore = CurrentDive.Score;
+
+                CurrentJudgeIndex = 0;
+                CurrentDiverIndex++;
+
+                if (CurrentDiverIndex >= Divers.Count)
+                {
+                    CurrentDiverIndex = 0;
+                    CurrentRoundIndex++;
+                }
+                else
+                {
+                    SendStatusToClient();
+                }
+                _view.CompleteDive();
             }
             return score;
         }
@@ -233,6 +246,7 @@ namespace Simhopp
             _clientJudgeIndex = clientJudgeIndex;
             _judgeClient = judgeClient;
             _view.EnableControls(false, true);
+            _view.SetClientLogin();
         }
 
         public void ScoreRequested(SimhoppMessage msg)
@@ -277,7 +291,7 @@ namespace Simhopp
             Score score = new Score(-1, CurrentDiver.Dives[CurrentRoundIndex], scoringJudge, points);
             CurrentDiver.Dives[CurrentRoundIndex].AddScore(score); //Add score to current dive
 
-            JudgeServer.BroadcastScore(score);
+            //JudgeServer.BroadcastScore(score);
 
             _view.RedrawContestInfo();
         }
@@ -285,6 +299,14 @@ namespace Simhopp
         public void StartServer()
         {
             JudgeServer.Start();
+        }
+
+        public void Close()
+        {
+            if (Mode == ViewMode.Client)
+            {
+                _judgeClient.SendLogout(_clientJudgeIndex);
+            }
         }
     }
 }
