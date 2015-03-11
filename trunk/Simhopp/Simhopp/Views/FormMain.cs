@@ -82,6 +82,11 @@ namespace Simhopp
                 presenter.ShowViewDialog();
                 this.Show();
             }
+            else
+            {
+                MessageBox.Show("Välj ett event, försök igen", "Fel format", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
 
         private void listViewEvent_MouseDown(object sender, MouseEventArgs e)
