@@ -14,6 +14,7 @@ namespace Simhopp
     public partial class FormMain : Form
     {
         private ListViewItem _selectedItem = null;
+        int countItems = 0;
 
         public FormMain()
         {
@@ -189,8 +190,9 @@ namespace Simhopp
 
             count = listViewResult.Items.Count;
 
-            for (int i = 0; i < count; ++i)
+            for (int i = countItems; i < count; ++i)
             {
+                
                 int placering = i + 1;
                 ev.Graphics.DrawString(placering + ". " + listViewResult.Items[i].SubItems[1].Text, new Font("Times New Roman", 14, FontStyle.Regular), Brushes.Black, 100, y);        //skriver ut namn
                 ev.Graphics.DrawString(listViewResult.Items[i].Text, new Font("Times New Roman", 14, FontStyle.Regular), Brushes.Black, 300, y);                    //skriver ut id/resultat
@@ -199,7 +201,19 @@ namespace Simhopp
                     ev.Graphics.DrawString("------------------------------------------", new Font("Times New Roman", 14, FontStyle.Regular), Brushes.Black, 100, y - 20);
                 }
                 y += 40;
+                if (y > 1100)
+                {
+                    ev.HasMorePages = true;
+                    y = 75;
+                    return;
+                }
+                else
+                {
+                    ev.HasMorePages = false;
+                }
+                countItems = i;
             }
+            countItems = 0;
         }
         #endregion
 
