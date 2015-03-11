@@ -63,16 +63,6 @@ namespace Simhopp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Award_256 {
-            get {
-                object obj = ResourceManager.GetObject("Award-256", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Controls_play_32 {
             get {
                 object obj = ResourceManager.GetObject("Controls-play-32", resourceCulture);
@@ -96,26 +86,6 @@ namespace Simhopp.Properties {
         internal static System.Drawing.Bitmap Cut_32 {
             get {
                 object obj = ResourceManager.GetObject("Cut-32", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Play_256 {
-            get {
-                object obj = ResourceManager.GetObject("Play-256", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Stop_256 {
-            get {
-                object obj = ResourceManager.GetObject("Stop-256", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
