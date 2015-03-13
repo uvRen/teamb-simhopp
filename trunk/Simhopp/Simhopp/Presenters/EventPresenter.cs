@@ -143,7 +143,7 @@ namespace Simhopp
             Mode = mode;
             _clientJudgeIndex = clientJudgeIndex;
             _judgeClient = judgeClient;
-            _view.EnableControls(false, true);
+            _view.ToggleControls(false, true);
             _view.SetClientLogin();
             if (icon != null)
             {
@@ -169,7 +169,7 @@ namespace Simhopp
             {
                 Console.WriteLine(Mode.ToString() + " Current: " + _currentJudgeIndex + " more than count");
                 _currentJudgeIndex--;
-                _view.EnableControls(false);
+                _view.ToggleControls(false);
             }
         }
 
@@ -210,7 +210,7 @@ namespace Simhopp
             {
                 Console.WriteLine(Mode.ToString() + " Commiting score to client (is client)");
                 _judgeClient.CommitScore(_clientJudgeIndex, score);
-                _view.EnableControls(false);
+                _view.ToggleControls(false);
             }
             else if (Mode == ViewMode.Standalone)
             {
@@ -302,7 +302,7 @@ namespace Simhopp
             CurrentRoundIndex = msg.Status.RoundIndex;
             CurrentDiverIndex = msg.Status.DiverIndex;
 
-            _view.EnableControls(true);
+            _view.ToggleControls(true);
             _view.RedrawContestInfo(true);
         }
 
