@@ -536,15 +536,16 @@ namespace Simhopp
         #endregion
 
         #region Score
-        public static void AddScoreToDive(List<Score> s)
+        public static void AddScoreToDive(List<Score> s, Dive d)
         {
             MySqlConnection conn = Database.ConnectToDatabase();
 
             if(conn != null)
             {
+                MySqlCommand comm = new MySqlCommand();
                 foreach(Score sc in s)
                 {
-                    MySqlCommand comm = conn.CreateCommand();
+                    comm = conn.CreateCommand();
                     comm.CommandText = "INSERT INTO score(diveId, judgeId, point) VALUES (@diveId, @judgeId, @point)";
 
                     comm.Parameters.AddWithValue("@diveId", sc.dive.Id);
@@ -553,8 +554,14 @@ namespace Simhopp
 
                     comm.ExecuteNonQuery();
                 }
+
+                comm.CommandText = "";
+
+
                 conn.Close();
             }
+
+
 
         }
 
