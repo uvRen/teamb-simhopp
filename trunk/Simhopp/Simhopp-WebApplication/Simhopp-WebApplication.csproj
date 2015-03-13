@@ -158,6 +158,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="FormContests.aspx" />
     <Content Include="FormResult.aspx" />
+    <Content Include="FormResults.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -283,6 +284,13 @@
     </Compile>
     <Compile Include="FormResult.aspx.designer.cs">
       <DependentUpon>FormResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormResults.aspx.cs">
+      <DependentUpon>FormResults.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormResults.aspx.designer.cs">
+      <DependentUpon>FormResults.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

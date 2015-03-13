@@ -9,14 +9,16 @@ namespace Simhopp_WebApplication
 {
     public partial class FormResult : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+       protected void Page_Load(object sender, EventArgs e)
         {
-
-        }
-
-        protected void SqlDataSource2_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
-        {
-
-        }
+            string @param1 = Request.QueryString["id"];
+        
+	   
     }
+
+        
+        }
+
+      
+    
 }
