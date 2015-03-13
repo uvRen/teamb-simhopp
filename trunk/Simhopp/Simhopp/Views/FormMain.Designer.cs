@@ -45,6 +45,7 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.startaTävlingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stoppaTävlingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,7 +69,8 @@
             this.registreraProduktToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.teamBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.searchBox = new System.Windows.Forms.ToolStripTextBox();
+            this.searchEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -180,6 +182,7 @@
             this.listViewEvent.UseCompatibleStateImageBehavior = false;
             this.listViewEvent.View = System.Windows.Forms.View.Details;
             this.listViewEvent.ItemActivate += new System.EventHandler(this.listViewEvent_ItemActivate);
+            this.listViewEvent.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listViewEvent_KeyDown);
             this.listViewEvent.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listViewEvent_MouseDown);
             // 
             // columnHeader7
@@ -211,6 +214,13 @@
             // 
             this.columnHeader8.Text = "";
             this.columnHeader8.Width = 0;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "statusRed.png");
+            this.imageList1.Images.SetKeyName(1, "statusGreen.png");
             // 
             // contextMenuStrip1
             // 
@@ -331,10 +341,12 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fILEToolStripMenuItem,
-            this.aBOUTToolStripMenuItem});
+            this.aBOUTToolStripMenuItem,
+            this.searchBox,
+            this.searchEventToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(984, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(984, 27);
             this.menuStrip1.TabIndex = 13;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -349,7 +361,7 @@
             this.toolStripSeparator1,
             this.avslutaCtrlEscToolStripMenuItem});
             this.fILEToolStripMenuItem.Name = "fILEToolStripMenuItem";
-            this.fILEToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
+            this.fILEToolStripMenuItem.Size = new System.Drawing.Size(49, 23);
             this.fILEToolStripMenuItem.Text = "Meny";
             // 
             // startaEventCTRLSToolStripMenuItem
@@ -406,7 +418,7 @@
             this.toolStripSeparator2,
             this.teamBToolStripMenuItem});
             this.aBOUTToolStripMenuItem.Name = "aBOUTToolStripMenuItem";
-            this.aBOUTToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.aBOUTToolStripMenuItem.Size = new System.Drawing.Size(40, 23);
             this.aBOUTToolStripMenuItem.Text = "Info";
             // 
             // registreraProduktToolStripMenuItem
@@ -426,12 +438,21 @@
             this.teamBToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.teamBToolStripMenuItem.Text = "Team B";
             // 
-            // imageList1
+            // searchBox
             // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "statusRed.png");
-            this.imageList1.Images.SetKeyName(1, "statusGreen.png");
+            this.searchBox.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.searchBox.Name = "searchBox";
+            this.searchBox.Size = new System.Drawing.Size(100, 23);
+            this.searchBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchBox_KeyUp);
+            this.searchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged);
+            // 
+            // searchEventToolStripMenuItem
+            // 
+            this.searchEventToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.searchEventToolStripMenuItem.Enabled = false;
+            this.searchEventToolStripMenuItem.Name = "searchEventToolStripMenuItem";
+            this.searchEventToolStripMenuItem.Size = new System.Drawing.Size(80, 23);
+            this.searchEventToolStripMenuItem.Text = "Sök Tävling";
             // 
             // FormMain
             // 
@@ -499,6 +520,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem teamBToolStripMenuItem;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ToolStripTextBox searchBox;
+        private System.Windows.Forms.ToolStripMenuItem searchEventToolStripMenuItem;
 
     }
 }
