@@ -37,18 +37,19 @@ namespace Simhopp
             {
                 StartEvent_btn.Enabled = false;
             }
-            
 
-            listViewResult.Items.Clear();
+            Database.GetDiversInContest(eventId, listViewResult);
 
-            foreach (Diver d in Database.GetDiversInEvent(eventId))
-            {
-                ListViewItem item1 = new ListViewItem();
-                item1.Text = d.Id.ToString();
+            //listViewResult.Items.Clear();
 
-                item1.SubItems.Add(d.Name);
-                listViewResult.Items.Add(item1);
-            }
+            //foreach (Diver d in Database.GetDiversInEvent(eventId))
+            //{
+            //    ListViewItem item1 = new ListViewItem();
+            //    item1.Text = d.Id.ToString();
+
+            //    item1.SubItems.Add(d.Name);
+            //    listViewResult.Items.Add(item1);
+            //}
         }
 
         //öppnar fönstret "FormNewEvent" för att skapa ett nytt event
