@@ -879,9 +879,9 @@ namespace Simhopp
             
         }
 
-        public static int AddDiveTypeToDatabase(DiveType d)
+        public static int AddDiveTypeToDatabase(DiveType d, MySqlConnection conn = null)
         {
-            MySqlConnection conn = Database.ConnectToDatabase();
+            //MySqlConnection conn = Database.ConnectToDatabase();
 
             if (conn != null)
             {
@@ -902,26 +902,26 @@ namespace Simhopp
                 DataRow row = dt.Rows[0];
                 id = row["id"].ToString();
 
-                conn.Close();
+                //conn.Close();
                 return Int32.Parse(id);
             }
             else
                 return -1;
         }
 
-        public static void AddDiveToDiver(DiveType d, int eventID, int diveNumber, int diveTypeID, int diverID)
+        public static void _AddDiveToDiver(DiveType d, int eventID, int diveNumber, int diveTypeID, int diverID, MySqlConnection conn = null)
         {
-            Thread t = new Thread(() => _AddDiveToDiver(d, eventID, diveNumber, diveTypeID, diverID));
+            Thread t = new Thread(() => AddDiveToDiver(d, eventID, diveNumber, diveTypeID, diverID, conn));
             t.Start();
         }
-        private static void _AddDiveToDiver(DiveType d, int eventID, int diveNumber, int diveTypeID, int diverID)
+        public static void AddDiveToDiver(DiveType d, int eventID, int diveNumber, int diveTypeID, int diverID, MySqlConnection conn = null)
         {
             System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
             customCulture.NumberFormat.NumberDecimalSeparator = ".";
 
             System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
 
-            MySqlConnection conn = Database.ConnectToDatabase();
+            //MySqlConnection conn = Database.ConnectToDatabase();
 
             if(conn != null)
             {
@@ -942,7 +942,7 @@ namespace Simhopp
                 }
                 
 
-                conn.Close();
+                //conn.Close();
             }
         }
 

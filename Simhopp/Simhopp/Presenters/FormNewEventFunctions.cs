@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Simhopp
 {
@@ -245,26 +246,32 @@ namespace Simhopp
                 DiveType dType = new DiveType();
                 int diverID = -1, dNumber, diveTypeID;
                 string dPosition;
-                for (int i = 0; i < dataGridViewList.Count; i++)
+
+                MySqlConnection conn; 
+                using (conn = Database.ConnectToDatabase())
                 {
-                    //antal rader i en DataGridView
-                    for (int rad = 0; rad < dataGridViewList[i].RowCount; rad++)
+                    for (int i = 0; i < dataGridViewList.Count; i++)
                     {
-                        //diver ID
-                        diverID = Int32.Parse(dataGridViewList[i].Tag.ToString());
-                        //DiveNo
-                        dNumber = Int32.Parse(dataGridViewList[i].Rows[rad].Cells[0].Value.ToString());
-                        dPosition = dataGridViewList[i].Rows[rad].Cells[2].Value.ToString();
+                        //antal rader i en DataGridView
+                        for (int rad = 0; rad < dataGridViewList[i].RowCount; rad++)
+                        {
+                            //diver ID
+                            diverID = Int32.Parse(dataGridViewList[i].Tag.ToString());
+                            //DiveNo
+                            dNumber = Int32.Parse(dataGridViewList[i].Rows[rad].Cells[0].Value.ToString());
+                            dPosition = dataGridViewList[i].Rows[rad].Cells[2].Value.ToString();
 
-                        dType.No = dNumber;
+                            dType.No = dNumber;
 
-                        SetDiveTypeHeight(dType, radioButton1meter, radioButton3meter, radioButton5meter, radioButton7meter, radioButton10meter);
-                        SetDiveTypePosition(dType, dPosition);
+                            SetDiveTypeHeight(dType, radioButton1meter, radioButton3meter, radioButton5meter, radioButton7meter, radioButton10meter);
+                            SetDiveTypePosition(dType, dPosition);
 
-                        diveTypeID = Database.AddDiveTypeToDatabase(dType);
-                        Database.AddDiveToDiver(dType, eventID, rad + 1, diveTypeID, diverID);
+                            diveTypeID = Database.AddDiveTypeToDatabase(dType, conn);
+                            Database.AddDiveToDiver(dType, eventID, rad + 1, diveTypeID, diverID, conn);
+                        }
                     }
                 }
+                
                 successfully.Visible = true;
             }
             else if (code == -1)
