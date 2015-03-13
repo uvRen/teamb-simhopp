@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Modelclasses\Contest.cs" />
+    <Compile Include="Modelclasses\Static\Crypto.cs" />
     <Compile Include="Modelclasses\Static\Database.cs" />
     <Compile Include="Modelclasses\Dive.cs" />
     <Compile Include="Modelclasses\DiveType.cs" />
