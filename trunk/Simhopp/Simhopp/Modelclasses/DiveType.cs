@@ -124,7 +124,7 @@ namespace Simhopp
                 if (_no == null)
                 _no = _nos[this._name];
 
-                return _nos[this._name];
+                return _no;
             }
             set { _no = value; }
         }
