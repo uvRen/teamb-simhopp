@@ -209,11 +209,11 @@ namespace Simhopp
                 JudgeServer.BroadcastScore(score, CurrentRoundIndex, CurrentDiverIndex);
             }
 
-            if (CurrentDive.Scores.Count == CurrentEvent.diveCount && Mode == ViewMode.Standalone)
+            if (CurrentDive.Scores.Count == CurrentEvent.Judges.Count && Mode == ViewMode.Standalone)
             {
                 _view.CurrentDiveScore = CurrentDive.Score;
 
-                //Database.AddScoreToDive(CurrentDive.Scores);
+                Database.AddScoreToDive(CurrentDive.Scores);
 
                 CurrentJudgeIndex = 0;
                 CurrentDiverIndex++;
@@ -227,6 +227,7 @@ namespace Simhopp
                 {
                     SendStatusToClient();
                 }
+                _view.CompleteDive();
             }
             return score;
         }
