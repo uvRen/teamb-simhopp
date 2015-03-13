@@ -83,9 +83,9 @@ namespace Simhopp
                 ListViewItem item1 = new ListViewItem();
                 item1.Tag = judge;
                 item1.Text = judge.ToString();
-                listViewJudge.Items.Add(item1);
-
                 item1.SubItems.Add(judge.Id.ToString());
+
+                listViewJudge.Items.Add(item1);
             }
         }
 
@@ -231,7 +231,7 @@ namespace Simhopp
 
             foreach (ListViewItem item in listViewJudge.CheckedItems)
             {
-                j = new Judge(Int32.Parse(item.SubItems[0].Text), item.SubItems[1].Text);
+                j = new Judge(Int32.Parse(item.SubItems[1].Text), item.SubItems[0].Text);
                 addJudgesToEvent.Add(j);
             }
             ev.AddJudges(addJudgesToEvent);

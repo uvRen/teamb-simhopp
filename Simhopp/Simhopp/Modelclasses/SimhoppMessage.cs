@@ -84,7 +84,8 @@ namespace Simhopp
             StreamReader sr = new StreamReader(ms);
             string msg = sr.ReadToEnd();
             sr.Close();
-            ms.Close();
+            //ms.Close();
+
             return msg;
         }
 
