@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Simhopp
@@ -10,6 +7,7 @@ namespace Simhopp
     public interface IFormEvent
     {
         EventPresenter Presenter { get; set; }
+        void SetIcon(Icon icon);
         double CurrentDiveScore { get; set; }
 
         void Show();

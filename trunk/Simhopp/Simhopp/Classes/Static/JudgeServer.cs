@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
-using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 
 namespace Simhopp
 {
@@ -46,6 +42,24 @@ namespace Simhopp
 
         }
 
+        public static void Stop()
+        {
+            try
+            {
+                _judgeClients.Clear();
+
+                if (_serverThread.IsAlive)
+                {
+                    _serverThread.Abort();
+                }
+                _server.Close();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.Handle(ex);
+            }
+        }
+
         private static void UdpListener()
         {
             _server = new UdpClient(60069); //60069
@@ -81,8 +95,16 @@ namespace Simhopp
                             response = SimhoppMessage.ErrorMessage("Not implemented");
                             break;
                     }
+                    string test1 = " -> ½ <- ";
+                    string test2 = Crypto.Decrypt(Crypto.Encrypt(test1));
+
+                    LogToServer(test1);
+                    LogToServer(test2);
+
                     LogToServer("Recieve: " + msg.Serialize());
                     LogToServer("Send: " + response.Serialize());
+                    LogToServer("Send (de): " + Crypto.Decrypt(response.Serialize()));
+                    LogToServer("Send (de): " + Crypto.Decrypt(SimhoppMessage.Deserialize(Crypto.Encrypt(Crypto.Decrypt(response.Serialize()))).Serialize()));
 
                     //Respond
                     var responseData = Encoding.ASCII.GetBytes(response.Serialize());

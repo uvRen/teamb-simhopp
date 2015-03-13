@@ -1,17 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Sockets;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Simhopp;
 
@@ -45,10 +32,10 @@ namespace Simhopp_JudgeClient
         public void AssignLogin(SimhoppMessage msg)
         {
             EventPresenter presenter = new EventPresenter(null, msg.Status.Contest);
-            presenter.SetMode(EventPresenter.ViewMode.Client, (int)msg.Value, judgeClient);
+            presenter.SetMode(EventPresenter.ViewMode.Client, (int)msg.Value, judgeClient, this.Icon);
             Console.WriteLine("Assigning login: " + msg.Serialize());
             judgeClient.Presenter = presenter;
-
+            
             this.Hide();
             presenter.ShowView();
 

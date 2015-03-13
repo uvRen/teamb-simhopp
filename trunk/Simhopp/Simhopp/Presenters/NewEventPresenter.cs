@@ -11,35 +11,22 @@ using MySql.Data.MySqlClient;
 
 namespace Simhopp
 {
-    public class FormNewEventFunctions
+    public class NewEventPresenter
     {
+        private IFormNewEvent _view;
+
+        public NewEventPresenter(IFormNewEvent view)
+        {
+            _view = view;
+        }
+
+        //0 References, varför är denna här?
         public static void AddDivesToDiver(DataGrid dataGridView, ListView listViewDivers)
         {
             if(listViewDivers.SelectedItems.Count > 0)
             {
                 dataGridView.Visible = true;
             }
-        }
-
-        public static void CheckIfSubmitButtonBeEnable(bool EnableSubmitButton, Button btnSubmit, TextBox EventName_textBox, TextBox EventLocation_textBox, NumericUpDown DiveCount_numericUpDown, ListView listViewDivers, ListView listViewJudge)
-        {
-            if(EventName_textBox.Text.Length > 0)
-                if(EventLocation_textBox.Text.Length > 0)
-                    if(Int32.Parse(DiveCount_numericUpDown.Value.ToString()) > 0)
-                        if(listViewDivers.CheckedItems.Count > 0)
-                        {
-                            int count = listViewJudge.CheckedItems.Count;
-
-                            if (count % 2 != 0 && count >= 3)
-                            {
-                                EnableSubmitButton = true;
-                            }
-                            else
-                            {
-                                EnableSubmitButton = false;
-                            }
-                        }
-            btnSubmit.Enabled = EnableSubmitButton;
         }
 
         //skriver ut alla hoppare som ska vara med i listan
@@ -393,7 +380,7 @@ namespace Simhopp
                     //om det har lagts till en ny hoppare skapas en ny DataGridView
                     if(listViewDivers.CheckedItems.Count > _dataGridViewList.Count)
                     {
-                        DataGridView newDataGrid = FormNewEventFunctions.GetNewDataGridView(_diveNo, _diveName, tabControl1);
+                        DataGridView newDataGrid = NewEventPresenter.GetNewDataGridView(_diveNo, _diveName, tabControl1);
                         newDataGrid.Dock = DockStyle.Fill;
                         _dataGridViewList.Add(newDataGrid);
                     }

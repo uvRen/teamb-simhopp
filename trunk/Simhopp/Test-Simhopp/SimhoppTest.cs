@@ -88,7 +88,7 @@ namespace Nunit.Simhopp
         [Test]
         public void DbSelectDivers()
         {
-            Assert.GreaterOrEqual(Database.GetDivers().Count, 1);
+            Assert.GreaterOrEqual(Database.GetDivers(0).Count, 1);
         }
 
         [Test]

@@ -309,7 +309,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "FormEvent";
-            this.Text = "FormEvent";
+            this.Text = "Tävling";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormEvent_FormClosing);
             this.Load += new System.EventHandler(this.FormEvent_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormEvent_KeyDown);

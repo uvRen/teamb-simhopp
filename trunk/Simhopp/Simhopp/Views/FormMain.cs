@@ -11,17 +11,28 @@ using System.Drawing.Printing;
 
 namespace Simhopp
 {
-    public partial class FormMain : Form
+    public partial class FormMain : Form, IFormMain
     {
-        private ListViewItem _selectedItem = null;
-        int countItems = 0;
+        public ListView ListViewEvent { get {return listViewEvent; } }
+        public ListView ListViewResult { get { return listViewResult; } }
+        public Dictionary<ListViewItem, bool> SearchItemSource { get; set; }
 
-        public FormMain()
+        private ListViewItem _selectedItem = null;
+        private MainPresenter _presenter;
+
+        public FormMain(MainPresenter presenter = null)
         {
+            _presenter = presenter;
+            if (_presenter == null)
+                _presenter = new MainPresenter(this);
+
             InitializeComponent();
+
+            SearchItemSource = new Dictionary<ListViewItem, bool>();
+
             PanelDrawer.Colorize(this);
 
-            FormMainFunctions.FillListViewWithEvent(listViewEvent);
+            _presenter.FillListViewWithEvent();
         }
 
         #region Event Funktioner
@@ -63,7 +74,7 @@ namespace Simhopp
             if (listViewEvent.SelectedItems.Count != 0)
             {
                 Database.StartEvent(Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text));
-                FormMainFunctions.FillListViewWithEvent(listViewEvent);
+                _presenter.FillListViewWithEvent();
             }
             else
             {
@@ -75,19 +86,7 @@ namespace Simhopp
         private void RegisterResultClick(object sender, EventArgs e)                    //EJ KLAR
         {
             //SELECTED EVENT
-            if (listViewEvent.SelectedItems.Count > 0)
-            {
-                this.Hide();
-                Contest c = Database.GetContest(Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text));
-                EventPresenter presenter = new EventPresenter(null, c);
-                presenter.ShowViewDialog();
-                this.Show();
-            }
-            else
-            {
-                MessageBox.Show("Välj ett event, försök igen", "Fel format", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            _presenter.ResultClick();
         }
 
         private void listViewEvent_MouseDown(object sender, MouseEventArgs e)
@@ -104,21 +103,21 @@ namespace Simhopp
         private void startaTävlingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Database.StartEvent(Int32.Parse(_selectedItem.SubItems[5].Text));
-            FormMainFunctions.FillListViewWithEvent(listViewEvent);
+            _presenter.FillListViewWithEvent();
         }
 
         //stoppar tävling
         private void stoppaTävlingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Database.StopEvent(Int32.Parse(_selectedItem.SubItems[5].Text));
-            FormMainFunctions.FillListViewWithEvent(listViewEvent);
+            _presenter.FillListViewWithEvent();
         }
 
         //tar bort event och allt tillhörande ur databasen
         private void taBortEventToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Database.RemoveEvent(Int32.Parse(_selectedItem.SubItems[5].Text));
-            FormMainFunctions.FillListViewWithEvent(listViewEvent);
+            _presenter.FillListViewWithEvent();
         }
         //kollar om det finns en extra skärm ansluten och skickar upp resulten (FormResultsToFullScreen) på den
         private void ResultsToFullScreen_btn_Click(object sender, EventArgs e)
@@ -141,80 +140,9 @@ namespace Simhopp
         #region Print Result
         private void PrintResult_btn_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if(listViewEvent.SelectedItems.Count > 0)
-                {
-                    PrintPreviewDialog printPreviewDialog1 = new PrintPreviewDialog();
-                    PrintDocument pd = new PrintDocument();
-
-                    printPreviewDialog1.Document = pd;
-                    printPreviewDialog1.Size = new System.Drawing.Size(350, 550);
-                    printPreviewDialog1.Show();
-                    pd.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.pd_PrintPage);
-                    pd.DefaultPageSettings.PaperSize = new PaperSize("A4", 827, 1170);
-                    pd.PrintPage += new PrintPageEventHandler(this.pd_PrintPage);
-                }
-                else
-                {
-                    MessageBox.Show("Välj ett event, försök igen", "Fel format", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
-            catch (Exception ex)
-            {
-
-            }
+            _presenter.PrintResult();
         }
-        private void pd_PrintPage(object sender, PrintPageEventArgs ev)
-        {
-            int y = 300;
-            int count;
-
-            Contest c = Database.GetContest(Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text));
-
-            List<string> information = c.GetCollectedContestInfo();
-
-             //title
-            ev.Graphics.DrawString(information[5], new Font("Times New Roman", 18, FontStyle.Bold), Brushes.Black, 325, 75);
-            //infobox
-            ev.Graphics.DrawString("Plats", new Font("Times New Roman", 14, FontStyle.Bold), Brushes.DimGray, 100, 120);
-            ev.Graphics.DrawString(information[3], new Font("Times New Roman", 14, FontStyle.Regular), Brushes.DimGray, 175, 120);
-            ev.Graphics.DrawString("Datum", new Font("Times New Roman", 14, FontStyle.Bold), Brushes.DimGray, 100, 145);
-            ev.Graphics.DrawString(information[4], new Font("Times New Roman", 14, FontStyle.Regular), Brushes.DimGray, 175, 145);
-            ev.Graphics.DrawString("Kön", new Font("Times New Roman", 14, FontStyle.Bold), Brushes.DimGray, 100, 170);
-            ev.Graphics.DrawString(information[2], new Font("Times New Roman", 14, FontStyle.Regular), Brushes.DimGray, 175, 170); 
-            //undertitlar
-            ev.Graphics.DrawString("Namn", new Font("Times New Roman", 14, FontStyle.Bold), Brushes.Black, 100, 250);
-            ev.Graphics.DrawString("Resultat", new Font("Times New Roman", 14, FontStyle.Bold), Brushes.Black, 300, 250);   
-
-            count = listViewResult.Items.Count;
-
-            for (int i = countItems; i < count; ++i)
-            {
-                
-                int placering = i + 1;
-                ev.Graphics.DrawString(placering + ". " + listViewResult.Items[i].SubItems[1].Text, new Font("Times New Roman", 14, FontStyle.Regular), Brushes.Black, 100, y);        //skriver ut namn
-                ev.Graphics.DrawString(listViewResult.Items[i].Text, new Font("Times New Roman", 14, FontStyle.Regular), Brushes.Black, 300, y);                    //skriver ut id/resultat
-                if (placering == 4)
-                {
-                    ev.Graphics.DrawString("------------------------------------------", new Font("Times New Roman", 14, FontStyle.Regular), Brushes.Black, 100, y - 20);
-                }
-                y += 40;
-                if (y > 1100)
-                {
-                    ev.HasMorePages = true;
-                    y = 75;
-                    return;
-                }
-                else
-                {
-                    ev.HasMorePages = false;
-                }
-                countItems = i;
-            }
-            countItems = 0;
-        }
+       
         #endregion
 
         #region Menustrip
@@ -252,30 +180,23 @@ namespace Simhopp
                 if (listViewEvent.SelectedItems.Count > 0)
                 {
                     Database.RemoveEvent(Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text));
-                    FormMainFunctions.FillListViewWithEvent(listViewEvent);
+                    _presenter.FillListViewWithEvent();
                 }
             }
         }
         #endregion
 
-        //.....................SÖKFUNKTION
         private void searchBox_KeyUp(object sender, KeyEventArgs e)
         {
-            //ListViewItem foundItem = listViewEvent.FindItemWithText(searchBox.Text, false, 0, true);
-            //if (foundItem != null)
-            //{
-            //    listViewEvent.TopItem = foundItem;
-            //}
-        }
-
-        private void searchBox_TextChanged(object sender, EventArgs e)
-        {
-            ListViewItem foundItem = listViewEvent.FindItemWithText(searchBox.Text, false, 0, true);
-            if (foundItem != null)
+            string str = searchBox.Text.ToLower();
+            listViewEvent.Items.Clear();
+            foreach (ListViewItem item in SearchItemSource.Keys)
             {
-                listViewEvent.TopItem = foundItem;
+                if (item.SubItems[1].Text.ToLower().IndexOf(str) >= 0 || str == "")
+                {
+                    listViewEvent.Items.Add(item);
+                }
             }
         }
-        //.....................SÖKFUNKTION
     }
 }

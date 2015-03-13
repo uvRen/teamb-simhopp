@@ -28,21 +28,40 @@ namespace Simhopp_JudgeClient
 
         private delegate void ProcessMessage(SimhoppMessage msg);
         private  void PopulateJudgeList(SimhoppMessage msg)
-        {
-            ProcessMessage d = new ProcessMessage(_view.PopulateJudgeList);
-            _view.Invoke(d, msg);
+        {try
+            {
+                ProcessMessage d = new ProcessMessage(_view.PopulateJudgeList);
+                _view.Invoke(d, msg);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.Handle(ex);
+            }
         }
 
         private  void AssignLogin(SimhoppMessage msg)
-        {
-            ProcessMessage d = new ProcessMessage(_view.AssignLogin);
-            _view.Invoke(d, msg);
+        {try
+            {
+                ProcessMessage d = new ProcessMessage(_view.AssignLogin);
+                _view.Invoke(d, msg);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.Handle(ex);
+            }
         }
 
         private  void LogMessage(SimhoppMessage msg)
         {
-            ProcessMessage d = new ProcessMessage(_view.LogMessage);
-            _view.Invoke(d, msg);
+            try
+            {
+                ProcessMessage d = new ProcessMessage(_view.LogMessage);
+                _view.Invoke(d, msg);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.Handle(ex);
+            }
         }
 
         public  void Start()
@@ -124,6 +143,7 @@ namespace Simhopp_JudgeClient
                     client.Client.ReceiveTimeout = 1000;
                     data = client.Receive(ref ipep);
                     responseData = Encoding.ASCII.GetString(data);
+
                     responseMsg = SimhoppMessage.Deserialize(responseData);
 
                     return responseMsg;

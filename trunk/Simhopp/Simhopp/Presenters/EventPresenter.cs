@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Simhopp
@@ -242,13 +239,17 @@ namespace Simhopp
             return _view.ShowDialog();
         }
 
-        public void SetMode(ViewMode mode, int clientJudgeIndex = -1, IJudgeClient judgeClient = null)
+        public void SetMode(ViewMode mode, int clientJudgeIndex = -1, IJudgeClient judgeClient = null, Icon icon = null)
         {
             Mode = mode;
             _clientJudgeIndex = clientJudgeIndex;
             _judgeClient = judgeClient;
             _view.EnableControls(false, true);
             _view.SetClientLogin();
+            if (icon != null)
+            {
+                _view.SetIcon(icon);
+            }
         }
 
         public void ScoreRequested(SimhoppMessage msg)
@@ -302,11 +303,16 @@ namespace Simhopp
         {
             JudgeServer.Start();
         }
+        public void StopServer()
+        {
+            JudgeServer.Start();
+        }
 
         public void Close()
         {
             if (Mode == ViewMode.Client)
             {
+                JudgeServer.Stop();
                 _judgeClient.SendLogout(_clientJudgeIndex);
             }
         }

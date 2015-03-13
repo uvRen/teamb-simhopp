@@ -32,7 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Fish.ico</ApplicationIcon>
+    <ApplicationIcon>Base-Jumping.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MySql.Data, Version=6.9.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
@@ -58,6 +58,8 @@
     <Compile Include="Classes\Model\Dive.cs" />
     <Compile Include="Classes\Model\DiveType.cs" />
     <Compile Include="Classes\Static\ExceptionHandler.cs" />
+    <Compile Include="Interfaces\IFormMain.cs" />
+    <Compile Include="Interfaces\IFormNewEvent.cs" />
     <Compile Include="Presenters\EventPresenter.cs" />
     <Compile Include="Interfaces\IJudgeClient.cs" />
     <Compile Include="Classes\Static\JudgeServer.cs" />
@@ -73,14 +75,14 @@
     <Compile Include="Views\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presenters\FormMainFunctions.cs" />
+    <Compile Include="Presenters\MainPresenter.cs" />
     <Compile Include="Views\FormNewEvent.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\FormNewEvent.Designer.cs">
       <DependentUpon>FormNewEvent.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presenters\FormNewEventFunctions.cs" />
+    <Compile Include="Presenters\NewEventPresenter.cs" />
     <Compile Include="Interfaces\IFormEvent.cs" />
     <Compile Include="Views\FormResultsToFullScreen.cs">
       <SubType>Form</SubType>
@@ -133,6 +135,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Base-Jumping.ico" />
     <Content Include="external\MySql.Data.dll" />
     <Content Include="Fish.ico" />
     <None Include="Resources\Cut-32.png" />

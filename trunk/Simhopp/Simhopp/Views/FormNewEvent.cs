@@ -10,8 +10,8 @@ using System.Windows.Forms;
 
 namespace Simhopp
 {
- 
-    public partial class FormNewEvent : Form
+
+    public partial class FormNewEvent : Form, IFormNewEvent
     {
         private bool privateDrag;
         private AutoCompleteStringCollection _diveNo = new AutoCompleteStringCollection();
@@ -27,8 +27,8 @@ namespace Simhopp
             InitializeComponent();
             PanelDrawer.Colorize(this);
             //fyller listorna med dommare och hoppare
-            FormNewEventFunctions.FillListViewWithDivers(radioButtonMale, radioButtonFemale, listViewDivers);
-            FormNewEventFunctions.FillListViewWithJudges(listViewJudge);
+            NewEventPresenter.FillListViewWithDivers(radioButtonMale, radioButtonFemale, listViewDivers);
+            NewEventPresenter.FillListViewWithJudges(listViewJudge);
 
             
             listViewDivers.ItemDrag += listViewDivers_ItemDrag;
@@ -42,6 +42,27 @@ namespace Simhopp
         }
 
         #region Event Funktioner
+
+        public void CheckIfSubmitButtonBeEnable()
+        {
+            if (EventName_textBox.Text.Length > 0)
+                if (EventLocation_textBox.Text.Length > 0)
+                    if (Int32.Parse(DiveCount_numericUpDown.Value.ToString()) > 0)
+                        if (listViewDivers.CheckedItems.Count > 0)
+                        {
+                            int count = listViewJudge.CheckedItems.Count;
+
+                            if (count % 2 != 0 && count >= 3)
+                            {
+                                EnableSubmitButton = true;
+                            }
+                            else
+                            {
+                                EnableSubmitButton = false;
+                            }
+                        }
+            btnSubmit.Enabled = EnableSubmitButton;
+        }
         void listViewDivers_DragDrop(object sender, DragEventArgs e)
         {
             var pos = listViewDivers.PointToClient(new Point(e.X, e.Y));
@@ -81,22 +102,22 @@ namespace Simhopp
         //Skapar ett nytt event när användaren klickar på "Klar" i fönstret "FormNewEvent"
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            FormNewEventFunctions.AddNewEventToDatabase(EventName_textBox, EventLocation_textBox, dateTimePicker1, DiveCount_numericUpDown, radioButton1meter, radioButton3meter, radioButton5meter, radioButton7meter, radioButton10meter, radioButtonSingle, radioButtonSync, radioButtonMale, radioButtonFemale, listViewDivers, listViewJudge, successfully, errorlabel, _dataGridViewList);
+            NewEventPresenter.AddNewEventToDatabase(EventName_textBox, EventLocation_textBox, dateTimePicker1, DiveCount_numericUpDown, radioButton1meter, radioButton3meter, radioButton5meter, radioButton7meter, radioButton10meter, radioButtonSingle, radioButtonSync, radioButtonMale, radioButtonFemale, listViewDivers, listViewJudge, successfully, errorlabel, _dataGridViewList);
         }
 
         private void textBox3_Enter(object sender, EventArgs e)
         {
-            FormNewEventFunctions.ResetTextBox(newDiverName);
+            NewEventPresenter.ResetTextBox(newDiverName);
         }
 
         private void textBox6_Enter(object sender, EventArgs e)
         {
-            FormNewEventFunctions.ResetTextBox(newDiverCountry);
+            NewEventPresenter.ResetTextBox(newDiverCountry);
         }
 
         private void textBox5_Enter(object sender, EventArgs e)
         {
-            FormNewEventFunctions.ResetTextBox(newDiverAge);
+            NewEventPresenter.ResetTextBox(newDiverAge);
         }
 
         private void AddDiverToList(Diver diver, bool isSync)
@@ -127,34 +148,34 @@ namespace Simhopp
 
         private void AddNewDiver_Click(object sender, EventArgs e)
         {
-            FormNewEventFunctions.AddNewDiver(newDiverSelectGender, newDiverName, newDiverAge, newDiverCountry, listViewDivers, radioButtonMale, radioButtonFemale);
+            NewEventPresenter.AddNewDiver(newDiverSelectGender, newDiverName, newDiverAge, newDiverCountry, listViewDivers, radioButtonMale, radioButtonFemale);
         }
 
         private void newJudgeName_Enter(object sender, EventArgs e)
         {
-            FormNewEventFunctions.ResetTextBox(newJudgeName);
+            NewEventPresenter.ResetTextBox(newJudgeName);
         }
 
         private void newJudgeSubmit_Click(object sender, EventArgs e)
         {
-            FormNewEventFunctions.AddNewJudge(newJudgeName, listViewJudge);
+            NewEventPresenter.AddNewJudge(newJudgeName, listViewJudge);
         }
 
         private void listViewJudge_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
-            FormNewEventFunctions.CheckIfSubmitButtonBeEnable(EnableSubmitButton, btnSubmit, EventName_textBox, EventLocation_textBox, DiveCount_numericUpDown, listViewDivers, listViewJudge);
+            CheckIfSubmitButtonBeEnable();
         }
 
         //uppdaterar listViewDivers när användaren väljer mellan Male och Female
         private void radioButtonMale_CheckedChanged(object sender, EventArgs e)
         {
-            FormNewEventFunctions.FillListViewWithDivers(radioButtonMale, radioButtonFemale, listViewDivers);
+            NewEventPresenter.FillListViewWithDivers(radioButtonMale, radioButtonFemale, listViewDivers);
         }
         
         //autocomplete
         private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            FormNewEventFunctions.AddAutoCompleteToDataGridView(_dataGridViewList, tabControl1, e, _diveNo, _diveName);
+            NewEventPresenter.AddAutoCompleteToDataGridView(_dataGridViewList, tabControl1, e, _diveNo, _diveName);
             PanelDrawer.Colorize(this);
         }
 
@@ -172,7 +193,7 @@ namespace Simhopp
         private void RemoveDiverToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Database.RemoveDiver(Int32.Parse(selectedItem.SubItems[4].Text));
-            FormNewEventFunctions.FillListViewWithDivers(radioButtonMale, radioButtonFemale, listViewDivers);
+            NewEventPresenter.FillListViewWithDivers(radioButtonMale, radioButtonFemale, listViewDivers);
         }
 
         private void EditDiverToolStripMenuItem_Click(object sender, EventArgs e)
@@ -206,9 +227,8 @@ namespace Simhopp
 
         private void listViewDivers_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
-            FormNewEventFunctions.CheckIfSubmitButtonBeEnable(EnableSubmitButton, btnSubmit, EventName_textBox, EventLocation_textBox, DiveCount_numericUpDown, listViewDivers, listViewJudge);
-
-            FormNewEventFunctions.AddDataGridViewToTabControl(tabControl1, listViewDivers, _diveNo, _diveName, _dataGridViewList, DiveCount_numericUpDown, panel1);
+            CheckIfSubmitButtonBeEnable();
+            NewEventPresenter.AddDataGridViewToTabControl(tabControl1, listViewDivers, _diveNo, _diveName, _dataGridViewList, DiveCount_numericUpDown, panel1);
             PanelDrawer.Colorize(this);
             //lägger till en eventhandler till varje DataGridView
             for(int i = 0; i < _dataGridViewList.Count; i++)
@@ -222,7 +242,7 @@ namespace Simhopp
         
         private void DiveTypeInput_dataGridView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            FormNewEventFunctions.AddAutoCompleteToDataGridView(_dataGridViewList, tabControl1, e, _diveNo, _diveName);
+            NewEventPresenter.AddAutoCompleteToDataGridView(_dataGridViewList, tabControl1, e, _diveNo, _diveName);
         }
 
         private void FormNewEvent_ResizeEnd(object sender, EventArgs e)
@@ -243,17 +263,20 @@ namespace Simhopp
 
         private void EventName_textBox_Leave(object sender, EventArgs e)
         {
-            FormNewEventFunctions.CheckIfSubmitButtonBeEnable(EnableSubmitButton, btnSubmit, EventName_textBox, EventLocation_textBox, DiveCount_numericUpDown, listViewDivers, listViewJudge);
+
+            CheckIfSubmitButtonBeEnable();
         }
 
         private void EventLocation_textBox_Leave(object sender, EventArgs e)
         {
-            FormNewEventFunctions.CheckIfSubmitButtonBeEnable(EnableSubmitButton, btnSubmit, EventName_textBox, EventLocation_textBox, DiveCount_numericUpDown, listViewDivers, listViewJudge);
+
+            CheckIfSubmitButtonBeEnable();
         }
 
         private void DiveCount_numericUpDown_Leave(object sender, EventArgs e)
         {
-            FormNewEventFunctions.CheckIfSubmitButtonBeEnable(EnableSubmitButton, btnSubmit, EventName_textBox, EventLocation_textBox, DiveCount_numericUpDown, listViewDivers, listViewJudge);
+
+            CheckIfSubmitButtonBeEnable();
         }
 
         //kollar så att ett giltigt värde finns i DataGridViewCellen
@@ -364,7 +387,7 @@ namespace Simhopp
 
         private void listViewDivers_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            FormNewEventFunctions.FillListViewWithDivers(radioButtonMale, radioButtonFemale, listViewDivers, e.Column);
+            NewEventPresenter.FillListViewWithDivers(radioButtonMale, radioButtonFemale, listViewDivers, e.Column);
         }
 
         #endregion
