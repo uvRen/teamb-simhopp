@@ -321,11 +321,6 @@ namespace Simhopp
 
         public static void StopEvent(int eventID)
         {
-            Thread t = new Thread(() => _StopEvent(eventID));
-            t.Start();
-        }
-        private static void _StopEvent(int eventID)
-        {
             MySqlConnection conn = ConnectToDatabase();
             string sql = "";
 
@@ -346,11 +341,6 @@ namespace Simhopp
 
 
         public static void RemoveEvent(int eventID)
-        {
-            Thread t = new Thread(() => _RemoveEvent(eventID));
-            t.Start();
-        }
-        private static void _RemoveEvent(int eventID)
         {
             MySqlConnection conn = ConnectToDatabase();
             string sql = "";
