@@ -19,14 +19,17 @@ namespace Simhopp
             foreach (Contest e in Database.getEvents())
             {
                 ListViewItem item1 = new ListViewItem();
+                
                 item1.Text = "";
                 if (e.started == 1)
                 {
-                    item1.SubItems[0].BackColor = Color.Green;
+                    //item1.SubItems[0].BackColor = Color.Green;
+                    item1.ImageIndex = 1;
                 }
                 else
                 {
-                    item1.SubItems[0].BackColor = Color.Red;
+                    //item1.SubItems[0].BackColor = Color.Red;
+                    item1.ImageIndex = 0;
                 }
                 item1.UseItemStyleForSubItems = false;
 
