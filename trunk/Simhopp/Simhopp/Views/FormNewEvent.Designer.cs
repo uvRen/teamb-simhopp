@@ -621,8 +621,8 @@
             // 
             // panelTabControlContainer
             // 
-            this.panelTabControlContainer.Controls.Add(this.labelDiveAddDiversToolTip);
             this.panelTabControlContainer.Controls.Add(this.panel1);
+            this.panelTabControlContainer.Controls.Add(this.labelDiveAddDiversToolTip);
             this.panelTabControlContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTabControlContainer.Location = new System.Drawing.Point(3, 448);
             this.panelTabControlContainer.Name = "panelTabControlContainer";
@@ -631,6 +631,7 @@
             // 
             // labelDiveAddDiversToolTip
             // 
+            this.labelDiveAddDiversToolTip.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelDiveAddDiversToolTip.AutoSize = true;
             this.labelDiveAddDiversToolTip.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold);
             this.labelDiveAddDiversToolTip.Location = new System.Drawing.Point(50, 75);
