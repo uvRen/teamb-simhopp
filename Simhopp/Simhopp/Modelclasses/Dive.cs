@@ -12,7 +12,7 @@ namespace Simhopp
     {
         [IgnoreDataMember]
         public Diver _diver;
-        private Contest _contest;
+        public Contest _contest;
         public int Id;
         [DataMember]
         public DiveType _diveType;

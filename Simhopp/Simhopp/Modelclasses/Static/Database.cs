@@ -207,7 +207,6 @@ namespace Simhopp
                     if (rowsAffected <= 0)
                         return 0;
                 }
-
                 conn.Close();
                 return 1;
             }
@@ -237,6 +236,7 @@ namespace Simhopp
                     events.Add(e);
                 }
             }
+            conn.Close();
             return events;
         }
 
@@ -264,33 +264,42 @@ namespace Simhopp
                 c.AddDivers(Database.GetDiversInEvent(contestId));
                 c.AddJudges(Database.GetJudgesInEvent(contestId));
 
-
                 //lägger till hopp till alla hoppare
                 foreach(Diver d in c.Divers)
                 {
                     List<DiveType> dType = new List<DiveType>();
                     List<Dive> dives = new List<Dive>();
 
-                    Console.WriteLine("C = " + contestId);
-                    dType = Database.GetDiversDiveInContest(d.Id, contestId);
-                    
+                    List<Dive> divesId = new List<Dive>();
+
+                    divesId = Database.GetDiversDiveInContest(d.Id, contestId);
+                    dType = Database.GetDiversDiveTypeInContest(d.Id, contestId);
+
+                    int count = 0;
                     foreach(DiveType type in dType)
                     {
-                        Console.WriteLine(type.Name + "\n" + d.Name);
                         Dive dDive = new Dive();
                         dDive._diveType = type;
                         dDive._diver = d;
+                        dDive.Id = divesId[count].Id;
+                        count++;
 
                         dives.Add(dDive);
                     }
                     d.Dives = dives;
                 }
+                conn.Close();
             }
+            
 
             return c;
         }
-
         public static void StartEvent(int eventID)
+        {
+            Thread t = new Thread(() => _StartEvent(eventID));
+            t.Start();
+        }
+        private static void _StartEvent(int eventID)
         {
             MySqlConnection conn = ConnectToDatabase();
             string sql = "";
@@ -300,6 +309,7 @@ namespace Simhopp
                 sql = "UPDATE event SET started=1 WHERE id=" + eventID + ";";
                 var cmd = new MySqlCommand(sql, conn);
                 var dr = cmd.ExecuteNonQuery();
+                conn.Close();
             }
 
             else
@@ -311,6 +321,11 @@ namespace Simhopp
 
         public static void StopEvent(int eventID)
         {
+            Thread t = new Thread(() => _StopEvent(eventID));
+            t.Start();
+        }
+        private static void _StopEvent(int eventID)
+        {
             MySqlConnection conn = ConnectToDatabase();
             string sql = "";
 
@@ -319,6 +334,7 @@ namespace Simhopp
                 sql = "UPDATE event SET started=0 WHERE id=" + eventID + ";";
                 var cmd = new MySqlCommand(sql, conn);
                 var dr = cmd.ExecuteNonQuery();
+                conn.Close();
             }
 
             else
@@ -328,7 +344,13 @@ namespace Simhopp
             }
         }
 
+
         public static void RemoveEvent(int eventID)
+        {
+            Thread t = new Thread(() => _RemoveEvent(eventID));
+            t.Start();
+        }
+        private static void _RemoveEvent(int eventID)
         {
             MySqlConnection conn = ConnectToDatabase();
             string sql = "";
@@ -344,6 +366,8 @@ namespace Simhopp
                 sql = "DELETE FROM event WHERE id =" + eventID + ";";
                 cmd = new MySqlCommand(sql, conn);
                 dr = cmd.ExecuteNonQuery();
+
+                conn.Close();
             }
             else
             {
@@ -369,8 +393,8 @@ namespace Simhopp
                     ID = Int32.Parse(row["AUTO_INCREMENT"].ToString());
                 }
 
+                conn.Close();
                 return ID-1;
-
             }
             return ID;
         }
@@ -398,17 +422,23 @@ namespace Simhopp
                     break;
             }
 
-            var conn = ConnectToDatabase();
-            var cmd = new MySqlCommand(sql, conn);
-            var dr = cmd.ExecuteReader();
-            var dt = new DataTable();
-            dt.Load(dr);
-
-            foreach (DataRow row in dt.Rows)
+            var conn = Database.ConnectToDatabase();
+            if(conn != null)
             {
-                var tmp = new Diver(Int32.Parse(row["id"].ToString()), row["name"].ToString(), Int32.Parse(row["age"].ToString()), Int32.Parse(row["sex"].ToString()), row["country"].ToString());
-                diverList.Add(tmp);
+                var cmd = new MySqlCommand(sql, conn);
+                var dr = cmd.ExecuteReader();
+                var dt = new DataTable();
+                dt.Load(dr);
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    var tmp = new Diver(Int32.Parse(row["id"].ToString()), row["name"].ToString(), Int32.Parse(row["age"].ToString()), Int32.Parse(row["sex"].ToString()), row["country"].ToString());
+                    diverList.Add(tmp);
+                }
+
+                conn.Close();
             }
+            
             return diverList;
         }
 
@@ -456,27 +486,32 @@ namespace Simhopp
         public static Diver GetSpecificDiverFromDatabase(int id)
         {
             Diver d = new Diver();
-            var conn = ConnectToDatabase();
-            string sql = "SELECT * FROM diver WHERE id=" + id.ToString();
-            var cmd = new MySqlCommand(sql, conn);
-            var dr = cmd.ExecuteReader();
-            var dt = new DataTable();
-            dt.Load(dr);
+            var conn = Database.ConnectToDatabase();
+            if(conn != null)
+            {
+                string sql = "SELECT * FROM diver WHERE id=" + id.ToString();
+                var cmd = new MySqlCommand(sql, conn);
+                var dr = cmd.ExecuteReader();
+                var dt = new DataTable();
+                dt.Load(dr);
 
-            //om en hoppare hittas returneras den, annars NULL
-            if (dt.Rows.Count > 0)
-            {
-                foreach (DataRow row in dt.Rows)
+                //om en hoppare hittas returneras den, annars NULL
+                if (dt.Rows.Count > 0)
                 {
-                    d.Id = Int32.Parse(row["id"].ToString());
-                    d.Name = row["name"].ToString();
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        d.Id = Int32.Parse(row["id"].ToString());
+                        d.Name = row["name"].ToString();
+                    }
+                    conn.Close();
+                    return d;
                 }
-                return d;
+                else
+                {
+                    return null;
+                }
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
 
         public static void RemoveDiver(int diverID)
@@ -495,6 +530,8 @@ namespace Simhopp
                 sql = "DELETE FROM diver WHERE id =" + diverID + ";";
                 cmd = new MySqlCommand(sql, conn);
                 dr = cmd.ExecuteNonQuery();
+
+                conn.Close();
             }
             else
             {
@@ -506,7 +543,7 @@ namespace Simhopp
         #endregion
 
         #region Dive
-        public static List<DiveType> GetDiversDiveInContest(int diverId, int eventId)
+        public static List<DiveType> GetDiversDiveTypeInContest(int diverId, int eventId)
         {
             List<DiveType> dives = new List<DiveType>();
 
@@ -533,11 +570,47 @@ namespace Simhopp
             }
             return dives;
         }
+
+        public static List<Dive> GetDiversDiveInContest(int diverId, int eventId)
+        {
+            List<Dive> dives = new List<Dive>();
+            MySqlConnection conn = Database.ConnectToDatabase();
+
+            if(conn != null)
+            {
+                MySqlCommand comm = conn.CreateCommand();
+                string sql = "SELECT id FROM dive WHERE diverId=" + diverId + " AND eventId=" + eventId;
+                comm.CommandText = sql;
+
+                var dr = comm.ExecuteReader();
+                var dt = new DataTable();
+                dt.Load(dr);
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    Dive d = new Dive();
+                    d.Id = Int32.Parse(row["id"].ToString());
+                    dives.Add(d);
+                }
+                conn.Close();
+            }
+            return dives;
+        }
         #endregion
 
         #region Score
         public static void AddScoreToDive(List<Score> s, Dive d)
         {
+            Thread t = new Thread(() => _AddScoreToDive(s, d));
+            t.Start();
+        }
+        private static void _AddScoreToDive(List<Score> s, Dive d)
+        {
+            System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+            customCulture.NumberFormat.NumberDecimalSeparator = ".";
+
+            System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
+
             MySqlConnection conn = Database.ConnectToDatabase();
 
             if(conn != null)
@@ -555,14 +628,13 @@ namespace Simhopp
                     comm.ExecuteNonQuery();
                 }
 
-                comm.CommandText = "";
+                string sql = "UPDATE dive SET totalScore=" + d.Score + " WHERE id=" + d.Id;
+                comm.CommandText = sql;
 
+                comm.ExecuteNonQuery();
 
                 conn.Close();
             }
-
-
-
         }
 
         //*** THOMAS - RESULT (EJ KLAR)
@@ -629,7 +701,55 @@ namespace Simhopp
         #endregion
 
         #region Event_diver
-        public static List<Diver> GetDiversInEvent(int eventID)
+        public static void GetDiversInContest(int eventID, ListView listViewResult = null)
+        {
+            List<Diver> divers = new List<Diver>();
+            try
+            {
+                MySqlConnection conn = ConnectToDatabase();
+                if (conn != null)
+                {
+                    Diver d;
+                    string sql = "SELECT * FROM diver WHERE id IN (SELECT diverId FROM event_diver WHERE event_diver.eventId=" + eventID + ") ORDER BY id DESC;"; //RADERA: ORDER BY id DESC, endast för "resultat"
+                    var cmd = new MySqlCommand(sql, conn);
+                    var dr = cmd.ExecuteReader();
+                    var dt = new DataTable();
+                    dt.Load(dr);
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        d = new Diver(Int32.Parse(row["id"].ToString()), row["name"].ToString());
+                        divers.Add(d);
+
+                        sql = "SELECT totalScore FROM dive WHERE diverId=" + d.Id + " AND eventId=" + eventID;
+                        var cmd2 = new MySqlCommand(sql, conn);
+
+                        var dr2 = cmd2.ExecuteReader();
+                        var dt2 = new DataTable();
+                        dt2.Load(dr2);
+
+                        double summa = 0;
+
+                        foreach (DataRow row2 in dt2.Rows)
+                        {
+                            summa += Double.Parse(row2["totalScore"].ToString());
+                        }
+
+                        ListViewItem item = new ListViewItem();
+                        item.Text = summa.ToString();
+                        item.SubItems.Add(d.Name);
+                        listViewResult.Items.Add(item);
+                    }
+                    conn.Close();
+                }
+            }
+            catch(Exception ex)
+            {
+                ExceptionHandler.Handle(ex);
+            }
+        }
+
+        public static List<Diver> GetDiversInEvent(int eventID, ListView listViewResult = null)
         {
             List<Diver> divers = new List<Diver>();
 
@@ -648,6 +768,7 @@ namespace Simhopp
                     d = new Diver(Int32.Parse(row["id"].ToString()), row["name"].ToString());
                     divers.Add(d);
                 }
+                conn.Close();
             }
             return divers;
         }
@@ -673,6 +794,7 @@ namespace Simhopp
                     j = new Judge(Int32.Parse(row["id"].ToString()), row["name"].ToString());
                     judges.Add(j);
                 }
+                conn.Close();
             }
             return judges;
         }
@@ -681,7 +803,7 @@ namespace Simhopp
         #region DD
         public static DataTable GetDDList()
         {
-            var conn = ConnectToDatabase();
+            var conn = Database.ConnectToDatabase();
             if (conn != null)
             {
                 var cmd = new MySqlCommand("SELECT * FROM DD", conn);
@@ -700,7 +822,7 @@ namespace Simhopp
 
         public static void GetAutoCompleteListsFromDatabase(AutoCompleteStringCollection diveNo, AutoCompleteStringCollection diveName)
         {
-            var conn = ConnectToDatabase();
+            var conn = Database.ConnectToDatabase();
             if (conn != null)
             {
                 var cmd = new MySqlCommand("SELECT DiveNo, DiveName FROM DD", conn);
@@ -713,20 +835,27 @@ namespace Simhopp
                     diveNo.Add(row["DiveNo"].ToString());
                     diveName.Add(row["DiveName"].ToString());
                 }
+
+                conn.Close();
             }
 
             else
             {
                 MessageBox.Show("Anslutningen till databasen misslyckades", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            conn.Close();
+            
         }
 
         public static void GetDiveNoFromDDinDatabase(string[] DiveNo, string[] DiveName)
         {
+            Thread t = new Thread(() => _GetDiveNoFromDDinDatabase(DiveNo, DiveName));
+            t.Start();
+        }
+        private static void _GetDiveNoFromDDinDatabase(string[] DiveNo, string[] DiveName)
+        {
             int count = 0;
 
-            var conn = ConnectToDatabase();
+            var conn = Database.ConnectToDatabase();
             if (conn != null)
             {
                 var cmd = new MySqlCommand("SELECT DiveNo, DiveName FROM DD", conn);
@@ -740,13 +869,14 @@ namespace Simhopp
                     DiveName[count] = row["DiveName"].ToString();
                     count++;
                 }
+                conn.Close();
             }
 
             else
             {
                 MessageBox.Show("Anslutningen till databasen misslyckades", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            conn.Close();
+            
         }
 
         public static int AddDiveTypeToDatabase(DiveType d)
@@ -764,8 +894,9 @@ namespace Simhopp
                 comm.Parameters.AddWithValue("@height", d.GetHeight());
                 comm.ExecuteNonQuery();
 
-                comm.CommandText = "SELECT LAST_INSERT_ID() AS id";
-                var dr = comm.ExecuteReader();
+                MySqlCommand comm2 = conn.CreateCommand();
+                comm2.CommandText = "SELECT LAST_INSERT_ID() AS id";
+                var dr = comm2.ExecuteReader();
                 var dt = new DataTable();
                 dt.Load(dr);
                 DataRow row = dt.Rows[0];
@@ -780,6 +911,11 @@ namespace Simhopp
 
         public static void AddDiveToDiver(DiveType d, int eventID, int diveNumber, int diveTypeID, int diverID)
         {
+            Thread t = new Thread(() => _AddDiveToDiver(d, eventID, diveNumber, diveTypeID, diverID));
+            t.Start();
+        }
+        private static void _AddDiveToDiver(DiveType d, int eventID, int diveNumber, int diveTypeID, int diverID)
+        {
             System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
             customCulture.NumberFormat.NumberDecimalSeparator = ".";
 
@@ -789,14 +925,22 @@ namespace Simhopp
 
             if(conn != null)
             {
-                MySqlCommand comm = conn.CreateCommand();
-                comm.CommandText = "INSERT INTO dive(diverId, difficulty, eventId, diveNumber, DiveTypeID) VALUES(@diverId, @difficulty, @eventId, @diveNumber, @DiveTypeID)";
-                comm.Parameters.AddWithValue("@diverId", diverID);
-                comm.Parameters.AddWithValue("@difficulty", d.Difficulty);
-                comm.Parameters.AddWithValue("@eventId", eventID);
-                comm.Parameters.AddWithValue("@diveNumber", diveNumber);
-                comm.Parameters.AddWithValue("@DiveTypeID", diveTypeID);
-                comm.ExecuteNonQuery();
+                try
+                {
+                    MySqlCommand comm = conn.CreateCommand();
+                    comm.CommandText = "INSERT INTO dive(diverId, difficulty, eventId, diveNumber, DiveTypeID) VALUES(@diverId, @difficulty, @eventId, @diveNumber, @DiveTypeID)";
+                    comm.Parameters.AddWithValue("@diverId", diverID);
+                    comm.Parameters.AddWithValue("@difficulty", d.Difficulty);
+                    comm.Parameters.AddWithValue("@eventId", eventID);
+                    comm.Parameters.AddWithValue("@diveNumber", diveNumber);
+                    comm.Parameters.AddWithValue("@DiveTypeID", diveTypeID);
+                    comm.ExecuteNonQuery();
+                }
+                catch(Exception ex)
+                {
+                    ExceptionHandler.Handle(ex);
+                }
+                
 
                 conn.Close();
             }
