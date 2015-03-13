@@ -763,6 +763,7 @@
             this.Name = "FormNewEvent";
             this.Text = "FormNewEvent";
             this.ResizeEnd += new System.EventHandler(this.FormNewEvent_ResizeEnd);
+            this.SizeChanged += new System.EventHandler(this.FormNewEvent_SizeChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormNewEvent_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.DiveCount_numericUpDown)).EndInit();
             this.groupBoxDisciplin.ResumeLayout(false);
