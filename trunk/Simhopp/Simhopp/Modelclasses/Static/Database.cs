@@ -296,11 +296,6 @@ namespace Simhopp
         }
         public static void StartEvent(int eventID)
         {
-            Thread t = new Thread(() => _StartEvent(eventID));
-            t.Start();
-        }
-        private static void _StartEvent(int eventID)
-        {
             MySqlConnection conn = ConnectToDatabase();
             string sql = "";
 
