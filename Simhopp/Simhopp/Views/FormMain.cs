@@ -171,7 +171,7 @@ namespace Simhopp
             int y = 300;
             int count;
 
-            Contest c = Database.GetContest(Int32.Parse(listViewEvent.SelectedItems[0].SubItems[0].Text));
+            Contest c = Database.GetContest(Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text));
 
             List<string> information = c.GetCollectedContestInfo();
 

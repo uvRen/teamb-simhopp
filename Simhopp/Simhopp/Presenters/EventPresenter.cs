@@ -213,6 +213,8 @@ namespace Simhopp
             {
                 _view.CurrentDiveScore = CurrentDive.Score;
 
+                //Database.AddScoreToDive(CurrentDive.Scores);
+
                 CurrentJudgeIndex = 0;
                 CurrentDiverIndex++;
 
@@ -225,7 +227,6 @@ namespace Simhopp
                 {
                     SendStatusToClient();
                 }
-                _view.CompleteDive();
             }
             return score;
         }
@@ -287,13 +288,13 @@ namespace Simhopp
             CreateScoreForDive(points, judgeIndex, false);
             return;
 
-            Judge scoringJudge = Judges[judgeIndex];
-            Score score = new Score(-1, CurrentDiver.Dives[CurrentRoundIndex], scoringJudge, points);
-            CurrentDiver.Dives[CurrentRoundIndex].AddScore(score); //Add score to current dive
+            //Judge scoringJudge = Judges[judgeIndex];
+            //Score score = new Score(-1, CurrentDiver.Dives[CurrentRoundIndex], scoringJudge, points);
+            //CurrentDiver.Dives[CurrentRoundIndex].AddScore(score); //Add score to current dive
 
             //JudgeServer.BroadcastScore(score);
 
-            _view.RedrawContestInfo();
+            //_view.RedrawContestInfo();
         }
 
         public void StartServer()
