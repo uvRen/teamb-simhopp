@@ -99,7 +99,7 @@ namespace Simhopp
         {
             #region testtävling
 
-            CurrentEvent = new Contest(0, "Hopp OS", "Test", "Test", 1, 1, 5, 5);
+            CurrentEvent = new Contest(0, "Hopp OS", "2013-03-15", "Test", 1, 1, 5, 5);
 
             CurrentEvent.AddJudge(new Judge(0, "Mr. Test"));
             CurrentEvent.AddJudge(new Judge(1, "Mrs. Fest"));
