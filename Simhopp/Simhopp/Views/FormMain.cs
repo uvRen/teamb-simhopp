@@ -38,9 +38,8 @@ namespace Simhopp
                 StartEvent_btn.Enabled = false;
             }
 
+            listViewResult.Items.Clear();
             Database.GetDiversInContest(eventId, listViewResult);
-
-            //listViewResult.Items.Clear();
 
             //foreach (Diver d in Database.GetDiversInEvent(eventId))
             //{
@@ -48,7 +47,7 @@ namespace Simhopp
             //    item1.Text = d.Id.ToString();
 
             //    item1.SubItems.Add(d.Name);
-            //    listViewResult.Items.Add(item1);
+            //   listViewResult.Items.Add(item1);
             //}
         }
 
