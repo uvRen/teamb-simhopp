@@ -214,6 +214,14 @@ namespace Simhopp
             }
         }
 
+        private void FormNewEvent_SizeChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < _dataGridViewList.Count; i++)
+            {
+                _dataGridViewList[i].Columns[1].Width = tabControl1.Width - (51 + 55 + 55);
+            }
+        }
+
         private void EventName_textBox_Leave(object sender, EventArgs e)
         {
             FormNewEventFunctions.CheckIfSubmitButtonBeEnable(EnableSubmitButton, btnSubmit, EventName_textBox, EventLocation_textBox, DiveCount_numericUpDown, listViewDivers, listViewJudge);
@@ -379,8 +387,6 @@ namespace Simhopp
             Close();
         }
         #endregion
-
-
 
     }
 }
