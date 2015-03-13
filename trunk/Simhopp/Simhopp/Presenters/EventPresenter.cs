@@ -15,6 +15,7 @@ namespace Simhopp
 
         private int _clientJudgeIndex;
         private int _currentJudgeIndex;
+        #region Attributes
         private IJudgeClient _judgeClient;
         public IFormEvent _view;
         public ViewMode Mode { get; private set; }
@@ -63,7 +64,6 @@ namespace Simhopp
             get { return CurrentEvent.CurrentRoundIndex; }
             set { CurrentEvent.CurrentRoundIndex = value; }
         }
-
         public int CurrentJudgeIndex
         {
             get
@@ -79,7 +79,7 @@ namespace Simhopp
             }
             set { _currentJudgeIndex = value; }
         }
-
+#endregion
         public EventPresenter(IFormEvent view = null, Contest contest = null)
         {
             CurrentEvent = contest;
@@ -92,62 +92,63 @@ namespace Simhopp
             CurrentJudgeIndex = 0;
             JudgeServer.Presenter = this;
         }
-        public void CreateTestEvent()
+        //public void CreateTestEvent()
+        //{
+        //    #region testtävling
+
+        //    CurrentEvent = new Contest(0, "Hopp OS", "2013-03-15", "Test", 1, 1, 5, 5);
+
+        //    CurrentEvent.AddJudge(new Judge(0, "Mr. Test"));
+        //    CurrentEvent.AddJudge(new Judge(1, "Mrs. Fest"));
+        //    CurrentEvent.AddJudge(new Judge(2, "Mr. Mega"));
+        //    CurrentEvent.AddJudge(new Judge(3, "Mr. Domherre"));
+        //    CurrentEvent.AddJudge(new Judge(4, "Mr. McFlash"));
+        //    /*
+        //    ev.AddJudge(new Judge(5, "Mr. Dunder"));
+        //    ev.AddJudge(new Judge(6, "Mr. Mega"));
+        //    ev.AddJudge(new Judge(7, "Mr. Bleh bleh"));
+        //    ev.AddJudge(new Judge(8, "Mr. Tjalala"));
+        //     * */
+
+        //    CurrentEvent.AddDiver(new Diver(0, "Kalle"));
+        //    CurrentEvent.AddDiver(new Diver(0, "Greger"));
+        //    //CurrentEvent.AddDiver(new Diver(0, "Hopptjej"));
+        //    //CurrentEvent.AddDiver(new Diver(0, "Annika 1"));
+        //    //CurrentEvent.AddDiver(new Diver(0, "Annika 2"));
+        //    //CurrentEvent.AddDiver(new Diver(0, "Annika 3"));
+
+        //    for (int i = 0; i < CurrentEvent.Divers.Count; i++)
+        //    {
+        //        for (int j = 0; j < 5; j++)
+        //        {
+        //            DiveType diveType = new DiveType(621 + ((i+j) % 2)*10 + ((i+j)%4), DiveType.DivePosition.A, DiveType.DiveHeight._10M);
+        //            Dive dive = new Dive(0, CurrentEvent.Divers[i], CurrentEvent, diveType);
+        //            CurrentEvent.Divers[i].AddDive(dive);
+
+        //            for (int k = 0; k < 5; k++)
+        //            {
+        //                //Score s = new Score(0, dive, CurrentEvent.Judges[k], (k + j) % 11);
+        //                //dive.AddScore(s);
+        //            }
+        //        }
+        //    }
+        //    #endregion
+
+        //    Judges = CurrentEvent.Judges;
+        //    Divers = CurrentEvent.Divers;
+
+        //}
+        public void SetMode(ViewMode mode, int clientJudgeIndex = -1, IJudgeClient judgeClient = null, Icon icon = null)
         {
-            #region testtävling
-
-            CurrentEvent = new Contest(0, "Hopp OS", "2013-03-15", "Test", 1, 1, 5, 5);
-
-            CurrentEvent.AddJudge(new Judge(0, "Mr. Test"));
-            CurrentEvent.AddJudge(new Judge(1, "Mrs. Fest"));
-            CurrentEvent.AddJudge(new Judge(2, "Mr. Mega"));
-            CurrentEvent.AddJudge(new Judge(3, "Mr. Domherre"));
-            CurrentEvent.AddJudge(new Judge(4, "Mr. McFlash"));
-            /*
-            ev.AddJudge(new Judge(5, "Mr. Dunder"));
-            ev.AddJudge(new Judge(6, "Mr. Mega"));
-            ev.AddJudge(new Judge(7, "Mr. Bleh bleh"));
-            ev.AddJudge(new Judge(8, "Mr. Tjalala"));
-             * */
-
-            CurrentEvent.AddDiver(new Diver(0, "Kalle"));
-            CurrentEvent.AddDiver(new Diver(0, "Greger"));
-            //CurrentEvent.AddDiver(new Diver(0, "Hopptjej"));
-            //CurrentEvent.AddDiver(new Diver(0, "Annika 1"));
-            //CurrentEvent.AddDiver(new Diver(0, "Annika 2"));
-            //CurrentEvent.AddDiver(new Diver(0, "Annika 3"));
-
-            for (int i = 0; i < CurrentEvent.Divers.Count; i++)
+            Mode = mode;
+            _clientJudgeIndex = clientJudgeIndex;
+            _judgeClient = judgeClient;
+            _view.EnableControls(false, true);
+            _view.SetClientLogin();
+            if (icon != null)
             {
-                for (int j = 0; j < 5; j++)
-                {
-                    DiveType diveType = new DiveType(621 + ((i+j) % 2)*10 + ((i+j)%4), DiveType.DivePosition.A, DiveType.DiveHeight._10M);
-                    Dive dive = new Dive(0, CurrentEvent.Divers[i], CurrentEvent, diveType);
-                    CurrentEvent.Divers[i].AddDive(dive);
-
-                    for (int k = 0; k < 5; k++)
-                    {
-                        //Score s = new Score(0, dive, CurrentEvent.Judges[k], (k + j) % 11);
-                        //dive.AddScore(s);
-                    }
-                }
+                _view.SetIcon(icon);
             }
-            #endregion
-
-            Judges = CurrentEvent.Judges;
-            Divers = CurrentEvent.Divers;
-
-        }
-
-        /// <summary>
-        /// Sker när man klickar på ett domar-poäng i standalone
-        /// </summary>
-        /// <param name="points"></param>
-        /// <returns></returns>
-        public Score ScoreDive(double points)
-        {
-            SkipToNonClientJudges();
-            return CreateScoreForDive(points, CurrentJudgeIndex, true);
         }
 
         /// <summary>
@@ -170,6 +171,17 @@ namespace Simhopp
                 _currentJudgeIndex--;
                 _view.EnableControls(false);
             }
+        }
+
+        /// <summary>
+        /// Sker när man klickar på ett domar-poäng i standalone
+        /// </summary>
+        /// <param name="points"></param>
+        /// <returns></returns>
+        public Score ScoreDive(double points)
+        {
+            SkipToNonClientJudges();
+            return CreateScoreForDive(points, CurrentJudgeIndex, true);
         }
 
         /// <summary>
@@ -239,19 +251,52 @@ namespace Simhopp
             return _view.ShowDialog();
         }
 
-        public void SetMode(ViewMode mode, int clientJudgeIndex = -1, IJudgeClient judgeClient = null, Icon icon = null)
+        #region Server functions
+        public void LogToServer(string message)
         {
-            Mode = mode;
-            _clientJudgeIndex = clientJudgeIndex;
-            _judgeClient = judgeClient;
-            _view.EnableControls(false, true);
-            _view.SetClientLogin();
-            if (icon != null)
-            {
-                _view.SetIcon(icon);
-            }
+            Console.WriteLine(Mode.ToString() + " UDP: " + message);
+            _view.LogToServer(message);
+        }
+        
+        public void RequestScoreFromClients()
+        {
+            JudgeServer.RequestScore();
         }
 
+        public void SendStatusToClient()
+        {
+            JudgeServer.SendStatus();
+        }
+
+        public void SubmitClientScore(double points, int judgeIndex)
+        {
+            Console.WriteLine(Mode.ToString() + " Submitting client score: " + points + ", judgeIndex: " + judgeIndex);
+            CreateScoreForDive(points, judgeIndex, false);
+        }
+
+        public void StartServer()
+        {
+            JudgeServer.Start();
+        }
+
+        public void StopServer()
+        {
+            JudgeServer.Start();
+        }
+
+        public void Close()
+        {
+            if (Mode == ViewMode.Client)
+            {
+                JudgeServer.Stop();
+                _judgeClient.SendLogout(_clientJudgeIndex);
+            }
+        }
+        #endregion
+
+
+
+#region Client functions
         public void ScoreRequested(SimhoppMessage msg)
         {
             CurrentRoundIndex = msg.Status.RoundIndex;
@@ -268,53 +313,6 @@ namespace Simhopp
 
             _view.RedrawContestInfo();
         }
-
-        public void RequestScoreFromClients()
-        {
-            JudgeServer.RequestScore();
-        }
-        public void SendStatusToClient()
-        {
-            JudgeServer.SendStatus();
-        }
-
-        public void LogToServer(string message)
-        {
-            Console.WriteLine(Mode.ToString() + " UDP: " + message);
-            _view.LogToServer(message);
-        }
-
-        public void SubmitClientScore(double points, int judgeIndex)
-        {
-            Console.WriteLine(Mode.ToString() + " Submitting client score: " + points + ", judgeIndex: " + judgeIndex);
-            CreateScoreForDive(points, judgeIndex, false);
-            return;
-
-            //Judge scoringJudge = Judges[judgeIndex];
-            //Score score = new Score(-1, CurrentDiver.Dives[CurrentRoundIndex], scoringJudge, points);
-            //CurrentDiver.Dives[CurrentRoundIndex].AddScore(score); //Add score to current dive
-
-            //JudgeServer.BroadcastScore(score);
-
-            //_view.RedrawContestInfo();
-        }
-
-        public void StartServer()
-        {
-            JudgeServer.Start();
-        }
-        public void StopServer()
-        {
-            JudgeServer.Start();
-        }
-
-        public void Close()
-        {
-            if (Mode == ViewMode.Client)
-            {
-                JudgeServer.Stop();
-                _judgeClient.SendLogout(_clientJudgeIndex);
-            }
-        }
+#endregion
     }
 }
