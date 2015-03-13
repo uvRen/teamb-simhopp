@@ -18,7 +18,7 @@ namespace Simhopp
         void PopulateScoreInput(Score score, int judgeIndex);
         void LogToServer(string message);
         void RedrawContestInfo(bool highlightDivePanel = false);
-        void EnableControls(bool enable, bool hideControls = false);
+        void ToggleControls(bool enable, bool hideControls = false);
         void SetClientLogin();
     }
 }

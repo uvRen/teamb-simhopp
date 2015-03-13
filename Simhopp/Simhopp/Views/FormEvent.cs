@@ -8,7 +8,7 @@ namespace Simhopp
 {
     public partial class FormEvent : Form, IFormEvent
     {
-        #region Variables
+        #region Attributes
         public EventPresenter Presenter
         {
             get
@@ -141,11 +141,13 @@ namespace Simhopp
         private void FormEvent_Load(object sender, EventArgs e)
         {
             this.Text += " - " + _presenter.CurrentEvent.Name;
-            btnDoDive.Focus();
-            btnDoDive.Select();
         }
 
         delegate void LogToServerCallback(string text);
+        /// <summary>
+        /// Logga nätverkskommunikation till domarfönstret. Användas ej i release.
+        /// </summary>
+        /// <param name="message"></param>
         public void LogToServer(string message)
         {
             if (this.textBoxSeverLog.InvokeRequired)
@@ -159,6 +161,10 @@ namespace Simhopp
             }
         }
 
+
+        /// <summary>
+        /// Målar upp tabs och hopp-rutor för alla dykare i eventet
+        /// </summary>
         private void DrawPanels()
         {
             //Applicera färgtema
@@ -200,10 +206,7 @@ namespace Simhopp
             RedrawContestInfo();
         }
 
-
         delegate void RedrawDelegate(bool highlightDivePanel = false);
-        
-
         public void RedrawContestInfo(bool highlightDivePanel = false)
         {
             if (this.listViewLeaderboard.InvokeRequired)
@@ -225,6 +228,11 @@ namespace Simhopp
         }
 
         #region Printa data för tävling
+        /// <summary>
+        /// Tävlingsinfo
+        /// Sammanfattning
+        /// Hopp Runda
+        /// </summary>
         public void PrintEventStatus()
         {
             List<string> necessaryInfo = Presenter.CurrentEvent.GetCollectedContestInfo();
@@ -234,6 +242,10 @@ namespace Simhopp
             labelDiver.Text = "Hoppare\n" + (CurrentDiverIndex + 1) + " av " + Divers.Count;
         }
 
+        /// <summary>
+        /// Leaderboard
+        /// Tävlande och poäng
+        /// </summary>
         public void UpdateLeaderboard()
         {
             listViewLeaderboard.Items.Clear();
@@ -268,7 +280,7 @@ namespace Simhopp
                         Control[] scoreTextBoxes = diverPanels[iDiver].Controls.Find("Score", true);
                         int scoringJudgeIndex = score.judge.Index(_presenter.Judges); //Hämta index på domare för detta poäng
 
-                        TextBox scoreInput = (TextBox)scoreTextBoxes[scoringJudgeIndex];
+                        TextBox scoreInput = (TextBox)scoreTextBoxes[scoringJudgeIndex]; //Poängruta för en domare på ett hopp
 
                         scoreInput.Tag = score;
                         scoreInput.Text = score.Points.ToString();
@@ -308,51 +320,29 @@ namespace Simhopp
                 }
             }
         }
-
         #endregion
 
-
+        /// <summary>
+        /// Använder tabbarna för att måla upp egna panels (tabpages var fula)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void tabsRounds_TabIndexChanged(object sender, EventArgs e)
         {
             _pagePanels[tabsRounds.SelectedIndex].BringToFront();
         }
-        void UpdateScore(object sender, EventArgs e)
-        {
-            TextBox tb = ((TextBox)sender);
-            double newScorePoint;
-            if (tb.Tag == null || !Double.TryParse(tb.Text, out newScorePoint))
-                return;
-
-            if (newScorePoint > 10)
-                newScorePoint = 10;
-            if (newScorePoint < 0)
-                newScorePoint = 0;
-
-            tb.Text = newScorePoint.ToString();
-
-            Score score = (Score)(tb.Tag);
-            score.Points = newScorePoint;
-
-            Panel scorePanel = (Panel)(tb.Parent);
-            Label points = (Label)(scorePanel.Tag);
-            points.Text = score.dive.Score.ToString();
-        }
-
-
-        private void btnDoDive_Click(object sender, EventArgs e)
-        {
-            _presenter.RequestScoreFromClients();
-            ScoreDive();
-        }
 
         delegate void ToggleControlsDelegate(bool enable, bool hideControls = false);
-
-
-        public void EnableControls(bool enable, bool hideControls = false)
+        /// <summary>
+        /// (Av)Aktivera knappar beroende på skede i tävlingen (bedömning/mellan hopp)
+        /// </summary>
+        /// <param name="enable"></param>
+        /// <param name="hideControls"></param>
+        public void ToggleControls(bool enable, bool hideControls = false)
         {
             if (this._panelScoring.InvokeRequired)
             {
-                ToggleControlsDelegate d = new ToggleControlsDelegate(EnableControls);
+                ToggleControlsDelegate d = new ToggleControlsDelegate(ToggleControls);
                 this.Invoke(d, new object[] {enable, hideControls});
                 return;
             }
@@ -375,13 +365,18 @@ namespace Simhopp
             }
         }
 
-        private void btnNextRound_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Bedöm ett hopp
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDoDive_Click(object sender, EventArgs e)
         {
-            btnDoDive.Enabled = true;
-            btnNextRound.Enabled = false;
-            tabsRounds.SelectedIndex++;
-            btnDoDive.Focus();
-            _presenter.SendStatusToClient();
+            _presenter.RequestScoreFromClients();
+            HighlightCurrentDive();
+            _panelScoring.Enabled = true;
+            btnDoDive.Enabled = false;
+            UpdateJudgeList();
         }
 
         private void HighlightCurrentDive()
@@ -389,15 +384,6 @@ namespace Simhopp
             CurrentDivePanel.BackColor = PanelDrawer.Colors[2];
         }
 
-        private void ScoreDive()
-        {
-            HighlightCurrentDive();
-            _panelScoring.Enabled = true;
-            btnDoDive.Enabled = false;
-            UpdateJudgeList();
-        }
-
-        
         /// <summary>
         /// Knapptryck för poängsättning senaste det hoppet
         /// </summary>
@@ -408,6 +394,10 @@ namespace Simhopp
             ScoreCurrentDive(Double.Parse(((Button)sender).Text));
         }
 
+        /// <summary>
+        /// Poängsätt senaste hoppet
+        /// </summary>
+        /// <param name="points"></param>
         private void ScoreCurrentDive(double points)
         {
             Score score = Presenter.ScoreDive(points);
@@ -415,6 +405,25 @@ namespace Simhopp
             UpdateJudgeScores();
         }
 
+        /// <summary>
+        /// Starta nästa runda med hopp
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnNextRound_Click(object sender, EventArgs e)
+        {
+            btnDoDive.Enabled = true;
+            btnNextRound.Enabled = false;
+            tabsRounds.SelectedIndex++;
+            _presenter.SendStatusToClient();
+        }
+
+        /// <summary>
+        /// Skriv ut domarpoäng på respektive poängruta
+        /// Anropas när poäng kommer från/till en domarklient
+        /// </summary>
+        /// <param name="score"></param>
+        /// <param name="judgeIndex"></param>
         private delegate void PopulateScoreInputDelegate(Score score, int judgeIndex);
         public void PopulateScoreInput(Score score, int judgeIndex)
         {
@@ -428,10 +437,11 @@ namespace Simhopp
             scoreInput.Text = score.Points.ToString();
             scoreInput.Tag = score;
         }
-
         
         delegate void CompleteDiveDelegate();
-        
+        /// <summary>
+        /// Hopp genomfört - dölj poängsättning och räkna ut poäng
+        /// </summary>
         public void CompleteDive()
         {
             if (_panelScoring.InvokeRequired)
@@ -465,6 +475,33 @@ namespace Simhopp
             UpdateJudgeScores();
             UpdateLeaderboard();
             PrintEventStatus();
+        }
+
+        /// <summary>
+        /// Manuell redigering av domarpoäng på ett hopp
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void UpdateScore(object sender, EventArgs e)
+        {
+            TextBox tb = ((TextBox)sender);
+            double newScorePoint;
+            if (tb.Tag == null || !Double.TryParse(tb.Text, out newScorePoint))
+                return;
+
+            if (newScorePoint > 10)
+                newScorePoint = 10;
+            if (newScorePoint < 0)
+                newScorePoint = 0;
+
+            tb.Text = newScorePoint.ToString();
+
+            Score score = (Score)(tb.Tag);
+            score.Points = newScorePoint;
+
+            Panel scorePanel = (Panel)(tb.Parent);
+            Label points = (Label)(scorePanel.Tag);
+            points.Text = score.dive.Score.ToString();
         }
 
 
@@ -503,11 +540,11 @@ namespace Simhopp
             _presenter.Close();
         }
 
-        private void FormEvent_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// Kortkomamndon för poängsättning och stegande genom tävlingen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormEvent_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Space && btnDoDive.Enabled)
