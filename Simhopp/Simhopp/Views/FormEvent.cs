@@ -104,8 +104,8 @@ namespace Simhopp
         {
             if (presenter == null)
             {
-                Presenter = new EventPresenter(this);
-                Presenter.CreateTestEvent();
+                Exception ex = new Exception("Ingen presenter");
+                ExceptionHandler.Handle(ex);
             }
             else
             {
