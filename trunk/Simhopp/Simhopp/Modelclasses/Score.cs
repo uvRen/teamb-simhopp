@@ -28,6 +28,13 @@ namespace Simhopp
             this.Points = 0.0;
         }
 
+        public Score(Dive d, Judge j, double points)
+        {
+            this.dive = d;
+            this.judge = j;
+            this.Points = points;
+        }
+
         public Score(int ID, Dive d, Judge j, double points)
         {
             this.Id = ID;

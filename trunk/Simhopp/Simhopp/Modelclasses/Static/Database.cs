@@ -535,11 +535,27 @@ namespace Simhopp
         }
         #endregion
 
-        #region Score ***
-        public static List<double> getScoreFromDatabase()
+        #region Score
+        public static void AddScoreToDive(List<Score> s)
         {
-            List<double> points = new List<double>();
-            return points;
+            MySqlConnection conn = Database.ConnectToDatabase();
+
+            if(conn != null)
+            {
+                foreach(Score sc in s)
+                {
+                    MySqlCommand comm = conn.CreateCommand();
+                    comm.CommandText = "INSERT INTO score(diveId, judgeId, point) VALUES (@diveId, @judgeId, @point)";
+
+                    comm.Parameters.AddWithValue("@diveId", sc.dive.Id);
+                    comm.Parameters.AddWithValue("@judgeId", sc.judge.Id);
+                    comm.Parameters.AddWithValue("@point", sc.Points);
+
+                    comm.ExecuteNonQuery();
+                }
+                conn.Close();
+            }
+
         }
 
         //*** THOMAS - RESULT (EJ KLAR)
