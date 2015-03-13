@@ -53,8 +53,8 @@
             this.successfully = new System.Windows.Forms.Label();
             this.errorlabel = new System.Windows.Forms.Label();
             this.listViewJudge = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listViewDivers = new System.Windows.Forms.ListView();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -199,10 +199,10 @@
             this.radioButton1meter.Checked = true;
             this.radioButton1meter.Location = new System.Drawing.Point(6, 19);
             this.radioButton1meter.Name = "radioButton1meter";
-            this.radioButton1meter.Size = new System.Drawing.Size(39, 17);
+            this.radioButton1meter.Size = new System.Drawing.Size(42, 17);
             this.radioButton1meter.TabIndex = 6;
             this.radioButton1meter.TabStop = true;
-            this.radioButton1meter.Text = "1m";
+            this.radioButton1meter.Text = "1 m";
             this.radioButton1meter.UseVisualStyleBackColor = true;
             // 
             // radioButton3meter
@@ -210,10 +210,10 @@
             this.radioButton3meter.AutoSize = true;
             this.radioButton3meter.Location = new System.Drawing.Point(54, 19);
             this.radioButton3meter.Name = "radioButton3meter";
-            this.radioButton3meter.Size = new System.Drawing.Size(39, 17);
+            this.radioButton3meter.Size = new System.Drawing.Size(42, 17);
             this.radioButton3meter.TabIndex = 7;
             this.radioButton3meter.TabStop = true;
-            this.radioButton3meter.Text = "3m";
+            this.radioButton3meter.Text = "3 m";
             this.radioButton3meter.UseVisualStyleBackColor = true;
             // 
             // radioButton7meter
@@ -221,10 +221,10 @@
             this.radioButton7meter.AutoSize = true;
             this.radioButton7meter.Location = new System.Drawing.Point(150, 19);
             this.radioButton7meter.Name = "radioButton7meter";
-            this.radioButton7meter.Size = new System.Drawing.Size(48, 17);
+            this.radioButton7meter.Size = new System.Drawing.Size(51, 17);
             this.radioButton7meter.TabIndex = 9;
             this.radioButton7meter.TabStop = true;
-            this.radioButton7meter.Text = "7,5m";
+            this.radioButton7meter.Text = "7.5 m";
             this.radioButton7meter.UseVisualStyleBackColor = true;
             // 
             // groupBoxDisciplin
@@ -246,10 +246,10 @@
             this.radioButton10meter.AutoSize = true;
             this.radioButton10meter.Location = new System.Drawing.Point(203, 19);
             this.radioButton10meter.Name = "radioButton10meter";
-            this.radioButton10meter.Size = new System.Drawing.Size(45, 17);
+            this.radioButton10meter.Size = new System.Drawing.Size(48, 17);
             this.radioButton10meter.TabIndex = 10;
             this.radioButton10meter.TabStop = true;
-            this.radioButton10meter.Text = "10m";
+            this.radioButton10meter.Text = "10 m";
             this.radioButton10meter.UseVisualStyleBackColor = true;
             // 
             // radioButton5meter
@@ -257,10 +257,10 @@
             this.radioButton5meter.AutoSize = true;
             this.radioButton5meter.Location = new System.Drawing.Point(102, 19);
             this.radioButton5meter.Name = "radioButton5meter";
-            this.radioButton5meter.Size = new System.Drawing.Size(39, 17);
+            this.radioButton5meter.Size = new System.Drawing.Size(42, 17);
             this.radioButton5meter.TabIndex = 8;
             this.radioButton5meter.TabStop = true;
-            this.radioButton5meter.Text = "5m";
+            this.radioButton5meter.Text = "5 m";
             this.radioButton5meter.UseVisualStyleBackColor = true;
             // 
             // groupBoxSingle
@@ -282,7 +282,7 @@
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(89, 23);
             this.btnSubmit.TabIndex = 18;
-            this.btnSubmit.Text = "Skapa event";
+            this.btnSubmit.Text = "Skapa Tävling";
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
@@ -384,17 +384,17 @@
             this.listViewJudge.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listViewJudge_ItemChecked);
             this.listViewJudge.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listViewJudges_MouseDown);
             // 
-            // columnHeader1
-            // 
-            this.columnHeader1.DisplayIndex = 0;
-            this.columnHeader1.Text = "ID";
-            this.columnHeader1.Width = 0;
-            // 
             // columnHeader2
             // 
             this.columnHeader2.DisplayIndex = 1;
             this.columnHeader2.Text = "Domare";
             this.columnHeader2.Width = 210;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.DisplayIndex = 0;
+            this.columnHeader1.Text = "ID";
+            this.columnHeader1.Width = 0;
             // 
             // listViewDivers
             // 
@@ -455,7 +455,7 @@
             // 
             // newDiverAge
             // 
-            this.newDiverAge.Location = new System.Drawing.Point(217, 3);
+            this.newDiverAge.Location = new System.Drawing.Point(216, 3);
             this.newDiverAge.Name = "newDiverAge";
             this.newDiverAge.Size = new System.Drawing.Size(37, 20);
             this.newDiverAge.TabIndex = 21;
@@ -467,14 +467,14 @@
             this.newDiverCountry.Dock = System.Windows.Forms.DockStyle.Top;
             this.newDiverCountry.Location = new System.Drawing.Point(126, 3);
             this.newDiverCountry.Name = "newDiverCountry";
-            this.newDiverCountry.Size = new System.Drawing.Size(85, 20);
+            this.newDiverCountry.Size = new System.Drawing.Size(84, 20);
             this.newDiverCountry.TabIndex = 20;
             this.newDiverCountry.Text = "Nationalitet";
             this.newDiverCountry.Enter += new System.EventHandler(this.textBox6_Enter);
             // 
             // AddNewDiverSubmit
             // 
-            this.AddNewDiverSubmit.Location = new System.Drawing.Point(326, 3);
+            this.AddNewDiverSubmit.Location = new System.Drawing.Point(325, 3);
             this.AddNewDiverSubmit.Name = "AddNewDiverSubmit";
             this.AddNewDiverSubmit.Size = new System.Drawing.Size(21, 19);
             this.AddNewDiverSubmit.TabIndex = 23;
@@ -510,7 +510,7 @@
             this.newDiverSelectGender.Items.AddRange(new object[] {
             "Kvinna",
             "Man"});
-            this.newDiverSelectGender.Location = new System.Drawing.Point(260, 3);
+            this.newDiverSelectGender.Location = new System.Drawing.Point(259, 3);
             this.newDiverSelectGender.MaxLength = 100;
             this.newDiverSelectGender.Name = "newDiverSelectGender";
             this.newDiverSelectGender.Size = new System.Drawing.Size(60, 21);
@@ -663,7 +663,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.40838F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.tableLayoutPanel4.Controls.Add(this.newDiverName, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.newDiverCountry, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.newDiverAge, 2, 0);
@@ -787,7 +787,7 @@
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormNewEvent";
-            this.Text = "FormNewEvent";
+            this.Text = "Skapa Tävling";
             this.ResizeEnd += new System.EventHandler(this.FormNewEvent_ResizeEnd);
             this.SizeChanged += new System.EventHandler(this.FormNewEvent_SizeChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormNewEvent_KeyDown);
