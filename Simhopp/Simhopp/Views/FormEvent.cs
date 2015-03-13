@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,11 +13,10 @@ namespace Simhopp
 {
     public partial class FormEvent : Form, IFormEvent
     {
-        private EventPresenter _presenter;
-
+        #region Variables
         public EventPresenter Presenter
         {
-           get
+            get
             {
                 return _presenter;
             }
@@ -27,11 +27,20 @@ namespace Simhopp
                     value._view = this;
             }
         }
+        public double CurrentDiveScore
+        {
+            set
+            {
+                //CurrentDive.Score = value;
+                //CurrentDivePanel.Controls.Find("Points", true)[0].Text = value.ToString();
+            }
+            get
+            {
+                return Double.Parse(CurrentDivePanel.Controls.Find("Points", true)[0].Text);
+            }
+        }
 
-
-        private List<List<Panel>> _divePanels;
-        private List<Panel> _pagePanels;
-        private Panel _panelScoring;
+        private EventPresenter _presenter;
         private int CurrentDiverIndex
         {
             get
@@ -75,18 +84,6 @@ namespace Simhopp
                 return _divePanels[CurrentRoundIndex][CurrentDiverIndex];
             }
         }
-        public double CurrentDiveScore
-        {
-            set
-            {
-                //CurrentDive.Score = value;
-                //CurrentDivePanel.Controls.Find("Points", true)[0].Text = value.ToString();
-            }
-            get
-            {
-                return Double.Parse(CurrentDivePanel.Controls.Find("Points", true)[0].Text);
-            }
-        }
         private List<Judge> Judges
         {
             get
@@ -101,6 +98,13 @@ namespace Simhopp
                 return _presenter.Divers;
             }
         }
+
+        //Panels
+        private List<List<Panel>> _divePanels;
+        private List<Panel> _pagePanels;
+        private Panel _panelScoring;
+        #endregion
+
         public FormEvent(EventPresenter presenter = null)
         {
             if (presenter == null)
@@ -123,6 +127,7 @@ namespace Simhopp
 
             DrawPanels();
         }
+
         private void FormEvent_Load(object sender, EventArgs e)
         {
             btnDoDive.Focus();
@@ -295,11 +300,6 @@ namespace Simhopp
 
         #endregion
 
-        //Keyboardshortcuts
-        void FormEvent_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            MessageBox.Show(e.KeyChar.ToString());
-        }
 
         void tabsRounds_TabIndexChanged(object sender, EventArgs e)
         {
@@ -388,13 +388,18 @@ namespace Simhopp
 
         
         /// <summary>
-        /// Poängsätt senaste det hoppet
+        /// Knapptryck för poängsättning senaste det hoppet
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnScoreClick(object sender, EventArgs e)
         {
-            Score score = Presenter.ScoreDive(Double.Parse(((Button)sender).Text));
+            ScoreCurrentDive(Double.Parse(((Button)sender).Text));
+        }
+
+        private void ScoreCurrentDive(double points)
+        {
+            Score score = Presenter.ScoreDive(points);
             UpdateJudgeList();
             UpdateJudgeScores();
         }
@@ -433,12 +438,17 @@ namespace Simhopp
             {
                 btnDoDive.Enabled = false;
                 btnNextRound.Enabled = true;
-                btnNextRound.Focus();
             }
             else
             {
                 btnDoDive.Enabled = true;
-                btnDoDive.Focus();
+            }
+
+            //Sista hoppet - avsluta tävling
+            if (CurrentRoundIndex == _presenter.CurrentEvent.diveCount)
+            {
+                btnDoDive.Enabled = false;
+                btnNextRound.Enabled = false;
             }
 
             UpdateJudgeScores();
@@ -480,6 +490,48 @@ namespace Simhopp
         private void FormEvent_FormClosing(object sender, FormClosingEventArgs e)
         {
             _presenter.Close();
+        }
+
+        private void FormEvent_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void FormEvent_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Space && btnDoDive.Enabled)
+            {
+                e.SuppressKeyPress = true;
+                btnDoDive_Click(btnDoDive, null);
+            }
+
+            if (e.KeyCode == Keys.Space && btnNextRound.Enabled)
+            {
+                e.SuppressKeyPress = true;
+                btnNextRound_Click(btnNextRound, null);
+            }
+
+            if (!_panelScoring.Enabled)
+                return;
+
+            if ((e.KeyValue < 48 || e.KeyValue > 58) && e.KeyValue != 220)
+            {
+                e.SuppressKeyPress = true;
+                return;
+            }
+
+            double points = e.KeyValue - 48;
+
+            if (points == 0)
+                points = 10;
+
+            if (e.KeyValue == 220)
+                points = 0;
+
+            if (e.Shift && points < 10)
+                points += 0.5;
+
+            ScoreCurrentDive(points);
         }
     }
 }

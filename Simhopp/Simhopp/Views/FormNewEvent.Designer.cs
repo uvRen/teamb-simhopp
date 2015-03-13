@@ -91,6 +91,8 @@
             this.registreraProduktToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.teamBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.labelSyncToolTip = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DiveCount_numericUpDown)).BeginInit();
             this.groupBoxDisciplin.SuspendLayout();
             this.groupBoxSingle.SuspendLayout();
@@ -107,12 +109,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.DiveTypeInput_dataGridView)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // EventName_label
             // 
             this.EventName_label.AutoSize = true;
-            this.EventName_label.Location = new System.Drawing.Point(14, 63);
+            this.EventName_label.Location = new System.Drawing.Point(7, 15);
             this.EventName_label.Name = "EventName_label";
             this.EventName_label.Size = new System.Drawing.Size(35, 13);
             this.EventName_label.TabIndex = 0;
@@ -120,7 +123,7 @@
             // 
             // EventName_textBox
             // 
-            this.EventName_textBox.Location = new System.Drawing.Point(82, 61);
+            this.EventName_textBox.Location = new System.Drawing.Point(75, 13);
             this.EventName_textBox.Name = "EventName_textBox";
             this.EventName_textBox.Size = new System.Drawing.Size(181, 20);
             this.EventName_textBox.TabIndex = 1;
@@ -128,7 +131,7 @@
             // 
             // EventLocation_textBox
             // 
-            this.EventLocation_textBox.Location = new System.Drawing.Point(82, 86);
+            this.EventLocation_textBox.Location = new System.Drawing.Point(75, 38);
             this.EventLocation_textBox.Name = "EventLocation_textBox";
             this.EventLocation_textBox.Size = new System.Drawing.Size(181, 20);
             this.EventLocation_textBox.TabIndex = 2;
@@ -137,7 +140,7 @@
             // EventLocation_label
             // 
             this.EventLocation_label.AutoSize = true;
-            this.EventLocation_label.Location = new System.Drawing.Point(14, 89);
+            this.EventLocation_label.Location = new System.Drawing.Point(7, 41);
             this.EventLocation_label.Name = "EventLocation_label";
             this.EventLocation_label.Size = new System.Drawing.Size(30, 13);
             this.EventLocation_label.TabIndex = 2;
@@ -146,7 +149,7 @@
             // DiveCount_label
             // 
             this.DiveCount_label.AutoSize = true;
-            this.DiveCount_label.Location = new System.Drawing.Point(14, 139);
+            this.DiveCount_label.Location = new System.Drawing.Point(7, 91);
             this.DiveCount_label.Name = "DiveCount_label";
             this.DiveCount_label.Size = new System.Drawing.Size(58, 13);
             this.DiveCount_label.TabIndex = 5;
@@ -162,6 +165,7 @@
             this.radioButtonSync.TabStop = true;
             this.radioButtonSync.Text = "Synkroniserat";
             this.radioButtonSync.UseVisualStyleBackColor = true;
+            this.radioButtonSync.CheckedChanged += new System.EventHandler(this.radioButtonSync_CheckedChanged);
             // 
             // radioButtonSingle
             // 
@@ -174,10 +178,11 @@
             this.radioButtonSingle.TabStop = true;
             this.radioButtonSingle.Text = "Single";
             this.radioButtonSingle.UseVisualStyleBackColor = true;
+            this.radioButtonSingle.CheckedChanged += new System.EventHandler(this.radioButtonSingle_CheckedChanged);
             // 
             // DiveCount_numericUpDown
             // 
-            this.DiveCount_numericUpDown.Location = new System.Drawing.Point(82, 136);
+            this.DiveCount_numericUpDown.Location = new System.Drawing.Point(75, 88);
             this.DiveCount_numericUpDown.Name = "DiveCount_numericUpDown";
             this.DiveCount_numericUpDown.Size = new System.Drawing.Size(54, 20);
             this.DiveCount_numericUpDown.TabIndex = 4;
@@ -229,9 +234,9 @@
             this.groupBoxDisciplin.Controls.Add(this.radioButton1meter);
             this.groupBoxDisciplin.Controls.Add(this.radioButton3meter);
             this.groupBoxDisciplin.Controls.Add(this.radioButton7meter);
-            this.groupBoxDisciplin.Location = new System.Drawing.Point(17, 166);
+            this.groupBoxDisciplin.Location = new System.Drawing.Point(10, 118);
             this.groupBoxDisciplin.Name = "groupBoxDisciplin";
-            this.groupBoxDisciplin.Size = new System.Drawing.Size(264, 46);
+            this.groupBoxDisciplin.Size = new System.Drawing.Size(252, 46);
             this.groupBoxDisciplin.TabIndex = 5;
             this.groupBoxDisciplin.TabStop = false;
             this.groupBoxDisciplin.Text = "Disciplin";
@@ -262,9 +267,9 @@
             // 
             this.groupBoxSingle.Controls.Add(this.radioButtonSync);
             this.groupBoxSingle.Controls.Add(this.radioButtonSingle);
-            this.groupBoxSingle.Location = new System.Drawing.Point(17, 220);
+            this.groupBoxSingle.Location = new System.Drawing.Point(10, 172);
             this.groupBoxSingle.Name = "groupBoxSingle";
-            this.groupBoxSingle.Size = new System.Drawing.Size(264, 47);
+            this.groupBoxSingle.Size = new System.Drawing.Size(252, 47);
             this.groupBoxSingle.TabIndex = 11;
             this.groupBoxSingle.TabStop = false;
             this.groupBoxSingle.Text = "Single/synkroniserat";
@@ -285,7 +290,7 @@
             // 
             this.dateTimePicker1.CustomFormat = "yyyy-MM-dd";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(82, 110);
+            this.dateTimePicker1.Location = new System.Drawing.Point(75, 62);
             this.dateTimePicker1.MaxDate = new System.DateTime(2100, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker1.MinDate = new System.DateTime(2015, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
@@ -296,7 +301,7 @@
             // EventDate_label
             // 
             this.EventDate_label.AutoSize = true;
-            this.EventDate_label.Location = new System.Drawing.Point(14, 116);
+            this.EventDate_label.Location = new System.Drawing.Point(7, 68);
             this.EventDate_label.Name = "EventDate_label";
             this.EventDate_label.Size = new System.Drawing.Size(38, 13);
             this.EventDate_label.TabIndex = 20;
@@ -306,9 +311,9 @@
             // 
             this.groupBox1.Controls.Add(this.radioButtonMale);
             this.groupBox1.Controls.Add(this.radioButtonFemale);
-            this.groupBox1.Location = new System.Drawing.Point(17, 273);
+            this.groupBox1.Location = new System.Drawing.Point(10, 225);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(264, 46);
+            this.groupBox1.Size = new System.Drawing.Size(252, 46);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Kön";
@@ -365,8 +370,8 @@
             // 
             this.listViewJudge.CheckBoxes = true;
             this.listViewJudge.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
+            this.columnHeader2,
+            this.columnHeader1});
             this.listViewJudge.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewJudge.FullRowSelect = true;
             this.listViewJudge.GridLines = true;
@@ -381,11 +386,13 @@
             // 
             // columnHeader1
             // 
+            this.columnHeader1.DisplayIndex = 0;
             this.columnHeader1.Text = "ID";
-            this.columnHeader1.Width = 25;
+            this.columnHeader1.Width = 0;
             // 
             // columnHeader2
             // 
+            this.columnHeader2.DisplayIndex = 1;
             this.columnHeader2.Text = "Domare";
             this.columnHeader2.Width = 210;
             // 
@@ -441,14 +448,14 @@
             this.newDiverName.Dock = System.Windows.Forms.DockStyle.Top;
             this.newDiverName.Location = new System.Drawing.Point(3, 3);
             this.newDiverName.Name = "newDiverName";
-            this.newDiverName.Size = new System.Drawing.Size(118, 20);
+            this.newDiverName.Size = new System.Drawing.Size(117, 20);
             this.newDiverName.TabIndex = 19;
             this.newDiverName.Text = "Namn";
             this.newDiverName.Enter += new System.EventHandler(this.textBox3_Enter);
             // 
             // newDiverAge
             // 
-            this.newDiverAge.Location = new System.Drawing.Point(219, 3);
+            this.newDiverAge.Location = new System.Drawing.Point(217, 3);
             this.newDiverAge.Name = "newDiverAge";
             this.newDiverAge.Size = new System.Drawing.Size(37, 20);
             this.newDiverAge.TabIndex = 21;
@@ -458,16 +465,16 @@
             // newDiverCountry
             // 
             this.newDiverCountry.Dock = System.Windows.Forms.DockStyle.Top;
-            this.newDiverCountry.Location = new System.Drawing.Point(127, 3);
+            this.newDiverCountry.Location = new System.Drawing.Point(126, 3);
             this.newDiverCountry.Name = "newDiverCountry";
-            this.newDiverCountry.Size = new System.Drawing.Size(86, 20);
+            this.newDiverCountry.Size = new System.Drawing.Size(85, 20);
             this.newDiverCountry.TabIndex = 20;
             this.newDiverCountry.Text = "Nationalitet";
             this.newDiverCountry.Enter += new System.EventHandler(this.textBox6_Enter);
             // 
             // AddNewDiverSubmit
             // 
-            this.AddNewDiverSubmit.Location = new System.Drawing.Point(328, 3);
+            this.AddNewDiverSubmit.Location = new System.Drawing.Point(326, 3);
             this.AddNewDiverSubmit.Name = "AddNewDiverSubmit";
             this.AddNewDiverSubmit.Size = new System.Drawing.Size(21, 19);
             this.AddNewDiverSubmit.TabIndex = 23;
@@ -503,7 +510,7 @@
             this.newDiverSelectGender.Items.AddRange(new object[] {
             "Kvinna",
             "Man"});
-            this.newDiverSelectGender.Location = new System.Drawing.Point(262, 3);
+            this.newDiverSelectGender.Location = new System.Drawing.Point(260, 3);
             this.newDiverSelectGender.MaxLength = 100;
             this.newDiverSelectGender.Name = "newDiverSelectGender";
             this.newDiverSelectGender.Size = new System.Drawing.Size(60, 21);
@@ -656,7 +663,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.40838F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 41F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.tableLayoutPanel4.Controls.Add(this.newDiverName, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.newDiverCountry, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.newDiverAge, 2, 0);
@@ -737,27 +744,46 @@
             this.teamBToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.teamBToolStripMenuItem.Text = "Team B";
             // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel2.Controls.Add(this.labelSyncToolTip);
+            this.panel2.Controls.Add(this.EventName_label);
+            this.panel2.Controls.Add(this.EventLocation_label);
+            this.panel2.Controls.Add(this.EventLocation_textBox);
+            this.panel2.Controls.Add(this.DiveCount_label);
+            this.panel2.Controls.Add(this.DiveCount_numericUpDown);
+            this.panel2.Controls.Add(this.groupBoxDisciplin);
+            this.panel2.Controls.Add(this.EventName_textBox);
+            this.panel2.Controls.Add(this.groupBox1);
+            this.panel2.Controls.Add(this.groupBoxSingle);
+            this.panel2.Controls.Add(this.EventDate_label);
+            this.panel2.Controls.Add(this.dateTimePicker1);
+            this.panel2.Location = new System.Drawing.Point(12, 38);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(275, 408);
+            this.panel2.TabIndex = 30;
+            // 
+            // labelSyncToolTip
+            // 
+            this.labelSyncToolTip.AutoSize = true;
+            this.labelSyncToolTip.Location = new System.Drawing.Point(13, 284);
+            this.labelSyncToolTip.Name = "labelSyncToolTip";
+            this.labelSyncToolTip.Size = new System.Drawing.Size(0, 13);
+            this.labelSyncToolTip.TabIndex = 21;
+            // 
             // FormNewEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 662);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.errorlabel);
             this.Controls.Add(this.successfully);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.EventDate_label);
-            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.btnSubmit);
-            this.Controls.Add(this.groupBoxSingle);
-            this.Controls.Add(this.EventName_textBox);
-            this.Controls.Add(this.groupBoxDisciplin);
-            this.Controls.Add(this.DiveCount_numericUpDown);
-            this.Controls.Add(this.DiveCount_label);
-            this.Controls.Add(this.EventLocation_textBox);
-            this.Controls.Add(this.EventLocation_label);
-            this.Controls.Add(this.EventName_label);
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormNewEvent";
@@ -787,6 +813,8 @@
             this.tableLayoutPanel4.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -866,5 +894,7 @@
         private System.Windows.Forms.ToolStripMenuItem registreraProduktToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem teamBToolStripMenuItem;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label labelSyncToolTip;
     }
 }

@@ -49,8 +49,10 @@ namespace Simhopp
             if (hit.Item != null)
             {
                 var dragItem = (ListViewItem)e.Data.GetData(typeof(ListViewItem));
-                Diver d1 = new Diver(0, dragItem.Text + " & " +
-                                        hit.Item.Text);
+                Random random = new Random(int.Parse(Guid.NewGuid().ToString().Substring(0, 8), System.Globalization.NumberStyles.HexNumber));
+                int newId = random.Next(1, Int32.MaxValue);
+                Diver d1 = new Diver(newId, dragItem.Text + " & " +
+                                            hit.Item.Text);
                 AddDiverToList(d1, true);
             }
         }
@@ -61,8 +63,16 @@ namespace Simhopp
                 e.Effect = e.AllowedEffect;
         }
 
+        /// <summary>
+        /// Dra hoppare över varandra för att skapa par
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void listViewDivers_ItemDrag(object sender, ItemDragEventArgs e)
         {
+             if (!radioButtonSync.Checked)
+                return;
+
             privateDrag = true;
             DoDragDrop(e.Item, DragDropEffects.Link);
             privateDrag = false;
@@ -92,18 +102,27 @@ namespace Simhopp
         private void AddDiverToList(Diver diver, bool isSync)
         {
             ListViewItem item1 = new ListViewItem();
+
+            item1.Text = diver.Name;
+
             if (isSync)
             {
-                item1.Text = "| | " + diver.Name;
-                item1.Checked = true;
+                item1.SubItems.Add("");
+                item1.SubItems.Add("");
+                item1.SubItems.Add("");
+                item1.SubItems.Add(diver.Id.ToString());
             }
             else
-                item1.Text = diver.Name;
+            {   item1.SubItems.Add(diver.Country);
+                item1.SubItems.Add(diver.Age.ToString());
+                item1.SubItems.Add(newDiverSelectGender.Text);
+                item1.SubItems.Add(diver.Id.ToString());
+            }
+
             listViewDivers.Items.Add(item1);
 
-            item1.SubItems.Add(diver.Country);
-            item1.SubItems.Add(diver.Age.ToString());
-            item1.SubItems.Add(newDiverSelectGender.Text);
+            item1.Checked = true;
+            item1.EnsureVisible();
         }
 
         private void AddNewDiver_Click(object sender, EventArgs e)
@@ -364,19 +383,20 @@ namespace Simhopp
             }
 
             //Focus
-            if (e.Control && e.KeyCode == Keys.NumPad1)
-            {
-                EventName_textBox.Focus();      //FOCUS LEFT DATA
-            }
+            if (!e.Control)
+                return;
 
-            if (e.Control && e.KeyCode == Keys.NumPad2)
+            switch (e.KeyCode)
             {
-                listViewDivers.Focus();         //FOCUS MIDDLE DIVERS
-            }
-                
-            if (e.Control && e.KeyCode == Keys.NumPad3)
-            {
-                listViewJudge.Focus();          //FOCUS RIGHT JUDGES
+                case Keys.NumPad1: case Keys.D1:
+                    EventName_textBox.Focus();
+                    break;
+                case Keys.NumPad2: case Keys.D2:
+                    listViewDivers.Focus();         //FOCUS MIDDLE DIVERS
+                    break;
+                case Keys.NumPad3: case Keys.D3:
+                    listViewJudge.Focus();          //FOCUS RIGHT JUDGES
+                    break;
             }
         }
         #endregion
@@ -387,6 +407,29 @@ namespace Simhopp
             Close();
         }
         #endregion
+
+        private void radioButtonSync_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonSync.Checked)
+            {
+                foreach (ListViewItem item in listViewDivers.Items)
+                {
+                    item.Checked = false;
+                }
+            }
+        }
+
+        private void radioButtonSingle_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonSync.Checked)
+            {
+                labelSyncToolTip.Text = "Dra hoppare över varandra för att skapa par";
+            }
+            else
+            {
+                labelSyncToolTip.Text = "";
+            }
+        }
 
     }
 }
