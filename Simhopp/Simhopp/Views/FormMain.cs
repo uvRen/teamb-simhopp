@@ -157,7 +157,7 @@ namespace Simhopp
                 }
                 else
                 {
-                    MessageBox.Show("Välje ett event, försök igen", "Fel format", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Välj ett event, försök igen", "Fel format", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
