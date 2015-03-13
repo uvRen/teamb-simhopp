@@ -37,11 +37,11 @@ namespace Simhopp
         private static Dictionary<int, String> _names;
         [DataMember]
         private static Dictionary<String, int> _nos;
-        [IgnoreDataMember]
+        [DataMember]
         private double _difficulty;
-        [IgnoreDataMember]
+        [DataMember]
         private string _name;
-        [IgnoreDataMember]
+        [DataMember]
         public int _no;
         [DataMember]
         public DivePosition Position { get; set; }
@@ -113,44 +113,55 @@ namespace Simhopp
             }
         }
 
-        [DataMember]
+        [IgnoreDataMember]
         public int No 
         {
             get
             {
+                if (_no != null)
+                    return _no;
+
                 if (_dd == null)
                     LoadDDTable();
 
                 if (_no == null)
-                _no = _nos[this._name];
+                    _no = _nos[this._name];
 
                 return _no;
             }
             set { _no = value; }
         }
 
-        [DataMember]
+        [IgnoreDataMember]
         public String Name
         {
             get
             {
+                if (_name != null)
+                    return _name;
+
                 if (_dd == null)
                     LoadDDTable();
 
                 if (_name == null)
                     _name = _names[this._no];
 
-                return _names[this._no];
+                return _name;
             }
             set { _name = value; }
         }
         //[DataMember]
+        [IgnoreDataMember]
         public double Difficulty
         {
             get
             {
-                if (_dd == null)
-                    LoadDDTable();
+                if(_difficulty != null)
+                    return _difficulty;
+
+                //if (_dd == null)
+                //    LoadDDTable();
+
                 //Returnerar 0 om difficulty inte finns i _dd
                 //Annars returnerar difficulty från _dd
                 return !_dd[this._no][this.Height].ContainsKey(this.Position) ? 0 : _dd[this._no][this.Height][this.Position];
