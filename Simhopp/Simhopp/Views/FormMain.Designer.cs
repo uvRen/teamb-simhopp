@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.StartEvent_btn = new System.Windows.Forms.Button();
             this.listViewResult = new System.Windows.Forms.ListView();
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -67,6 +68,7 @@
             this.registreraProduktToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.teamBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -174,6 +176,7 @@
             this.listViewEvent.Location = new System.Drawing.Point(3, 24);
             this.listViewEvent.Name = "listViewEvent";
             this.listViewEvent.Size = new System.Drawing.Size(486, 430);
+            this.listViewEvent.SmallImageList = this.imageList1;
             this.listViewEvent.TabIndex = 9;
             this.listViewEvent.UseCompatibleStateImageBehavior = false;
             this.listViewEvent.View = System.Windows.Forms.View.Details;
@@ -424,6 +427,13 @@
             this.teamBToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.teamBToolStripMenuItem.Text = "Team B";
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "statusRed.png");
+            this.imageList1.Images.SetKeyName(1, "statusGreen.png");
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -489,6 +499,7 @@
         private System.Windows.Forms.ToolStripMenuItem registreraProduktToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem teamBToolStripMenuItem;
+        private System.Windows.Forms.ImageList imageList1;
 
     }
 }
