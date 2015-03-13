@@ -190,7 +190,7 @@ namespace Simhopp
             Console.WriteLine(Mode.ToString() + " Current: " + _currentJudgeIndex);
             Judge scoringJudge = Judges[judgeIndex];
             
-            Score score = new Score(-1, CurrentDiver.Dives[CurrentRoundIndex], scoringJudge, points);
+            Score score = new Score(CurrentDiver.Dives[CurrentRoundIndex], scoringJudge, points);
             CurrentDiver.Dives[CurrentRoundIndex].AddScore(score); //Add score to current dive
 
             _view.PopulateScoreInput(score, judgeIndex);
@@ -213,7 +213,7 @@ namespace Simhopp
             {
                 _view.CurrentDiveScore = CurrentDive.Score;
 
-                Database.AddScoreToDive(CurrentDive.Scores);
+                Database.AddScoreToDive(CurrentDive.Scores, CurrentDive);
 
                 CurrentJudgeIndex = 0;
                 CurrentDiverIndex++;
