@@ -245,7 +245,38 @@ namespace Simhopp
                 CreateEventClick(sender, e);
        }
 
+        private void listViewEvent_KeyDown(object sender, KeyEventArgs e)
+        {
+            //Remove event with delete button
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (listViewEvent.SelectedItems.Count > 0)
+                {
+                    Database.RemoveEvent(Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text));
+                    FormMainFunctions.FillListViewWithEvent(listViewEvent);
+                }
+            }
+        }
         #endregion
 
+        //.....................SÖKFUNKTION
+        private void searchBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            //ListViewItem foundItem = listViewEvent.FindItemWithText(searchBox.Text, false, 0, true);
+            //if (foundItem != null)
+            //{
+            //    listViewEvent.TopItem = foundItem;
+            //}
+        }
+
+        private void searchBox_TextChanged(object sender, EventArgs e)
+        {
+            ListViewItem foundItem = listViewEvent.FindItemWithText(searchBox.Text, false, 0, true);
+            if (foundItem != null)
+            {
+                listViewEvent.TopItem = foundItem;
+            }
+        }
+        //.....................SÖKFUNKTION
     }
 }
