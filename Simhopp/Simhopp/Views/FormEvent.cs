@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Simhopp
@@ -117,19 +112,35 @@ namespace Simhopp
                 Presenter = presenter;
             }
 
+            if (_presenter.CurrentEvent.Divers.Count > 0)
+            {
+                if (_presenter.CurrentEvent.Divers[0].Dives.Count != _presenter.CurrentEvent.diveCount)
+                {
+                    Exception ex = new Exception("Antal hopp i tävlingen matchar inte deltagares hopp!");
+                    ExceptionHandler.Handle(ex);
+                }
+            }
+
             InitializeComponent();
 
             //Initiera objekt
             _divePanels = new List<List<Panel>>();
             _pagePanels = new List<Panel>();
+
             CurrentDiverIndex = CurrentRoundIndex = CurrentJudgeIndex = 0;
             tabsRounds.SelectedIndexChanged += tabsRounds_TabIndexChanged;
 
             DrawPanels();
         }
 
+        public void SetIcon(Icon icon)
+        {
+            this.Icon = icon;
+        }
+
         private void FormEvent_Load(object sender, EventArgs e)
         {
+            this.Text += " - " + _presenter.CurrentEvent.Name;
             btnDoDive.Focus();
             btnDoDive.Select();
         }
@@ -471,7 +482,7 @@ namespace Simhopp
 
         private void btnStopServer_Click(object sender, EventArgs e)
         {
-
+            _presenter.StopServer();
         }
 
         public void SetClientLogin()

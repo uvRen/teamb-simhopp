@@ -107,7 +107,8 @@ namespace Simhopp
             try
             {
                 DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(SimhoppMessage));
-                MemoryStream ms = new MemoryStream(ASCIIEncoding.ASCII.GetBytes(message));
+                //MemoryStream ms = new MemoryStream(ASCIIEncoding.ASCII.GetBytes(message));
+                MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(message));
 
                 msg = (SimhoppMessage)js.ReadObject(ms);
             }

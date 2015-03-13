@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNewEvent));
             this.EventName_label = new System.Windows.Forms.Label();
             this.EventName_textBox = new System.Windows.Forms.TextBox();
             this.EventLocation_textBox = new System.Windows.Forms.TextBox();
@@ -78,11 +79,11 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panelTabControlContainer = new System.Windows.Forms.Panel();
-            this.labelDiveAddDiversToolTip = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.DiveTypeInput_dataGridView = new System.Windows.Forms.DataGridView();
+            this.labelDiveAddDiversToolTip = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -451,14 +452,14 @@
             this.newDiverName.Dock = System.Windows.Forms.DockStyle.Top;
             this.newDiverName.Location = new System.Drawing.Point(3, 3);
             this.newDiverName.Name = "newDiverName";
-            this.newDiverName.Size = new System.Drawing.Size(116, 20);
+            this.newDiverName.Size = new System.Drawing.Size(114, 20);
             this.newDiverName.TabIndex = 19;
             this.newDiverName.Text = "Namn";
             this.newDiverName.Enter += new System.EventHandler(this.textBox3_Enter);
             // 
             // newDiverAge
             // 
-            this.newDiverAge.Location = new System.Drawing.Point(214, 3);
+            this.newDiverAge.Location = new System.Drawing.Point(212, 3);
             this.newDiverAge.Name = "newDiverAge";
             this.newDiverAge.Size = new System.Drawing.Size(37, 20);
             this.newDiverAge.TabIndex = 21;
@@ -468,7 +469,7 @@
             // newDiverCountry
             // 
             this.newDiverCountry.Dock = System.Windows.Forms.DockStyle.Top;
-            this.newDiverCountry.Location = new System.Drawing.Point(125, 3);
+            this.newDiverCountry.Location = new System.Drawing.Point(123, 3);
             this.newDiverCountry.Name = "newDiverCountry";
             this.newDiverCountry.Size = new System.Drawing.Size(83, 20);
             this.newDiverCountry.TabIndex = 20;
@@ -477,7 +478,7 @@
             // 
             // AddNewDiverSubmit
             // 
-            this.AddNewDiverSubmit.Location = new System.Drawing.Point(323, 3);
+            this.AddNewDiverSubmit.Location = new System.Drawing.Point(321, 3);
             this.AddNewDiverSubmit.Name = "AddNewDiverSubmit";
             this.AddNewDiverSubmit.Size = new System.Drawing.Size(21, 19);
             this.AddNewDiverSubmit.TabIndex = 23;
@@ -513,7 +514,7 @@
             this.newDiverSelectGender.Items.AddRange(new object[] {
             "Kvinna",
             "Man"});
-            this.newDiverSelectGender.Location = new System.Drawing.Point(257, 3);
+            this.newDiverSelectGender.Location = new System.Drawing.Point(255, 3);
             this.newDiverSelectGender.MaxLength = 100;
             this.newDiverSelectGender.Name = "newDiverSelectGender";
             this.newDiverSelectGender.Size = new System.Drawing.Size(60, 21);
@@ -629,17 +630,6 @@
             this.panelTabControlContainer.Size = new System.Drawing.Size(367, 166);
             this.panelTabControlContainer.TabIndex = 26;
             // 
-            // labelDiveAddDiversToolTip
-            // 
-            this.labelDiveAddDiversToolTip.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelDiveAddDiversToolTip.AutoSize = true;
-            this.labelDiveAddDiversToolTip.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold);
-            this.labelDiveAddDiversToolTip.Location = new System.Drawing.Point(50, 75);
-            this.labelDiveAddDiversToolTip.Name = "labelDiveAddDiversToolTip";
-            this.labelDiveAddDiversToolTip.Size = new System.Drawing.Size(276, 19);
-            this.labelDiveAddDiversToolTip.TabIndex = 26;
-            this.labelDiveAddDiversToolTip.Text = "Lägg till hoppare för att skapa hopp";
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.tabControl1);
@@ -680,6 +670,17 @@
             this.DiveTypeInput_dataGridView.Size = new System.Drawing.Size(353, 134);
             this.DiveTypeInput_dataGridView.TabIndex = 0;
             // 
+            // labelDiveAddDiversToolTip
+            // 
+            this.labelDiveAddDiversToolTip.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelDiveAddDiversToolTip.AutoSize = true;
+            this.labelDiveAddDiversToolTip.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold);
+            this.labelDiveAddDiversToolTip.Location = new System.Drawing.Point(50, 75);
+            this.labelDiveAddDiversToolTip.Name = "labelDiveAddDiversToolTip";
+            this.labelDiveAddDiversToolTip.Size = new System.Drawing.Size(276, 19);
+            this.labelDiveAddDiversToolTip.TabIndex = 26;
+            this.labelDiveAddDiversToolTip.Text = "Lägg till hoppare för att skapa hopp";
+            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 5;
@@ -687,7 +688,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.40838F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
             this.tableLayoutPanel4.Controls.Add(this.newDiverName, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.newDiverCountry, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.newDiverAge, 2, 0);
@@ -808,6 +809,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormNewEvent";
