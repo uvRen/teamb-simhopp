@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEvent));
             this.tabsRounds = new System.Windows.Forms.TabControl();
             this.btnDoDive = new System.Windows.Forms.Button();
             this.btnNextRound = new System.Windows.Forms.Button();
@@ -46,9 +47,9 @@
             this.textBoxSeverLog = new System.Windows.Forms.TextBox();
             this.panelServer = new System.Windows.Forms.Panel();
             this.labelClientServerTitle = new System.Windows.Forms.Label();
-            this.labelServerStatus = new System.Windows.Forms.Label();
             this.btnServerKick = new System.Windows.Forms.Button();
             this.btnStopServer = new System.Windows.Forms.Button();
+            this.labelServerStatus = new System.Windows.Forms.Label();
             this.btnStartServer = new System.Windows.Forms.Button();
             this.panelControls.SuspendLayout();
             this.panelEventInfo.SuspendLayout();
@@ -57,7 +58,8 @@
             // 
             // tabsRounds
             // 
-            this.tabsRounds.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabsRounds.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabsRounds.Location = new System.Drawing.Point(302, 12);
             this.tabsRounds.Name = "tabsRounds";
             this.tabsRounds.SelectedIndex = 0;
@@ -149,7 +151,8 @@
             // 
             // pagePanelContainer
             // 
-            this.pagePanelContainer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.pagePanelContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pagePanelContainer.Location = new System.Drawing.Point(302, 32);
             this.pagePanelContainer.Name = "pagePanelContainer";
@@ -176,9 +179,8 @@
             // 
             // panelEventInfo
             // 
-            this.panelEventInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelEventInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.panelEventInfo.Controls.Add(this.labelSummary);
             this.panelEventInfo.Controls.Add(this.labelTitle);
             this.panelEventInfo.Controls.Add(this.textBoxSeverLog);
@@ -221,8 +223,7 @@
             // 
             // panelServer
             // 
-            this.panelServer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelServer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panelServer.Controls.Add(this.labelClientServerTitle);
             this.panelServer.Controls.Add(this.btnServerKick);
             this.panelServer.Controls.Add(this.btnStopServer);
@@ -242,16 +243,6 @@
             this.labelClientServerTitle.Size = new System.Drawing.Size(260, 19);
             this.labelClientServerTitle.TabIndex = 6;
             this.labelClientServerTitle.Text = "Klientinloggning";
-            // 
-            // labelServerStatus
-            // 
-            this.labelServerStatus.AutoSize = true;
-            this.labelServerStatus.ForeColor = System.Drawing.Color.White;
-            this.labelServerStatus.Location = new System.Drawing.Point(40, 53);
-            this.labelServerStatus.Name = "labelServerStatus";
-            this.labelServerStatus.Size = new System.Drawing.Size(128, 13);
-            this.labelServerStatus.TabIndex = 2;
-            this.labelServerStatus.Text = "Klientinloggning avstängd";
             // 
             // btnServerKick
             // 
@@ -280,6 +271,16 @@
             this.btnStopServer.Visible = false;
             this.btnStopServer.Click += new System.EventHandler(this.btnStopServer_Click);
             // 
+            // labelServerStatus
+            // 
+            this.labelServerStatus.AutoSize = true;
+            this.labelServerStatus.ForeColor = System.Drawing.Color.White;
+            this.labelServerStatus.Location = new System.Drawing.Point(40, 53);
+            this.labelServerStatus.Name = "labelServerStatus";
+            this.labelServerStatus.Size = new System.Drawing.Size(128, 13);
+            this.labelServerStatus.TabIndex = 2;
+            this.labelServerStatus.Text = "Klientinloggning avstängd";
+            // 
             // btnStartServer
             // 
             this.btnStartServer.BackgroundImage = global::Simhopp.Properties.Resources.Controls_play_32;
@@ -305,10 +306,14 @@
             this.Controls.Add(this.pagePanelContainer);
             this.Controls.Add(this.panelControls);
             this.Controls.Add(this.tabsRounds);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "FormEvent";
             this.Text = "FormEvent";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormEvent_FormClosing);
             this.Load += new System.EventHandler(this.FormEvent_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormEvent_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FormEvent_KeyPress);
             this.panelControls.ResumeLayout(false);
             this.panelEventInfo.ResumeLayout(false);
             this.panelEventInfo.PerformLayout();

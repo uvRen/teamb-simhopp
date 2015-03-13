@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
+using ContentAlignment = System.Drawing.ContentAlignment;
 
 namespace Simhopp
 {
@@ -45,7 +47,11 @@ namespace Simhopp
             Init();
 
             if (isForm)
-                f.BackColor = _colors[0];
+            {
+                Form tmp = (Form) f;
+                tmp.BackColor = _colors[0];
+                tmp.SizeGripStyle = SizeGripStyle.Hide; 
+            }
 
             foreach (Control c in f.Controls)
             {
@@ -108,7 +114,10 @@ namespace Simhopp
                     tmp.BackColor = _colors[1];
                     tmp.ForeColor = Color.White;
                     tmp.BorderStyle = BorderStyle.FixedSingle;
-                    
+                    if (tmp.Parent is Panel && !(tmp.Parent is TableLayoutPanel))
+                    {
+                        tmp.BackColor = _colors[0];
+                    }
                 }
 
                 if (c is ComboBox)
@@ -167,10 +176,28 @@ namespace Simhopp
 
             int pWidth = 402;
             Panel p = new Panel();
-            p.BorderStyle = BorderStyle.FixedSingle;
             p.Width = pWidth;
             p.Height = 74;
             p.BackColor = _colors[1];
+            p.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
+
+            Panel panelBorder = new Panel();
+            panelBorder.BackColor = _colors[0];
+            panelBorder.Height = 2;
+            panelBorder.Width = p.Width;
+            panelBorder.Top = p.Height - 2;
+            panelBorder.Left = 0;
+            p.Controls.Add(panelBorder);
+
+            //Fulhax
+            Panel panelCover = new Panel();
+            panelCover.BackColor = _colors[1];
+            panelCover.Top = 0;
+            panelCover.Left = 0;
+            panelCover.Width = 17;
+            panelCover.Height = p.Height;
+            p.Controls.Add(panelCover);
+            panelCover.BringToFront();
 
             Label name = new Label();
             name.Text = diver.Name;
@@ -202,6 +229,7 @@ namespace Simhopp
             points.TextAlign = ContentAlignment.MiddleRight;
             points.ForeColor = Color.White;
             points.Name = "Points";
+            points.Anchor = AnchorStyles.Right;
 
             p.Controls.Add(points);
 
@@ -228,6 +256,7 @@ namespace Simhopp
                 tb.Name = "Score";
                 tb.ReadOnly = true;
                 tb.TextChanged += UpdateScoreDelegate;
+                tb.GotFocus += tb_GotFocus;
 
                 scorePanel.Controls.Add(tb);
             }
@@ -235,6 +264,13 @@ namespace Simhopp
             p.Controls.Add(scorePanel);
 
             return p;
+        }
+
+        //Ta bort focus från poäng-rutorna
+        static void tb_GotFocus(object sender, EventArgs e)
+        {
+            TextBox tmp = (TextBox) sender;
+            tmp.Parent.Focus();
         }
 
         /// <summary>
