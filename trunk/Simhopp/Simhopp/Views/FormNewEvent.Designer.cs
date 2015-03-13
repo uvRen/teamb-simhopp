@@ -414,12 +414,12 @@
             // columnHeader7
             // 
             this.columnHeader7.Text = "     Hoppare";
-            this.columnHeader7.Width = 154;
+            this.columnHeader7.Width = 151;
             // 
             // columnHeader8
             // 
             this.columnHeader8.Text = "Nationalitet";
-            this.columnHeader8.Width = 95;
+            this.columnHeader8.Width = 92;
             // 
             // columnHeader9
             // 
@@ -429,6 +429,7 @@
             // columnHeader10
             // 
             this.columnHeader10.Text = "Kön";
+            this.columnHeader10.Width = 57;
             // 
             // columnHeader3
             // 
@@ -447,7 +448,7 @@
             // 
             // newDiverAge
             // 
-            this.newDiverAge.Location = new System.Drawing.Point(222, 3);
+            this.newDiverAge.Location = new System.Drawing.Point(221, 3);
             this.newDiverAge.Name = "newDiverAge";
             this.newDiverAge.Size = new System.Drawing.Size(37, 20);
             this.newDiverAge.TabIndex = 21;
@@ -459,14 +460,14 @@
             this.newDiverCountry.Dock = System.Windows.Forms.DockStyle.Top;
             this.newDiverCountry.Location = new System.Drawing.Point(129, 3);
             this.newDiverCountry.Name = "newDiverCountry";
-            this.newDiverCountry.Size = new System.Drawing.Size(87, 20);
+            this.newDiverCountry.Size = new System.Drawing.Size(86, 20);
             this.newDiverCountry.TabIndex = 20;
             this.newDiverCountry.Text = "Nationalitet";
             this.newDiverCountry.Enter += new System.EventHandler(this.textBox6_Enter);
             // 
             // AddNewDiverSubmit
             // 
-            this.AddNewDiverSubmit.Location = new System.Drawing.Point(331, 3);
+            this.AddNewDiverSubmit.Location = new System.Drawing.Point(330, 3);
             this.AddNewDiverSubmit.Name = "AddNewDiverSubmit";
             this.AddNewDiverSubmit.Size = new System.Drawing.Size(21, 19);
             this.AddNewDiverSubmit.TabIndex = 23;
@@ -502,7 +503,7 @@
             this.newDiverSelectGender.Items.AddRange(new object[] {
             "Kvinna",
             "Man"});
-            this.newDiverSelectGender.Location = new System.Drawing.Point(265, 3);
+            this.newDiverSelectGender.Location = new System.Drawing.Point(264, 3);
             this.newDiverSelectGender.MaxLength = 100;
             this.newDiverSelectGender.Name = "newDiverSelectGender";
             this.newDiverSelectGender.Size = new System.Drawing.Size(60, 21);
@@ -655,7 +656,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.40838F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
             this.tableLayoutPanel4.Controls.Add(this.newDiverName, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.newDiverCountry, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.newDiverAge, 2, 0);
