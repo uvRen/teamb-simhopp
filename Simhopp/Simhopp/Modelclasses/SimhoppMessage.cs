@@ -86,6 +86,7 @@ namespace Simhopp
             sr.Close();
             //ms.Close();
 
+            msg = Crypto.Encrypt(msg);
             return msg;
         }
 
@@ -101,6 +102,7 @@ namespace Simhopp
 
         public static SimhoppMessage Deserialize(string message)
         {
+            message = Crypto.Decrypt(message);
             SimhoppMessage msg;
             try
             {
