@@ -8,11 +8,15 @@ using System.Threading.Tasks;
 
 namespace Simhopp
 {
+    /// <summary>
+    /// Kryptering av nätverkstrafik
+    /// Mest för att kunna skicka knasiga tecken över nätverket
+    /// </summary>
     class Crypto
     {
-        static readonly string PasswordHash = "P@@Sw0rd";
-        static readonly string SaltKey = "S@LT&KEY";
-        static readonly string VIKey = "@1B2c3D4e5F6g7H8";
+        static readonly string PasswordHash = "teamb";
+        static readonly string SaltKey = "hemlis";
+        static readonly string VIKey = "secretz";
 
         public static string Encrypt(string plainText)
         {
