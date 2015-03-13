@@ -84,7 +84,7 @@
             this.StartEvent_btn.Name = "StartEvent_btn";
             this.StartEvent_btn.Size = new System.Drawing.Size(100, 23);
             this.StartEvent_btn.TabIndex = 1;
-            this.StartEvent_btn.Text = "Starta Event";
+            this.StartEvent_btn.Text = "Starta Tävling";
             this.StartEvent_btn.UseVisualStyleBackColor = true;
             this.StartEvent_btn.Click += new System.EventHandler(this.StartEventClick);
             // 
@@ -121,8 +121,7 @@
             this.CreateNewEvent_btn.Name = "CreateNewEvent_btn";
             this.CreateNewEvent_btn.Size = new System.Drawing.Size(100, 23);
             this.CreateNewEvent_btn.TabIndex = 4;
-            this.CreateNewEvent_btn.Text = "Skapa Nytt Event";
-            this.CreateNewEvent_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.CreateNewEvent_btn.Text = "Skapa Tävling";
             this.CreateNewEvent_btn.UseVisualStyleBackColor = true;
             this.CreateNewEvent_btn.Click += new System.EventHandler(this.CreateEventClick);
             // 
@@ -135,7 +134,7 @@
             this.Event_label.Name = "Event_label";
             this.Event_label.Size = new System.Drawing.Size(486, 21);
             this.Event_label.TabIndex = 5;
-            this.Event_label.Text = "Event";
+            this.Event_label.Text = "Tävling";
             this.Event_label.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // Resultat_label
