@@ -313,7 +313,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormEvent_FormClosing);
             this.Load += new System.EventHandler(this.FormEvent_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormEvent_KeyDown);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FormEvent_KeyPress);
             this.panelControls.ResumeLayout(false);
             this.panelEventInfo.ResumeLayout(false);
             this.panelEventInfo.PerformLayout();

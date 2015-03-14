@@ -13,10 +13,10 @@ namespace Simhopp_JudgeClient
             InitializeComponent();
 
             //Dölj loggning
-            //this.Width = 295;
-            //this.MaximizeBox = false;
-            //this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            //textBoxLog.Visible = false;
+            this.Width = 295;
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            textBoxLog.Visible = false;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -29,6 +29,10 @@ namespace Simhopp_JudgeClient
             listBoxJudges.Visible = false;
         }
         
+        /// <summary>
+        /// Inloggnings-svar från servern. Loggar in som vald domare
+        /// </summary>
+        /// <param name="msg"></param>
         public void AssignLogin(SimhoppMessage msg)
         {
             EventPresenter presenter = new EventPresenter(null, msg.Status.Contest);
@@ -38,11 +42,12 @@ namespace Simhopp_JudgeClient
             
             this.Hide();
             presenter.ShowView();
-
-            //presenter.ShowViewDiialog();
-            //this.Close();
         }
 
+        /// <summary>
+        /// Skriver ut domare som går att ansluta som
+        /// </summary>
+        /// <param name="msg"></param>
         public void PopulateJudgeList(SimhoppMessage msg)
         {
             listBoxJudges.Visible = true;
@@ -66,9 +71,13 @@ namespace Simhopp_JudgeClient
             btnLogin.Enabled = listBoxJudges.SelectedItems.Count > 0;
         }
 
+        /// <summary>
+        /// Skricka inloggningsförfrågan till servern
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLogin_Click(object sender, EventArgs e)
         {
-
             listBoxJudges.Visible = false;
             imgLoading.Visible = true;
             labelJudgeList.Text = "Loggar in...";
