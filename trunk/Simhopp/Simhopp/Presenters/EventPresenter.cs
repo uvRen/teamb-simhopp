@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Windows.Forms.Design;
 
 namespace Simhopp
 {
@@ -281,15 +282,21 @@ namespace Simhopp
 
         public void StopServer()
         {
-            JudgeServer.Start();
+            JudgeServer.Stop();
         }
 
-        public void Close()
+        public void Close(bool serverTerminating = false)
         {
             if (Mode == ViewMode.Client)
             {
+                if (!serverTerminating)
+                    _judgeClient.SendLogout(_clientJudgeIndex);
+                else
+                    MessageBox.Show("Servern stängde anslutningen.\n\nProgrammet avslutas.", "Avslutas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
                 JudgeServer.Stop();
-                _judgeClient.SendLogout(_clientJudgeIndex);
             }
         }
         #endregion

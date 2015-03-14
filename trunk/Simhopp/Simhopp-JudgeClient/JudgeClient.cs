@@ -27,8 +27,9 @@ namespace Simhopp_JudgeClient
         }
 
         private delegate void ProcessMessage(SimhoppMessage msg);
-        private  void PopulateJudgeList(SimhoppMessage msg)
-        {try
+        private void PopulateJudgeList(SimhoppMessage msg)
+        {
+            try
             {
                 ProcessMessage d = new ProcessMessage(_view.PopulateJudgeList);
                 _view.Invoke(d, msg);
@@ -64,7 +65,7 @@ namespace Simhopp_JudgeClient
             }
         }
 
-        public  void Start()
+        public void Start()
         {
             Messages = new ConcurrentQueue<SimhoppMessage>();
 
@@ -73,7 +74,10 @@ namespace Simhopp_JudgeClient
             _serverThread.Start();
         }
 
-        private  void ServerFinder()
+        /// <summary>
+        /// Letar efter server och upprättar en anslutning
+        /// </summary>
+        private void ServerFinder()
         {
             //Broadcasta ping-meddelande
             client = new UdpClient();
@@ -91,44 +95,54 @@ namespace Simhopp_JudgeClient
 
             LogMessage(msg);
 
+            //Klient-tråd
+            //Tar emot meddelanden från servern
             while ( true )
             {
-                Thread.Sleep(100);
-
-                msg = SendReceive();
-
-                if (msg == null)
-                    continue;
-
-                switch (msg.Action)
+                try
                 {
-                    case SimhoppMessage.ClientAction.List:
-                        PopulateJudgeList(msg);
-                        break;
-                    case SimhoppMessage.ClientAction.AssignId:
-                        AssignLogin(msg);
-                        break;
-                    case SimhoppMessage.ClientAction.SubmitScore:
-                        //if (Presenter == null)
-                        //    break;
-                        Presenter.SubmitClientScore(msg.Value, msg.Id);
-                        break;
-                    case SimhoppMessage.ClientAction.RequestScore:
-                        if (Presenter == null)
+                    Thread.Sleep(100);
+
+                    msg = SendReceive();
+
+                    if (msg == null)
+                        continue;
+
+                    switch (msg.Action)
+                    {
+                        case SimhoppMessage.ClientAction.List:
+                            PopulateJudgeList(msg);
                             break;
-                        Presenter.ScoreRequested(msg);
-                        break;
-                    case SimhoppMessage.ClientAction.StatusUpdate:
-                        if (Presenter == null)
+                        case SimhoppMessage.ClientAction.AssignId:
+                            AssignLogin(msg);
                             break;
-                        Presenter.StatusUpdated(msg);
-                        break;
+                        case SimhoppMessage.ClientAction.SubmitScore:
+                            if (Presenter != null)
+                                Presenter.SubmitClientScore(msg.Value, msg.Id);
+                            break;
+                        case SimhoppMessage.ClientAction.RequestScore:
+                            if (Presenter != null)
+                                Presenter.ScoreRequested(msg);
+                            break;
+                        case SimhoppMessage.ClientAction.StatusUpdate:
+                            if (Presenter != null)
+                                Presenter.StatusUpdated(msg);
+                            break;
+                        case SimhoppMessage.ClientAction.ServerTerminating:
+                            if (Presenter != null)
+                                Presenter.Close(true);
+                            Application.Exit();
+                            break;
+                    }
+
+                    LogMessage(msg);
+
                 }
-
-                LogMessage(msg);
-
+                catch (Exception ex)
+                {
+                    ExceptionHandler.Handle(ex);
+                }
             }
-            client.Close();
         }
 
         private  SimhoppMessage SendReceive(SimhoppMessage msg = null, bool broadcast = false)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net.Sockets;
 using System.Text;
@@ -9,6 +10,7 @@ namespace Simhopp
 {
     /// <summary>
     /// Hanterar exceptions
+    /// Kastar exception i debug-mode
     /// skriver ut till errorlog.exe
     /// visar prompt
     /// Ignore ignorerar felmeddelanden.
@@ -19,10 +21,14 @@ namespace Simhopp
         public static void Handle(Exception ex)
         {
             //Ignorera socketexception
-            //if ((ex is SocketException))
-            //    return;
+            if ((ex is SocketException))
+                return;
 
-            //throw ex;
+            HandleDebuggingExeption(ex);
+
+            if ((ex is ObjectDisposedException))
+                return;
+
 
             using(StreamWriter writer = new StreamWriter("errorlog.txt", true, Encoding.UTF8))
             { 
@@ -66,6 +72,12 @@ namespace Simhopp
             {
                 _ignore = true;
             }
+        }
+
+        [Conditional("DEBUG")]
+        private static void HandleDebuggingExeption(Exception ex)
+        {
+            throw ex;
         }
     }
 }

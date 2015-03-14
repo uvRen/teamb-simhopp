@@ -30,7 +30,8 @@ namespace Simhopp
             RequestScore,
             SubmitScore,
             StatusUpdate,
-            Logout
+            Logout,
+            ServerTerminating
         };
 
         [DataContract]

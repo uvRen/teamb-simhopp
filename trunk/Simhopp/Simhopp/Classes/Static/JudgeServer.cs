@@ -42,36 +42,29 @@ namespace Simhopp
 
         }
 
-        public static void Stop()
+        private static void UdpListener()
         {
             try
             {
-                _judgeClients.Clear();
-
-                if (_serverThread.IsAlive)
-                {
-                    _serverThread.Abort();
-                }
-                _server.Close();
+                _server = new UdpClient(60069); //60069
+                _server.EnableBroadcast = true;
             }
             catch (Exception ex)
             {
                 ExceptionHandler.Handle(ex);
             }
-        }
 
-        private static void UdpListener()
-        {
-            _server = new UdpClient(60069); //60069
-            _server.EnableBroadcast = true;
-            try
+            while ( true )
             {
-                while ( true )
+                try
                 {
-                    IPEndPoint ipep = new IPEndPoint(IPAddress.Any, 60069);
-                    LogToServer("Waiting for broadcast");
+                    if (_server == null)
+                        return;
 
-                    //Receive
+                    //Vänta på broadcast från klient
+                    IPEndPoint ipep = new IPEndPoint(IPAddress.Any, 60069);
+
+                    //Ta emot msg från klienten
                     byte[] data = _server.Receive(ref ipep);
                     string receiveMessage = Encoding.ASCII.GetString(data, 0, data.Length);
 
@@ -95,29 +88,16 @@ namespace Simhopp
                             response = SimhoppMessage.ErrorMessage("Not implemented");
                             break;
                     }
-                    string test1 = " -> ½ <- ";
-                    string test2 = Crypto.Decrypt(Crypto.Encrypt(test1));
-
-                    LogToServer(test1);
-                    LogToServer(test2);
-
-                    LogToServer("Recieve: " + msg.Serialize());
-                    LogToServer("Send: " + response.Serialize());
-                    LogToServer("Send (de): " + Crypto.Decrypt(response.Serialize()));
-                    LogToServer("Send (de): " + Crypto.Decrypt(SimhoppMessage.Deserialize(Crypto.Encrypt(Crypto.Decrypt(response.Serialize()))).Serialize()));
-
-                    //Respond
+                    
+                    //Svara
                     var responseData = Encoding.ASCII.GetBytes(response.Serialize());
                     _server.Send(responseData, responseData.Length, ipep);
+                        
                 }
-            }
-            catch (Exception e)
-            {
-                _presenter.LogToServer(e.ToString());
-            }
-            finally
-            {
-                _server.Close();
+                catch (Exception ex)
+                {
+                    ExceptionHandler.Handle(ex);
+                }
             }
         }
 
@@ -137,6 +117,35 @@ namespace Simhopp
         public static void SendStatus()
         {
             BroadcastScore(null, _presenter.CurrentRoundIndex, _presenter.CurrentDiverIndex, SimhoppMessage.ClientAction.StatusUpdate);
+        }
+
+
+        public static void Stop()
+        {
+            Thread t = new Thread(TerminateServer);
+            t.Start();
+        }
+
+        private static void TerminateServer()
+        {
+            try
+            {
+                //Skicka termineringsmeddelande till ansluna domarklienter
+                SendScoreToConnectedClients(null, _presenter.CurrentRoundIndex, _presenter.CurrentDiverIndex, SimhoppMessage.ClientAction.ServerTerminating);
+                
+                //Stäng av server
+                _judgeClients.Clear();
+
+                if (_serverThread.IsAlive)
+                {
+                    _serverThread.Abort();
+                }
+                _server.Close();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.Handle(ex);
+            }
         }
 
         private static void SendScoreToConnectedClients(Score score, int roundIndex, int diverIndex, SimhoppMessage.ClientAction action = SimhoppMessage.ClientAction.Ping)

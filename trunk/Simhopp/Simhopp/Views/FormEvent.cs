@@ -520,6 +520,11 @@ namespace Simhopp
         private void btnStopServer_Click(object sender, EventArgs e)
         {
             _presenter.StopServer();
+
+            labelServerStatus.Text = "Klientinloggning avstängd";
+
+            btnStartServer.Visible = true;
+            btnStopServer.Visible = false;
         }
 
         public void SetClientLogin()
