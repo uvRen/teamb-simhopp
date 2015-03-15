@@ -71,6 +71,7 @@
             this.teamBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchBox = new System.Windows.Forms.ToolStripTextBox();
             this.searchEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -357,6 +358,7 @@
             this.registreraResultatCTRLRToolStripMenuItem,
             this.skrivUtResultatCTRLPToolStripMenuItem,
             this.visaFullskarmCTRLF11ToolStripMenuItem,
+            this.toolStripSeparator3,
             this.skapaNyttEventCTRLNToolStripMenuItem,
             this.toolStripSeparator1,
             this.avslutaCtrlEscToolStripMenuItem});
@@ -368,7 +370,7 @@
             // 
             this.startaEventCTRLSToolStripMenuItem.Name = "startaEventCTRLSToolStripMenuItem";
             this.startaEventCTRLSToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
-            this.startaEventCTRLSToolStripMenuItem.Text = "Starta Event                   (Ctrl+S)";
+            this.startaEventCTRLSToolStripMenuItem.Text = "Starta Tävling               (Ctrl+S)";
             this.startaEventCTRLSToolStripMenuItem.Click += new System.EventHandler(this.StartEventClick);
             // 
             // registreraResultatCTRLRToolStripMenuItem
@@ -396,7 +398,7 @@
             // 
             this.skapaNyttEventCTRLNToolStripMenuItem.Name = "skapaNyttEventCTRLNToolStripMenuItem";
             this.skapaNyttEventCTRLNToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
-            this.skapaNyttEventCTRLNToolStripMenuItem.Text = "Skapa Nytt Event         (Ctrl+N)";
+            this.skapaNyttEventCTRLNToolStripMenuItem.Text = "Skapa Ny Tävling         (Ctrl+N)";
             this.skapaNyttEventCTRLNToolStripMenuItem.Click += new System.EventHandler(this.CreateEventClick);
             // 
             // toolStripSeparator1
@@ -452,6 +454,11 @@
             this.searchEventToolStripMenuItem.Name = "searchEventToolStripMenuItem";
             this.searchEventToolStripMenuItem.Size = new System.Drawing.Size(80, 23);
             this.searchEventToolStripMenuItem.Text = "Sök Tävling";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(241, 6);
             // 
             // FormMain
             // 
@@ -522,6 +529,7 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ToolStripTextBox searchBox;
         private System.Windows.Forms.ToolStripMenuItem searchEventToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
 
     }
 }
