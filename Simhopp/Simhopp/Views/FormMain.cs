@@ -170,6 +170,9 @@ namespace Simhopp
 
             if (e.Control && e.KeyCode == Keys.N)
                 CreateEventClick(sender, e);
+            
+            if (e.Control && e.KeyCode == Keys.F)
+                searchBox.Focus();
        }
 
         private void listViewEvent_KeyDown(object sender, KeyEventArgs e)
