@@ -16,6 +16,7 @@ namespace Simhopp
     public class Database
     {
         private static MySqlConnection _connection = null;
+
         #region Connection
         /// <summary>
         /// ansluter till databasen och returnerar anslutningen
@@ -695,7 +696,7 @@ namespace Simhopp
                 if (conn != null)
                 {
                     Diver d;
-                    string sql = "SELECT * FROM diver WHERE id IN (SELECT diverId FROM event_diver WHERE event_diver.eventId=" + eventID + ") ORDER BY id DESC;"; //RADERA: ORDER BY id DESC, endast för "resultat"
+                    string sql = "SELECT * FROM (SELECT diver.id AS id, diver.name AS name, sum(dive.totalScore) as totalScore FROM diver, dive WHERE dive.diverId = diver.id AND diver.id IN (SELECT diverId FROM event_diver WHERE event_diver.eventId=" + eventID + ") GROUP BY diver.id) AS Result ORDER BY totalScore;"; //RADERA: ORDER BY id DESC, endast för "resultat"
                     var cmd = new MySqlCommand(sql, conn);
                     var dr = cmd.ExecuteReader();
                     var dt = new DataTable();
