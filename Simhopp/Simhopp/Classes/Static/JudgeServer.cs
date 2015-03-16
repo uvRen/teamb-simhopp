@@ -150,6 +150,8 @@ namespace Simhopp
 
         private static void SendScoreToConnectedClients(Score score, int roundIndex, int diverIndex, SimhoppMessage.ClientAction action = SimhoppMessage.ClientAction.Ping)
         {
+            if (_judgeClients == null)
+                return;
             //Skicka poäng (eller be om bedömningspoäng) till anslutna domarklienter
             foreach (IPEndPoint ipep in _judgeClients)
             {
