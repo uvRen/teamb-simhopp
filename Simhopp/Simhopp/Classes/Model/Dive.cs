@@ -20,7 +20,10 @@ namespace Simhopp
         //[DataMember]
         public double Difficulty
         {
-            get { return _diveType.Difficulty; }
+            get
+            {
+                return _diveType.Difficulty;
+            }
             set {
                 //_diveType.Difficulty = value;
             }

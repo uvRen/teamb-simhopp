@@ -29,10 +29,10 @@ namespace Simhopp
             if ((ex is ObjectDisposedException))
                 return;
 
-
             using(StreamWriter writer = new StreamWriter("errorlog.txt", true, Encoding.UTF8))
             { 
                 writer.WriteLine("-------- BEGIN EXCEPTION --------");
+
                 writer.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString());
                 writer.WriteLine(ex.HelpLink);
 
