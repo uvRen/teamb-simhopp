@@ -135,7 +135,19 @@ namespace Simhopp
             }
 
         }
-
+        //Sök-funktion för tävlingar
+        private void searchBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            string str = searchBox.Text.ToLower();
+            listViewEvent.Items.Clear();
+            foreach (ListViewItem item in SearchItemSource.Keys)
+            {
+                if (item.SubItems[1].Text.ToLower().IndexOf(str) >= 0 || str == "")
+                {
+                    listViewEvent.Items.Add(item);
+                }
+            }
+        }
         #endregion
 
         #region Print Result
@@ -201,22 +213,7 @@ namespace Simhopp
         }
         #endregion
 
-        private void searchBox_KeyUp(object sender, KeyEventArgs e)
-        {
-            string str = searchBox.Text.ToLower();
-            listViewEvent.Items.Clear();
-            foreach (ListViewItem item in SearchItemSource.Keys)
-            {
-                if (item.SubItems[1].Text.ToLower().IndexOf(str) >= 0 || str == "")
-                {
-                    listViewEvent.Items.Add(item);
-                }
-            }
-        }
 
-        private void FormMain_Load(object sender, EventArgs e)
-        {
-            searchBox.Focus();
-        }
+
     }
 }
