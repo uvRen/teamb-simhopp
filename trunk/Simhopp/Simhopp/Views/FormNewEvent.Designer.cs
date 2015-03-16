@@ -56,8 +56,8 @@
             this.successfully = new System.Windows.Forms.Label();
             this.errorlabel = new System.Windows.Forms.Label();
             this.listViewJudge = new System.Windows.Forms.ListView();
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listViewDivers = new System.Windows.Forms.ListView();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -389,17 +389,15 @@
             this.listViewJudge.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listViewJudge_ItemChecked);
             this.listViewJudge.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listViewJudges_MouseDown);
             // 
-            // columnHeader2
-            // 
-            this.columnHeader2.DisplayIndex = 1;
-            this.columnHeader2.Text = "     Domare";
-            this.columnHeader2.Width = 210;
-            // 
             // columnHeader1
             // 
-            this.columnHeader1.DisplayIndex = 0;
             this.columnHeader1.Text = "";
-            this.columnHeader1.Width = 20;
+            this.columnHeader1.Width = 16;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Domare";
+            this.columnHeader2.Width = 210;
             // 
             // listViewDivers
             // 
@@ -460,7 +458,7 @@
             // 
             // newDiverAge
             // 
-            this.newDiverAge.Location = new System.Drawing.Point(208, 3);
+            this.newDiverAge.Location = new System.Drawing.Point(207, 3);
             this.newDiverAge.Name = "newDiverAge";
             this.newDiverAge.Size = new System.Drawing.Size(37, 20);
             this.newDiverAge.TabIndex = 21;
@@ -472,14 +470,14 @@
             this.newDiverCountry.Dock = System.Windows.Forms.DockStyle.Top;
             this.newDiverCountry.Location = new System.Drawing.Point(121, 3);
             this.newDiverCountry.Name = "newDiverCountry";
-            this.newDiverCountry.Size = new System.Drawing.Size(81, 20);
+            this.newDiverCountry.Size = new System.Drawing.Size(80, 20);
             this.newDiverCountry.TabIndex = 20;
             this.newDiverCountry.Text = "Nationalitet";
             this.newDiverCountry.Enter += new System.EventHandler(this.textBox6_Enter);
             // 
             // AddNewDiverSubmit
             // 
-            this.AddNewDiverSubmit.Location = new System.Drawing.Point(317, 3);
+            this.AddNewDiverSubmit.Location = new System.Drawing.Point(316, 3);
             this.AddNewDiverSubmit.Name = "AddNewDiverSubmit";
             this.AddNewDiverSubmit.Size = new System.Drawing.Size(21, 19);
             this.AddNewDiverSubmit.TabIndex = 23;
@@ -515,7 +513,7 @@
             this.newDiverSelectGender.Items.AddRange(new object[] {
             "Kvinna",
             "Man"});
-            this.newDiverSelectGender.Location = new System.Drawing.Point(251, 3);
+            this.newDiverSelectGender.Location = new System.Drawing.Point(250, 3);
             this.newDiverSelectGender.MaxLength = 100;
             this.newDiverSelectGender.Name = "newDiverSelectGender";
             this.newDiverSelectGender.Size = new System.Drawing.Size(60, 21);
@@ -697,7 +695,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.40838F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
             this.tableLayoutPanel4.Controls.Add(this.newDiverName, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.newDiverCountry, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.newDiverAge, 2, 0);
