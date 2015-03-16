@@ -157,6 +157,17 @@ namespace Simhopp
 
         private void FormMain_KeyDown(object sender, KeyEventArgs e)
         {
+            //FOCUS
+            if (e.KeyValue >= 65 && e.KeyValue <= 90)                                                                           //keyValue >A && <Z
+                searchBox.Focus();
+
+            if (e.Control && e.KeyCode == Keys.NumPad1 || e.Control && e.KeyCode == Keys.D1)
+                listViewEvent.Focus();
+            
+            if (e.Control && e.KeyCode == Keys.NumPad2 || e.Control && e.KeyCode == Keys.D2)
+                listViewResult.Focus();
+
+            //BUTTONS
             if (e.Control && e.KeyCode == Keys.S)
                 StartEventClick(sender, e);
 
@@ -172,8 +183,8 @@ namespace Simhopp
             if (e.Control && e.KeyCode == Keys.N)
                 CreateEventClick(sender, e);
             
-            if (e.Control && e.KeyCode == Keys.F)
-                searchBox.Focus();
+            //if (e.Control && e.KeyCode == Keys.F)
+            //    searchBox.Focus();
        }
 
         private void listViewEvent_KeyDown(object sender, KeyEventArgs e)
@@ -201,6 +212,11 @@ namespace Simhopp
                     listViewEvent.Items.Add(item);
                 }
             }
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            searchBox.Focus();
         }
     }
 }

@@ -62,6 +62,7 @@
             this.registreraResultatCTRLRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.skrivUtResultatCTRLPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visaFullskarmCTRLF11ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.skapaNyttEventCTRLNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.avslutaCtrlEscToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,7 +72,6 @@
             this.teamBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchBox = new System.Windows.Forms.ToolStripTextBox();
             this.searchEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -394,6 +394,11 @@
             this.visaFullskarmCTRLF11ToolStripMenuItem.Text = "Visa Fullskärm              (Ctrl+F11)";
             this.visaFullskarmCTRLF11ToolStripMenuItem.Click += new System.EventHandler(this.ResultsToFullScreen_btn_Click);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(241, 6);
+            // 
             // skapaNyttEventCTRLNToolStripMenuItem
             // 
             this.skapaNyttEventCTRLNToolStripMenuItem.Name = "skapaNyttEventCTRLNToolStripMenuItem";
@@ -455,11 +460,6 @@
             this.searchEventToolStripMenuItem.Size = new System.Drawing.Size(80, 23);
             this.searchEventToolStripMenuItem.Text = "Sök Tävling";
             // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(241, 6);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -472,6 +472,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMain";
             this.Text = "Team B";
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormMain_KeyDown);
             this.contextMenuStrip1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
