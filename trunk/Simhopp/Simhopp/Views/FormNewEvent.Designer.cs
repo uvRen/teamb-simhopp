@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNewEvent));
             this.EventName_label = new System.Windows.Forms.Label();
             this.EventName_textBox = new System.Windows.Forms.TextBox();
@@ -70,7 +72,6 @@
             this.newJudgeSubmit = new System.Windows.Forms.Button();
             this.newDiverSelectGender = new System.Windows.Forms.ComboBox();
             this.listViewDivers_contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.EditDiverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveDiverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listViewJudges_contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.RemoveJudge_toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -391,7 +392,7 @@
             // columnHeader2
             // 
             this.columnHeader2.DisplayIndex = 1;
-            this.columnHeader2.Text = "Domare";
+            this.columnHeader2.Text = "     Domare";
             this.columnHeader2.Width = 210;
             // 
             // columnHeader1
@@ -452,14 +453,14 @@
             this.newDiverName.Dock = System.Windows.Forms.DockStyle.Top;
             this.newDiverName.Location = new System.Drawing.Point(3, 3);
             this.newDiverName.Name = "newDiverName";
-            this.newDiverName.Size = new System.Drawing.Size(114, 20);
+            this.newDiverName.Size = new System.Drawing.Size(113, 20);
             this.newDiverName.TabIndex = 19;
             this.newDiverName.Text = "Namn";
             this.newDiverName.Enter += new System.EventHandler(this.textBox3_Enter);
             // 
             // newDiverAge
             // 
-            this.newDiverAge.Location = new System.Drawing.Point(212, 3);
+            this.newDiverAge.Location = new System.Drawing.Point(210, 3);
             this.newDiverAge.Name = "newDiverAge";
             this.newDiverAge.Size = new System.Drawing.Size(37, 20);
             this.newDiverAge.TabIndex = 21;
@@ -469,16 +470,16 @@
             // newDiverCountry
             // 
             this.newDiverCountry.Dock = System.Windows.Forms.DockStyle.Top;
-            this.newDiverCountry.Location = new System.Drawing.Point(123, 3);
+            this.newDiverCountry.Location = new System.Drawing.Point(122, 3);
             this.newDiverCountry.Name = "newDiverCountry";
-            this.newDiverCountry.Size = new System.Drawing.Size(83, 20);
+            this.newDiverCountry.Size = new System.Drawing.Size(82, 20);
             this.newDiverCountry.TabIndex = 20;
             this.newDiverCountry.Text = "Nationalitet";
             this.newDiverCountry.Enter += new System.EventHandler(this.textBox6_Enter);
             // 
             // AddNewDiverSubmit
             // 
-            this.AddNewDiverSubmit.Location = new System.Drawing.Point(321, 3);
+            this.AddNewDiverSubmit.Location = new System.Drawing.Point(319, 3);
             this.AddNewDiverSubmit.Name = "AddNewDiverSubmit";
             this.AddNewDiverSubmit.Size = new System.Drawing.Size(21, 19);
             this.AddNewDiverSubmit.TabIndex = 23;
@@ -514,7 +515,7 @@
             this.newDiverSelectGender.Items.AddRange(new object[] {
             "Kvinna",
             "Man"});
-            this.newDiverSelectGender.Location = new System.Drawing.Point(255, 3);
+            this.newDiverSelectGender.Location = new System.Drawing.Point(253, 3);
             this.newDiverSelectGender.MaxLength = 100;
             this.newDiverSelectGender.Name = "newDiverSelectGender";
             this.newDiverSelectGender.Size = new System.Drawing.Size(60, 21);
@@ -524,17 +525,9 @@
             // listViewDivers_contextMenuStrip
             // 
             this.listViewDivers_contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.EditDiverToolStripMenuItem,
             this.RemoveDiverToolStripMenuItem});
             this.listViewDivers_contextMenuStrip.Name = "listViewDivers_contextMenuStrip";
-            this.listViewDivers_contextMenuStrip.Size = new System.Drawing.Size(152, 48);
-            // 
-            // EditDiverToolStripMenuItem
-            // 
-            this.EditDiverToolStripMenuItem.Name = "EditDiverToolStripMenuItem";
-            this.EditDiverToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
-            this.EditDiverToolStripMenuItem.Text = "Redigera hopp";
-            this.EditDiverToolStripMenuItem.Click += new System.EventHandler(this.EditDiverToolStripMenuItem_Click);
+            this.listViewDivers_contextMenuStrip.Size = new System.Drawing.Size(153, 48);
             // 
             // RemoveDiverToolStripMenuItem
             // 
@@ -663,7 +656,23 @@
             // 
             // DiveTypeInput_dataGridView
             // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DiveTypeInput_dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.DiveTypeInput_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DiveTypeInput_dataGridView.DefaultCellStyle = dataGridViewCellStyle4;
             this.DiveTypeInput_dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DiveTypeInput_dataGridView.Location = new System.Drawing.Point(3, 3);
             this.DiveTypeInput_dataGridView.Name = "DiveTypeInput_dataGridView";
@@ -688,7 +697,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.40838F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel4.Controls.Add(this.newDiverName, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.newDiverCountry, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.newDiverAge, 2, 0);
@@ -726,19 +735,19 @@
             // skapaEventCtrlSToolStripMenuItem
             // 
             this.skapaEventCtrlSToolStripMenuItem.Name = "skapaEventCtrlSToolStripMenuItem";
-            this.skapaEventCtrlSToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.skapaEventCtrlSToolStripMenuItem.Text = "Skapa event         (Ctrl+S)";
+            this.skapaEventCtrlSToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.skapaEventCtrlSToolStripMenuItem.Text = "Skapa Tävling         (Ctrl+S)";
             this.skapaEventCtrlSToolStripMenuItem.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(204, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(212, 6);
             // 
             // avslutaAltF4ToolStripMenuItem
             // 
             this.avslutaAltF4ToolStripMenuItem.Name = "avslutaAltF4ToolStripMenuItem";
-            this.avslutaAltF4ToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.avslutaAltF4ToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.avslutaAltF4ToolStripMenuItem.Text = "Avsluta                 (Alt+F4)";
             this.avslutaAltF4ToolStripMenuItem.Click += new System.EventHandler(this.avslutaAltF4ToolStripMenuItem_Click);
             // 
@@ -899,7 +908,6 @@
         private System.Windows.Forms.ListView listViewDivers;
         private System.Windows.Forms.ContextMenuStrip listViewDivers_contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem RemoveDiverToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem EditDiverToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip listViewJudges_contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem RemoveJudge_toolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
