@@ -196,22 +196,23 @@ namespace Simhopp
             NewEventPresenter.FillListViewWithDivers(radioButtonMale, radioButtonFemale, listViewDivers);
         }
 
-        private void EditDiverToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (selectedItem != null) 
-            {
-                DiveTypeInput_dataGridView.Visible = true;
-            }
+        //Redigera hopp högerklick (BORTAGEN)
+        //private void EditDiverToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+            //if (selectedItem != null) 
+            //{
+            //    DiveTypeInput_dataGridView.Visible = true;
+            //}
 
-            DiveTypeInput_dataGridView.Rows.Clear();
+            //DiveTypeInput_dataGridView.Rows.Clear();
 
-            string[] row = new string[] { "", "", "", ""};
-            for (int i = 0; i < Int32.Parse(DiveCount_numericUpDown.Value.ToString()); i++)
-            {
-                DiveTypeInput_dataGridView.Rows.Add(row);
-                DiveTypeInput_dataGridView.Rows[i].HeaderCell.Value = String.Format("{0}", i + 1);
-            }
-        }
+            //string[] row = new string[] { "", "", "", ""};
+            //for (int i = 0; i < Int32.Parse(DiveCount_numericUpDown.Value.ToString()); i++)
+            //{
+            //    DiveTypeInput_dataGridView.Rows.Add(row);
+            //    DiveTypeInput_dataGridView.Rows[i].HeaderCell.Value = String.Format("{0}", i + 1);
+            //}
+        //}
 
 
         //Domare högerklick
