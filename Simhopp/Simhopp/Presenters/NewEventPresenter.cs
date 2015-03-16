@@ -70,8 +70,8 @@ namespace Simhopp
             {
                 ListViewItem item1 = new ListViewItem();
                 item1.Tag = judge;
-                item1.Text = judge.ToString();
-                item1.SubItems.Add(judge.Id.ToString());
+                item1.Text = judge.Id.ToString();
+                item1.SubItems.Add(judge.Name);
 
                 listViewJudge.Items.Add(item1);
             }
