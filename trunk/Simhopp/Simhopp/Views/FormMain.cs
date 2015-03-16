@@ -67,6 +67,7 @@ namespace Simhopp
         {
             FormNewEvent newEvent = new FormNewEvent();
             newEvent.ShowDialog();
+            _presenter.FillListViewWithEvent();
         }
 
         private void StartEventClick(object sender, EventArgs e)
