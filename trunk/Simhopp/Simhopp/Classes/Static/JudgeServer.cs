@@ -144,7 +144,7 @@ namespace Simhopp
             }
             catch (Exception ex)
             {
-                ExceptionHandler.Handle(ex);
+                //ExceptionHandler.Handle(ex);
             }
         }
 
@@ -152,6 +152,7 @@ namespace Simhopp
         {
             if (_judgeClients == null)
                 return;
+
             //Skicka poäng (eller be om bedömningspoäng) till anslutna domarklienter
             foreach (IPEndPoint ipep in _judgeClients)
             {

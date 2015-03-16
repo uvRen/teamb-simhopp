@@ -156,17 +156,20 @@ namespace Simhopp
         {
             get
             {
-                if(_difficulty != null)
-                    return _difficulty;
+                //if(_difficulty != null)
+                //    return _difficulty;
 
-                //if (_dd == null)
-                //    LoadDDTable();
+                if (_dd == null)
+                    LoadDDTable();
 
                 //Returnerar 0 om difficulty inte finns i _dd
                 //Annars returnerar difficulty från _dd
                 return !_dd[this._no][this.Height].ContainsKey(this.Position) ? 0 : _dd[this._no][this.Height][this.Position];
             }
-            set { _difficulty = value; }
+            set
+            {
+                _difficulty = value;
+            }
         }
 
         public DiveType(int no, DivePosition position, DiveHeight height)
