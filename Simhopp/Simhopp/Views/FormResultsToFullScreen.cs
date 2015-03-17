@@ -14,6 +14,7 @@ namespace Simhopp
     {
         ListView listViewEvent;
         Screen currentScreen;
+        private string _id;
 
         public FormResultsToFullScreen(ListView listViewEvent, int showMonitor)
         {
@@ -27,21 +28,8 @@ namespace Simhopp
             currentScreen = sc[whichScreen];
 
             int bredd = currentScreen.Bounds.Width;
-
-            listViewResult.Columns[0].Width = bredd/2;
-            listViewResult.Columns[1].Width = bredd/2;
-
-
-            listViewResult.Items.Clear();
-
-            foreach (Diver d in Database.GetDiversInEvent(Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text)))
-            {
-                ListViewItem item1 = new ListViewItem();
-                item1.Text = d.Id.ToString();
-
-                item1.SubItems.Add(d.Name);
-                listViewResult.Items.Add(item1);
-            }
+            _id = listViewEvent.SelectedItems[0].SubItems[5].Text;
+            webBrowser.Url = new Uri("http://rockcamp.piq.nu/scoring.php?id=" + _id); 
         }
 
         private int showOnMonitor(int showOnMonitor)
@@ -66,16 +54,29 @@ namespace Simhopp
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            listViewResult.Items.Clear();
 
-            foreach (Diver d in Database.GetDiversInEvent(Int32.Parse(listViewEvent.SelectedItems[0].SubItems[5].Text)))
-            {
-                ListViewItem item1 = new ListViewItem();
-                item1.Text = d.Id.ToString();
+            //webBrowser.Url = new Uri("http://rockcamp.piq.nu/scoring.php?id=" + _id); 
+            //if (_id != null)
+            //    webBrowser.Document.InvokeScript("apa");
+        }
 
-                item1.SubItems.Add(d.Name);
-                listViewResult.Items.Add(item1);
-            }
+        private void FormResultsToFullScreen_KeyPress(object sender, KeyPressEventArgs e)
+        {
+        }
+
+        private void FormResultsToFullScreen_KeyUp(object sender, KeyEventArgs e)
+        {
+        }
+
+        private void FormResultsToFullScreen_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void webBrowser_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyData == Keys.Escape)
+                this.Close();
         }
     }
 }
