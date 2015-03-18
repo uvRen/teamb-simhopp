@@ -13,9 +13,10 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div style="width: 665px; height: 191px; margin-left: 40px;">
+    <div >
     
-        -<asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1" Height="277px" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+        <asp:Label ID="Label1" runat="server" style="text-align: center; font-size: x-large; color: #FFFFFF; background-color: #5D7B9D" Text="Events" Width="100%"></asp:Label>
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1" Height="277px" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" HorizontalAlign="Center">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
                 <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" />
@@ -34,10 +35,7 @@
             <SortedDescendingCellStyle BackColor="#FFFDF8" />
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
-        <br />
-        <br />
-        <br />
-        <br />
+ 
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:db_teambConnectionString %>" ProviderName="<%$ ConnectionStrings:db_teambConnectionString.ProviderName %>"
              SelectCommand="SELECT id, name, DATE_FORMAT(date, '%Y-%m-%d') AS date FROM event"></asp:SqlDataSource>
     
