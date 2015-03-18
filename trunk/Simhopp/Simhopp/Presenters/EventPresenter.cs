@@ -306,7 +306,7 @@ namespace Simhopp
             JudgeServer.Stop();
         }
 
-        public void Close(bool serverTerminating = false)
+        public void Close(bool serverTerminating = false, FormClosingEventArgs e = null)
         {
             if (Mode == ViewMode.Client)
             {
@@ -320,6 +320,7 @@ namespace Simhopp
             else
             {
                 JudgeServer.Stop();
+                Thread.Sleep(2000);
             }
         }
         #endregion
