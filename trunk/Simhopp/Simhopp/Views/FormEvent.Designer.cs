@@ -42,6 +42,7 @@
             this.listViewJudges = new System.Windows.Forms.ListView();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelEventInfo = new System.Windows.Forms.Panel();
+            this.FormEventHelp_label = new System.Windows.Forms.Label();
             this.labelSummary = new System.Windows.Forms.Label();
             this.labelTitle = new System.Windows.Forms.Label();
             this.textBoxSeverLog = new System.Windows.Forms.TextBox();
@@ -181,6 +182,7 @@
             // 
             this.panelEventInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.panelEventInfo.Controls.Add(this.FormEventHelp_label);
             this.panelEventInfo.Controls.Add(this.labelSummary);
             this.panelEventInfo.Controls.Add(this.labelTitle);
             this.panelEventInfo.Controls.Add(this.textBoxSeverLog);
@@ -188,6 +190,20 @@
             this.panelEventInfo.Name = "panelEventInfo";
             this.panelEventInfo.Size = new System.Drawing.Size(284, 240);
             this.panelEventInfo.TabIndex = 10;
+            // 
+            // FormEventHelp_label
+            // 
+            this.FormEventHelp_label.AutoSize = true;
+            this.FormEventHelp_label.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.FormEventHelp_label.ForeColor = System.Drawing.Color.Gainsboro;
+            this.FormEventHelp_label.Location = new System.Drawing.Point(15, 173);
+            this.FormEventHelp_label.Name = "FormEventHelp_label";
+            this.FormEventHelp_label.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.FormEventHelp_label.Size = new System.Drawing.Size(229, 58);
+            this.FormEventHelp_label.TabIndex = 2;
+            this.FormEventHelp_label.Text = "HJÄLP Tangentbord\r\n - Mellanslag - Bedöm nästa hopp/Nästa runda\r\n - § = 0p, 1-9 =" +
+    " 0-9p, 0 = 10p\r\n - SHIFT= +0,5 Poäng";
+            this.FormEventHelp_label.Visible = false;
             // 
             // labelSummary
             // 
@@ -214,7 +230,7 @@
             // 
             this.textBoxSeverLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxSeverLog.Location = new System.Drawing.Point(3, 160);
+            this.textBoxSeverLog.Location = new System.Drawing.Point(0, 42);
             this.textBoxSeverLog.Multiline = true;
             this.textBoxSeverLog.Name = "textBoxSeverLog";
             this.textBoxSeverLog.Size = new System.Drawing.Size(278, 77);
@@ -313,6 +329,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormEvent_FormClosing);
             this.Load += new System.EventHandler(this.FormEvent_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormEvent_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FormEvent_KeyUp);
             this.panelControls.ResumeLayout(false);
             this.panelEventInfo.ResumeLayout(false);
             this.panelEventInfo.PerformLayout();
@@ -346,5 +363,6 @@
         private System.Windows.Forms.Button btnStopServer;
         private System.Windows.Forms.Label labelClientServerTitle;
         private System.Windows.Forms.Button btnServerKick;
+        private System.Windows.Forms.Label FormEventHelp_label;
     }
 }

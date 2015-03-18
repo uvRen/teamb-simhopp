@@ -552,6 +552,11 @@ namespace Simhopp
         /// <param name="e"></param>
         private void FormEvent_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.ControlKey)
+            {
+                this.FormEventHelp_label.Visible = true;
+            }
+
             if (e.KeyCode == Keys.Space && btnDoDive.Enabled)
             {
                 e.SuppressKeyPress = true;
@@ -585,6 +590,14 @@ namespace Simhopp
                 points += 0.5;
 
             ScoreCurrentDive(points);
+        }
+
+        private void FormEvent_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ControlKey)
+            {
+                this.FormEventHelp_label.Visible = false;
+            }
         }
     }
 }
