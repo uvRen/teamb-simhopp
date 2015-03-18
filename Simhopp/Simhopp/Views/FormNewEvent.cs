@@ -16,6 +16,8 @@ namespace Simhopp
         private bool privateDrag;
         private AutoCompleteStringCollection _diveNo = new AutoCompleteStringCollection();
         private AutoCompleteStringCollection _diveName = new AutoCompleteStringCollection();
+        private AutoCompleteStringCollection _diveNoReadOnly = new AutoCompleteStringCollection();
+        private AutoCompleteStringCollection _diveNameReadOnly = new AutoCompleteStringCollection();
         private List<DataGridView> _dataGridViewList = new List<DataGridView>();
         private bool EnableSubmitButton = false;
         private bool DataGridViewCellIndex_Back = false;
@@ -39,6 +41,8 @@ namespace Simhopp
 
             //hämtar autocomplete listorna från databasen
             Database.GetAutoCompleteListsFromDatabase(_diveNo, _diveName);
+            Database.GetAutoCompleteListsFromDatabase(_diveNoReadOnly, _diveNameReadOnly);
+
         }
 
         #region Event Funktioner
@@ -175,7 +179,7 @@ namespace Simhopp
         //autocomplete
         private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            NewEventPresenter.AddAutoCompleteToDataGridView(_dataGridViewList, tabControl1, e, _diveNo, _diveName);
+            NewEventPresenter.AddAutoCompleteToDataGridView(_dataGridViewList, tabControl1, e, _diveNo, _diveNoReadOnly, _diveName, _diveNameReadOnly, groupBoxDisciplin);
             PanelDrawer.Colorize(this);
         }
 
@@ -238,19 +242,28 @@ namespace Simhopp
                 _dataGridViewList[i].CellEndEdit += new DataGridViewCellEventHandler(DataGridViewDives_CellEndEdit);
                 _dataGridViewList[i].CellBeginEdit += new DataGridViewCellCancelEventHandler(DataGridViewDives_CellBeginEdit);
             }
-
         }
         
         private void DiveTypeInput_dataGridView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            NewEventPresenter.AddAutoCompleteToDataGridView(_dataGridViewList, tabControl1, e, _diveNo, _diveName);
+            if (((DataGridView)sender).CurrentCell.ColumnIndex == 0)
+            {
+                ComboBox cb = e.Control as ComboBox;
+                if (cb != null)
+                {
+                    //lägger till en Eventhandler på Position comboboxen
+                    cb.SelectionChangeCommitted -= new EventHandler(DataGridViewPositionSelectionChangeCommitted);
+                    cb.SelectionChangeCommitted += new EventHandler(DataGridViewPositionSelectionChangeCommitted);
+                }
+            }
+            NewEventPresenter.AddAutoCompleteToDataGridView(_dataGridViewList, tabControl1, e, _diveNo, _diveNoReadOnly, _diveName, _diveNameReadOnly, groupBoxDisciplin);
         }
 
         private void FormNewEvent_ResizeEnd(object sender, EventArgs e)
         {
             for(int i = 0; i < _dataGridViewList.Count; i++)
             {
-                _dataGridViewList[i].Columns[1].Width = tabControl1.Width - (51 + 55 + 55);
+                _dataGridViewList[i].Columns[2].Width = tabControl1.Width - (51 + 55 + 55);
             }
         }
 
@@ -258,7 +271,7 @@ namespace Simhopp
         {
             for (int i = 0; i < _dataGridViewList.Count; i++)
             {
-                _dataGridViewList[i].Columns[1].Width = tabControl1.Width - (51 + 55 + 55);
+                _dataGridViewList[i].Columns[2].Width = tabControl1.Width - (51 + 55 + 55);
             }
         }
 
@@ -293,7 +306,7 @@ namespace Simhopp
 
             switch (e.ColumnIndex)
             {
-                case 0:
+                case 1:
                     if (_jumpBackToCell.X == e.RowIndex && _jumpBackToCell.Y == e.ColumnIndex)
                     {
                         //om det angivna värdet inte finns med i AutoComplete listan
@@ -303,7 +316,7 @@ namespace Simhopp
                             DataGridViewCellIndex_Back = true;
                             _jumpBackToCell.X = e.RowIndex;
                             _jumpBackToCell.Y = e.ColumnIndex;
-                        }
+                       }
                         //om det var ett giltigt värde ska DiveName cellen autocompletas
                         else
                         {
@@ -319,7 +332,7 @@ namespace Simhopp
                     }
                     break;
 
-                case 1:
+                case 2:
                     if (_jumpBackToCell.X == e.RowIndex && _jumpBackToCell.Y == e.ColumnIndex)
                     {
                         //om det angivna värdet inte finns med i AutoComplete listan
@@ -454,6 +467,14 @@ namespace Simhopp
                 labelSyncToolTip.Text = "";
             }
         }
+
+        //när Position comboboxen ändrar värde
+        private void DataGridViewPositionSelectionChangeCommitted(object sender, EventArgs e)
+        {
+            NewEventPresenter.AddAutoCompleteToDataGridViewAfterPositionChanged(_dataGridViewList, tabControl1, _diveNo, _diveNoReadOnly, _diveName, _diveNameReadOnly, groupBoxDisciplin);
+        }
+
+       
 
     }
 }

@@ -114,12 +114,12 @@ namespace Simhopp
         }
 
         [IgnoreDataMember]
-        public int No 
+        public int No
         {
             get
             {
-                if (_no != null)
-                    return _no;
+                //if (_no != null)
+                //    return _no;
 
                 if (_dd == null)
                     LoadDDTable();
@@ -127,7 +127,7 @@ namespace Simhopp
                 if (_no == null)
                     _no = _nos[this._name];
 
-                return _no;
+                return _nos[this._name];
             }
             set { _no = value; }
         }

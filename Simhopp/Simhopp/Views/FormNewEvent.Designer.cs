@@ -470,7 +470,7 @@
             this.newDiverCountry.Dock = System.Windows.Forms.DockStyle.Top;
             this.newDiverCountry.Location = new System.Drawing.Point(119, 3);
             this.newDiverCountry.Name = "newDiverCountry";
-            this.newDiverCountry.Size = new System.Drawing.Size(80, 20);
+            this.newDiverCountry.Size = new System.Drawing.Size(79, 20);
             this.newDiverCountry.TabIndex = 20;
             this.newDiverCountry.Text = "Nationalitet";
             this.newDiverCountry.Enter += new System.EventHandler(this.textBox6_Enter);
