@@ -293,9 +293,10 @@ namespace Simhopp
             newDataGrid.AllowUserToAddRows = false;
             newDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             newDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            dataGridViewComboBoxColumn2,
             dataGridViewTextBoxColumn1,
-            dataGridViewTextBoxColumn2,
-            dataGridViewComboBoxColumn2});
+            dataGridViewTextBoxColumn2
+            });
             newDataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             newDataGrid.EnableHeadersVisualStyles = false;
             newDataGrid.TabIndex = 28;
@@ -334,10 +335,67 @@ namespace Simhopp
             return newDataGrid;
         }
 
-        public static void AddAutoCompleteToDataGridView(List<DataGridView> _dataGridViewList, TabControl tabControl1, DataGridViewEditingControlShowingEventArgs e, AutoCompleteStringCollection _diveNo, AutoCompleteStringCollection _diveName)
+        public static void AddAutoCompleteToDataGridView(List<DataGridView> _dataGridViewList, TabControl tabControl1, DataGridViewEditingControlShowingEventArgs e, AutoCompleteStringCollection _diveNo, AutoCompleteStringCollection _diveNoReadOnly, AutoCompleteStringCollection _diveName, AutoCompleteStringCollection _diveNameReadOnly, GroupBox groupBox)
         {
             int columnIndex = _dataGridViewList[Int32.Parse(tabControl1.SelectedTab.Name)].CurrentCell.ColumnIndex;
             string headerText = _dataGridViewList[Int32.Parse(tabControl1.SelectedTab.Name)].Columns[columnIndex].HeaderText;
+            int rad = _dataGridViewList[Int32.Parse(tabControl1.SelectedTab.Name)].CurrentCell.RowIndex;
+            string position = _dataGridViewList[Int32.Parse(tabControl1.SelectedTab.Name)].Rows[rad].Cells[0].Value.ToString();
+            string height = "";
+
+            _diveName.Clear();
+            _diveNo.Clear();
+
+            DiveType.DiveHeight diveHeight = DiveType.DiveHeight._1M;
+
+            //hämtar den valda höjden
+            foreach(Control button in groupBox.Controls)
+            {
+                RadioButton b = button as RadioButton;
+                if (b.Checked)
+                    height = b.Text.ToString();
+            }
+
+            switch(height)
+            {
+                case "1 m":
+                    diveHeight = DiveType.DiveHeight._1M;
+                    break;
+                case "3 m":
+                    diveHeight = DiveType.DiveHeight._3M;
+                    break;
+                case "5 m":
+                    diveHeight = DiveType.DiveHeight._5M;
+                    break;
+                case "7,5 m":
+                    diveHeight = DiveType.DiveHeight._7_5M;
+                    break;
+                case "10 m":
+                    diveHeight = DiveType.DiveHeight._10M;
+                    break;
+            }
+
+            DiveType diveType = new DiveType();
+            diveType.Height = diveHeight;
+            SetDiveTypePosition(diveType, position);
+
+            foreach(string s in _diveNoReadOnly)
+            {
+                diveType.No = Int32.Parse(s);
+                if (diveType.Difficulty != 0)
+                    _diveNo.Add(s);
+            }
+
+            diveType = new DiveType();
+            diveType.Height = diveHeight;
+            SetDiveTypePosition(diveType, position);
+
+            foreach(string s in _diveNameReadOnly)
+            {
+                diveType.Name = s;
+                if (diveType.Difficulty != 0)
+                    _diveName.Add(s);
+            }
 
             if (headerText.Equals("Kod"))
             {
@@ -364,10 +422,73 @@ namespace Simhopp
             } 
         }
 
+        public static void AddAutoCompleteToDataGridViewAfterPositionChanged(List<DataGridView> _dataGridViewList, TabControl tabControl1, AutoCompleteStringCollection _diveNo, AutoCompleteStringCollection _diveNoReadOnly, AutoCompleteStringCollection _diveName, AutoCompleteStringCollection _diveNameReadOnly, GroupBox groupBox)
+        {
+            int columnIndex = _dataGridViewList[Int32.Parse(tabControl1.SelectedTab.Name)].CurrentCell.ColumnIndex;
+            string headerText = _dataGridViewList[Int32.Parse(tabControl1.SelectedTab.Name)].Columns[columnIndex].HeaderText;
+            int rad = _dataGridViewList[Int32.Parse(tabControl1.SelectedTab.Name)].CurrentCell.RowIndex;
+            string position = _dataGridViewList[Int32.Parse(tabControl1.SelectedTab.Name)].Rows[rad].Cells[0].Value.ToString();
+            string height = "";
+
+            _diveName.Clear();
+            _diveNo.Clear();
+
+            DiveType.DiveHeight diveHeight = DiveType.DiveHeight._1M;
+
+            //hämtar den valda höjden
+            foreach (Control button in groupBox.Controls)
+            {
+                RadioButton b = button as RadioButton;
+                if (b.Checked)
+                    height = b.Text.ToString();
+            }
+
+            switch (height)
+            {
+                case "1 m":
+                    diveHeight = DiveType.DiveHeight._1M;
+                    break;
+                case "3 m":
+                    diveHeight = DiveType.DiveHeight._3M;
+                    break;
+                case "5 m":
+                    diveHeight = DiveType.DiveHeight._5M;
+                    break;
+                case "7,5 m":
+                    diveHeight = DiveType.DiveHeight._7_5M;
+                    break;
+                case "10 m":
+                    diveHeight = DiveType.DiveHeight._10M;
+                    break;
+            }
+
+            DiveType diveType = new DiveType();
+            diveType.Height = diveHeight;
+            SetDiveTypePosition(diveType, position);
+
+            foreach (string s in _diveNoReadOnly)
+            {
+                diveType.No = Int32.Parse(s);
+                if (diveType.Difficulty != 0)
+                    _diveNo.Add(s);
+            }
+
+            diveType = new DiveType();
+            diveType.Height = diveHeight;
+            SetDiveTypePosition(diveType, position);
+
+            foreach (string s in _diveNameReadOnly)
+            {
+                diveType.Name = s;
+                if (diveType.Difficulty != 0)
+                    _diveName.Add(s);
+            }
+        }
+
         //lägger till DataGridViews i TabControlern
         public static void AddDataGridViewToTabControl(TabControl tabControl1, ListView listViewDivers, AutoCompleteStringCollection _diveNo, AutoCompleteStringCollection _diveName, List<DataGridView> _dataGridViewList, NumericUpDown DiveCount_numericUpDown, Panel panel1)
         {
-            string[] row = new string[] { "1", "Dummy Dive", "A"};
+            string[] row = new string[] { "A", "1", "Dummy Dive"};
             tabControl1.TabPages.Clear();
 
             if (listViewDivers.CheckedItems.Count > 0)
@@ -385,7 +506,7 @@ namespace Simhopp
                         _dataGridViewList.Add(newDataGrid);
                     }
 
-                    _dataGridViewList[i].Columns[1].Width = tabControl1.Width - (51 + 55 + 55);
+                    _dataGridViewList[i].Columns[2].Width = tabControl1.Width - (51 + 55 + 55);
 
                     //DataGridViewens tag är den samma som Diverns ID
                     _dataGridViewList[i].Tag = listViewDivers.CheckedItems[i].SubItems[4].Text;
@@ -395,6 +516,7 @@ namespace Simhopp
                     {
                         _dataGridViewList[i].Rows.Add(row);
                         _dataGridViewList[i].Rows[j].HeaderCell.Value = String.Format("{0}", j + 1);
+                        
                     }
 
                     _dataGridViewList[i].Visible = true;
