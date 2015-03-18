@@ -99,9 +99,9 @@
             this.listViewResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewResult.FullRowSelect = true;
             this.listViewResult.GridLines = true;
-            this.listViewResult.Location = new System.Drawing.Point(495, 24);
+            this.listViewResult.Location = new System.Drawing.Point(495, 28);
             this.listViewResult.Name = "listViewResult";
-            this.listViewResult.Size = new System.Drawing.Size(486, 430);
+            this.listViewResult.Size = new System.Drawing.Size(486, 526);
             this.listViewResult.TabIndex = 3;
             this.listViewResult.UseCompatibleStateImageBehavior = false;
             this.listViewResult.View = System.Windows.Forms.View.Details;
@@ -135,7 +135,7 @@
             this.Event_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Event_label.Location = new System.Drawing.Point(3, 0);
             this.Event_label.Name = "Event_label";
-            this.Event_label.Size = new System.Drawing.Size(486, 21);
+            this.Event_label.Size = new System.Drawing.Size(486, 25);
             this.Event_label.TabIndex = 5;
             this.Event_label.Text = "Tävling";
             this.Event_label.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -147,7 +147,7 @@
             this.Resultat_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Resultat_label.Location = new System.Drawing.Point(495, 0);
             this.Resultat_label.Name = "Resultat_label";
-            this.Resultat_label.Size = new System.Drawing.Size(486, 21);
+            this.Resultat_label.Size = new System.Drawing.Size(486, 25);
             this.Resultat_label.TabIndex = 6;
             this.Resultat_label.Text = "Resultat";
             this.Resultat_label.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -175,9 +175,9 @@
             this.listViewEvent.FullRowSelect = true;
             this.listViewEvent.GridLines = true;
             this.listViewEvent.HideSelection = false;
-            this.listViewEvent.Location = new System.Drawing.Point(3, 24);
+            this.listViewEvent.Location = new System.Drawing.Point(3, 28);
             this.listViewEvent.Name = "listViewEvent";
-            this.listViewEvent.Size = new System.Drawing.Size(486, 430);
+            this.listViewEvent.Size = new System.Drawing.Size(486, 526);
             this.listViewEvent.SmallImageList = this.imageList1;
             this.listViewEvent.TabIndex = 9;
             this.listViewEvent.UseCompatibleStateImageBehavior = false;
@@ -295,7 +295,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 95.40482F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 535);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 635);
             this.tableLayoutPanel1.TabIndex = 12;
             // 
             // tableLayoutPanel2
@@ -305,7 +305,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.78571F));
             this.tableLayoutPanel2.Controls.Add(this.StartEvent_btn, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.RegisterResult_btn, 1, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 460);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 560);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -319,7 +319,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.03922F));
             this.tableLayoutPanel3.Controls.Add(this.PrintResult_btn, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.ResultsToFullScreen_btn, 1, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(495, 460);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(495, 560);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -331,7 +331,7 @@
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Controls.Add(this.CreateNewEvent_btn, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 496);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 596);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -465,7 +465,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 562);
+            this.ClientSize = new System.Drawing.Size(984, 662);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
