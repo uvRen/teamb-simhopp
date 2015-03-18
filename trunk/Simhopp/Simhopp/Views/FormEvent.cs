@@ -560,10 +560,7 @@ namespace Simhopp
 
         private void FormEvent_FormClosing(object sender, FormClosingEventArgs e)
         {
-            e.Cancel = true;
-            this.Hide();
             _presenter.Close(false);
-            this.Close();
             
         }
 
