@@ -136,7 +136,7 @@ namespace Simhopp
             {
                 //Skicka termineringsmeddelande till ansluna domarklienter
                 SendScoreToConnectedClients(null, _presenter.CurrentRoundIndex, _presenter.CurrentDiverIndex, SimhoppMessage.ClientAction.ServerTerminating);
-                
+                Thread.Sleep(2000);
                 //Stäng av server
                 _judgeClients.Clear();
 
@@ -157,7 +157,7 @@ namespace Simhopp
             if (_judgeClients == null)
                 return;
 
-            //Skicka poäng (eller be om bedömningspoäng) till anslutna domarklienter
+            //Skicka poäng (eller status / request) till anslutna domarklienter
             foreach (IPEndPoint ipep in _judgeClients)
             {
                 try
