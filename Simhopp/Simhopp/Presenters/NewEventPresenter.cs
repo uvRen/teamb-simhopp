@@ -20,16 +20,13 @@ namespace Simhopp
             _view = view;
         }
 
-        //0 References, varför är denna här?
-        public static void AddDivesToDiver(DataGrid dataGridView, ListView listViewDivers)
-        {
-            if(listViewDivers.SelectedItems.Count > 0)
-            {
-                dataGridView.Visible = true;
-            }
-        }
-
-        //skriver ut alla hoppare som ska vara med i listan
+        /// <summary>
+        /// Hämtar hoppare från databasen och lägger de i listViewDivers
+        /// </summary>
+        /// <param name="radioButtonMale"></param>
+        /// <param name="radioButtonFemale"></param>
+        /// <param name="listViewDivers"></param>
+        /// <param name="ColumnIndex"></param>
         public static void FillListViewWithDivers(RadioButton radioButtonMale, RadioButton radioButtonFemale, ListView listViewDivers, int ColumnIndex = 0) 
         {
             listViewDivers.Items.Clear();
@@ -62,7 +59,10 @@ namespace Simhopp
             }
         }
 
-        //skriver ut alla dommare som ska vara med i listan
+        /// <summary>
+        /// Hämtar domare från databasen och lägger de i listViewJudge
+        /// </summary>
+        /// <param name="listViewJudge"></param>
         public static void FillListViewWithJudges(ListView listViewJudge)
         {
             List<Judge> judgeList = new List<Judge>();
@@ -77,7 +77,16 @@ namespace Simhopp
             }
         }
 
-        //lägger till en ny hoppare i listan och i databasen
+        /// <summary>
+        /// Lägger till en ny hoppare i databasen och i listViewDivers
+        /// </summary>
+        /// <param name="newDiverSelectGender"></param>
+        /// <param name="newDiverName"></param>
+        /// <param name="newDiverAge"></param>
+        /// <param name="newDiverCountry"></param>
+        /// <param name="listViewDivers"></param>
+        /// <param name="radioButtonMale"></param>
+        /// <param name="radioButtonFemale"></param>
         public static void AddNewDiver(ComboBox newDiverSelectGender, TextBox newDiverName, TextBox newDiverAge, TextBox newDiverCountry, ListView listViewDivers, RadioButton radioButtonMale, RadioButton radioButtonFemale)
         {
             //fel hantering, måste ange giltigt namn och nationalitet
@@ -110,6 +119,7 @@ namespace Simhopp
                 }
 
                 int ID = Database.AddDiverToDatabase(diver);
+                diver.Id = ID;
 
                 //lägger till den nya hopparen i listan
                 if ((radioButtonMale.Checked && newDiverSelectGender.Text.CompareTo("Man") == 0) || (radioButtonFemale.Checked && newDiverSelectGender.Text.CompareTo("Kvinna") == 0))
@@ -128,6 +138,7 @@ namespace Simhopp
                     {
                         item1.SubItems.Add("F");
                     }
+                    item1.SubItems.Add(diver.Id.ToString());
                 }
             }
             
@@ -137,7 +148,11 @@ namespace Simhopp
             newDiverCountry.Text = "Nationalitet";
         }
 
-        //lägger till en ny domare i databasen och i listan
+        /// <summary>
+        /// Lägger till en domare i databasen och i listViewJudge
+        /// </summary>
+        /// <param name="newJudgeName"></param>
+        /// <param name="listViewJudge"></param>
         public static void AddNewJudge(TextBox newJudgeName, ListView listViewJudge)
         {
             //lägger till den nya domaren i databasen
@@ -154,7 +169,27 @@ namespace Simhopp
             newJudgeName.Text = "Namn";
         }
 
-        //lägger till ett event till databasen med tillhörande domare och hoppare
+        /// <summary>
+        /// Skapar en Contest med hoppare, hopp och domare
+        /// </summary>
+        /// <param name="textBox1"></param>
+        /// <param name="textBox2"></param>
+        /// <param name="dateTimePicker1"></param>
+        /// <param name="numericUpDown1"></param>
+        /// <param name="radioButton1meter"></param>
+        /// <param name="radioButton3meter"></param>
+        /// <param name="radioButton5meter"></param>
+        /// <param name="radioButton7meter"></param>
+        /// <param name="radioButton10meter"></param>
+        /// <param name="radioButtonSingle"></param>
+        /// <param name="radioButtonSync"></param>
+        /// <param name="radioButtonMale"></param>
+        /// <param name="radioButtonFemale"></param>
+        /// <param name="listViewDivers"></param>
+        /// <param name="listViewJudge"></param>
+        /// <param name="successfully"></param>
+        /// <param name="errorlabel"></param>
+        /// <param name="dataGridViewList"></param>
         public static void AddNewEventToDatabase(TextBox textBox1, TextBox textBox2, DateTimePicker dateTimePicker1, NumericUpDown numericUpDown1, RadioButton radioButton1meter, RadioButton radioButton3meter, RadioButton radioButton5meter, RadioButton radioButton7meter, RadioButton radioButton10meter, RadioButton radioButtonSingle, RadioButton radioButtonSync, RadioButton radioButtonMale, RadioButton radioButtonFemale, ListView listViewDivers, ListView listViewJudge, Label successfully, Label errorlabel, List<DataGridView> dataGridViewList)
         {
             string eventName;
@@ -281,7 +316,13 @@ namespace Simhopp
                 box.Text = "";
         }
 
-        //returnerar en ny DataGridView
+        /// <summary>
+        /// Skapar en DataGridView
+        /// </summary>
+        /// <param name="diveNo"></param>
+        /// <param name="diveName"></param>
+        /// <param name="tabControl1"></param>
+        /// <returns>DataGridView</returns>
         public static DataGridView GetNewDataGridView(AutoCompleteStringCollection diveNo, AutoCompleteStringCollection diveName, TabControl tabControl1)
         {
             DataGridView newDataGrid = new DataGridView();
@@ -335,6 +376,17 @@ namespace Simhopp
             return newDataGrid;
         }
 
+        /// <summary>
+        /// Laddar in AutoComplete listorna till textboxarna i TabControlern
+        /// </summary>
+        /// <param name="_dataGridViewList"></param>
+        /// <param name="tabControl1"></param>
+        /// <param name="e"></param>
+        /// <param name="_diveNo"></param>
+        /// <param name="_diveNoReadOnly"></param>
+        /// <param name="_diveName"></param>
+        /// <param name="_diveNameReadOnly"></param>
+        /// <param name="groupBox"></param>
         public static void AddAutoCompleteToDataGridView(List<DataGridView> _dataGridViewList, TabControl tabControl1, DataGridViewEditingControlShowingEventArgs e, AutoCompleteStringCollection _diveNo, AutoCompleteStringCollection _diveNoReadOnly, AutoCompleteStringCollection _diveName, AutoCompleteStringCollection _diveNameReadOnly, GroupBox groupBox)
         {
             int columnIndex = _dataGridViewList[Int32.Parse(tabControl1.SelectedTab.Name)].CurrentCell.ColumnIndex;
@@ -386,17 +438,6 @@ namespace Simhopp
                     _diveNo.Add(s);
             }
 
-            diveType = new DiveType();
-            diveType.Height = diveHeight;
-            SetDiveTypePosition(diveType, position);
-
-            foreach(string s in _diveNameReadOnly)
-            {
-                diveType.Name = s;
-                if (diveType.Difficulty != 0)
-                    _diveName.Add(s);
-            }
-
             if (headerText.Equals("Kod"))
             {
                 TextBox tb = e.Control as TextBox;
@@ -407,6 +448,17 @@ namespace Simhopp
                     tb.AutoCompleteCustomSource = _diveNo;
                     tb.AutoCompleteSource = AutoCompleteSource.CustomSource;
                 }
+            }
+
+            diveType = new DiveType();
+            diveType.Height = diveHeight;
+            SetDiveTypePosition(diveType, position);
+
+            foreach (string s in _diveNameReadOnly)
+            {
+                diveType.Name = s;
+                if (diveType.Difficulty != 0)
+                    _diveName.Add(s);
             }
 
             if (headerText.Equals("Namn"))
@@ -422,6 +474,16 @@ namespace Simhopp
             } 
         }
 
+        /// <summary>
+        /// När positionen har ändrats i hoppet laddas AutoComplete listan om
+        /// </summary>
+        /// <param name="_dataGridViewList"></param>
+        /// <param name="tabControl1"></param>
+        /// <param name="_diveNo"></param>
+        /// <param name="_diveNoReadOnly"></param>
+        /// <param name="_diveName"></param>
+        /// <param name="_diveNameReadOnly"></param>
+        /// <param name="groupBox"></param>
         public static void AddAutoCompleteToDataGridViewAfterPositionChanged(List<DataGridView> _dataGridViewList, TabControl tabControl1, AutoCompleteStringCollection _diveNo, AutoCompleteStringCollection _diveNoReadOnly, AutoCompleteStringCollection _diveName, AutoCompleteStringCollection _diveNameReadOnly, GroupBox groupBox)
         {
             int columnIndex = _dataGridViewList[Int32.Parse(tabControl1.SelectedTab.Name)].CurrentCell.ColumnIndex;
@@ -485,7 +547,16 @@ namespace Simhopp
             }
         }
 
-        //lägger till DataGridViews i TabControlern
+        /// <summary>
+        /// Lägger till en DataGridView i TabControlern
+        /// </summary>
+        /// <param name="tabControl1"></param>
+        /// <param name="listViewDivers"></param>
+        /// <param name="_diveNo"></param>
+        /// <param name="_diveName"></param>
+        /// <param name="_dataGridViewList"></param>
+        /// <param name="DiveCount_numericUpDown"></param>
+        /// <param name="panel1"></param>
         public static void AddDataGridViewToTabControl(TabControl tabControl1, ListView listViewDivers, AutoCompleteStringCollection _diveNo, AutoCompleteStringCollection _diveName, List<DataGridView> _dataGridViewList, NumericUpDown DiveCount_numericUpDown, Panel panel1)
         {
             string[] row = new string[] { "A", "1", "Dummy Dive"};
@@ -512,11 +583,20 @@ namespace Simhopp
                     _dataGridViewList[i].Tag = listViewDivers.CheckedItems[i].SubItems[4].Text;
 
                     //antal rader
-                    for (int j = _dataGridViewList[i].RowCount; j < Int32.Parse(DiveCount_numericUpDown.Value.ToString()); j++)
+                    if (_dataGridViewList[i].RowCount <= Int32.Parse(DiveCount_numericUpDown.Value.ToString())) //om det är mindre rader än NumericUpDown
                     {
-                        _dataGridViewList[i].Rows.Add(row);
-                        _dataGridViewList[i].Rows[j].HeaderCell.Value = String.Format("{0}", j + 1);
-                        
+                        for (int j = _dataGridViewList[i].RowCount; j < Int32.Parse(DiveCount_numericUpDown.Value.ToString()); j++)
+                        {
+                            _dataGridViewList[i].Rows.Add(row);
+                            _dataGridViewList[i].Rows[j].HeaderCell.Value = String.Format("{0}", j + 1);
+                        }
+                    }
+                    else if (_dataGridViewList[i].RowCount > Int32.Parse(DiveCount_numericUpDown.Value.ToString())) //om det är fler rader än NumericUpDown
+                    {
+                        for (int j = _dataGridViewList[i].RowCount; j > Int32.Parse(DiveCount_numericUpDown.Value.ToString()); j--)
+                        {
+                            _dataGridViewList[i].Rows.Remove(_dataGridViewList[i].Rows[j - 1]);
+                        }
                     }
 
                     _dataGridViewList[i].Visible = true;
@@ -537,6 +617,15 @@ namespace Simhopp
             }
         }
 
+        /// <summary>
+        /// Sätter höjd till en DiveType
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="radioButton1meter"></param>
+        /// <param name="radioButton3meter"></param>
+        /// <param name="radioButton5meter"></param>
+        /// <param name="radioButton7meter"></param>
+        /// <param name="radioButton10meter"></param>
         private static void SetDiveTypeHeight(DiveType d, RadioButton radioButton1meter, RadioButton radioButton3meter, RadioButton radioButton5meter, RadioButton radioButton7meter, RadioButton radioButton10meter)
         {
             if (radioButton1meter.Checked)
@@ -551,6 +640,11 @@ namespace Simhopp
                 d.Height = DiveType.DiveHeight._10M;
         }
 
+        /// <summary>
+        /// Sätter position till en DiveType
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="position"></param>
         private static void SetDiveTypePosition(DiveType d, string position)
         {
             if (position.CompareTo("A") == 0)
