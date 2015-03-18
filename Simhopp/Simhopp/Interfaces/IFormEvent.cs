@@ -21,5 +21,6 @@ namespace Simhopp
         void ToggleControls(bool enable, bool hideControls = false);
         void SetClientLogin();
         void AssignJudgeAsClient(int judgeIndex);
+        void Hide();
     }
 }
