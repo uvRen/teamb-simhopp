@@ -451,14 +451,14 @@
             this.newDiverName.Dock = System.Windows.Forms.DockStyle.Top;
             this.newDiverName.Location = new System.Drawing.Point(3, 3);
             this.newDiverName.Name = "newDiverName";
-            this.newDiverName.Size = new System.Drawing.Size(112, 20);
+            this.newDiverName.Size = new System.Drawing.Size(111, 20);
             this.newDiverName.TabIndex = 19;
             this.newDiverName.Text = "Namn";
             this.newDiverName.Enter += new System.EventHandler(this.textBox3_Enter);
             // 
             // newDiverAge
             // 
-            this.newDiverAge.Location = new System.Drawing.Point(207, 3);
+            this.newDiverAge.Location = new System.Drawing.Point(206, 3);
             this.newDiverAge.Name = "newDiverAge";
             this.newDiverAge.Size = new System.Drawing.Size(37, 20);
             this.newDiverAge.TabIndex = 21;
@@ -468,7 +468,7 @@
             // newDiverCountry
             // 
             this.newDiverCountry.Dock = System.Windows.Forms.DockStyle.Top;
-            this.newDiverCountry.Location = new System.Drawing.Point(121, 3);
+            this.newDiverCountry.Location = new System.Drawing.Point(120, 3);
             this.newDiverCountry.Name = "newDiverCountry";
             this.newDiverCountry.Size = new System.Drawing.Size(80, 20);
             this.newDiverCountry.TabIndex = 20;
@@ -477,7 +477,7 @@
             // 
             // AddNewDiverSubmit
             // 
-            this.AddNewDiverSubmit.Location = new System.Drawing.Point(316, 3);
+            this.AddNewDiverSubmit.Location = new System.Drawing.Point(315, 3);
             this.AddNewDiverSubmit.Name = "AddNewDiverSubmit";
             this.AddNewDiverSubmit.Size = new System.Drawing.Size(21, 19);
             this.AddNewDiverSubmit.TabIndex = 23;
@@ -513,7 +513,7 @@
             this.newDiverSelectGender.Items.AddRange(new object[] {
             "Kvinna",
             "Man"});
-            this.newDiverSelectGender.Location = new System.Drawing.Point(250, 3);
+            this.newDiverSelectGender.Location = new System.Drawing.Point(249, 3);
             this.newDiverSelectGender.MaxLength = 100;
             this.newDiverSelectGender.Name = "newDiverSelectGender";
             this.newDiverSelectGender.Size = new System.Drawing.Size(60, 21);
@@ -539,12 +539,13 @@
             this.listViewJudges_contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.RemoveJudge_toolStripMenuItem});
             this.listViewJudges_contextMenuStrip.Name = "listViewJudges_contextMenuStrip";
-            this.listViewJudges_contextMenuStrip.Size = new System.Drawing.Size(113, 26);
+            this.listViewJudges_contextMenuStrip.Size = new System.Drawing.Size(153, 48);
             // 
             // RemoveJudge_toolStripMenuItem
             // 
+            this.RemoveJudge_toolStripMenuItem.Enabled = false;
             this.RemoveJudge_toolStripMenuItem.Name = "RemoveJudge_toolStripMenuItem";
-            this.RemoveJudge_toolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.RemoveJudge_toolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.RemoveJudge_toolStripMenuItem.Text = "Ta bort";
             // 
             // tableLayoutPanel1
@@ -695,7 +696,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.40838F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 54F));
             this.tableLayoutPanel4.Controls.Add(this.newDiverName, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.newDiverCountry, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.newDiverAge, 2, 0);
