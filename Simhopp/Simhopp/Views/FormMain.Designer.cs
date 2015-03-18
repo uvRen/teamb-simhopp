@@ -430,6 +430,7 @@
             // 
             // registreraProduktToolStripMenuItem
             // 
+            this.registreraProduktToolStripMenuItem.Enabled = false;
             this.registreraProduktToolStripMenuItem.Name = "registreraProduktToolStripMenuItem";
             this.registreraProduktToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.registreraProduktToolStripMenuItem.Text = "Registrera Produkt";
