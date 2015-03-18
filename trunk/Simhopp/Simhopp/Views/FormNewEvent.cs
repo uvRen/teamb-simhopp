@@ -474,6 +474,12 @@ namespace Simhopp
             NewEventPresenter.AddAutoCompleteToDataGridViewAfterPositionChanged(_dataGridViewList, tabControl1, _diveNo, _diveNoReadOnly, _diveName, _diveNameReadOnly, groupBoxDisciplin);
         }
 
+        private void DiveCount_numericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            NewEventPresenter.AddDataGridViewToTabControl(tabControl1, listViewDivers, _diveNo, _diveName, _dataGridViewList, DiveCount_numericUpDown, panel1);
+            PanelDrawer.Colorize(this);
+        }
+
        
 
     }
