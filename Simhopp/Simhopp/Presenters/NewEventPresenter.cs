@@ -245,8 +245,8 @@ namespace Simhopp
                             //diver ID
                             diverID = Int32.Parse(dataGridViewList[i].Tag.ToString());
                             //DiveNo
-                            dNumber = Int32.Parse(dataGridViewList[i].Rows[rad].Cells[0].Value.ToString());
-                            dPosition = dataGridViewList[i].Rows[rad].Cells[2].Value.ToString();
+                            dNumber = Int32.Parse(dataGridViewList[i].Rows[rad].Cells[1].Value.ToString());
+                            dPosition = dataGridViewList[i].Rows[rad].Cells[0].Value.ToString();
 
                             dType.No = dNumber;
 
