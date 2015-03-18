@@ -436,6 +436,15 @@ namespace Simhopp
                 case Keys.NumPad3: case Keys.D3:
                     listViewJudge.Focus();          //FOCUS RIGHT JUDGES
                     break;
+                case Keys.H:
+                    _dataGridViewList[0].Focus();   //FOCUS DIVEINPUT
+                    break;
+                case Keys.D:
+                    newDiverName.Focus();
+                    break;
+                case Keys.J:
+                    newJudgeName.Focus();
+                    break;
             }
         }
         #endregion
