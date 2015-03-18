@@ -16,6 +16,7 @@ namespace Simhopp
 
         public static string Encrypt(string text)
         {
+            Console.WriteLine("Encrypt: " + text);
             try
             {
                 SymmetricAlgorithm algorithm = DES.Create();
@@ -39,6 +40,10 @@ namespace Simhopp
                 ICryptoTransform transform = algorithm.CreateDecryptor(key, iv);
                 byte[] inputbuffer = Convert.FromBase64String(text);
                 byte[] outputBuffer = transform.TransformFinalBlock(inputbuffer, 0, inputbuffer.Length);
+
+
+                Console.WriteLine("Decrypt: " + Encoding.Unicode.GetString(outputBuffer));
+
                 return Encoding.Unicode.GetString(outputBuffer);
             }
             catch (Exception ex)

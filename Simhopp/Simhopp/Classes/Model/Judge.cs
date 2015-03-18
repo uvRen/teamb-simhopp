@@ -11,6 +11,7 @@ namespace Simhopp
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public bool isClient { get; set; }
 
         public int Index(List<Judge> judges)
         {
@@ -30,17 +31,20 @@ namespace Simhopp
         {
             this.Id = -1;
             this.Name = "";
+            this.isClient = false;
         }
 
         public Judge(int ID, string name)
         {
             this.Id = ID;
             this.Name = name;
+            this.isClient = false;
         }
 
         public Judge(string name)
         {
             this.Name = name;
+            this.isClient = false;
         }
         #endregion
 

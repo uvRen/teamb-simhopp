@@ -309,6 +309,11 @@ namespace Simhopp
             {
                 ListViewItem tItem = new ListViewItem();
                 tItem.Text = judge.Name;
+
+                if (judge.isClient)
+                {
+                    tItem.ImageIndex = 2;
+                }
                 listViewJudges.Items.Add(tItem);
 
                 if (judge == CurrentJudge && _panelScoring.Enabled)
@@ -424,16 +429,23 @@ namespace Simhopp
         /// </summary>
         /// <param name="score"></param>
         /// <param name="judgeIndex"></param>
-        private delegate void PopulateScoreInputDelegate(Score score, int judgeIndex);
-        public void PopulateScoreInput(Score score, int judgeIndex)
+        private delegate void PopulateScoreInputDelegate(Score score, int judgeIndex, int diverIndex = -1, int roundIndex = -1);
+        public void PopulateScoreInput(Score score, int judgeIndex, int diverIndex = -1, int roundIndex = -1)
         {
-            if (CurrentDivePanel.InvokeRequired)
+            if (diverIndex == -1)
+                diverIndex = CurrentDiverIndex;
+
+            if (roundIndex == -1)
+                roundIndex = CurrentRoundIndex;
+
+            Panel divePanel = _divePanels[roundIndex][diverIndex];
+            if (divePanel.InvokeRequired)
             {
                 PopulateScoreInputDelegate d = new PopulateScoreInputDelegate(PopulateScoreInput);
-                this.Invoke(d, new object[] {score, judgeIndex});
+                this.Invoke(d, new object[] {score, judgeIndex, diverIndex, roundIndex});
                 return;
             }
-            TextBox scoreInput = (TextBox)CurrentDivePanel.Controls.Find("Score", true)[judgeIndex];
+            TextBox scoreInput = (TextBox)divePanel.Controls.Find("Score", true)[judgeIndex];
             scoreInput.Text = score.Points.ToString();
             scoreInput.Tag = score;
         }
@@ -538,6 +550,12 @@ namespace Simhopp
             labelClientServerTitle.Text = "Inloggad som: " + CurrentJudge.Name;
             labelClientServerTitle.TextAlign = ContentAlignment.MiddleCenter;
             labelClientServerTitle.Top = (panelServer.Height/2) - (labelClientServerTitle.Height/2);
+        }
+
+        public void AssignJudgeAsClient(int judgeIndex)
+        {
+            Judges[judgeIndex].isClient = true;
+            RedrawContestInfo();
         }
 
         private void FormEvent_FormClosing(object sender, FormClosingEventArgs e)

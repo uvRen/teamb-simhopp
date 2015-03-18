@@ -15,7 +15,7 @@ namespace Simhopp
         public Contest _contest;
         public int Id;
         [DataMember]
-        public DiveType _diveType;
+        public DiveType _diveType; 
 
         //[DataMember]
         public double Difficulty
@@ -99,6 +99,18 @@ namespace Simhopp
         {
             if (score.dive == null)
                 score.dive = this;
+
+            foreach (Score iScore in Scores)
+            {
+                if (iScore.judge == score.judge)
+                {
+                    return;
+
+                    Exception ex = new Exception("Domare har redan poängsatt hoppet");
+                    ExceptionHandler.Handle(ex);
+                }
+            }
+
             Scores.Add(score);
         }
 

@@ -15,10 +15,11 @@ namespace Simhopp
         void CompleteDive();
         void UpdateLeaderboard();
         void PrintEventStatus();
-        void PopulateScoreInput(Score score, int judgeIndex);
+        void PopulateScoreInput(Score score, int judgeIndex, int diverIndex, int roundIndex);
         void LogToServer(string message);
         void RedrawContestInfo(bool highlightDivePanel = false);
         void ToggleControls(bool enable, bool hideControls = false);
         void SetClientLogin();
+        void AssignJudgeAsClient(int judgeIndex);
     }
 }
