@@ -132,6 +132,11 @@ namespace Simhopp
             set { _no = value; }
         }
 
+        public void SetNo()
+        {
+             _no = _nos[this._name];
+        }
+
         [IgnoreDataMember]
         public String Name
         {
