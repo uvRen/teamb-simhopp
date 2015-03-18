@@ -41,7 +41,8 @@ namespace Simhopp_JudgeClient
         }
 
         private  void AssignLogin(SimhoppMessage msg)
-        {try
+        {
+            try
             {
                 ProcessMessage d = new ProcessMessage(_view.AssignLogin);
                 _view.Invoke(d, msg);
@@ -54,6 +55,7 @@ namespace Simhopp_JudgeClient
 
         private  void LogMessage(SimhoppMessage msg)
         {
+            return;
             try
             {
                 ProcessMessage d = new ProcessMessage(_view.LogMessage);
@@ -118,7 +120,7 @@ namespace Simhopp_JudgeClient
                             break;
                         case SimhoppMessage.ClientAction.SubmitScore:
                             if (Presenter != null)
-                                Presenter.SubmitClientScore(msg.Value, msg.Id);
+                                Presenter.SubmitClientScore(msg.Value, msg.Id, msg.Status.RoundIndex, msg.Status.DiverIndex);
                             break;
                         case SimhoppMessage.ClientAction.RequestScore:
                             if (Presenter != null)
@@ -209,15 +211,26 @@ namespace Simhopp_JudgeClient
 
         public void CommitScore(int judgeIndex, Score score)
         {
-            SimhoppMessage msg = new SimhoppMessage(judgeIndex, SimhoppMessage.ClientAction.SubmitScore, "", score.Points);
+            SimhoppMessage.SimhoppStatus status = new SimhoppMessage.SimhoppStatus(Presenter.CurrentRoundIndex, Presenter.CurrentDiverIndex, null);
+            SimhoppMessage msg = new SimhoppMessage(judgeIndex, SimhoppMessage.ClientAction.SubmitScore, "", score.Points, status);
             Messages.Enqueue(msg);
         }
 
         public void SendLogout(int judgeIndex)
         {
-            SimhoppMessage msg = new SimhoppMessage(judgeIndex, SimhoppMessage.ClientAction.Logout, "");
-            Messages.Enqueue(msg);
-            _view.Close();
+            try
+            {
+                SimhoppMessage msg = new SimhoppMessage(judgeIndex, SimhoppMessage.ClientAction.Logout, "");
+            
+                byte[] data = Encoding.ASCII.GetBytes(msg.Serialize());
+                client.Send(data, data.Length, ipep);
+
+                _view.Close();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.Handle(ex);
+            }
         }
     }
 }

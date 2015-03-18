@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEvent));
             this.tabsRounds = new System.Windows.Forms.TabControl();
             this.btnDoDive = new System.Windows.Forms.Button();
@@ -52,6 +53,7 @@
             this.btnStopServer = new System.Windows.Forms.Button();
             this.labelServerStatus = new System.Windows.Forms.Label();
             this.btnStartServer = new System.Windows.Forms.Button();
+            this.listIcons = new System.Windows.Forms.ImageList(this.components);
             this.panelControls.SuspendLayout();
             this.panelEventInfo.SuspendLayout();
             this.panelServer.SuspendLayout();
@@ -169,6 +171,7 @@
             this.listViewJudges.Location = new System.Drawing.Point(738, 205);
             this.listViewJudges.Name = "listViewJudges";
             this.listViewJudges.Size = new System.Drawing.Size(208, 136);
+            this.listViewJudges.SmallImageList = this.listIcons;
             this.listViewJudges.TabIndex = 9;
             this.listViewJudges.UseCompatibleStateImageBehavior = false;
             this.listViewJudges.View = System.Windows.Forms.View.Details;
@@ -310,6 +313,17 @@
             this.btnStartServer.UseVisualStyleBackColor = true;
             this.btnStartServer.Click += new System.EventHandler(this.btnStartServer_Click);
             // 
+            // listIcons
+            // 
+            this.listIcons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("listIcons.ImageStream")));
+            this.listIcons.TransparentColor = System.Drawing.Color.Transparent;
+            this.listIcons.Images.SetKeyName(0, "Status-Online-32.png");
+            this.listIcons.Images.SetKeyName(1, "Status-Offline-32.png");
+            this.listIcons.Images.SetKeyName(2, "Online-256.png");
+            this.listIcons.Images.SetKeyName(3, "Judge.ico");
+            this.listIcons.Images.SetKeyName(4, "Internet-64.png");
+            this.listIcons.Images.SetKeyName(5, "Computer-32.png");
+            // 
             // FormEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -364,5 +378,6 @@
         private System.Windows.Forms.Label labelClientServerTitle;
         private System.Windows.Forms.Button btnServerKick;
         private System.Windows.Forms.Label FormEventHelp_label;
+        private System.Windows.Forms.ImageList listIcons;
     }
 }

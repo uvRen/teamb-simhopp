@@ -24,6 +24,10 @@ namespace Simhopp
             if ((ex is SocketException))
                 return;
 
+            //Ignorera threadsception
+            if ((ex is ThreadAbortException))
+                return;
+
             HandleDebuggingExeption(ex);
 
             if ((ex is ObjectDisposedException))

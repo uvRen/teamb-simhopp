@@ -84,6 +84,10 @@ namespace Simhopp
                             SubmitScore(msg);
                             response = new SimhoppMessage(-2, SimhoppMessage.ClientAction.Confirm);
                             break;
+                        case SimhoppMessage.ClientAction.Logout:
+                            LogoutClient(msg);
+                            response = new SimhoppMessage(-2, SimhoppMessage.ClientAction.Confirm);
+                            break;
                         default:
                             response = SimhoppMessage.ErrorMessage("Not implemented");
                             break;
@@ -92,7 +96,7 @@ namespace Simhopp
                     //Svara
                     var responseData = Encoding.ASCII.GetBytes(response.Serialize());
                     _server.Send(responseData, responseData.Length, ipep);
-                        
+
                 }
                 catch (Exception ex)
                 {
@@ -201,6 +205,7 @@ namespace Simhopp
                     
                     SimhoppMessage.SimhoppStatus status = new SimhoppMessage.SimhoppStatus(0, 0, _presenter.CurrentEvent);
                     SimhoppMessage response = new SimhoppMessage(-2, SimhoppMessage.ClientAction.AssignId, guid.ToString(), judge.Index(_presenter.Judges), status);
+                    _presenter.AssignJudgeAsClient(index);
                     return response;
                 }
                 index++;
@@ -208,9 +213,15 @@ namespace Simhopp
             return SimhoppMessage.ErrorMessage("Judge not found");
         }
 
+        private static void LogoutClient(SimhoppMessage msg)
+        {
+            _judges.Remove(msg.Id);
+            _presenter.LogoutClient(msg.Id);
+        }
+
         private static void SubmitScore(SimhoppMessage msg)
         {
-            _presenter.SubmitClientScore(msg.Value, msg.Id);
+            _presenter.SubmitClientScore(msg.Value, msg.Id, msg.Status.RoundIndex, msg.Status.DiverIndex);
             //_presenter.ScoreDive(msg.Value, msg.Id);
         }
 
