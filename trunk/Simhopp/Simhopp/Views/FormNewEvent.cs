@@ -323,7 +323,8 @@ namespace Simhopp
                             if (currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().Length > 0)
                             {
                                 DiveType dType = new DiveType(Int32.Parse(currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()));
-                                currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex + 1].Value = dType.Name;
+                                string name = dType.Name;
+                                currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex + 1].Value = name;
                                 DataGridViewCellIndex_Back = false;
                                 _jumpBackToCell.X = -1;
                                 _jumpBackToCell.Y = -1;
@@ -349,7 +350,8 @@ namespace Simhopp
                             {
                                 DiveType dType = new DiveType();
                                 dType.Name = currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                                currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value = dType.No.ToString();
+                                string diveId = dType.No.ToString();
+                                currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value = diveId;
                                 DataGridViewCellIndex_Back = false;
                                 _jumpBackToCell.X = -1;
                                 _jumpBackToCell.Y = -1;
