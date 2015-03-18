@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
@@ -254,7 +255,7 @@ namespace Simhopp
 
             foreach (ListViewItem item in listViewJudge.CheckedItems)
             {
-                j = new Judge(Int32.Parse(item.SubItems[1].Text), item.SubItems[0].Text);
+                j = new Judge(Int32.Parse(item.SubItems[0].Text), item.SubItems[1].Text);
                 addJudgesToEvent.Add(j);
             }
             ev.AddJudges(addJudgesToEvent);
@@ -376,6 +377,11 @@ namespace Simhopp
             return newDataGrid;
         }
 
+        //public static void AddAutoCompleteToDataGridView(List<DataGridView> _dataGridViewList, TabControl tabControl1, DataGridViewEditingControlShowingEventArgs e, AutoCompleteStringCollection _diveNo, AutoCompleteStringCollection _diveNoReadOnly, AutoCompleteStringCollection _diveName, AutoCompleteStringCollection _diveNameReadOnly, GroupBox groupBox)
+        //{
+        //    Thread t = new Thread(() => _AddAutoCompleteToDataGridView(_dataGridViewList, tabControl1, e, _diveNo, _diveNameReadOnly, _diveName, _diveNameReadOnly, groupBox));
+        //    t.Start();
+        //}
         /// <summary>
         /// Laddar in AutoComplete listorna till textboxarna i TabControlern
         /// </summary>
@@ -387,56 +393,19 @@ namespace Simhopp
         /// <param name="_diveName"></param>
         /// <param name="_diveNameReadOnly"></param>
         /// <param name="groupBox"></param>
+        
         public static void AddAutoCompleteToDataGridView(List<DataGridView> _dataGridViewList, TabControl tabControl1, DataGridViewEditingControlShowingEventArgs e, AutoCompleteStringCollection _diveNo, AutoCompleteStringCollection _diveNoReadOnly, AutoCompleteStringCollection _diveName, AutoCompleteStringCollection _diveNameReadOnly, GroupBox groupBox)
         {
-            int columnIndex = _dataGridViewList[Int32.Parse(tabControl1.SelectedTab.Name)].CurrentCell.ColumnIndex;
-            string headerText = _dataGridViewList[Int32.Parse(tabControl1.SelectedTab.Name)].Columns[columnIndex].HeaderText;
-            int rad = _dataGridViewList[Int32.Parse(tabControl1.SelectedTab.Name)].CurrentCell.RowIndex;
-            string position = _dataGridViewList[Int32.Parse(tabControl1.SelectedTab.Name)].Rows[rad].Cells[0].Value.ToString();
-            string height = "";
+            int tabControlName = Int32.Parse(tabControl1.SelectedTab.Name);
+            DataGridView currentDataGridView = _dataGridViewList[tabControlName];
 
-            _diveName.Clear();
-            _diveNo.Clear();
+            int columnIndex = currentDataGridView.CurrentCell.ColumnIndex;
+            string headerText = currentDataGridView.Columns[columnIndex].HeaderText;
+            //int rad = currentDataGridView.CurrentCell.RowIndex;
 
-            DiveType.DiveHeight diveHeight = DiveType.DiveHeight._1M;
+            //string position = currentDataGridView.Rows[rad].Cells[0].Value.ToString();
 
-            //hämtar den valda höjden
-            foreach(Control button in groupBox.Controls)
-            {
-                RadioButton b = button as RadioButton;
-                if (b.Checked)
-                    height = b.Text.ToString();
-            }
-
-            switch(height)
-            {
-                case "1 m":
-                    diveHeight = DiveType.DiveHeight._1M;
-                    break;
-                case "3 m":
-                    diveHeight = DiveType.DiveHeight._3M;
-                    break;
-                case "5 m":
-                    diveHeight = DiveType.DiveHeight._5M;
-                    break;
-                case "7,5 m":
-                    diveHeight = DiveType.DiveHeight._7_5M;
-                    break;
-                case "10 m":
-                    diveHeight = DiveType.DiveHeight._10M;
-                    break;
-            }
-
-            DiveType diveType = new DiveType();
-            diveType.Height = diveHeight;
-            SetDiveTypePosition(diveType, position);
-
-            foreach(string s in _diveNoReadOnly)
-            {
-                diveType.No = Int32.Parse(s);
-                if (diveType.Difficulty != 0)
-                    _diveNo.Add(s);
-            }
+            UpdateAutoCompleteList(currentDataGridView, tabControl1, _diveNo, _diveNoReadOnly, _diveName, _diveNameReadOnly, groupBox);
 
             if (headerText.Equals("Kod"))
             {
@@ -448,17 +417,6 @@ namespace Simhopp
                     tb.AutoCompleteCustomSource = _diveNo;
                     tb.AutoCompleteSource = AutoCompleteSource.CustomSource;
                 }
-            }
-
-            diveType = new DiveType();
-            diveType.Height = diveHeight;
-            SetDiveTypePosition(diveType, position);
-
-            foreach (string s in _diveNameReadOnly)
-            {
-                diveType.Name = s;
-                if (diveType.Difficulty != 0)
-                    _diveName.Add(s);
             }
 
             if (headerText.Equals("Namn"))
@@ -474,6 +432,7 @@ namespace Simhopp
             } 
         }
 
+
         /// <summary>
         /// När positionen har ändrats i hoppet laddas AutoComplete listan om
         /// </summary>
@@ -484,12 +443,14 @@ namespace Simhopp
         /// <param name="_diveName"></param>
         /// <param name="_diveNameReadOnly"></param>
         /// <param name="groupBox"></param>
-        public static void AddAutoCompleteToDataGridViewAfterPositionChanged(List<DataGridView> _dataGridViewList, TabControl tabControl1, AutoCompleteStringCollection _diveNo, AutoCompleteStringCollection _diveNoReadOnly, AutoCompleteStringCollection _diveName, AutoCompleteStringCollection _diveNameReadOnly, GroupBox groupBox)
+
+        public static void UpdateAutoCompleteList(DataGridView currentDataGridView, TabControl tabControl1, AutoCompleteStringCollection _diveNo, AutoCompleteStringCollection _diveNoReadOnly, AutoCompleteStringCollection _diveName, AutoCompleteStringCollection _diveNameReadOnly, GroupBox groupBox)
         {
-            int columnIndex = _dataGridViewList[Int32.Parse(tabControl1.SelectedTab.Name)].CurrentCell.ColumnIndex;
-            string headerText = _dataGridViewList[Int32.Parse(tabControl1.SelectedTab.Name)].Columns[columnIndex].HeaderText;
-            int rad = _dataGridViewList[Int32.Parse(tabControl1.SelectedTab.Name)].CurrentCell.RowIndex;
-            string position = _dataGridViewList[Int32.Parse(tabControl1.SelectedTab.Name)].Rows[rad].Cells[0].Value.ToString();
+            //int columnIndex = currentDataGridView.CurrentCell.ColumnIndex;
+            //string headerText = currentDataGridView.Columns[columnIndex].HeaderText;
+            int rad = currentDataGridView.CurrentCell.RowIndex;
+
+            string position = currentDataGridView.Rows[rad].Cells[0].Value.ToString();
             string height = "";
 
             _diveName.Clear();
@@ -535,13 +496,14 @@ namespace Simhopp
                     _diveNo.Add(s);
             }
 
-            diveType = new DiveType();
-            diveType.Height = diveHeight;
-            SetDiveTypePosition(diveType, position);
+            //diveType = new DiveType();
+            //diveType.Height = diveHeight;
+            //SetDiveTypePosition(diveType, position);
 
             foreach (string s in _diveNameReadOnly)
             {
                 diveType.Name = s;
+                diveType.SetNo();
                 if (diveType.Difficulty != 0)
                     _diveName.Add(s);
             }

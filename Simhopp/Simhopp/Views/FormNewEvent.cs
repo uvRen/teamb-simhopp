@@ -310,24 +310,27 @@ namespace Simhopp
                     if (_jumpBackToCell.X == e.RowIndex && _jumpBackToCell.Y == e.ColumnIndex)
                     {
                         //om det angivna värdet inte finns med i AutoComplete listan
-                        if (!_diveNo.Contains(currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()) && currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().Length > 0)
+                        if (currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
                         {
-                            MessageBox.Show(currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + ": är ej ett giltigt värde!");
-                            DataGridViewCellIndex_Back = true;
-                            _jumpBackToCell.X = e.RowIndex;
-                            _jumpBackToCell.Y = e.ColumnIndex;
-                       }
-                        //om det var ett giltigt värde ska DiveName cellen autocompletas
-                        else
-                        {
-                            if (currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().Length > 0)
+                            if (!_diveNo.Contains(currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()) && currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().Length > 0)
                             {
-                                DiveType dType = new DiveType(Int32.Parse(currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()));
-                                string name = dType.Name;
-                                currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex + 1].Value = name;
-                                DataGridViewCellIndex_Back = false;
-                                _jumpBackToCell.X = -1;
-                                _jumpBackToCell.Y = -1;
+                                MessageBox.Show(currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + ": är ej ett giltigt värde!");
+                                DataGridViewCellIndex_Back = true;
+                                _jumpBackToCell.X = e.RowIndex;
+                                _jumpBackToCell.Y = e.ColumnIndex;
+                            }
+                            //om det var ett giltigt värde ska DiveName cellen autocompletas
+                            else
+                            {
+                                if (currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().Length > 0)
+                                {
+                                    DiveType dType = new DiveType(Int32.Parse(currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()));
+                                    string name = dType.Name;
+                                    currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex + 1].Value = name;
+                                    DataGridViewCellIndex_Back = false;
+                                    _jumpBackToCell.X = -1;
+                                    _jumpBackToCell.Y = -1;
+                                }
                             }
                         }
                     }
@@ -337,6 +340,8 @@ namespace Simhopp
                     if (_jumpBackToCell.X == e.RowIndex && _jumpBackToCell.Y == e.ColumnIndex)
                     {
                         //om det angivna värdet inte finns med i AutoComplete listan
+                        if (currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+                        { 
                         if (!_diveName.Contains(currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()) && currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().Length > 0)
                         {
                             MessageBox.Show(currentDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + ": är ej ett giltigt värde!");
@@ -357,6 +362,7 @@ namespace Simhopp
                                 _jumpBackToCell.Y = -1;
                             }
                         }
+                    }
                     }
                     break;
             }
@@ -482,7 +488,7 @@ namespace Simhopp
         //när Position comboboxen ändrar värde
         private void DataGridViewPositionSelectionChangeCommitted(object sender, EventArgs e)
         {
-            NewEventPresenter.AddAutoCompleteToDataGridViewAfterPositionChanged(_dataGridViewList, tabControl1, _diveNo, _diveNoReadOnly, _diveName, _diveNameReadOnly, groupBoxDisciplin);
+            //NewEventPresenter.UpdateAutoCompleteList(_dataGridViewList, tabControl1, _diveNo, _diveNoReadOnly, _diveName, _diveNameReadOnly, groupBoxDisciplin);
         }
 
         private void DiveCount_numericUpDown_ValueChanged(object sender, EventArgs e)
