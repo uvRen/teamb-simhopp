@@ -487,6 +487,7 @@ namespace Simhopp
             {
                 btnDoDive.Enabled = false;
                 btnNextRound.Enabled = false;
+                CurrentRoundIndex -= 1; //Runda 4 av 3 annars.
             }
 
             UpdateJudgeScores();
