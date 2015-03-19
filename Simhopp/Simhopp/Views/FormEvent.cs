@@ -524,7 +524,9 @@ namespace Simhopp
 
         private void btnStartServer_Click(object sender, EventArgs e)
         {
-            labelServerStatus.Text = "Klientinloggning startad";
+            labelServerStatus.Text = "Klientserver startad";
+            checkBoxNewConnections.Enabled = true;
+            checkBoxNewConnections.Checked = true;
 
             btnStopServer.Location = btnStartServer.Location;
 
@@ -538,7 +540,9 @@ namespace Simhopp
         {
             _presenter.StopServer();
 
-            labelServerStatus.Text = "Klientinloggning avstängd";
+            checkBoxNewConnections.Enabled = false;
+            checkBoxNewConnections.Checked = false;
+            labelServerStatus.Text = "Klientserver avstängd";
 
             btnStartServer.Visible = true;
             btnStopServer.Visible = false;
@@ -656,6 +660,11 @@ namespace Simhopp
         private void judgeMenuRequest_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void checkBoxNewConnections_CheckedChanged(object sender, EventArgs e)
+        {
+            _presenter.NewConnections = checkBoxNewConnections.Checked;
         }
     }
 }

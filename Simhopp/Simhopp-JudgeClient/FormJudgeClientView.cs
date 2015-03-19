@@ -44,6 +44,21 @@ namespace Simhopp_JudgeClient
             presenter.ShowView();
         }
 
+        public void NotAccepted(SimhoppMessage msg)
+        {
+            DialogResult res = MessageBox.Show("Inloggning nekad!", "Nekad!", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation);
+            if (res == System.Windows.Forms.DialogResult.Retry)
+            {
+                btnLogin_Click(null, null);
+            }
+            else
+            {
+                listBoxJudges.Visible = true;
+                imgLoading.Visible = false;
+                labelJudgeList.Text = "Logga in som domare:";
+            }
+        }
+
         /// <summary>
         /// Skriver ut domare som går att ansluta som
         /// </summary>

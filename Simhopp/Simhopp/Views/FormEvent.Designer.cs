@@ -57,6 +57,7 @@
             this.btnStopServer = new System.Windows.Forms.Button();
             this.labelServerStatus = new System.Windows.Forms.Label();
             this.btnStartServer = new System.Windows.Forms.Button();
+            this.checkBoxNewConnections = new System.Windows.Forms.CheckBox();
             this.panelControls.SuspendLayout();
             this.contextMenuJudges.SuspendLayout();
             this.panelEventInfo.SuspendLayout();
@@ -192,19 +193,19 @@
             this.judgeMenuKick,
             this.judgeMenuRequest});
             this.contextMenuJudges.Name = "contextMenuJudges";
-            this.contextMenuJudges.Size = new System.Drawing.Size(153, 70);
+            this.contextMenuJudges.Size = new System.Drawing.Size(146, 48);
             // 
             // judgeMenuKick
             // 
             this.judgeMenuKick.Name = "judgeMenuKick";
-            this.judgeMenuKick.Size = new System.Drawing.Size(152, 22);
+            this.judgeMenuKick.Size = new System.Drawing.Size(145, 22);
             this.judgeMenuKick.Text = "Sparka ut";
             this.judgeMenuKick.Click += new System.EventHandler(this.judgeMenuKick_Click);
             // 
             // judgeMenuRequest
             // 
             this.judgeMenuRequest.Name = "judgeMenuRequest";
-            this.judgeMenuRequest.Size = new System.Drawing.Size(152, 22);
+            this.judgeMenuRequest.Size = new System.Drawing.Size(145, 22);
             this.judgeMenuRequest.Text = "Be om poäng";
             this.judgeMenuRequest.Visible = false;
             this.judgeMenuRequest.Click += new System.EventHandler(this.judgeMenuRequest_Click);
@@ -282,6 +283,7 @@
             // panelServer
             // 
             this.panelServer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panelServer.Controls.Add(this.checkBoxNewConnections);
             this.panelServer.Controls.Add(this.labelClientServerTitle);
             this.panelServer.Controls.Add(this.btnServerKick);
             this.panelServer.Controls.Add(this.btnStopServer);
@@ -307,7 +309,7 @@
             this.btnServerKick.BackgroundImage = global::Simhopp.Properties.Resources.Cut_32;
             this.btnServerKick.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnServerKick.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnServerKick.Location = new System.Drawing.Point(246, 47);
+            this.btnServerKick.Location = new System.Drawing.Point(246, 16);
             this.btnServerKick.Name = "btnServerKick";
             this.btnServerKick.Size = new System.Drawing.Size(24, 24);
             this.btnServerKick.TabIndex = 5;
@@ -320,7 +322,7 @@
             this.btnStopServer.BackgroundImage = global::Simhopp.Properties.Resources.Controls_stop_32;
             this.btnStopServer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnStopServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnStopServer.Location = new System.Drawing.Point(216, 47);
+            this.btnStopServer.Location = new System.Drawing.Point(216, 16);
             this.btnStopServer.Name = "btnStopServer";
             this.btnStopServer.Size = new System.Drawing.Size(24, 24);
             this.btnStopServer.TabIndex = 4;
@@ -333,24 +335,36 @@
             // 
             this.labelServerStatus.AutoSize = true;
             this.labelServerStatus.ForeColor = System.Drawing.Color.White;
-            this.labelServerStatus.Location = new System.Drawing.Point(40, 53);
+            this.labelServerStatus.Location = new System.Drawing.Point(42, 54);
             this.labelServerStatus.Name = "labelServerStatus";
-            this.labelServerStatus.Size = new System.Drawing.Size(128, 13);
+            this.labelServerStatus.Size = new System.Drawing.Size(109, 13);
             this.labelServerStatus.TabIndex = 2;
-            this.labelServerStatus.Text = "Klientinloggning avstängd";
+            this.labelServerStatus.Text = "Klientserver avstängd";
             // 
             // btnStartServer
             // 
             this.btnStartServer.BackgroundImage = global::Simhopp.Properties.Resources.Controls_play_32;
             this.btnStartServer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnStartServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnStartServer.Location = new System.Drawing.Point(10, 47);
+            this.btnStartServer.Location = new System.Drawing.Point(12, 48);
             this.btnStartServer.Name = "btnStartServer";
             this.btnStartServer.Size = new System.Drawing.Size(24, 24);
             this.btnStartServer.TabIndex = 1;
             this.btnStartServer.Text = " ";
             this.btnStartServer.UseVisualStyleBackColor = true;
             this.btnStartServer.Click += new System.EventHandler(this.btnStartServer_Click);
+            // 
+            // checkBoxNewConnections
+            // 
+            this.checkBoxNewConnections.AutoSize = true;
+            this.checkBoxNewConnections.Enabled = false;
+            this.checkBoxNewConnections.Location = new System.Drawing.Point(173, 53);
+            this.checkBoxNewConnections.Name = "checkBoxNewConnections";
+            this.checkBoxNewConnections.Size = new System.Drawing.Size(105, 17);
+            this.checkBoxNewConnections.TabIndex = 7;
+            this.checkBoxNewConnections.Text = "Nya anslutningar";
+            this.checkBoxNewConnections.UseVisualStyleBackColor = true;
+            this.checkBoxNewConnections.CheckedChanged += new System.EventHandler(this.checkBoxNewConnections_CheckedChanged);
             // 
             // FormEvent
             // 
@@ -411,5 +425,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuJudges;
         private System.Windows.Forms.ToolStripMenuItem judgeMenuKick;
         private System.Windows.Forms.ToolStripMenuItem judgeMenuRequest;
+        private System.Windows.Forms.CheckBox checkBoxNewConnections;
     }
 }

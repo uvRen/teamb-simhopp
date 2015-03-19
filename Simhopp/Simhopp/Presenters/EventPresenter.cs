@@ -86,9 +86,12 @@ namespace Simhopp
             }
             set { _currentJudgeIndex = value; }
         }
+        public bool NewConnections { get; set; }
 #endregion
+
         public EventPresenter(IFormEvent view = null, Contest contest = null)
         {
+            NewConnections = true;
             CurrentEvent = contest;
 
             if (view == null)

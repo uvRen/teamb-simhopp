@@ -53,6 +53,19 @@ namespace Simhopp_JudgeClient
             }
         }
 
+        private void NotAccepted(SimhoppMessage msg)
+        {
+            try
+            {
+                ProcessMessage d = new ProcessMessage(_view.NotAccepted);
+                _view.Invoke(d, msg);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.Handle(ex);
+            }
+        }
+
         private  void LogMessage(SimhoppMessage msg)
         {
             return;
@@ -114,6 +127,9 @@ namespace Simhopp_JudgeClient
                     {
                         case SimhoppMessage.ClientAction.List:
                             PopulateJudgeList(msg);
+                            break;
+                        case SimhoppMessage.ClientAction.NotAccepted:
+                            NotAccepted(msg);
                             break;
                         case SimhoppMessage.ClientAction.AssignId:
                             AssignLogin(msg);
