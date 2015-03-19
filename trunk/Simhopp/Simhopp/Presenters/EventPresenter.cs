@@ -319,8 +319,22 @@ namespace Simhopp
             }
             else
             {
-                JudgeServer.Stop();
-                Thread.Sleep(2000);
+                _view.Hide();
+                JudgeServer.TerminateServer(true);
+                //JudgeServer.Stop(true);
+            }
+        }
+
+        public void CloseView()
+        {
+            _view.CloseInvoke();
+        }
+
+        public void KickJudges(ListView.SelectedIndexCollection judgeIndicies)
+        {
+            foreach (int judgeIndex in judgeIndicies)
+            {
+                JudgeServer.KickJudge(judgeIndex);
             }
         }
         #endregion

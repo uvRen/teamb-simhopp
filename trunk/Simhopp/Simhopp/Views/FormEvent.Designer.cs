@@ -42,6 +42,10 @@
             this.pagePanelContainer = new System.Windows.Forms.Panel();
             this.listViewJudges = new System.Windows.Forms.ListView();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.contextMenuJudges = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.judgeMenuKick = new System.Windows.Forms.ToolStripMenuItem();
+            this.judgeMenuRequest = new System.Windows.Forms.ToolStripMenuItem();
+            this.listIcons = new System.Windows.Forms.ImageList(this.components);
             this.panelEventInfo = new System.Windows.Forms.Panel();
             this.FormEventHelp_label = new System.Windows.Forms.Label();
             this.labelSummary = new System.Windows.Forms.Label();
@@ -53,8 +57,8 @@
             this.btnStopServer = new System.Windows.Forms.Button();
             this.labelServerStatus = new System.Windows.Forms.Label();
             this.btnStartServer = new System.Windows.Forms.Button();
-            this.listIcons = new System.Windows.Forms.ImageList(this.components);
             this.panelControls.SuspendLayout();
+            this.contextMenuJudges.SuspendLayout();
             this.panelEventInfo.SuspendLayout();
             this.panelServer.SuspendLayout();
             this.SuspendLayout();
@@ -167,6 +171,7 @@
             this.listViewJudges.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewJudges.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader3});
+            this.listViewJudges.ContextMenuStrip = this.contextMenuJudges;
             this.listViewJudges.ForeColor = System.Drawing.Color.White;
             this.listViewJudges.Location = new System.Drawing.Point(738, 205);
             this.listViewJudges.Name = "listViewJudges";
@@ -180,6 +185,40 @@
             // 
             this.columnHeader3.Text = "Domare";
             this.columnHeader3.Width = 192;
+            // 
+            // contextMenuJudges
+            // 
+            this.contextMenuJudges.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.judgeMenuKick,
+            this.judgeMenuRequest});
+            this.contextMenuJudges.Name = "contextMenuJudges";
+            this.contextMenuJudges.Size = new System.Drawing.Size(153, 70);
+            // 
+            // judgeMenuKick
+            // 
+            this.judgeMenuKick.Name = "judgeMenuKick";
+            this.judgeMenuKick.Size = new System.Drawing.Size(152, 22);
+            this.judgeMenuKick.Text = "Sparka ut";
+            this.judgeMenuKick.Click += new System.EventHandler(this.judgeMenuKick_Click);
+            // 
+            // judgeMenuRequest
+            // 
+            this.judgeMenuRequest.Name = "judgeMenuRequest";
+            this.judgeMenuRequest.Size = new System.Drawing.Size(152, 22);
+            this.judgeMenuRequest.Text = "Be om poäng";
+            this.judgeMenuRequest.Visible = false;
+            this.judgeMenuRequest.Click += new System.EventHandler(this.judgeMenuRequest_Click);
+            // 
+            // listIcons
+            // 
+            this.listIcons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("listIcons.ImageStream")));
+            this.listIcons.TransparentColor = System.Drawing.Color.Transparent;
+            this.listIcons.Images.SetKeyName(0, "Status-Online-32.png");
+            this.listIcons.Images.SetKeyName(1, "Status-Offline-32.png");
+            this.listIcons.Images.SetKeyName(2, "Online-256.png");
+            this.listIcons.Images.SetKeyName(3, "Judge.ico");
+            this.listIcons.Images.SetKeyName(4, "Internet-64.png");
+            this.listIcons.Images.SetKeyName(5, "Computer-32.png");
             // 
             // panelEventInfo
             // 
@@ -313,17 +352,6 @@
             this.btnStartServer.UseVisualStyleBackColor = true;
             this.btnStartServer.Click += new System.EventHandler(this.btnStartServer_Click);
             // 
-            // listIcons
-            // 
-            this.listIcons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("listIcons.ImageStream")));
-            this.listIcons.TransparentColor = System.Drawing.Color.Transparent;
-            this.listIcons.Images.SetKeyName(0, "Status-Online-32.png");
-            this.listIcons.Images.SetKeyName(1, "Status-Offline-32.png");
-            this.listIcons.Images.SetKeyName(2, "Online-256.png");
-            this.listIcons.Images.SetKeyName(3, "Judge.ico");
-            this.listIcons.Images.SetKeyName(4, "Internet-64.png");
-            this.listIcons.Images.SetKeyName(5, "Computer-32.png");
-            // 
             // FormEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -345,6 +373,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormEvent_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FormEvent_KeyUp);
             this.panelControls.ResumeLayout(false);
+            this.contextMenuJudges.ResumeLayout(false);
             this.panelEventInfo.ResumeLayout(false);
             this.panelEventInfo.PerformLayout();
             this.panelServer.ResumeLayout(false);
@@ -379,5 +408,8 @@
         private System.Windows.Forms.Button btnServerKick;
         private System.Windows.Forms.Label FormEventHelp_label;
         private System.Windows.Forms.ImageList listIcons;
+        private System.Windows.Forms.ContextMenuStrip contextMenuJudges;
+        private System.Windows.Forms.ToolStripMenuItem judgeMenuKick;
+        private System.Windows.Forms.ToolStripMenuItem judgeMenuRequest;
     }
 }
