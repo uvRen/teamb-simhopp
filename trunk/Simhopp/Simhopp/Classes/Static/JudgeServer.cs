@@ -78,7 +78,10 @@ namespace Simhopp
                             response = SendContestStatus();
                             break;
                         case SimhoppMessage.ClientAction.Login:
-                            response = AssignIdToJudge(msg, ipep);
+                            if (_presenter.NewConnections)
+                                response = AssignIdToJudge(msg, ipep);
+                            else
+                                response = new SimhoppMessage(-2, SimhoppMessage.ClientAction.NotAccepted);
                             break;
                         case SimhoppMessage.ClientAction.SubmitScore:
                             SubmitScore(msg);
