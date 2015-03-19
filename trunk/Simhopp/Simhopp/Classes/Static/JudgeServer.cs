@@ -78,8 +78,7 @@ namespace Simhopp
                             response = SendContestStatus();
                             break;
                         case SimhoppMessage.ClientAction.Login:
-                            response = AssignIdToJudge(msg);
-                            _judgeClients.Add(ipep, msg.Id);
+                            response = AssignIdToJudge(msg, ipep);
                             break;
                         case SimhoppMessage.ClientAction.SubmitScore:
                             SubmitScore(msg);
@@ -211,8 +210,12 @@ namespace Simhopp
             {
                 _judges.Remove(judgeIndex);
                 _presenter.LogoutClient(judgeIndex);
+
+                Console.WriteLine("Kick index: " + judgeIndex);
                 foreach (IPEndPoint ipep in _judgeClients.Keys)
                 {
+                    Console.WriteLine("ipep: " + ipep.ToString());
+                    Console.WriteLine("Index: " + _judgeClients[ipep]);
                     if (_judgeClients[ipep] == judgeIndex)
                     {
                         //Skapa terminate message...
@@ -245,7 +248,7 @@ namespace Simhopp
             return new SimhoppMessage(-2, SimhoppMessage.ClientAction.List, "", 0, status);
 
         }
-        private static SimhoppMessage AssignIdToJudge(SimhoppMessage msg)
+        private static SimhoppMessage AssignIdToJudge(SimhoppMessage msg, IPEndPoint ipep)
         {
             int index = 0;
             foreach (Judge judge in _presenter.Judges)
@@ -254,7 +257,9 @@ namespace Simhopp
                 {
                     Guid guid = Guid.NewGuid();
                     _judges[index] = judge;
-                    
+
+                    _judgeClients.Add(ipep, index);
+
                     SimhoppMessage.SimhoppStatus status = new SimhoppMessage.SimhoppStatus(0, 0, _presenter.CurrentEvent);
                     SimhoppMessage response = new SimhoppMessage(-2, SimhoppMessage.ClientAction.AssignId, guid.ToString(), judge.Index(_presenter.Judges), status);
                     _presenter.AssignJudgeAsClient(index);
