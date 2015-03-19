@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simhopp-JudgeClient", "Simh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simhopp-WebApplication", "Simhopp-WebApplication\Simhopp-WebApplication.csproj", "{10D578D4-A147-4DE3-B1EF-013C1179CA6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simhopp-WebApplication.Tests", "Simhopp-WebApplication.Tests\Simhopp-WebApplication.Tests.csproj", "{59159C4E-C588-4A21-9610-33DFBDE955FE}"
-EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -39,10 +37,6 @@ Global
 		{10D578D4-A147-4DE3-B1EF-013C1179CA6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10D578D4-A147-4DE3-B1EF-013C1179CA6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10D578D4-A147-4DE3-B1EF-013C1179CA6F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{59159C4E-C588-4A21-9610-33DFBDE955FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{59159C4E-C588-4A21-9610-33DFBDE955FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{59159C4E-C588-4A21-9610-33DFBDE955FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{59159C4E-C588-4A21-9610-33DFBDE955FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
