@@ -224,6 +224,7 @@ namespace Simhopp
             PrintEventStatus();
 
             tabsRounds.SelectedIndex = CurrentRoundIndex;
+            _pagePanels[tabsRounds.SelectedIndex].BringToFront();
 
             if (highlightDivePanel)
                 HighlightCurrentDive();
