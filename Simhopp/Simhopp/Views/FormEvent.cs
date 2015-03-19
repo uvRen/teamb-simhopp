@@ -361,6 +361,7 @@ namespace Simhopp
             }
             else
             {
+                btnStartServer.Enabled = true;
                 btnDoDive.Enabled = enable;
                 btnNextRound.Enabled = enable;
             }
@@ -369,6 +370,7 @@ namespace Simhopp
             {
                 btnDoDive.Visible = false;
                 btnNextRound.Visible = false;
+                btnStartServer.Enabled = false;
             }
         }
 
@@ -384,6 +386,7 @@ namespace Simhopp
             _panelScoring.Enabled = true;
             btnDoDive.Enabled = false;
             UpdateJudgeList();
+            btnStartServer.Enabled = false;
         }
 
         private void HighlightCurrentDive()
