@@ -52,12 +52,12 @@
             this.labelTitle = new System.Windows.Forms.Label();
             this.textBoxSeverLog = new System.Windows.Forms.TextBox();
             this.panelServer = new System.Windows.Forms.Panel();
+            this.checkBoxNewConnections = new System.Windows.Forms.CheckBox();
             this.labelClientServerTitle = new System.Windows.Forms.Label();
             this.btnServerKick = new System.Windows.Forms.Button();
             this.btnStopServer = new System.Windows.Forms.Button();
             this.labelServerStatus = new System.Windows.Forms.Label();
             this.btnStartServer = new System.Windows.Forms.Button();
-            this.checkBoxNewConnections = new System.Windows.Forms.CheckBox();
             this.panelControls.SuspendLayout();
             this.contextMenuJudges.SuspendLayout();
             this.panelEventInfo.SuspendLayout();
@@ -236,16 +236,16 @@
             // 
             // FormEventHelp_label
             // 
+            this.FormEventHelp_label.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.FormEventHelp_label.AutoSize = true;
-            this.FormEventHelp_label.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.FormEventHelp_label.ForeColor = System.Drawing.Color.Gainsboro;
-            this.FormEventHelp_label.Location = new System.Drawing.Point(15, 173);
+            this.FormEventHelp_label.Location = new System.Drawing.Point(15, 139);
             this.FormEventHelp_label.Name = "FormEventHelp_label";
             this.FormEventHelp_label.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.FormEventHelp_label.Size = new System.Drawing.Size(229, 58);
+            this.FormEventHelp_label.Size = new System.Drawing.Size(209, 82);
             this.FormEventHelp_label.TabIndex = 2;
-            this.FormEventHelp_label.Text = "HJÄLP Tangentbord\r\n - Mellanslag - Bedöm nästa hopp/Nästa runda\r\n - § = 0p, 1-9 =" +
-    " 0-9p, 0 = 10p\r\n - SHIFT= +0,5 Poäng";
+            this.FormEventHelp_label.Text = "HOTKEYS\r\n - SPACE: Bedöm nästa hopp/Nästa runda\r\n - §:                0 p \r\n - 1-" +
+    "9:          1-9 p\r\n - 0:              10 p\r\n - SHIFT:   +0,5 p";
             this.FormEventHelp_label.Visible = false;
             // 
             // labelSummary
@@ -293,6 +293,18 @@
             this.panelServer.Name = "panelServer";
             this.panelServer.Size = new System.Drawing.Size(284, 83);
             this.panelServer.TabIndex = 11;
+            // 
+            // checkBoxNewConnections
+            // 
+            this.checkBoxNewConnections.AutoSize = true;
+            this.checkBoxNewConnections.Enabled = false;
+            this.checkBoxNewConnections.Location = new System.Drawing.Point(173, 53);
+            this.checkBoxNewConnections.Name = "checkBoxNewConnections";
+            this.checkBoxNewConnections.Size = new System.Drawing.Size(105, 17);
+            this.checkBoxNewConnections.TabIndex = 7;
+            this.checkBoxNewConnections.Text = "Nya anslutningar";
+            this.checkBoxNewConnections.UseVisualStyleBackColor = true;
+            this.checkBoxNewConnections.CheckedChanged += new System.EventHandler(this.checkBoxNewConnections_CheckedChanged);
             // 
             // labelClientServerTitle
             // 
@@ -353,18 +365,6 @@
             this.btnStartServer.Text = " ";
             this.btnStartServer.UseVisualStyleBackColor = true;
             this.btnStartServer.Click += new System.EventHandler(this.btnStartServer_Click);
-            // 
-            // checkBoxNewConnections
-            // 
-            this.checkBoxNewConnections.AutoSize = true;
-            this.checkBoxNewConnections.Enabled = false;
-            this.checkBoxNewConnections.Location = new System.Drawing.Point(173, 53);
-            this.checkBoxNewConnections.Name = "checkBoxNewConnections";
-            this.checkBoxNewConnections.Size = new System.Drawing.Size(105, 17);
-            this.checkBoxNewConnections.TabIndex = 7;
-            this.checkBoxNewConnections.Text = "Nya anslutningar";
-            this.checkBoxNewConnections.UseVisualStyleBackColor = true;
-            this.checkBoxNewConnections.CheckedChanged += new System.EventHandler(this.checkBoxNewConnections_CheckedChanged);
             // 
             // FormEvent
             // 
