@@ -101,6 +101,26 @@ namespace Simhopp
             _view = view;
             CurrentJudgeIndex = 0;
             JudgeServer.Presenter = this;
+
+            while (CurrentDive.Scores.Count == Judges.Count)
+            {
+                _view.RedrawContestInfo(true);
+                CurrentDiverIndex++;
+                if (CurrentDiverIndex == CurrentEvent.Divers.Count)
+                {
+                    CurrentDiverIndex = 0;
+                    CurrentRoundIndex++;
+                    if (CurrentRoundIndex == CurrentEvent.diveCount)
+                    {
+                        CurrentRoundIndex--;
+                        break;
+                    }
+                }
+            }
+            if (CurrentDiverIndex > 0 || CurrentRoundIndex > 0)
+            {
+                _view.RedrawContestInfo();
+            }
         }
         //public void CreateTestEvent()
         //{
