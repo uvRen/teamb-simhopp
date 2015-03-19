@@ -56,6 +56,7 @@ namespace Simhopp_JudgeClient
                 listBoxJudges.Visible = true;
                 imgLoading.Visible = false;
                 labelJudgeList.Text = "Logga in som domare:";
+                btnLogin.Enabled = true;
             }
         }
 
