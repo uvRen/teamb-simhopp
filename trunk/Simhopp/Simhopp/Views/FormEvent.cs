@@ -389,7 +389,7 @@ namespace Simhopp
 
             _presenter.NewConnections = false;
             _panelScoring.Enabled = true;
-            if (_presenter.ClientCount == _presenter.Judges.Count)
+            if (_presenter.ClientCount() == _presenter.Judges.Count)
             {
                 _panelScoring.Enabled = false;
             }
