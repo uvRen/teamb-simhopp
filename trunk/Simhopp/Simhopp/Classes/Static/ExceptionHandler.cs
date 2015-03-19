@@ -30,6 +30,7 @@ namespace Simhopp
 
             HandleDebuggingExeption(ex);
 
+            //Ignorera i release
             if ((ex is ObjectDisposedException))
                 return;
 
