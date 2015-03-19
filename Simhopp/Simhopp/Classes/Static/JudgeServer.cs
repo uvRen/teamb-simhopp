@@ -12,7 +12,8 @@ namespace Simhopp
         private static Thread _serverThread;
         private static EventPresenter _presenter;
         private static Dictionary<int, Judge> _judges;
-        private static List<IPEndPoint> _judgeClients;
+        private static Dictionary<IPEndPoint, int> _judgeClients;
+        //private static List<IPEndPoint> _judgeClients;
         private static UdpClient _server;
 
         public static EventPresenter Presenter
@@ -34,7 +35,7 @@ namespace Simhopp
         public static void Start()
         {
             _judges = new Dictionary<int, Judge>();
-            _judgeClients = new List<IPEndPoint>();
+            _judgeClients = new Dictionary<IPEndPoint, int>();
             ThreadStart ts = new ThreadStart(UdpListener);
             _serverThread = new Thread(ts) { IsBackground = true };
 
@@ -74,11 +75,11 @@ namespace Simhopp
                     switch (msg.Action)
                     {
                         case SimhoppMessage.ClientAction.Ping:
-                            _judgeClients.Add(ipep);
                             response = SendContestStatus();
                             break;
                         case SimhoppMessage.ClientAction.Login:
                             response = AssignIdToJudge(msg);
+                            _judgeClients.Add(ipep, msg.Id);
                             break;
                         case SimhoppMessage.ClientAction.SubmitScore:
                             SubmitScore(msg);
@@ -124,19 +125,19 @@ namespace Simhopp
         }
 
 
-        public static void Stop()
+        public static void Stop(bool closeView = false)
         {
-            Thread t = new Thread(TerminateServer);
+            Thread t = new Thread(() => TerminateServer(closeView));
             t.Start();
         }
 
-        private static void TerminateServer()
+        public static void TerminateServer(bool closeView = false)
         {
             try
             {
                 //Skicka termineringsmeddelande till ansluna domarklienter
                 SendScoreToConnectedClients(null, _presenter.CurrentRoundIndex, _presenter.CurrentDiverIndex, SimhoppMessage.ClientAction.ServerTerminating);
-                Thread.Sleep(2000);
+                Thread.Sleep(100);
                 //Stäng av server
                 _judgeClients.Clear();
 
@@ -150,15 +151,18 @@ namespace Simhopp
             {
                 //ExceptionHandler.Handle(ex);
             }
+            if (closeView)
+                _presenter.CloseView();
         }
 
         private static void SendScoreToConnectedClients(Score score, int roundIndex, int diverIndex, SimhoppMessage.ClientAction action = SimhoppMessage.ClientAction.Ping)
         {
             if (_judgeClients == null)
                 return;
-
+            IPEndPoint toDelete = null;
+            bool delete = false;
             //Skicka poäng (eller status / request) till anslutna domarklienter
-            foreach (IPEndPoint ipep in _judgeClients)
+            foreach (IPEndPoint ipep in _judgeClients.Keys)
             {
                 try
                 {
@@ -180,8 +184,56 @@ namespace Simhopp
                 }
                 catch (Exception ex)
                 {
+                    delete = true;
                     ExceptionHandler.Handle(ex);
                 }
+            }
+            if (delete && toDelete != null)
+            {
+                try
+                {
+                    int judgeIndex = _judgeClients[toDelete];
+                    _judgeClients.Remove(toDelete);
+                    _judges.Remove(judgeIndex);
+                    _presenter.LogoutClient(judgeIndex);
+                }
+                catch (Exception ex)
+                { 
+                    /* Ignore */
+                }
+
+            }
+        }
+
+        public static void KickJudge(int judgeIndex)
+        {
+            try
+            {
+                _judges.Remove(judgeIndex);
+                _presenter.LogoutClient(judgeIndex);
+                foreach (IPEndPoint ipep in _judgeClients.Keys)
+                {
+                    if (_judgeClients[ipep] == judgeIndex)
+                    {
+                        //Skapa terminate message...
+                        SimhoppMessage msg;
+                        msg = new SimhoppMessage(-2, SimhoppMessage.ClientAction.ServerTerminating);
+                        var sendData = Encoding.ASCII.GetBytes(msg.Serialize());
+
+                        //...och skicka
+                        _server.Send(sendData, sendData.Length, ipep);
+
+                        //Och ta bort den
+                        _judgeClients.Remove(ipep);
+
+                        //Sen break
+                        break;
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                /* Ignore */
             }
         }
 

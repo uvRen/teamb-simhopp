@@ -9,6 +9,7 @@ namespace Simhopp
         EventPresenter Presenter { get; set; }
         void SetIcon(Icon icon);
         double CurrentDiveScore { get; set; }
+        bool Closing { get; set; }
 
         void Show();
         DialogResult ShowDialog();
@@ -22,5 +23,6 @@ namespace Simhopp
         void SetClientLogin();
         void AssignJudgeAsClient(int judgeIndex);
         void Hide();
+        void CloseInvoke();
     }
 }

@@ -22,6 +22,7 @@ namespace Simhopp
                     value._view = this;
             }
         }
+        public bool Closing { get; set; }
         public double CurrentDiveScore
         {
             set
@@ -102,6 +103,7 @@ namespace Simhopp
 
         public FormEvent(EventPresenter presenter = null)
         {
+            Closing = false;
             if (presenter == null)
             {
                 Exception ex = new Exception("Ingen presenter");
@@ -550,6 +552,7 @@ namespace Simhopp
             labelClientServerTitle.Text = "Inloggad som: " + CurrentJudge.Name;
             labelClientServerTitle.TextAlign = ContentAlignment.MiddleCenter;
             labelClientServerTitle.Top = (panelServer.Height/2) - (labelClientServerTitle.Height/2);
+            listViewJudges.ContextMenu = null;
         }
 
         public void AssignJudgeAsClient(int judgeIndex)
@@ -560,8 +563,26 @@ namespace Simhopp
 
         private void FormEvent_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _presenter.Close(false);
-            
+            if (!Closing)
+            {
+                e.Cancel = true;
+                _presenter.Close(false);
+            }
+        }
+        delegate void CloseInvokeDelegate();
+        /// <summary>
+        /// Hopp genomfört - dölj poängsättning och räkna ut poäng
+        /// </summary>
+        public void CloseInvoke()
+        {
+            if (this.InvokeRequired)
+            {
+                CloseInvokeDelegate d = new CloseInvokeDelegate(CloseInvoke);
+                this.Invoke(d);
+                return;
+            }
+            Closing = true;
+            this.Close();
         }
 
         /// <summary>
@@ -617,6 +638,16 @@ namespace Simhopp
             {
                 this.FormEventHelp_label.Visible = false;
             }
+        }
+
+        private void judgeMenuKick_Click(object sender, EventArgs e)
+        {
+            _presenter.KickJudges(listViewJudges.SelectedIndices);
+        }
+
+        private void judgeMenuRequest_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
