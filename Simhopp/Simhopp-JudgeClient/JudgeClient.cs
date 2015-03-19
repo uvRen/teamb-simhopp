@@ -133,7 +133,6 @@ namespace Simhopp_JudgeClient
                         case SimhoppMessage.ClientAction.ServerTerminating:
                             if (Presenter != null)
                                 Presenter.Close(true);
-                            Application.Exit();
                             break;
                     }
 
