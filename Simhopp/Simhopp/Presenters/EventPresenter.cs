@@ -276,6 +276,12 @@ namespace Simhopp
 
         public void LogoutClient(int judgeIndex)
         {
+            if (Judges[judgeIndex].isClient)
+            {
+                CurrentJudgeIndex = judgeIndex;
+                _view.ToggleControls(true);
+            }
+
             Judges[judgeIndex].isClient = false;
             _view.RedrawContestInfo();
         }
