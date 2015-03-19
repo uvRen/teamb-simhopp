@@ -187,6 +187,7 @@ namespace Simhopp
             panelBorder.Width = p.Width;
             panelBorder.Top = p.Height - 2;
             panelBorder.Left = 0;
+            panelBorder.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             p.Controls.Add(panelBorder);
 
             //Fulhax

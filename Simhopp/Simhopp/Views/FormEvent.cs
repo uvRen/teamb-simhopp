@@ -676,5 +676,10 @@ namespace Simhopp
         {
             _presenter.NewConnections = checkBoxNewConnections.Checked;
         }
+
+        private void tabsRounds_Enter(object sender, EventArgs e)
+        {
+            this.Focus();
+        }
     }
 }

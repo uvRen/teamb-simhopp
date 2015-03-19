@@ -73,6 +73,7 @@
             this.tabsRounds.SelectedIndex = 0;
             this.tabsRounds.Size = new System.Drawing.Size(430, 21);
             this.tabsRounds.TabIndex = 0;
+            this.tabsRounds.Enter += new System.EventHandler(this.tabsRounds_Enter);
             // 
             // btnDoDive
             // 
