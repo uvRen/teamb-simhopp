@@ -623,6 +623,90 @@ namespace Simhopp
             }
         }
 
+        public static void ClearScoreFromContest(int contestId)
+        {
+            MySqlConnection conn = Database.ConnectToDatabase();
+
+            if(conn != null)
+            {
+                MySqlCommand comm = new MySqlCommand();
+                string sql = "DELETE FROM score WHERE diveId IN (SELECT id FROM dive WHERE eventId=" + contestId + ")";
+                comm = conn.CreateCommand();
+                comm.CommandText = sql;
+                comm.ExecuteNonQuery();
+                sql = "UPDATE dive SET totalScore=0 WHERE eventId=" + contestId;
+                comm.CommandText = sql;
+                comm.ExecuteNonQuery();
+                conn.Close();
+            }
+        }
+
+        public static void GetScoresToDives(Contest contest)
+        {
+            MySqlConnection conn = Database.ConnectToDatabase();
+            MySqlCommand comm = new MySqlCommand();
+            string sql = "";
+            comm = conn.CreateCommand();
+
+            if(conn != null)
+            {
+                foreach (Diver diver in contest.Divers)
+                {
+                    //hämtar alla Scores som finns på hopparen
+                    sql = "SELECT * FROM score WHERE diveId IN (SELECT id FROM dive WHERE diverId=" + diver.Id + " AND eventId=" + contest.Id + ") ORDER BY id";
+                    comm.CommandText = sql;
+                    MySqlDataReader dr = comm.ExecuteReader();
+                    DataTable dt = new DataTable();
+
+                    dt.Load(dr);
+                    int count = 0;
+                    int diveCount = 1;
+
+                    Score currentScore = new Score();
+                    Dive currentDive = new Dive();
+                    Judge currentJudge = new Judge();
+
+
+                    //Alla scores som finns på alla hoppen
+                    foreach(DataRow row in dt.Rows)
+                    {
+                        if (count < diver.Dives.Count)
+                        {
+                            foreach (Judge judge in contest.Judges)
+                            {
+                                if (judge.Id.ToString().CompareTo(row["judgeId"].ToString()) == 0)
+                                    currentJudge = judge;
+                            }
+                            try
+                            {
+                                currentDive = diver.Dives[count];
+                            }
+                            catch (IndexOutOfRangeException) { }
+
+                            currentScore = new Score(Int32.Parse(row["id"].ToString()), currentDive, currentJudge, Double.Parse(row["point"].ToString()));
+                            diver.Dives[count].AddScore(currentScore);
+
+                            
+                            if(diveCount == contest.Judges.Count)
+                            {
+                                count++;
+                                diveCount = 1;
+                            }
+                            else
+                            {
+                                diveCount++;
+                            }
+                            
+                                
+
+                        }
+                    }
+                }
+            }
+            
+        }
+
+        //VARIT OKLART VÄLDIGT LÄNGE NU? STATUS?
         //*** THOMAS - RESULT (EJ KLAR)
         /*
         public static void SetDiveTotalScore(int diveID)

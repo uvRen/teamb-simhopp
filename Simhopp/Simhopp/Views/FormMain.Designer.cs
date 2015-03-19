@@ -72,6 +72,7 @@
             this.teamBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchBox = new System.Windows.Forms.ToolStripTextBox();
             this.searchEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rensaPoängToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -228,28 +229,29 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.startaTävlingToolStripMenuItem,
             this.stoppaTävlingToolStripMenuItem,
+            this.rensaPoängToolStripMenuItem,
             this.taBortEventToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(151, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 114);
             // 
             // startaTävlingToolStripMenuItem
             // 
             this.startaTävlingToolStripMenuItem.Name = "startaTävlingToolStripMenuItem";
-            this.startaTävlingToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.startaTävlingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.startaTävlingToolStripMenuItem.Text = "Starta tävling";
             this.startaTävlingToolStripMenuItem.Click += new System.EventHandler(this.startaTävlingToolStripMenuItem_Click);
             // 
             // stoppaTävlingToolStripMenuItem
             // 
             this.stoppaTävlingToolStripMenuItem.Name = "stoppaTävlingToolStripMenuItem";
-            this.stoppaTävlingToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.stoppaTävlingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.stoppaTävlingToolStripMenuItem.Text = "Stoppa tävling";
             this.stoppaTävlingToolStripMenuItem.Click += new System.EventHandler(this.stoppaTävlingToolStripMenuItem_Click);
             // 
             // taBortEventToolStripMenuItem
             // 
             this.taBortEventToolStripMenuItem.Name = "taBortEventToolStripMenuItem";
-            this.taBortEventToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.taBortEventToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.taBortEventToolStripMenuItem.Text = "Ta bort event";
             this.taBortEventToolStripMenuItem.Click += new System.EventHandler(this.taBortEventToolStripMenuItem_Click);
             // 
@@ -461,6 +463,13 @@
             this.searchEventToolStripMenuItem.Size = new System.Drawing.Size(80, 23);
             this.searchEventToolStripMenuItem.Text = "Sök Tävling";
             // 
+            // rensaPoängToolStripMenuItem
+            // 
+            this.rensaPoängToolStripMenuItem.Name = "rensaPoängToolStripMenuItem";
+            this.rensaPoängToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rensaPoängToolStripMenuItem.Text = "Rensa poäng";
+            this.rensaPoängToolStripMenuItem.Click += new System.EventHandler(this.rensaPoängToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -532,6 +541,7 @@
         private System.Windows.Forms.ToolStripTextBox searchBox;
         private System.Windows.Forms.ToolStripMenuItem searchEventToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem rensaPoängToolStripMenuItem;
 
     }
 }

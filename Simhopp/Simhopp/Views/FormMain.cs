@@ -213,6 +213,13 @@ namespace Simhopp
         }
         #endregion
 
+        private void rensaPoängToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Database.ClearScoreFromContest(Int32.Parse(_selectedItem.SubItems[5].Text));
+            listViewResult.Items.Clear();
+            Database.GetDiversInContest(Int32.Parse(_selectedItem.SubItems[5].Text), listViewResult);
+        }
+
 
 
     }
