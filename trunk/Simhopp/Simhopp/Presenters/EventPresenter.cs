@@ -278,7 +278,8 @@ namespace Simhopp
         {
             if (Judges[judgeIndex].isClient)
             {
-                CurrentJudgeIndex = judgeIndex;
+                if (CurrentJudgeIndex > judgeIndex)
+                    CurrentJudgeIndex = judgeIndex;
                 _view.ToggleControls(true);
             }
 
