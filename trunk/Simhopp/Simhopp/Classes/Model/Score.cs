@@ -11,7 +11,7 @@ namespace Simhopp
     public class Score
     {
         [IgnoreDataMember]
-        private int Id;
+        public int Id;
         [IgnoreDataMember]
         public Dive dive { get; set; }
         [DataMember]

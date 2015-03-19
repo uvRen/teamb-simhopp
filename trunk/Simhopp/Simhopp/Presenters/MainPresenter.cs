@@ -114,6 +114,8 @@ namespace Simhopp
                 {
                     _view.Hide();
                     Contest c = Database.GetContest(Int32.Parse(_view.ListViewEvent.SelectedItems[0].SubItems[5].Text));
+                    Database.GetScoresToDives(c);
+
                     EventPresenter presenter = new EventPresenter(null, c);
                     presenter.ShowViewDialog();
                     _view.Show();
