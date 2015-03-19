@@ -552,7 +552,7 @@ namespace Simhopp
             labelClientServerTitle.Text = "Inloggad som: " + CurrentJudge.Name;
             labelClientServerTitle.TextAlign = ContentAlignment.MiddleCenter;
             labelClientServerTitle.Top = (panelServer.Height/2) - (labelClientServerTitle.Height/2);
-            listViewJudges.ContextMenu = null;
+            listViewJudges.ContextMenuStrip.Items.Clear();
         }
 
         public void AssignJudgeAsClient(int judgeIndex)
@@ -582,6 +582,11 @@ namespace Simhopp
                 return;
             }
             Closing = true;
+            if (_presenter.Mode == EventPresenter.ViewMode.Client)
+            {
+                MessageBox.Show("Servern stängde anslutningen.\n\nProgrammet avslutas.", "Avslutas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Application.Exit();
+            }
             this.Close();
         }
 

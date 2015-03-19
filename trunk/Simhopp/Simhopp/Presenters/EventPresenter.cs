@@ -315,7 +315,9 @@ namespace Simhopp
                     _judgeClient.SendLogout(_clientJudgeIndex);
                 }
                 else
-                    MessageBox.Show("Servern stängde anslutningen.\n\nProgrammet avslutas.", "Avslutas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                {
+                    _view.CloseInvoke();
+                }
             }
             else
             {
