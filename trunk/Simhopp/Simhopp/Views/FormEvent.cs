@@ -383,10 +383,16 @@ namespace Simhopp
         {
             _presenter.RequestScoreFromClients();
             HighlightCurrentDive();
-            _panelScoring.Enabled = true;
             btnDoDive.Enabled = false;
             UpdateJudgeList();
             btnStartServer.Enabled = false;
+
+            _presenter.NewConnections = false;
+            _panelScoring.Enabled = true;
+            if (_presenter.ClientCount == _presenter.Judges.Count)
+            {
+                _panelScoring.Enabled = false;
+            }
         }
 
         private void HighlightCurrentDive()
@@ -489,6 +495,7 @@ namespace Simhopp
                 btnNextRound.Enabled = false;
                 CurrentRoundIndex -= 1; //Runda 4 av 3 annars.
             }
+            _presenter.NewConnections = checkBoxNewConnections.Checked;
 
             UpdateJudgeScores();
             UpdateLeaderboard();
@@ -561,6 +568,7 @@ namespace Simhopp
             labelClientServerTitle.TextAlign = ContentAlignment.MiddleCenter;
             labelClientServerTitle.Top = (panelServer.Height/2) - (labelClientServerTitle.Height/2);
             listViewJudges.ContextMenuStrip.Items.Clear();
+            listViewJudges.SmallImageList = null;
         }
 
         public void AssignJudgeAsClient(int judgeIndex)

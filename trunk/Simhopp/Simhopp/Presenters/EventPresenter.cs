@@ -295,6 +295,17 @@ namespace Simhopp
             JudgeServer.RequestScore();
         }
 
+        public int ClientCount()
+        {
+            int count = 0;
+            foreach (Judge judge in Judges)
+            {
+                if (judge.isClient)
+                    count++;
+            }
+            return count;
+        }
+
         public void SendStatusToClient()
         {
             JudgeServer.SendStatus();
